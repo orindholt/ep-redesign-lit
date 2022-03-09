@@ -20,7 +20,7 @@ export default {
     summary(),
     // Optional: copy any static assets to build directory
     copy({
-      patterns: 'images/**/*.{svg,png,jpg}',
+      patterns: 'images/**/*.{svg,png,jpg,gif,webp}',
       rootDir: './dev',
     }),
   ],
