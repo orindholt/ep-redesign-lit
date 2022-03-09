@@ -1,6 +1,6 @@
 import {LitElement, html} from 'lit';
 import {create, cssomSheet} from 'twind';
-import {animation} from 'twind/css';
+import {animation, css} from 'twind/css';
 
 const slideIn = animation('1s ease-in-out forwards', {
   '0%': {
@@ -140,6 +140,7 @@ export class NavBar extends LitElement {
 
   toggleMenu() {
     this.menu = !this.menu;
+    if (this.showLogin) this.showLogin = false;
     if (this.menu) {
       this.regionSelector = false;
       if (this.detector) this.detector = false;
@@ -190,8 +191,18 @@ export class NavBar extends LitElement {
                   <div class="${tw`w-full relative ${fadeIn} opacity-0`}">
                     <div class="${tw`flex py-8 px-12 gap-5`}">
                       <button
-                        class="${tw`text-white text-[19px] leading-9 rounded-[3px] font-bold w-full h-10 flex justify-center items-center gap-3`}"
-                        style="background-image: linear-gradient(to right, #0060E9 0%, #3D8BDD 50%, #80BAD0 100%)"
+                        class="${tw`text-white text-[19px] leading-9 rounded-[3px] font-bold w-full h-10 flex justify-center items-center gap-3
+                        ${css`
+                          & {
+                            background: linear-gradient(
+                              to right,
+                              #0060e9 0%,
+                              #3d8bdd 50%,
+                              #80bad0 100%
+                            );
+                          }
+                        `}
+                        `}"
                       >
                         <p class="${tw`mb-1`}">Shop</p>
                         <img src="./images/cart.svg" alt="cart" />
@@ -334,84 +345,90 @@ export class NavBar extends LitElement {
             : ``}
         </div>
       </nav>
+      <!--Login Overlay-->
       ${this.showLogin
         ? html`
             <div
-              class="${tw`fixed w-[100vw] h-[100vh] top-0 right-0 pt-10 pb-28 px-4 z-20 ${fadeInAlt}`}"
-              style="background-image: linear-gradient(to right, #a8ebe9, #fae4fe)"
+              class="${tw`fixed w-[100vw] h-full bg-[#eaeff7] top-16 right-0 pb-20 px-4 z-20 ${fadeInAlt} ${css`
+                & {
+                  background: transparent
+                    linear-gradient(151deg, #eaeff7 0%, #d8e2f2 100%);
+                }
+              `}`}"
             >
-              <div
-                class="${tw`bg(top-right no-repeat) flex flex-col justify-between h-full`}"
-                style="background-image: url('./images/login-banner.png'); background-size: 40%;"
-              >
+              <div class="${tw`flex flex-col text-center h-full`}">
                 <button
                   @click=${() => {
                     this.showLogin = false;
                   }}
-                  class="${tw`flex items-center gap-4 text-[#339] font-medium absolute top-3 right-2`}"
+                  class="${tw`flex items-center absolute top-3 right-2 bg-[#fff] p-3 rounded-full w-9 h-9 shadow-sm`}"
                 >
-                  Close
-                  <div
-                    class="${tw`flex bg-[#eeeeee] p-2 rounded-full w-9 h-9 justify-center`}"
-                  >
-                    <img src="./images/close.svg" alt="Close Icon" />
-                  </div>
+                  <img src="./images/burger-exit.svg" alt="Close Icon" />
                 </button>
-                <div class="${tw`mt-4`}">
-                  <h2 class="${tw`text-[2rem] font-bold leading-9`}">Log in</h2>
-                  <p>Are you ready to Win Free Prizes?</p>
+                <img src="./images/money.png" alt="Jackpot" />
+                <h2 class="${tw`text-[2.188rem] text-[#3988DE] font-bold`}">
+                  Tilmeld dig
+                </h2>
+                <p class="${tw`font-medium text-[17px]`}">
+                  Og få 1000 EP med det samme!
+                </p>
+                <div class="${tw`flex justify-center gap-3 mb-4 mt-6`}">
+                  <a
+                    href="#"
+                    class="${tw`w-10 h-10 bg-[#fff] flex rounded-lg p-2 justify-center`}"
+                    ><img src="./images/social-icons/google.svg"
+                  /></a>
+                  <a
+                    href="#"
+                    class="${tw`w-10 h-10 bg-[#fff] flex rounded-lg p-2 justify-center`}"
+                    ><img src="./images/social-icons/facebook.svg"
+                  /></a>
+                  <a
+                    href="#"
+                    class="${tw`w-10 h-10 bg-[#fff] flex rounded-lg p-2 justify-center`}"
+                    ><img src="./images/social-icons/apple.svg"
+                  /></a>
                 </div>
                 <form
                   action="#"
-                  class="${tw`text-center flex flex-col px-10 gap-y-6`}"
+                  class="${tw`text-center flex flex-col px-10 gap-3`}"
                   (submit)="(false)"
                 >
                   <input
                     type="text"
-                    placeholder="Your email"
-                    class="${tw`p-3 rounded-sm bg-[#eeeeee]`}"
+                    placeholder="Brugernavn..."
+                    class="${tw`pb-1 px-4 h-10 w-full rounded-lg bg-[#fff] placeholder-[#D1D4D9]`}"
                     required
                   />
                   <input
-                    type="text"
-                    placeholder="Password"
-                    class="${tw`p-3 rounded-sm bg-[#eeeeee]`}"
+                    type="email"
+                    placeholder="Email..."
+                    class="${tw`pb-1 px-4 h-10 w-full rounded-lg bg-[#fff] placeholder-[#D1D4D9]`}"
                     required
                   />
-                  <a
-                    href="#"
-                    class="${tw`rounded-md shadow-md w-full h-9 flex justify-center items-center text-lg font-medium text-white`}"
-                    style="background-image: linear-gradient(to bottom left, #FFA626, #FFD45B)"
-                  >
-                    Log In
-                  </a>
-                  <div>
-                    <p class="${tw`mb-4`}">Or continue with social login</p>
-                    <div class="${tw`flex justify-center gap-x-3`}">
-                      <a
-                        href="#"
-                        class="${tw`w-16 h-16 bg-[#eeeeee] flex rounded-full p-4 justify-center`}"
-                        ><img src="./images/social-icons/facebook.svg"
-                      /></a>
-                      <a
-                        href="#"
-                        class="${tw`w-16 h-16 bg-[#eeeeee] flex rounded-full p-4 justify-center`}"
-                        ><img src="./images/social-icons/google.svg"
-                      /></a>
-                    </div>
-                  </div>
-                  <div>
-                    <hr class="${tw`w-1/2 border-[#999999] my-4 mx-auto`}" />
-                    <p class="${tw`my-1 text-[16px]`}">
-                      Don't remember your password?
-                    </p>
+                  <input
+                    type="password"
+                    placeholder="Kodeord..."
+                    class="${tw`pb-1 px-4 h-10 w-full rounded-lg bg-[#fff] placeholder-[#D1D4D9]`}"
+                    required
+                  />
+                  <input
+                    type="submit"
+                    value="Fortsæt"
+                    class="${tw`mx-auto rounded-md shadow-md w-24 h-10 flex justify-center items-center text-lg font-medium text-white ${css`
+                      & {
+                        background: transparent
+                          linear-gradient(206deg, #ff930f 0%, #ffd45b 100%);
+                      }
+                    `}`}"
+                  />
+                  <div class="${tw`leading-4`}">
+                    <p class="${tw`text-[13px]`}">Har du allerede en bruger?</p>
                     <a
                       href="#"
-                      class="${tw`text-[#339] hover:text-[#6c6ca7] text-[16px]`}"
-                      >Not a user yet?
-                      <span class="${tw`font-bold`}">Register here!</span></a
-                    >
-                    <hr class="${tw`w-1/2 border-[#999999] my-4 mx-auto`}" />
+                      class="${tw`text-[#3585DF] text-[13px] font-bold`}"
+                      >Log ind her
+                    </a>
                   </div>
                 </form>
               </div>

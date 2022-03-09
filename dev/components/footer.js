@@ -33,7 +33,7 @@ export class Footer extends LitElement {
           <div class="${tw`w-full bg-[#eeeeee] h-[2px]`}"></div>
         </div>
         <div
-          class="${tw`bg-[#273789] py-10 px-[10%] flex flex-col items-center`}"
+          class="${tw`bg-[#273789] py-10 px-[9%] flex flex-col items-center`}"
         >
           <img
             src="./images/logo-big.png"
