@@ -66,36 +66,36 @@ export class NavBar extends LitElement {
     this.regionSelector = false;
     this.detectorInteracted = false;
     this.showLogin = false;
-    this.crtFlag = './assets/flags/denmark.svg';
+    this.crtFlag = '../assets/flags/denmark.svg';
     this.regions = [
       {
-        imgSrc: './assets/flags/usa.svg',
+        imgSrc: '../assets/flags/usa.svg',
         title: 'USA',
         anchor: '#',
         active: false,
       },
       {
-        imgSrc: './assets/flags/denmark.svg',
+        imgSrc: '../assets/flags/denmark.svg',
         title: 'Danmark',
         active: true,
       },
       {
-        imgSrc: './assets/flags/german.svg',
+        imgSrc: '../assets/flags/german.svg',
         title: 'Deutshland',
         active: false,
       },
       {
-        imgSrc: './assets/flags/norway.svg',
+        imgSrc: '../assets/flags/norway.svg',
         title: 'Norge',
         active: false,
       },
       {
-        imgSrc: './assets/flags/finland.svg',
+        imgSrc: '../assets/flags/finland.svg',
         title: 'Suomi',
         active: false,
       },
       {
-        imgSrc: './assets/flags/sweden.svg',
+        imgSrc: '../assets/flags/sweden.svg',
         title: 'Sverige',
         active: false,
       },
@@ -155,7 +155,7 @@ export class NavBar extends LitElement {
         class="${tw`flex justify-between px-4 h-16 bg-[#eaeff7] items-center shadow-md z-20 fixed w-full top-0`}"
       >
         <a href="#"
-          ><img src="./assets/header.svg" alt="header" class="${tw`w-32`}"
+          ><img src="../assets/header.svg" alt="header" class="${tw`w-32`}"
         /></a>
         <div class="flex">
           <button
@@ -166,15 +166,15 @@ export class NavBar extends LitElement {
             }}
             class="${tw`p-2 w-10 h-10 rounded bg-black mr-4`}"
           >
-            <img src="./assets/login.svg" alt="Login Icon" />
+            <img src="../assets/login.svg" alt="Login Icon" />
           </button>
           <button class="${`mr-4`}">
-            <img src="./assets/search.svg" alt="search icon" />
+            <img src="../assets/search.svg" alt="search icon" />
           </button>
           <button @click=${this.toggleMenu}>
             <img
               class="${tw`w-8`}"
-              src="./assets/${this.menu
+              src="../assets/${this.menu
                 ? 'burger-exit.svg'
                 : 'burger-menu.svg'}"
               alt="menu icon"
@@ -190,10 +190,11 @@ export class NavBar extends LitElement {
                   <div class="${tw`w-full relative ${fadeIn} opacity-0`}">
                     <div class="${tw`flex py-8 px-12 gap-5`}">
                       <button
-                        class="${tw`text-white text-[19px] leading-9 rounded-[3px] font-bold w-full h-10 flex justify-center`}"
+                        class="${tw`text-white text-[19px] leading-9 rounded-[3px] font-bold w-full h-10 flex justify-center items-center gap-3`}"
                         style="background-image: linear-gradient(to right, #0060E9 0%, #3D8BDD 50%, #80BAD0 100%)"
                       >
-                        Shop
+                        <p class="${tw`mb-1`}">Shop</p>
+                        <img src="../assets/cart.svg" alt="cart" />
                       </button>
                       <button
                         class="${tw`w-12`}"
@@ -341,7 +342,7 @@ export class NavBar extends LitElement {
             >
               <div
                 class="${tw`bg(top-right no-repeat) flex flex-col justify-between h-full`}"
-                style="background-image: url('./assets/login-banner.png'); background-size: 40%;"
+                style="background-image: url('../assets/login-banner.png'); background-size: 40%;"
               >
                 <button
                   @click=${() => {
@@ -353,7 +354,7 @@ export class NavBar extends LitElement {
                   <div
                     class="${tw`flex bg-[#eeeeee] p-2 rounded-full w-9 h-9 justify-center`}"
                   >
-                    <img src="./assets/close.svg" alt="Close Icon" />
+                    <img src="../assets/close.svg" alt="Close Icon" />
                   </div>
                 </button>
                 <div class="${tw`mt-4`}">
@@ -390,12 +391,12 @@ export class NavBar extends LitElement {
                       <a
                         href="#"
                         class="${tw`w-16 h-16 bg-[#eeeeee] flex rounded-full p-4 justify-center`}"
-                        ><img src="./assets/social-icons/facebook.svg"
+                        ><img src="../assets/social-icons/facebook.svg"
                       /></a>
                       <a
                         href="#"
                         class="${tw`w-16 h-16 bg-[#eeeeee] flex rounded-full p-4 justify-center`}"
-                        ><img src="./assets/social-icons/google.svg"
+                        ><img src="../assets/social-icons/google.svg"
                       /></a>
                     </div>
                   </div>

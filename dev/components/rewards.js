@@ -41,7 +41,7 @@ export class Rewards extends LitElement {
           href="#"
           class="${tw`flex items-center rounded gap-1 px-1 h-6 bg-white`}"
         >
-          <img src="./assets/person.svg" alt="person icon" />
+          <img src="../assets/person.svg" alt="person icon" />
           <p class="${tw`font-medium text-sm`}">1361</p>
           <p class="${tw`font-light text-sm relative after::${liveDot}`}">
             Live
