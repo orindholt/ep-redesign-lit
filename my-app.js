@@ -1,15 +1,8 @@
 import {LitElement, html} from 'lit';
-import {create, cssomSheet, setup} from 'twind';
-
-setup({
-  theme: {
-    extend: {
-      colors: {
-        purple: '#fae4fe',
-      },
-    },
-  },
-});
+import {create, cssomSheet, setup, warn} from 'twind';
+import {NavBar} from './dev/components/nav-bar';
+import {Footer} from './dev/components/footer';
+import {Rewards} from './dev/components/rewards';
 
 const sheet = cssomSheet({target: new CSSStyleSheet()});
 const {tw} = create({sheet});
@@ -17,19 +10,16 @@ const {tw} = create({sheet});
 export class MyApp extends LitElement {
   static styles = [sheet.target];
 
-  static get properties() {
-    return {
-      name: {type: String},
-    };
-  }
-
-  constructor() {
-    super();
-    this.name = 'World';
-  }
-
   render() {
-    return html` <h1 class="${tw`text(3xl purple)`}">${this.name}!</h1> `;
+    return html`
+      <div class="${tw`font-['sofia-pro'] pt-16`}">
+        <nav-bar></nav-bar>
+        <section class="${tw`px-8`}">
+          <app-rewards></app-rewards>
+        </section>
+        <app-footer></app-footer>
+      </div>
+    `;
   }
 }
 
