@@ -221,13 +221,13 @@ export class NavBar extends LitElement {
                     <!-- location pop-up -->
                     ${this.detector
                       ? html`<div
-                          class="${tw`${fadeInAlt} opacity-0 border-t-4 border-[#FFBC3F] shadow-lg transition-all rounded-b-lg absolute w-2/3 right-12 top-20 px-4 py-5 bg-white`}"
+                          class="${tw`${fadeInAlt} opacity-0 shadow-lg transition-opacity rounded-lg absolute w-2/3 right-12 top-20 px-4 py-5 bg-[#1a2433] text-white`}"
                         >
                           <p class="${`font-bold text-blue-800`}">
                             We detected that you visit us from ${this.location}
                           </p>
                           <button
-                            class="${tw`underline text-[#999999]`}"
+                            class="${tw`underline text-[#FFBC3F]`}"
                             @click=${() => {
                               this.regionSelector = true;
                               this.detectorInteracted = true;
