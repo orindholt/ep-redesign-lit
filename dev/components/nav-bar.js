@@ -361,7 +361,7 @@ export class NavBar extends LitElement {
                   @click=${() => {
                     this.showLogin = false;
                   }}
-                  class="${tw`flex items-center absolute top-3 right-2 bg-[#fff] p-3 rounded-full w-9 h-9 shadow-sm`}"
+                  class="${tw`flex items-center absolute top-3 right-2 bg-[#f1f5fa] p-3 rounded-full w-9 h-9 shadow-sm`}"
                 >
                   <img src="./images/burger-exit.svg" alt="Close Icon" />
                 </button>
@@ -375,17 +375,17 @@ export class NavBar extends LitElement {
                 <div class="${tw`flex justify-center gap-3 mb-4 mt-6`}">
                   <a
                     href="#"
-                    class="${tw`w-10 h-10 bg-[#fff] flex rounded-lg p-2 justify-center`}"
+                    class="${tw`w-10 h-10 bg-[#f1f5fa] flex rounded-lg p-2 justify-center`}"
                     ><img src="./images/social-icons/google.svg"
                   /></a>
                   <a
                     href="#"
-                    class="${tw`w-10 h-10 bg-[#fff] flex rounded-lg p-2 justify-center`}"
+                    class="${tw`w-10 h-10 bg-[#f1f5fa] flex rounded-lg p-2 justify-center`}"
                     ><img src="./images/social-icons/facebook.svg"
                   /></a>
                   <a
                     href="#"
-                    class="${tw`w-10 h-10 bg-[#fff] flex rounded-lg p-2 justify-center`}"
+                    class="${tw`w-10 h-10 bg-[#f1f5fa] flex rounded-lg p-2 justify-center`}"
                     ><img src="./images/social-icons/apple.svg"
                   /></a>
                 </div>
@@ -397,19 +397,19 @@ export class NavBar extends LitElement {
                   <input
                     type="text"
                     placeholder="Brugernavn..."
-                    class="${tw`pb-1 px-4 h-10 w-full rounded-lg bg-[#fff] placeholder-[#D1D4D9]`}"
+                    class="${tw`pb-1 px-4 h-10 w-full rounded-lg bg-[#f1f5fa] placeholder-[#D1D4D9]`}"
                     required
                   />
                   <input
                     type="email"
                     placeholder="Email..."
-                    class="${tw`pb-1 px-4 h-10 w-full rounded-lg bg-[#fff] placeholder-[#D1D4D9]`}"
+                    class="${tw`pb-1 px-4 h-10 w-full rounded-lg bg-[#f1f5fa] placeholder-[#D1D4D9]`}"
                     required
                   />
                   <input
                     type="password"
                     placeholder="Kodeord..."
-                    class="${tw`pb-1 px-4 h-10 w-full rounded-lg bg-[#fff] placeholder-[#D1D4D9]`}"
+                    class="${tw`pb-1 px-4 h-10 w-full rounded-lg bg-[#f1f5fa] placeholder-[#D1D4D9]`}"
                     required
                   />
                   <input

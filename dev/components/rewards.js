@@ -16,7 +16,7 @@ const cyanGradient = css({
 const liveDot = css({
   content: '""',
   '@apply':
-    'absolute w-1 h-1 flex justify-center items-center bg-[#f82858] rounded-full top-1 right-[-2px]',
+    'absolute w-1 h-1 flex justify-center items-center bg-[#f82858] rounded-full top-1 right-1',
 });
 
 export class Rewards extends LitElement {
@@ -31,22 +31,19 @@ export class Rewards extends LitElement {
   render() {
     return html`
       <section
-        class="${tw`flex justify-between items-center rounded-md h-12 bg-[#1A2433] px-3 my-2`}"
+        class="${tw`flex justify-between items-center rounded-md h-12 bg-[#1A2433] px-3 my-2 gap-1`}"
       >
-        <h2 class="${tw`${cyanGradient} font-bold text-lg`}">$52.526</h2>
-        <p class="${tw`font-medium text-white text-sm`}">
+        <h2 class="${tw`${cyanGradient} font-bold text-xl mb-1`}">$52.526</h2>
+        <p class="${tw`font-medium text-white text-sm text-center`}">
           In rewards the last 30 days!
         </p>
-        <a
-          href="#"
-          class="${tw`flex items-center rounded gap-1 px-1 h-6 bg-white`}"
+        <div
+          class="${tw`flex items-center rounded-md gap-1 px-1 ml-[2%] min-w-[5rem] w-20 bg-[#EAEFF7] after::${liveDot} relative`}"
         >
           <img src="./images/person.svg" alt="person icon" />
-          <p class="${tw`font-medium text-sm`}">1361</p>
-          <p class="${tw`font-light text-sm relative after::${liveDot}`}">
-            Live
-          </p>
-        </a>
+          <p class="${tw`font-medium text-sm mb-1`}">1361</p>
+          <p class="${tw`font-light text-sm mb-1`}">Live</p>
+        </div>
       </section>
     `;
   }

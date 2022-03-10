@@ -39,6 +39,7 @@
   "author": "Google LLC",
   "license": "BSD-3-Clause",
   "dependencies": {
+    "@web/rollup-plugin-polyfills-loader": "^1.2.0",
     "lit": "^2.1.0",
     "twind": "^0.16.16"
   },
