@@ -14,7 +14,6 @@ import {Shop} from './dev/templates/shop';
 
 const sheet = cssomSheet({target: new CSSStyleSheet()});
 const {tw} = create({sheet});
-
 setup({
   preflight: {
     '@import': `url('https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.12/dist/css/splide.min.css')`,
