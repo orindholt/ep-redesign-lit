@@ -3,33 +3,5178 @@
  * Copyright 2019 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const t=window.ShadowRoot&&(void 0===window.ShadyCSS||window.ShadyCSS.nativeShadow)&&"adoptedStyleSheets"in Document.prototype&&"replace"in CSSStyleSheet.prototype,e=Symbol(),i=new Map;class n{constructor(t,i){if(this._$cssResult$=!0,i!==e)throw Error("CSSResult is not constructable. Use `unsafeCSS` or `css` instead.");this.cssText=t}get styleSheet(){let e=i.get(this.cssText);return t&&void 0===e&&(i.set(this.cssText,e=new CSSStyleSheet),e.replaceSync(this.cssText)),e}toString(){return this.cssText}}const o=t?t=>t:t=>t instanceof CSSStyleSheet?(t=>{let i="";for(const e of t.cssRules)i+=e.cssText;return(t=>new n("string"==typeof t?t:t+"",e))(i)})(t):t
+const t$2=window.ShadowRoot&&(void 0===window.ShadyCSS||window.ShadyCSS.nativeShadow)&&"adoptedStyleSheets"in Document.prototype&&"replace"in CSSStyleSheet.prototype,e$2=Symbol(),n$3=new Map;class s$3{constructor(t,n){if(this._$cssResult$=!0,n!==e$2)throw Error("CSSResult is not constructable. Use `unsafeCSS` or `css` instead.");this.cssText=t;}get styleSheet(){let e=n$3.get(this.cssText);return t$2&&void 0===e&&(n$3.set(this.cssText,e=new CSSStyleSheet),e.replaceSync(this.cssText)),e}toString(){return this.cssText}}const o$3=t=>new s$3("string"==typeof t?t:t+"",e$2),i$2=(e,n)=>{t$2?e.adoptedStyleSheets=n.map((t=>t instanceof CSSStyleSheet?t:t.styleSheet)):n.forEach((t=>{const n=document.createElement("style"),s=window.litNonce;void 0!==s&&n.setAttribute("nonce",s),n.textContent=t.cssText,e.appendChild(n);}));},S$1=t$2?t=>t:t=>t instanceof CSSStyleSheet?(t=>{let e="";for(const n of t.cssRules)e+=n.cssText;return o$3(e)})(t):t;
+
 /**
  * @license
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
- */;var r;const s=window.trustedTypes,a=s?s.emptyScript:"",l=window.reactiveElementPolyfillSupport,c={toAttribute(t,e){switch(e){case Boolean:t=t?a:null;break;case Object:case Array:t=null==t?t:JSON.stringify(t)}return t},fromAttribute(t,e){let i=t;switch(e){case Boolean:i=null!==t;break;case Number:i=null===t?null:Number(t);break;case Object:case Array:try{i=JSON.parse(t)}catch(t){i=null}}return i}},d=(t,e)=>e!==t&&(e==e||t==t),u={attribute:!0,type:String,converter:c,reflect:!1,hasChanged:d};class p extends HTMLElement{constructor(){super(),this._$Et=new Map,this.isUpdatePending=!1,this.hasUpdated=!1,this._$Ei=null,this.o()}static addInitializer(t){var e;null!==(e=this.l)&&void 0!==e||(this.l=[]),this.l.push(t)}static get observedAttributes(){this.finalize();const t=[];return this.elementProperties.forEach(((e,i)=>{const n=this._$Eh(i,e);void 0!==n&&(this._$Eu.set(n,i),t.push(n))})),t}static createProperty(t,e=u){if(e.state&&(e.attribute=!1),this.finalize(),this.elementProperties.set(t,e),!e.noAccessor&&!this.prototype.hasOwnProperty(t)){const i="symbol"==typeof t?Symbol():"__"+t,n=this.getPropertyDescriptor(t,i,e);void 0!==n&&Object.defineProperty(this.prototype,t,n)}}static getPropertyDescriptor(t,e,i){return{get(){return this[e]},set(n){const o=this[t];this[e]=n,this.requestUpdate(t,o,i)},configurable:!0,enumerable:!0}}static getPropertyOptions(t){return this.elementProperties.get(t)||u}static finalize(){if(this.hasOwnProperty("finalized"))return!1;this.finalized=!0;const t=Object.getPrototypeOf(this);if(t.finalize(),this.elementProperties=new Map(t.elementProperties),this._$Eu=new Map,this.hasOwnProperty("properties")){const t=this.properties,e=[...Object.getOwnPropertyNames(t),...Object.getOwnPropertySymbols(t)];for(const i of e)this.createProperty(i,t[i])}return this.elementStyles=this.finalizeStyles(this.styles),!0}static finalizeStyles(t){const e=[];if(Array.isArray(t)){const i=new Set(t.flat(1/0).reverse());for(const t of i)e.unshift(o(t))}else void 0!==t&&e.push(o(t));return e}static _$Eh(t,e){const i=e.attribute;return!1===i?void 0:"string"==typeof i?i:"string"==typeof t?t.toLowerCase():void 0}o(){var t;this._$Ep=new Promise((t=>this.enableUpdating=t)),this._$AL=new Map,this._$Em(),this.requestUpdate(),null===(t=this.constructor.l)||void 0===t||t.forEach((t=>t(this)))}addController(t){var e,i;(null!==(e=this._$Eg)&&void 0!==e?e:this._$Eg=[]).push(t),void 0!==this.renderRoot&&this.isConnected&&(null===(i=t.hostConnected)||void 0===i||i.call(t))}removeController(t){var e;null===(e=this._$Eg)||void 0===e||e.splice(this._$Eg.indexOf(t)>>>0,1)}_$Em(){this.constructor.elementProperties.forEach(((t,e)=>{this.hasOwnProperty(e)&&(this._$Et.set(e,this[e]),delete this[e])}))}createRenderRoot(){var e;const i=null!==(e=this.shadowRoot)&&void 0!==e?e:this.attachShadow(this.constructor.shadowRootOptions);return((e,i)=>{t?e.adoptedStyleSheets=i.map((t=>t instanceof CSSStyleSheet?t:t.styleSheet)):i.forEach((t=>{const i=document.createElement("style"),n=window.litNonce;void 0!==n&&i.setAttribute("nonce",n),i.textContent=t.cssText,e.appendChild(i)}))})(i,this.constructor.elementStyles),i}connectedCallback(){var t;void 0===this.renderRoot&&(this.renderRoot=this.createRenderRoot()),this.enableUpdating(!0),null===(t=this._$Eg)||void 0===t||t.forEach((t=>{var e;return null===(e=t.hostConnected)||void 0===e?void 0:e.call(t)}))}enableUpdating(t){}disconnectedCallback(){var t;null===(t=this._$Eg)||void 0===t||t.forEach((t=>{var e;return null===(e=t.hostDisconnected)||void 0===e?void 0:e.call(t)}))}attributeChangedCallback(t,e,i){this._$AK(t,i)}_$ES(t,e,i=u){var n,o;const r=this.constructor._$Eh(t,i);if(void 0!==r&&!0===i.reflect){const s=(null!==(o=null===(n=i.converter)||void 0===n?void 0:n.toAttribute)&&void 0!==o?o:c.toAttribute)(e,i.type);this._$Ei=t,null==s?this.removeAttribute(r):this.setAttribute(r,s),this._$Ei=null}}_$AK(t,e){var i,n,o;const r=this.constructor,s=r._$Eu.get(t);if(void 0!==s&&this._$Ei!==s){const t=r.getPropertyOptions(s),a=t.converter,l=null!==(o=null!==(n=null===(i=a)||void 0===i?void 0:i.fromAttribute)&&void 0!==n?n:"function"==typeof a?a:null)&&void 0!==o?o:c.fromAttribute;this._$Ei=s,this[s]=l(e,t.type),this._$Ei=null}}requestUpdate(t,e,i){let n=!0;void 0!==t&&(((i=i||this.constructor.getPropertyOptions(t)).hasChanged||d)(this[t],e)?(this._$AL.has(t)||this._$AL.set(t,e),!0===i.reflect&&this._$Ei!==t&&(void 0===this._$EC&&(this._$EC=new Map),this._$EC.set(t,i))):n=!1),!this.isUpdatePending&&n&&(this._$Ep=this._$E_())}async _$E_(){this.isUpdatePending=!0;try{await this._$Ep}catch(t){Promise.reject(t)}const t=this.scheduleUpdate();return null!=t&&await t,!this.isUpdatePending}scheduleUpdate(){return this.performUpdate()}performUpdate(){var t;if(!this.isUpdatePending)return;this.hasUpdated,this._$Et&&(this._$Et.forEach(((t,e)=>this[e]=t)),this._$Et=void 0);let e=!1;const i=this._$AL;try{e=this.shouldUpdate(i),e?(this.willUpdate(i),null===(t=this._$Eg)||void 0===t||t.forEach((t=>{var e;return null===(e=t.hostUpdate)||void 0===e?void 0:e.call(t)})),this.update(i)):this._$EU()}catch(t){throw e=!1,this._$EU(),t}e&&this._$AE(i)}willUpdate(t){}_$AE(t){var e;null===(e=this._$Eg)||void 0===e||e.forEach((t=>{var e;return null===(e=t.hostUpdated)||void 0===e?void 0:e.call(t)})),this.hasUpdated||(this.hasUpdated=!0,this.firstUpdated(t)),this.updated(t)}_$EU(){this._$AL=new Map,this.isUpdatePending=!1}get updateComplete(){return this.getUpdateComplete()}getUpdateComplete(){return this._$Ep}shouldUpdate(t){return!0}update(t){void 0!==this._$EC&&(this._$EC.forEach(((t,e)=>this._$ES(e,this[e],t))),this._$EC=void 0),this._$EU()}updated(t){}firstUpdated(t){}}
+ */var s$2;const e$1=window.trustedTypes,r$2=e$1?e$1.emptyScript:"",h$1=window.reactiveElementPolyfillSupport,o$2={toAttribute(t,i){switch(i){case Boolean:t=t?r$2:null;break;case Object:case Array:t=null==t?t:JSON.stringify(t);}return t},fromAttribute(t,i){let s=t;switch(i){case Boolean:s=null!==t;break;case Number:s=null===t?null:Number(t);break;case Object:case Array:try{s=JSON.parse(t);}catch(t){s=null;}}return s}},n$2=(t,i)=>i!==t&&(i==i||t==t),l$2={attribute:!0,type:String,converter:o$2,reflect:!1,hasChanged:n$2};class a$2 extends HTMLElement{constructor(){super(),this._$Et=new Map,this.isUpdatePending=!1,this.hasUpdated=!1,this._$Ei=null,this.o();}static addInitializer(t){var i;null!==(i=this.l)&&void 0!==i||(this.l=[]),this.l.push(t);}static get observedAttributes(){this.finalize();const t=[];return this.elementProperties.forEach(((i,s)=>{const e=this._$Eh(s,i);void 0!==e&&(this._$Eu.set(e,s),t.push(e));})),t}static createProperty(t,i=l$2){if(i.state&&(i.attribute=!1),this.finalize(),this.elementProperties.set(t,i),!i.noAccessor&&!this.prototype.hasOwnProperty(t)){const s="symbol"==typeof t?Symbol():"__"+t,e=this.getPropertyDescriptor(t,s,i);void 0!==e&&Object.defineProperty(this.prototype,t,e);}}static getPropertyDescriptor(t,i,s){return {get(){return this[i]},set(e){const r=this[t];this[i]=e,this.requestUpdate(t,r,s);},configurable:!0,enumerable:!0}}static getPropertyOptions(t){return this.elementProperties.get(t)||l$2}static finalize(){if(this.hasOwnProperty("finalized"))return !1;this.finalized=!0;const t=Object.getPrototypeOf(this);if(t.finalize(),this.elementProperties=new Map(t.elementProperties),this._$Eu=new Map,this.hasOwnProperty("properties")){const t=this.properties,i=[...Object.getOwnPropertyNames(t),...Object.getOwnPropertySymbols(t)];for(const s of i)this.createProperty(s,t[s]);}return this.elementStyles=this.finalizeStyles(this.styles),!0}static finalizeStyles(i){const s=[];if(Array.isArray(i)){const e=new Set(i.flat(1/0).reverse());for(const i of e)s.unshift(S$1(i));}else void 0!==i&&s.push(S$1(i));return s}static _$Eh(t,i){const s=i.attribute;return !1===s?void 0:"string"==typeof s?s:"string"==typeof t?t.toLowerCase():void 0}o(){var t;this._$Ep=new Promise((t=>this.enableUpdating=t)),this._$AL=new Map,this._$Em(),this.requestUpdate(),null===(t=this.constructor.l)||void 0===t||t.forEach((t=>t(this)));}addController(t){var i,s;(null!==(i=this._$Eg)&&void 0!==i?i:this._$Eg=[]).push(t),void 0!==this.renderRoot&&this.isConnected&&(null===(s=t.hostConnected)||void 0===s||s.call(t));}removeController(t){var i;null===(i=this._$Eg)||void 0===i||i.splice(this._$Eg.indexOf(t)>>>0,1);}_$Em(){this.constructor.elementProperties.forEach(((t,i)=>{this.hasOwnProperty(i)&&(this._$Et.set(i,this[i]),delete this[i]);}));}createRenderRoot(){var t;const s=null!==(t=this.shadowRoot)&&void 0!==t?t:this.attachShadow(this.constructor.shadowRootOptions);return i$2(s,this.constructor.elementStyles),s}connectedCallback(){var t;void 0===this.renderRoot&&(this.renderRoot=this.createRenderRoot()),this.enableUpdating(!0),null===(t=this._$Eg)||void 0===t||t.forEach((t=>{var i;return null===(i=t.hostConnected)||void 0===i?void 0:i.call(t)}));}enableUpdating(t){}disconnectedCallback(){var t;null===(t=this._$Eg)||void 0===t||t.forEach((t=>{var i;return null===(i=t.hostDisconnected)||void 0===i?void 0:i.call(t)}));}attributeChangedCallback(t,i,s){this._$AK(t,s);}_$ES(t,i,s=l$2){var e,r;const h=this.constructor._$Eh(t,s);if(void 0!==h&&!0===s.reflect){const n=(null!==(r=null===(e=s.converter)||void 0===e?void 0:e.toAttribute)&&void 0!==r?r:o$2.toAttribute)(i,s.type);this._$Ei=t,null==n?this.removeAttribute(h):this.setAttribute(h,n),this._$Ei=null;}}_$AK(t,i){var s,e,r;const h=this.constructor,n=h._$Eu.get(t);if(void 0!==n&&this._$Ei!==n){const t=h.getPropertyOptions(n),l=t.converter,a=null!==(r=null!==(e=null===(s=l)||void 0===s?void 0:s.fromAttribute)&&void 0!==e?e:"function"==typeof l?l:null)&&void 0!==r?r:o$2.fromAttribute;this._$Ei=n,this[n]=a(i,t.type),this._$Ei=null;}}requestUpdate(t,i,s){let e=!0;void 0!==t&&(((s=s||this.constructor.getPropertyOptions(t)).hasChanged||n$2)(this[t],i)?(this._$AL.has(t)||this._$AL.set(t,i),!0===s.reflect&&this._$Ei!==t&&(void 0===this._$EC&&(this._$EC=new Map),this._$EC.set(t,s))):e=!1),!this.isUpdatePending&&e&&(this._$Ep=this._$E_());}async _$E_(){this.isUpdatePending=!0;try{await this._$Ep;}catch(t){Promise.reject(t);}const t=this.scheduleUpdate();return null!=t&&await t,!this.isUpdatePending}scheduleUpdate(){return this.performUpdate()}performUpdate(){var t;if(!this.isUpdatePending)return;this.hasUpdated,this._$Et&&(this._$Et.forEach(((t,i)=>this[i]=t)),this._$Et=void 0);let i=!1;const s=this._$AL;try{i=this.shouldUpdate(s),i?(this.willUpdate(s),null===(t=this._$Eg)||void 0===t||t.forEach((t=>{var i;return null===(i=t.hostUpdate)||void 0===i?void 0:i.call(t)})),this.update(s)):this._$EU();}catch(t){throw i=!1,this._$EU(),t}i&&this._$AE(s);}willUpdate(t){}_$AE(t){var i;null===(i=this._$Eg)||void 0===i||i.forEach((t=>{var i;return null===(i=t.hostUpdated)||void 0===i?void 0:i.call(t)})),this.hasUpdated||(this.hasUpdated=!0,this.firstUpdated(t)),this.updated(t);}_$EU(){this._$AL=new Map,this.isUpdatePending=!1;}get updateComplete(){return this.getUpdateComplete()}getUpdateComplete(){return this._$Ep}shouldUpdate(t){return !0}update(t){void 0!==this._$EC&&(this._$EC.forEach(((t,i)=>this._$ES(i,this[i],t))),this._$EC=void 0),this._$EU();}updated(t){}firstUpdated(t){}}a$2.finalized=!0,a$2.elementProperties=new Map,a$2.elementStyles=[],a$2.shadowRootOptions={mode:"open"},null==h$1||h$1({ReactiveElement:a$2}),(null!==(s$2=globalThis.reactiveElementVersions)&&void 0!==s$2?s$2:globalThis.reactiveElementVersions=[]).push("1.3.0");
+
 /**
  * @license
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-var f;p.finalized=!0,p.elementProperties=new Map,p.elementStyles=[],p.shadowRootOptions={mode:"open"},null==l||l({ReactiveElement:p}),(null!==(r=globalThis.reactiveElementVersions)&&void 0!==r?r:globalThis.reactiveElementVersions=[]).push("1.3.0");const h=globalThis.trustedTypes,g=h?h.createPolicy("lit-html",{createHTML:t=>t}):void 0,m=`lit$${(Math.random()+"").slice(9)}$`,b="?"+m,w=`<${b}>`,x=document,y=(t="")=>x.createComment(t),v=t=>null===t||"object"!=typeof t&&"function"!=typeof t,$=Array.isArray,S=/<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g,k=/-->/g,_=/>/g,A=/>|[ 	\n\r](?:([^\s"'>=/]+)([ 	\n\r]*=[ 	\n\r]*(?:[^ 	\n\r"'`<>=]|("|')|))|$)/g,E=/'/g,C=/"/g,P=/^(?:script|style|textarea|title)$/i,L=(t=>(e,...i)=>({_$litType$:t,strings:e,values:i}))(1),T=Symbol.for("lit-noChange"),z=Symbol.for("lit-nothing"),F=new WeakMap,O=x.createTreeWalker(x,129,null,!1),j=(t,e)=>{const i=t.length-1,n=[];let o,r=2===e?"<svg>":"",s=S;for(let e=0;e<i;e++){const i=t[e];let a,l,c=-1,d=0;for(;d<i.length&&(s.lastIndex=d,l=s.exec(i),null!==l);)d=s.lastIndex,s===S?"!--"===l[1]?s=k:void 0!==l[1]?s=_:void 0!==l[2]?(P.test(l[2])&&(o=RegExp("</"+l[2],"g")),s=A):void 0!==l[3]&&(s=A):s===A?">"===l[0]?(s=null!=o?o:S,c=-1):void 0===l[1]?c=-2:(c=s.lastIndex-l[2].length,a=l[1],s=void 0===l[3]?A:'"'===l[3]?C:E):s===C||s===E?s=A:s===k||s===_?s=S:(s=A,o=void 0);const u=s===A&&t[e+1].startsWith("/>")?" ":"";r+=s===S?i+w:c>=0?(n.push(a),i.slice(0,c)+"$lit$"+i.slice(c)+m+u):i+m+(-2===c?(n.push(void 0),e):u)}const a=r+(t[i]||"<?>")+(2===e?"</svg>":"");if(!Array.isArray(t)||!t.hasOwnProperty("raw"))throw Error("invalid template strings array");return[void 0!==g?g.createHTML(a):a,n]};class D{constructor({strings:t,_$litType$:e},i){let n;this.parts=[];let o=0,r=0;const s=t.length-1,a=this.parts,[l,c]=j(t,e);if(this.el=D.createElement(l,i),O.currentNode=this.el.content,2===e){const t=this.el.content,e=t.firstChild;e.remove(),t.append(...e.childNodes)}for(;null!==(n=O.nextNode())&&a.length<s;){if(1===n.nodeType){if(n.hasAttributes()){const t=[];for(const e of n.getAttributeNames())if(e.endsWith("$lit$")||e.startsWith(m)){const i=c[r++];if(t.push(e),void 0!==i){const t=n.getAttribute(i.toLowerCase()+"$lit$").split(m),e=/([.?@])?(.*)/.exec(i);a.push({type:1,index:o,name:e[2],strings:t,ctor:"."===e[1]?I:"?"===e[1]?B:"@"===e[1]?W:M})}else a.push({type:6,index:o})}for(const e of t)n.removeAttribute(e)}if(P.test(n.tagName)){const t=n.textContent.split(m),e=t.length-1;if(e>0){n.textContent=h?h.emptyScript:"";for(let i=0;i<e;i++)n.append(t[i],y()),O.nextNode(),a.push({type:2,index:++o});n.append(t[e],y())}}}else if(8===n.nodeType)if(n.data===b)a.push({type:2,index:o});else{let t=-1;for(;-1!==(t=n.data.indexOf(m,t+1));)a.push({type:7,index:o}),t+=m.length-1}o++}}static createElement(t,e){const i=x.createElement("template");return i.innerHTML=t,i}}function U(t,e,i=t,n){var o,r,s,a;if(e===T)return e;let l=void 0!==n?null===(o=i._$Cl)||void 0===o?void 0:o[n]:i._$Cu;const c=v(e)?void 0:e._$litDirective$;return(null==l?void 0:l.constructor)!==c&&(null===(r=null==l?void 0:l._$AO)||void 0===r||r.call(l,!1),void 0===c?l=void 0:(l=new c(t),l._$AT(t,i,n)),void 0!==n?(null!==(s=(a=i)._$Cl)&&void 0!==s?s:a._$Cl=[])[n]=l:i._$Cu=l),void 0!==l&&(e=U(t,l._$AS(t,e.values),l,n)),e}class N{constructor(t,e){this.v=[],this._$AN=void 0,this._$AD=t,this._$AM=e}get parentNode(){return this._$AM.parentNode}get _$AU(){return this._$AM._$AU}p(t){var e;const{el:{content:i},parts:n}=this._$AD,o=(null!==(e=null==t?void 0:t.creationScope)&&void 0!==e?e:x).importNode(i,!0);O.currentNode=o;let r=O.nextNode(),s=0,a=0,l=n[0];for(;void 0!==l;){if(s===l.index){let e;2===l.type?e=new R(r,r.nextSibling,this,t):1===l.type?e=new l.ctor(r,l.name,l.strings,this,t):6===l.type&&(e=new J(r,this,t)),this.v.push(e),l=n[++a]}s!==(null==l?void 0:l.index)&&(r=O.nextNode(),s++)}return o}m(t){let e=0;for(const i of this.v)void 0!==i&&(void 0!==i.strings?(i._$AI(t,i,e),e+=i.strings.length-2):i._$AI(t[e])),e++}}class R{constructor(t,e,i,n){var o;this.type=2,this._$AH=z,this._$AN=void 0,this._$AA=t,this._$AB=e,this._$AM=i,this.options=n,this._$Cg=null===(o=null==n?void 0:n.isConnected)||void 0===o||o}get _$AU(){var t,e;return null!==(e=null===(t=this._$AM)||void 0===t?void 0:t._$AU)&&void 0!==e?e:this._$Cg}get parentNode(){let t=this._$AA.parentNode;const e=this._$AM;return void 0!==e&&11===t.nodeType&&(t=e.parentNode),t}get startNode(){return this._$AA}get endNode(){return this._$AB}_$AI(t,e=this){t=U(this,t,e),v(t)?t===z||null==t||""===t?(this._$AH!==z&&this._$AR(),this._$AH=z):t!==this._$AH&&t!==T&&this.$(t):void 0!==t._$litType$?this.T(t):void 0!==t.nodeType?this.k(t):(t=>{var e;return $(t)||"function"==typeof(null===(e=t)||void 0===e?void 0:e[Symbol.iterator])})(t)?this.S(t):this.$(t)}A(t,e=this._$AB){return this._$AA.parentNode.insertBefore(t,e)}k(t){this._$AH!==t&&(this._$AR(),this._$AH=this.A(t))}$(t){this._$AH!==z&&v(this._$AH)?this._$AA.nextSibling.data=t:this.k(x.createTextNode(t)),this._$AH=t}T(t){var e;const{values:i,_$litType$:n}=t,o="number"==typeof n?this._$AC(t):(void 0===n.el&&(n.el=D.createElement(n.h,this.options)),n);if((null===(e=this._$AH)||void 0===e?void 0:e._$AD)===o)this._$AH.m(i);else{const t=new N(o,this),e=t.p(this.options);t.m(i),this.k(e),this._$AH=t}}_$AC(t){let e=F.get(t.strings);return void 0===e&&F.set(t.strings,e=new D(t)),e}S(t){$(this._$AH)||(this._$AH=[],this._$AR());const e=this._$AH;let i,n=0;for(const o of t)n===e.length?e.push(i=new R(this.A(y()),this.A(y()),this,this.options)):i=e[n],i._$AI(o),n++;n<e.length&&(this._$AR(i&&i._$AB.nextSibling,n),e.length=n)}_$AR(t=this._$AA.nextSibling,e){var i;for(null===(i=this._$AP)||void 0===i||i.call(this,!1,!0,e);t&&t!==this._$AB;){const e=t.nextSibling;t.remove(),t=e}}setConnected(t){var e;void 0===this._$AM&&(this._$Cg=t,null===(e=this._$AP)||void 0===e||e.call(this,t))}}class M{constructor(t,e,i,n,o){this.type=1,this._$AH=z,this._$AN=void 0,this.element=t,this.name=e,this._$AM=n,this.options=o,i.length>2||""!==i[0]||""!==i[1]?(this._$AH=Array(i.length-1).fill(new String),this.strings=i):this._$AH=z}get tagName(){return this.element.tagName}get _$AU(){return this._$AM._$AU}_$AI(t,e=this,i,n){const o=this.strings;let r=!1;if(void 0===o)t=U(this,t,e,0),r=!v(t)||t!==this._$AH&&t!==T,r&&(this._$AH=t);else{const n=t;let s,a;for(t=o[0],s=0;s<o.length-1;s++)a=U(this,n[i+s],e,s),a===T&&(a=this._$AH[s]),r||(r=!v(a)||a!==this._$AH[s]),a===z?t=z:t!==z&&(t+=(null!=a?a:"")+o[s+1]),this._$AH[s]=a}r&&!n&&this.C(t)}C(t){t===z?this.element.removeAttribute(this.name):this.element.setAttribute(this.name,null!=t?t:"")}}class I extends M{constructor(){super(...arguments),this.type=3}C(t){this.element[this.name]=t===z?void 0:t}}const H=h?h.emptyScript:"";class B extends M{constructor(){super(...arguments),this.type=4}C(t){t&&t!==z?this.element.setAttribute(this.name,H):this.element.removeAttribute(this.name)}}class W extends M{constructor(t,e,i,n,o){super(t,e,i,n,o),this.type=5}_$AI(t,e=this){var i;if((t=null!==(i=U(this,t,e,0))&&void 0!==i?i:z)===T)return;const n=this._$AH,o=t===z&&n!==z||t.capture!==n.capture||t.once!==n.once||t.passive!==n.passive,r=t!==z&&(n===z||o);o&&this.element.removeEventListener(this.name,this,n),r&&this.element.addEventListener(this.name,this,t),this._$AH=t}handleEvent(t){var e,i;"function"==typeof this._$AH?this._$AH.call(null!==(i=null===(e=this.options)||void 0===e?void 0:e.host)&&void 0!==i?i:this.element,t):this._$AH.handleEvent(t)}}class J{constructor(t,e,i){this.element=t,this.type=6,this._$AN=void 0,this._$AM=e,this.options=i}get _$AU(){return this._$AM._$AU}_$AI(t){U(this,t)}}const q=window.litHtmlPolyfillSupport;
+var t$1;const i$1=globalThis.trustedTypes,s$1=i$1?i$1.createPolicy("lit-html",{createHTML:t=>t}):void 0,e=`lit$${(Math.random()+"").slice(9)}$`,o$1="?"+e,n$1=`<${o$1}>`,l$1=document,h=(t="")=>l$1.createComment(t),r$1=t=>null===t||"object"!=typeof t&&"function"!=typeof t,d=Array.isArray,u=t=>{var i;return d(t)||"function"==typeof(null===(i=t)||void 0===i?void 0:i[Symbol.iterator])},c=/<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g,v=/-->/g,a$1=/>/g,f=/>|[ 	\n\r](?:([^\s"'>=/]+)([ 	\n\r]*=[ 	\n\r]*(?:[^ 	\n\r"'`<>=]|("|')|))|$)/g,_$1=/'/g,m=/"/g,g=/^(?:script|style|textarea|title)$/i,p=t=>(i,...s)=>({_$litType$:t,strings:i,values:s}),$$1=p(1),b=Symbol.for("lit-noChange"),w=Symbol.for("lit-nothing"),T=new WeakMap,x=(t,i,s)=>{var e,o;const n=null!==(e=null==s?void 0:s.renderBefore)&&void 0!==e?e:i;let l=n._$litPart$;if(void 0===l){const t=null!==(o=null==s?void 0:s.renderBefore)&&void 0!==o?o:null;n._$litPart$=l=new N(i.insertBefore(h(),t),t,void 0,null!=s?s:{});}return l._$AI(t),l},A=l$1.createTreeWalker(l$1,129,null,!1),C=(t,i)=>{const o=t.length-1,l=[];let h,r=2===i?"<svg>":"",d=c;for(let i=0;i<o;i++){const s=t[i];let o,u,p=-1,$=0;for(;$<s.length&&(d.lastIndex=$,u=d.exec(s),null!==u);)$=d.lastIndex,d===c?"!--"===u[1]?d=v:void 0!==u[1]?d=a$1:void 0!==u[2]?(g.test(u[2])&&(h=RegExp("</"+u[2],"g")),d=f):void 0!==u[3]&&(d=f):d===f?">"===u[0]?(d=null!=h?h:c,p=-1):void 0===u[1]?p=-2:(p=d.lastIndex-u[2].length,o=u[1],d=void 0===u[3]?f:'"'===u[3]?m:_$1):d===m||d===_$1?d=f:d===v||d===a$1?d=c:(d=f,h=void 0);const y=d===f&&t[i+1].startsWith("/>")?" ":"";r+=d===c?s+n$1:p>=0?(l.push(o),s.slice(0,p)+"$lit$"+s.slice(p)+e+y):s+e+(-2===p?(l.push(void 0),i):y);}const u=r+(t[o]||"<?>")+(2===i?"</svg>":"");if(!Array.isArray(t)||!t.hasOwnProperty("raw"))throw Error("invalid template strings array");return [void 0!==s$1?s$1.createHTML(u):u,l]};class E{constructor({strings:t,_$litType$:s},n){let l;this.parts=[];let r=0,d=0;const u=t.length-1,c=this.parts,[v,a]=C(t,s);if(this.el=E.createElement(v,n),A.currentNode=this.el.content,2===s){const t=this.el.content,i=t.firstChild;i.remove(),t.append(...i.childNodes);}for(;null!==(l=A.nextNode())&&c.length<u;){if(1===l.nodeType){if(l.hasAttributes()){const t=[];for(const i of l.getAttributeNames())if(i.endsWith("$lit$")||i.startsWith(e)){const s=a[d++];if(t.push(i),void 0!==s){const t=l.getAttribute(s.toLowerCase()+"$lit$").split(e),i=/([.?@])?(.*)/.exec(s);c.push({type:1,index:r,name:i[2],strings:t,ctor:"."===i[1]?M:"?"===i[1]?H:"@"===i[1]?I:S});}else c.push({type:6,index:r});}for(const i of t)l.removeAttribute(i);}if(g.test(l.tagName)){const t=l.textContent.split(e),s=t.length-1;if(s>0){l.textContent=i$1?i$1.emptyScript:"";for(let i=0;i<s;i++)l.append(t[i],h()),A.nextNode(),c.push({type:2,index:++r});l.append(t[s],h());}}}else if(8===l.nodeType)if(l.data===o$1)c.push({type:2,index:r});else {let t=-1;for(;-1!==(t=l.data.indexOf(e,t+1));)c.push({type:7,index:r}),t+=e.length-1;}r++;}}static createElement(t,i){const s=l$1.createElement("template");return s.innerHTML=t,s}}function P(t,i,s=t,e){var o,n,l,h;if(i===b)return i;let d=void 0!==e?null===(o=s._$Cl)||void 0===o?void 0:o[e]:s._$Cu;const u=r$1(i)?void 0:i._$litDirective$;return (null==d?void 0:d.constructor)!==u&&(null===(n=null==d?void 0:d._$AO)||void 0===n||n.call(d,!1),void 0===u?d=void 0:(d=new u(t),d._$AT(t,s,e)),void 0!==e?(null!==(l=(h=s)._$Cl)&&void 0!==l?l:h._$Cl=[])[e]=d:s._$Cu=d),void 0!==d&&(i=P(t,d._$AS(t,i.values),d,e)),i}class V{constructor(t,i){this.v=[],this._$AN=void 0,this._$AD=t,this._$AM=i;}get parentNode(){return this._$AM.parentNode}get _$AU(){return this._$AM._$AU}p(t){var i;const{el:{content:s},parts:e}=this._$AD,o=(null!==(i=null==t?void 0:t.creationScope)&&void 0!==i?i:l$1).importNode(s,!0);A.currentNode=o;let n=A.nextNode(),h=0,r=0,d=e[0];for(;void 0!==d;){if(h===d.index){let i;2===d.type?i=new N(n,n.nextSibling,this,t):1===d.type?i=new d.ctor(n,d.name,d.strings,this,t):6===d.type&&(i=new L(n,this,t)),this.v.push(i),d=e[++r];}h!==(null==d?void 0:d.index)&&(n=A.nextNode(),h++);}return o}m(t){let i=0;for(const s of this.v)void 0!==s&&(void 0!==s.strings?(s._$AI(t,s,i),i+=s.strings.length-2):s._$AI(t[i])),i++;}}class N{constructor(t,i,s,e){var o;this.type=2,this._$AH=w,this._$AN=void 0,this._$AA=t,this._$AB=i,this._$AM=s,this.options=e,this._$Cg=null===(o=null==e?void 0:e.isConnected)||void 0===o||o;}get _$AU(){var t,i;return null!==(i=null===(t=this._$AM)||void 0===t?void 0:t._$AU)&&void 0!==i?i:this._$Cg}get parentNode(){let t=this._$AA.parentNode;const i=this._$AM;return void 0!==i&&11===t.nodeType&&(t=i.parentNode),t}get startNode(){return this._$AA}get endNode(){return this._$AB}_$AI(t,i=this){t=P(this,t,i),r$1(t)?t===w||null==t||""===t?(this._$AH!==w&&this._$AR(),this._$AH=w):t!==this._$AH&&t!==b&&this.$(t):void 0!==t._$litType$?this.T(t):void 0!==t.nodeType?this.k(t):u(t)?this.S(t):this.$(t);}A(t,i=this._$AB){return this._$AA.parentNode.insertBefore(t,i)}k(t){this._$AH!==t&&(this._$AR(),this._$AH=this.A(t));}$(t){this._$AH!==w&&r$1(this._$AH)?this._$AA.nextSibling.data=t:this.k(l$1.createTextNode(t)),this._$AH=t;}T(t){var i;const{values:s,_$litType$:e}=t,o="number"==typeof e?this._$AC(t):(void 0===e.el&&(e.el=E.createElement(e.h,this.options)),e);if((null===(i=this._$AH)||void 0===i?void 0:i._$AD)===o)this._$AH.m(s);else {const t=new V(o,this),i=t.p(this.options);t.m(s),this.k(i),this._$AH=t;}}_$AC(t){let i=T.get(t.strings);return void 0===i&&T.set(t.strings,i=new E(t)),i}S(t){d(this._$AH)||(this._$AH=[],this._$AR());const i=this._$AH;let s,e=0;for(const o of t)e===i.length?i.push(s=new N(this.A(h()),this.A(h()),this,this.options)):s=i[e],s._$AI(o),e++;e<i.length&&(this._$AR(s&&s._$AB.nextSibling,e),i.length=e);}_$AR(t=this._$AA.nextSibling,i){var s;for(null===(s=this._$AP)||void 0===s||s.call(this,!1,!0,i);t&&t!==this._$AB;){const i=t.nextSibling;t.remove(),t=i;}}setConnected(t){var i;void 0===this._$AM&&(this._$Cg=t,null===(i=this._$AP)||void 0===i||i.call(this,t));}}class S{constructor(t,i,s,e,o){this.type=1,this._$AH=w,this._$AN=void 0,this.element=t,this.name=i,this._$AM=e,this.options=o,s.length>2||""!==s[0]||""!==s[1]?(this._$AH=Array(s.length-1).fill(new String),this.strings=s):this._$AH=w;}get tagName(){return this.element.tagName}get _$AU(){return this._$AM._$AU}_$AI(t,i=this,s,e){const o=this.strings;let n=!1;if(void 0===o)t=P(this,t,i,0),n=!r$1(t)||t!==this._$AH&&t!==b,n&&(this._$AH=t);else {const e=t;let l,h;for(t=o[0],l=0;l<o.length-1;l++)h=P(this,e[s+l],i,l),h===b&&(h=this._$AH[l]),n||(n=!r$1(h)||h!==this._$AH[l]),h===w?t=w:t!==w&&(t+=(null!=h?h:"")+o[l+1]),this._$AH[l]=h;}n&&!e&&this.C(t);}C(t){t===w?this.element.removeAttribute(this.name):this.element.setAttribute(this.name,null!=t?t:"");}}class M extends S{constructor(){super(...arguments),this.type=3;}C(t){this.element[this.name]=t===w?void 0:t;}}const k=i$1?i$1.emptyScript:"";class H extends S{constructor(){super(...arguments),this.type=4;}C(t){t&&t!==w?this.element.setAttribute(this.name,k):this.element.removeAttribute(this.name);}}class I extends S{constructor(t,i,s,e,o){super(t,i,s,e,o),this.type=5;}_$AI(t,i=this){var s;if((t=null!==(s=P(this,t,i,0))&&void 0!==s?s:w)===b)return;const e=this._$AH,o=t===w&&e!==w||t.capture!==e.capture||t.once!==e.once||t.passive!==e.passive,n=t!==w&&(e===w||o);o&&this.element.removeEventListener(this.name,this,e),n&&this.element.addEventListener(this.name,this,t),this._$AH=t;}handleEvent(t){var i,s;"function"==typeof this._$AH?this._$AH.call(null!==(s=null===(i=this.options)||void 0===i?void 0:i.host)&&void 0!==s?s:this.element,t):this._$AH.handleEvent(t);}}class L{constructor(t,i,s){this.element=t,this.type=6,this._$AN=void 0,this._$AM=i,this.options=s;}get _$AU(){return this._$AM._$AU}_$AI(t){P(this,t);}}const z=window.litHtmlPolyfillSupport;null==z||z(E,N),(null!==(t$1=globalThis.litHtmlVersions)&&void 0!==t$1?t$1:globalThis.litHtmlVersions=[]).push("2.2.0");
+
 /**
  * @license
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
- */
-var X,G;null==q||q(D,R),(null!==(f=globalThis.litHtmlVersions)&&void 0!==f?f:globalThis.litHtmlVersions=[]).push("2.2.0");class V extends p{constructor(){super(...arguments),this.renderOptions={host:this},this._$Dt=void 0}createRenderRoot(){var t,e;const i=super.createRenderRoot();return null!==(t=(e=this.renderOptions).renderBefore)&&void 0!==t||(e.renderBefore=i.firstChild),i}update(t){const e=this.render();this.hasUpdated||(this.renderOptions.isConnected=this.isConnected),super.update(t),this._$Dt=((t,e,i)=>{var n,o;const r=null!==(n=null==i?void 0:i.renderBefore)&&void 0!==n?n:e;let s=r._$litPart$;if(void 0===s){const t=null!==(o=null==i?void 0:i.renderBefore)&&void 0!==o?o:null;r._$litPart$=s=new R(e.insertBefore(y(),t),t,void 0,null!=i?i:{})}return s._$AI(t),s})(e,this.renderRoot,this.renderOptions)}connectedCallback(){var t;super.connectedCallback(),null===(t=this._$Dt)||void 0===t||t.setConnected(!0)}disconnectedCallback(){var t;super.disconnectedCallback(),null===(t=this._$Dt)||void 0===t||t.setConnected(!1)}render(){return T}}V.finalized=!0,V._$litElement$=!0,null===(X=globalThis.litElementHydrateSupport)||void 0===X||X.call(globalThis,{LitElement:V});const Y=globalThis.litElementPolyfillSupport;null==Y||Y({LitElement:V}),(null!==(G=globalThis.litElementVersions)&&void 0!==G?G:globalThis.litElementVersions=[]).push("3.2.0");var K=new Map([["align-self","-ms-grid-row-align"],["color-adjust","-webkit-print-color-adjust"],["column-gap","grid-column-gap"],["forced-color-adjust","-ms-high-contrast-adjust"],["gap","grid-gap"],["grid-template-columns","-ms-grid-columns"],["grid-template-rows","-ms-grid-rows"],["justify-self","-ms-grid-column-align"],["margin-inline-end","-webkit-margin-end"],["margin-inline-start","-webkit-margin-start"],["mask-border","-webkit-mask-box-image"],["mask-border-outset","-webkit-mask-box-image-outset"],["mask-border-slice","-webkit-mask-box-image-slice"],["mask-border-source","-webkit-mask-box-image-source"],["mask-border-repeat","-webkit-mask-box-image-repeat"],["mask-border-width","-webkit-mask-box-image-width"],["overflow-wrap","word-wrap"],["padding-inline-end","-webkit-padding-end"],["padding-inline-start","-webkit-padding-start"],["row-gap","grid-row-gap"],["scroll-margin-bottom","scroll-snap-margin-bottom"],["scroll-margin-left","scroll-snap-margin-left"],["scroll-margin-right","scroll-snap-margin-right"],["scroll-margin-top","scroll-snap-margin-top"],["scroll-margin","scroll-snap-margin"],["text-combine-upright","-ms-text-combine-horizontal"]]);var Z,Q,tt,et,it,nt,ot,rt,st=(t,e)=>!!~t.indexOf(e),at=(t,e="-")=>t.join(e),lt=(t,e)=>at(t.filter(Boolean),e),ct=(t,e=1)=>t.slice(e),dt=t=>t,ut=()=>{},pt=t=>t[0].toUpperCase()+ct(t),ft=t=>t.replace(/[A-Z]/g,"-$&").toLowerCase(),ht=(t,e)=>{for(;"function"==typeof t;)t=t(e);return t},gt=(t,e)=>{t.size>e&&t.delete(t.keys().next().value)},mt=(t,e)=>!st("@:&",t[0])&&(st("rg",(typeof e)[5])||Array.isArray(e)),bt=(t,e,i)=>e?Object.keys(e).reduce(((t,n)=>{const o=ht(e[n],i);return mt(n,o)?t[ft(n)]=o:t[n]="@"==n[0]&&st("figa",n[1])?(t[n]||[]).concat(o):bt(t[n]||{},o,i),t}),t):t,wt="undefined"!=typeof CSS&&CSS.escape||(t=>t.replace(/[!"'`*+.,;:\\/<=>?@#$%&^|~()[\]{}]/g,"\\$&").replace(/^\d/,"\\3$& ")),xt=t=>(Array.isArray(t)||(t=[t]),"@media "+at(t.map((t=>("string"==typeof t&&(t={min:t}),t.raw||at(Object.keys(t).map((e=>`(${e}-width:${t[e]})`))," and ")))),",")),yt=t=>{for(var e=9,i=t.length;i--;)e=Math.imul(e^t.charCodeAt(i),1597334677);return"tw-"+((e^e>>>9)>>>0).toString(36)},vt=(t="")=>(Z.push(t),""),$t=t=>{Z.length=Math.max(Z.lastIndexOf("")+~~t,0)},St=t=>t&&!st("!:",t[0]),kt=t=>":"==t[0],_t=(t,e)=>{Q.push({v:Z.filter(kt),d:t,n:e,i:st(Z,"!"),$:""})},At=t=>{const e="-"==t[0];e&&(t=ct(t));const i=at(Z.filter(St));return _t("&"==t?i:(i&&i+"-")+t,e),""},Et=(t,e)=>{let i="";for(let e,n=!1,o=0;e=t[o++];)if(n||"["==e)i+=e,n="]"!=e;else switch(e){case":":i=i&&vt(":"+(t[o]==e?t[o++]:"")+i);break;case"(":i=i&&vt(i),vt();break;case"!":vt(e);break;case")":case" ":case"\t":case"\n":case"\r":i=i&&At(i),$t(")"!==e);break;default:i+=e}i&&(e?vt(":"+i):"-"==i.slice(-1)?vt(i.slice(0,-1)):At(i))},Ct=t=>{vt(),Pt(t),$t()},Pt=t=>{switch(typeof t){case"string":Et(t);break;case"function":_t(t);break;case"object":Array.isArray(t)?t.forEach(Ct):t&&Object.keys(t).forEach((e=>{((t,e)=>{if(e){vt();const i=st("tbu",(typeof e)[1]);Et(t,i),i&&Ct(e),$t()}})(e,t[e])}))}},Lt=new WeakMap,Tt=t=>(Z=[],Q=[],Array.isArray(t[0])&&Array.isArray(t[0].raw)?(t=>{let e=Lt.get(t);if(!e){let i=NaN,n="";e=t.map(((e,o)=>{if(i==i||"["!=e.slice(-1)&&!st(":-(",(t[o+1]||"")[0])||(i=o),o>=i)return r=>{o==i&&(n=""),n+=e,st("rg",(typeof r)[5])?n+=r:r&&(Et(n),n="",Pt(r)),o==t.length-1&&Et(n)};const r=Q=[];Et(e);const s=[...Z];return Q=[],t=>{Q.push(...r),Z=[...s],t&&Pt(t)}})),Lt.set(t,e)}return e})(t[0]).forEach(((e,i)=>e(t[i+1]))):Pt(t),Q),zt=(t,e)=>("function"==typeof e&&(tt=!1),e),Ft=new WeakMap,Ot=(t,e)=>{const i=(t=>{tt=!0;const e=JSON.stringify(t,zt);return tt&&e})(e);let n;if(i){var o=Ft.get(t);o||Ft.set(t,o=new Map),n=o.get(i)}return n||(n=Object.defineProperty(((i,n)=>(n=Array.isArray(i)?n:i,ht(t(e,n),n))),"toJSON",{value:()=>i||e}),o&&(o.set(i,n),gt(o,1e4))),n},jt=(t,{css:e})=>e(Tt(t)),Dt=(...t)=>Ot(jt,t),Ut=t=>(e,i,n,o)=>{if(e){const r=i&&t(i);if(r&&r.length>0)return r.reduce(((t,i)=>(t[lt([n,i,o])]=e,t)),{})}},Nt=Ut((t=>({t:["top-left","top-right"],r:["top-right","bottom-right"],b:["bottom-left","bottom-right"],l:["bottom-left","top-left"],tl:["top-left"],tr:["top-right"],bl:["bottom-left"],br:["bottom-right"]}[t]))),Rt=t=>{const e=({x:"lr",y:"tb"}[t]||t||"").split("").sort();for(let t=e.length;t--;)if(!(e[t]={t:"top",r:"right",b:"bottom",l:"left"}[e[t]]))return;if(e.length)return e},Mt=Ut(Rt),It=t=>"cols"==t?"columns":"rows",Ht=t=>(e,i,n)=>({[t]:n+((et=at(e))&&"-"+et)}),Bt=(t,e)=>(i,n,o)=>(et=at(i,e))&&{[t||o]:et},Wt=t=>(e,{theme:i},n)=>(et=i(t||n,e))&&{[t||n]:et},Jt=(t,e)=>(i,{theme:n},o)=>(et=n(t||o,i,at(i,e)))&&{[t||o]:et},qt=(t,e)=>(i,n)=>t(i,n,e),Xt=Ht("display"),Gt=Ht("position"),Vt=Ht("textTransform"),Yt=Ht("textDecoration"),Kt=Ht("fontStyle"),Zt=t=>(e,i,n)=>({["--tw-"+t]:n,fontVariantNumeric:"var(--tw-ordinal,/*!*/ /*!*/) var(--tw-slashed-zero,/*!*/ /*!*/) var(--tw-numeric-figure,/*!*/ /*!*/) var(--tw-numeric-spacing,/*!*/ /*!*/) var(--tw-numeric-fraction,/*!*/ /*!*/)"}),Qt=(t,{theme:e},i)=>(et=e("inset",t))&&{[i]:et},te=(t,e,i,n=i)=>(et=e(n+"Opacity",ct(t)))&&{[`--tw-${i}-opacity`]:et},ee=(t,e)=>Math.round(parseInt(t,16)*e),ie=(t,e,i)=>t&&"#"==t[0]&&(et=(t.length-1)/3)&&(nt=[17,1,.062272][et-1])?`rgba(${ee(t.substr(1,et),nt)},${ee(t.substr(1+et,et),nt)},${ee(t.substr(1+2*et,et),nt)},${e?`var(--tw-${e}${i?","+i:""})`:i||1})`:t,ne=(t,e,i)=>i&&"string"==typeof i?(et=ie(i,e+"-opacity"))&&et!==i?{[`--tw-${e}-opacity`]:"1",[t]:[i,et]}:{[t]:i}:void 0,oe=t=>(nt=ie(t,"","0"))==et?"transparent":nt,re=(t,{theme:e},i,n,o,r)=>(et={x:["right","left"],y:["bottom","top"]}[t[0]])&&(nt=`--tw-${i}-${t[0]}-reverse`)?"reverse"==t[1]?{[nt]:"1"}:{[nt]:"0",[lt([o,et[0],r])]:(it=e(n,ct(t)))&&`calc(${it} * var(${nt}))`,[lt([o,et[1],r])]:it&&[it,`calc(${it} * calc(1 - var(${nt})))`]}:void 0,se=(t,e)=>e[0]&&{[t]:(st("wun",(e[0]||"")[3])?"space-":"")+e[0]},ae=t=>e=>st(["start","end"],e[0])?{[t]:"flex-"+e[0]}:se(t,e),le=t=>(e,{theme:i})=>{if(et=i("grid"+pt(t),e,""))return{["grid-"+t]:et};switch(e[0]){case"span":return e[1]&&{["grid-"+t]:`span ${e[1]} / span ${e[1]}`};case"start":case"end":return(et=i("grid"+pt(t)+pt(e[0]),ct(e),at(ct(e))))&&{[`grid-${t}-${e[0]}`]:et}}},ce=(t,{theme:e},i)=>{switch(t[0]){case"solid":case"dashed":case"dotted":case"double":case"none":return Bt("borderStyle")(t);case"collapse":case"separate":return Bt("borderCollapse")(t);case"opacity":return te(t,e,i)}return(et=e(i+"Width",t,""))?{borderWidth:et}:ne("borderColor",i,e(i+"Color",t))},de=t=>(t?"translate3d(var(--tw-translate-x,0),var(--tw-translate-y,0),0)":"translateX(var(--tw-translate-x,0)) translateY(var(--tw-translate-y,0))")+" rotate(var(--tw-rotate,0)) skewX(var(--tw-skew-x,0)) skewY(var(--tw-skew-y,0)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))",ue=(t,e,i)=>t[0]&&(et=e.theme(i,t[1]||t[0]))&&{[`--tw-${i}-x`]:"y"!==t[0]&&et,[`--tw-${i}-y`]:"x"!==t[0]&&et,transform:[`${i}${t[1]?t[0].toUpperCase():""}(${et})`,de()]},pe=t=>(e,i,n)=>n[1]?Mt(i.theme(t,e),n[1],t):Wt(t)(e,i,n),fe=pe("padding"),he=pe("margin"),ge=(t,{theme:e},i)=>(et={w:"width",h:"height"}[t[0]])&&{[et=`${i}${pt(et)}`]:e(et,ct(t))},me=(t,{theme:e},i)=>{const n=i.split("-"),o="backdrop"==n[0]?n[0]+"-":"";if(o||t.unshift(...n),"filter"==t[0]){const e=["blur","brightness","contrast","grayscale","hue-rotate","invert",o&&"opacity","saturate","sepia",!o&&"drop-shadow"].filter(Boolean);return"none"==t[1]?{[o+"filter"]:"none"}:e.reduce(((t,e)=>(t["--tw-"+o+e]="var(--tw-empty,/*!*/ /*!*/)",t)),{[o+"filter"]:e.map((t=>`var(--tw-${o}${t})`)).join(" ")})}return nt=t.shift(),st(["hue","drop"],nt)&&(nt+=pt(t.shift())),(et=e(o?"backdrop"+pt(nt):nt,t))&&{["--tw-"+o+nt]:(Array.isArray(et)?et:[et]).map((t=>`${ft(nt)}(${t})`)).join(" ")}},be={group:(t,{tag:e},i)=>e(at([i,...t])),hidden:qt(Xt,"none"),inline:Xt,block:Xt,contents:Xt,flow:Xt,table:(t,e,i)=>st(["auto","fixed"],t[0])?{tableLayout:t[0]}:Xt(t,e,i),flex(t,e,i){switch(t[0]){case"row":case"col":return{flexDirection:at("col"==t[0]?["column",...ct(t)]:t)};case"nowrap":case"wrap":return{flexWrap:at(t)};case"grow":case"shrink":return null!=(et=e.theme("flex"+pt(t[0]),ct(t),t[1]||1))&&{["flex-"+t[0]]:""+et}}return(et=e.theme("flex",t,""))?{flex:et}:Xt(t,e,i)},grid(t,e,i){switch(t[0]){case"cols":case"rows":return(et=e.theme("gridTemplate"+pt(It(t[0])),ct(t),2==t.length&&Number(t[1])?`repeat(${t[1]},minmax(0,1fr))`:at(ct(t))))&&{["gridTemplate-"+It(t[0])]:et};case"flow":return t.length>1&&{gridAutoFlow:at("col"==t[1]?["column",...ct(t,2)]:ct(t)," ")}}return Xt(t,e,i)},auto:(t,{theme:e})=>st(["cols","rows"],t[0])&&(et=e("gridAuto"+pt(It(t[0])),ct(t),at(ct(t))))&&{["gridAuto-"+It(t[0])]:et},static:Gt,fixed:Gt,absolute:Gt,relative:Gt,sticky:Gt,visible:{visibility:"visible"},invisible:{visibility:"hidden"},antialiased:{WebkitFontSmoothing:"antialiased",MozOsxFontSmoothing:"grayscale"},"subpixel-antialiased":{WebkitFontSmoothing:"auto",MozOsxFontSmoothing:"auto"},truncate:{overflow:"hidden",whiteSpace:"nowrap",textOverflow:"ellipsis"},"sr-only":{position:"absolute",width:"1px",height:"1px",padding:"0",margin:"-1px",overflow:"hidden",whiteSpace:"nowrap",clip:"rect(0,0,0,0)",borderWidth:"0"},"not-sr-only":{position:"static",width:"auto",height:"auto",padding:"0",margin:"0",overflow:"visible",whiteSpace:"normal",clip:"auto"},resize:t=>({resize:{x:"horizontal",y:"vertical"}[t[0]]||t[0]||"both"}),box:t=>t[0]&&{boxSizing:t[0]+"-box"},appearance:Bt(),cursor:Jt(),float:Bt(),clear:Bt(),decoration:Bt("boxDecorationBreak"),isolate:{isolation:"isolate"},isolation:Bt(),"mix-blend":Bt("mixBlendMode"),top:Qt,right:Qt,bottom:Qt,left:Qt,inset:(t,{theme:e})=>(et=Rt(t[0]))?Mt(e("inset",ct(t)),t[0]):(et=e("inset",t))&&{top:et,right:et,bottom:et,left:et},underline:Yt,"line-through":Yt,"no-underline":qt(Yt,"none"),"text-underline":qt(Yt,"underline"),"text-no-underline":qt(Yt,"none"),"text-line-through":qt(Yt,"line-through"),uppercase:Vt,lowercase:Vt,capitalize:Vt,"normal-case":qt(Vt,"none"),"text-normal-case":qt(Vt,"none"),italic:Kt,"not-italic":qt(Kt,"normal"),"font-italic":qt(Kt,"italic"),"font-not-italic":qt(Kt,"normal"),font:(t,e,i)=>(et=e.theme("fontFamily",t,""))?{fontFamily:et}:Wt("fontWeight")(t,e,i),items:t=>t[0]&&{alignItems:st(["start","end"],t[0])?"flex-"+t[0]:at(t)},"justify-self":Bt(),"justify-items":Bt(),justify:ae("justifyContent"),content:ae("alignContent"),self:ae("alignSelf"),place:t=>t[0]&&se("place-"+t[0],ct(t)),overscroll:t=>t[0]&&{["overscrollBehavior"+(t[1]?"-"+t[0]:"")]:t[1]||t[0]},col:le("column"),row:le("row"),duration:Wt("transitionDuration"),delay:Wt("transitionDelay"),tracking:Wt("letterSpacing"),leading:Wt("lineHeight"),z:Wt("zIndex"),opacity:Wt(),ease:Wt("transitionTimingFunction"),p:fe,py:fe,px:fe,pt:fe,pr:fe,pb:fe,pl:fe,m:he,my:he,mx:he,mt:he,mr:he,mb:he,ml:he,w:Wt("width"),h:Wt("height"),min:ge,max:ge,fill:Wt(),order:Wt(),origin:Jt("transformOrigin"," "),select:Bt("userSelect"),"pointer-events":Bt(),align:Bt("verticalAlign"),whitespace:Bt("whiteSpace"),"normal-nums":{fontVariantNumeric:"normal"},ordinal:Zt("ordinal"),"slashed-zero":Zt("slashed-zero"),"lining-nums":Zt("numeric-figure"),"oldstyle-nums":Zt("numeric-figure"),"proportional-nums":Zt("numeric-spacing"),"tabular-nums":Zt("numeric-spacing"),"diagonal-fractions":Zt("numeric-fraction"),"stacked-fractions":Zt("numeric-fraction"),overflow:(t,e,i)=>st(["ellipsis","clip"],t[0])?Bt("textOverflow")(t):t[1]?{["overflow-"+t[0]]:t[1]}:Bt()(t,e,i),transform:t=>"none"==t[0]?{transform:"none"}:{"--tw-translate-x":"0","--tw-translate-y":"0","--tw-rotate":"0","--tw-skew-x":"0","--tw-skew-y":"0","--tw-scale-x":"1","--tw-scale-y":"1",transform:de("gpu"==t[0])},rotate:(t,{theme:e})=>(et=e("rotate",t))&&{"--tw-rotate":et,transform:[`rotate(${et})`,de()]},scale:ue,translate:ue,skew:ue,gap:(t,e,i)=>(et={x:"column",y:"row"}[t[0]])?{[et+"Gap"]:e.theme("gap",ct(t))}:Wt("gap")(t,e,i),stroke:(t,e,i)=>(et=e.theme("stroke",t,""))?{stroke:et}:Wt("strokeWidth")(t,e,i),outline:(t,{theme:e})=>(et=e("outline",t))&&{outline:et[0],outlineOffset:et[1]},"break-normal":{wordBreak:"normal",overflowWrap:"normal"},"break-words":{overflowWrap:"break-word"},"break-all":{wordBreak:"break-all"},text(t,{theme:e},i){switch(t[0]){case"left":case"center":case"right":case"justify":return{textAlign:t[0]};case"uppercase":case"lowercase":case"capitalize":return Vt([],et,t[0]);case"opacity":return te(t,e,i)}const n=e("fontSize",t,"");return n?"string"==typeof n?{fontSize:n}:{fontSize:n[0],..."string"==typeof n[1]?{lineHeight:n[1]}:n[1]}:ne("color","text",e("textColor",t))},bg(t,{theme:e},i){switch(t[0]){case"fixed":case"local":case"scroll":return Bt("backgroundAttachment",",")(t);case"bottom":case"center":case"left":case"right":case"top":return Bt("backgroundPosition"," ")(t);case"no":return"repeat"==t[1]&&Bt("backgroundRepeat")(t);case"repeat":return st("xy",t[1])?Bt("backgroundRepeat")(t):{backgroundRepeat:t[1]||t[0]};case"opacity":return te(t,e,i,"background");case"clip":case"origin":return t[1]&&{["background-"+t[0]]:t[1]+("text"==t[1]?"":"-box")};case"blend":return Bt("background-blend-mode")(ct(t));case"gradient":if("to"==t[1]&&(et=Rt(t[2])))return{backgroundImage:`linear-gradient(to ${at(et," ")},var(--tw-gradient-stops))`}}return(et=e("backgroundPosition",t,""))?{backgroundPosition:et}:(et=e("backgroundSize",t,""))?{backgroundSize:et}:(et=e("backgroundImage",t,""))?{backgroundImage:et}:ne("backgroundColor","bg",e("backgroundColor",t))},from:(t,{theme:e})=>(et=e("gradientColorStops",t))&&{"--tw-gradient-from":et,"--tw-gradient-stops":`var(--tw-gradient-from),var(--tw-gradient-to,${oe(et)})`},via:(t,{theme:e})=>(et=e("gradientColorStops",t))&&{"--tw-gradient-stops":`var(--tw-gradient-from),${et},var(--tw-gradient-to,${oe(et)})`},to:(t,{theme:e})=>(et=e("gradientColorStops",t))&&{"--tw-gradient-to":et},border:(t,e,i)=>Rt(t[0])?Mt(e.theme("borderWidth",ct(t)),t[0],"border","width"):ce(t,e,i),divide:(t,e,i)=>(et=re(t,e,i,"divideWidth","border","width")||ce(t,e,i))&&{"&>:not([hidden])~:not([hidden])":et},space:(t,e,i)=>(et=re(t,e,i,"space","margin"))&&{"&>:not([hidden])~:not([hidden])":et},placeholder:(t,{theme:e},i)=>(et="opacity"==t[0]?te(t,e,i):ne("color","placeholder",e("placeholderColor",t)))&&{"&::placeholder":et},shadow:(t,{theme:e})=>(et=e("boxShadow",t))&&{":global":{"*":{"--tw-shadow":"0 0 transparent"}},"--tw-shadow":"none"==et?"0 0 transparent":et,boxShadow:[et,"var(--tw-ring-offset-shadow,0 0 transparent),var(--tw-ring-shadow,0 0 transparent),var(--tw-shadow)"]},animate:(t,{theme:e,tag:i})=>{if(nt=e("animation",t)){const t=nt.split(" ");return(et=e("keyframes",t[0],it={}))!==it?(nt=i(t[0]))&&{animation:nt+" "+at(ct(t)," "),["@keyframes "+nt]:et}:{animation:nt}}},ring(t,{theme:e},i){switch(t[0]){case"inset":return{"--tw-ring-inset":"inset"};case"opacity":return te(t,e,i);case"offset":return(et=e("ringOffsetWidth",ct(t),""))?{"--tw-ring-offset-width":et}:{"--tw-ring-offset-color":e("ringOffsetColor",ct(t))}}return(et=e("ringWidth",t,""))?{"--tw-ring-offset-shadow":"var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color)","--tw-ring-shadow":`var(--tw-ring-inset) 0 0 0 calc(${et} + var(--tw-ring-offset-width)) var(--tw-ring-color)`,boxShadow:"var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow,0 0 transparent)",":global":{"*":{"--tw-ring-inset":"var(--tw-empty,/*!*/ /*!*/)","--tw-ring-offset-width":e("ringOffsetWidth","","0px"),"--tw-ring-offset-color":e("ringOffsetColor","","#fff"),"--tw-ring-color":ie(e("ringColor","","#93c5fd"),"ring-opacity",e("ringOpacity","","0.5")),"--tw-ring-offset-shadow":"0 0 transparent","--tw-ring-shadow":"0 0 transparent"}}}:{"--tw-ring-opacity":"1","--tw-ring-color":ie(e("ringColor",t),"ring-opacity")}},object:(t,e,i)=>st(["contain","cover","fill","none","scale-down"],at(t))?{objectFit:at(t)}:Jt("objectPosition"," ")(t,e,i),list:(t,e,i)=>"item"==at(t)?Xt(t,e,i):st(["inside","outside"],at(t))?{listStylePosition:t[0]}:Jt("listStyleType")(t,e,i),rounded:(t,e,i)=>Nt(e.theme("borderRadius",ct(t),""),t[0],"border","radius")||Wt("borderRadius")(t,e,i),"transition-none":{transitionProperty:"none"},transition:(t,{theme:e})=>({transitionProperty:e("transitionProperty",t),transitionTimingFunction:e("transitionTimingFunction",""),transitionDuration:e("transitionDuration","")}),container:(t,{theme:e})=>{const{screens:i=e("screens"),center:n,padding:o}=e("container"),r=t=>(et=o&&("string"==typeof o?o:o[t]||o.DEFAULT))?{paddingRight:et,paddingLeft:et}:{};return Object.keys(i).reduce(((t,e)=>((nt=i[e])&&"string"==typeof nt&&(t[xt(nt)]={"&":{"max-width":nt,...r(e)}}),t)),{width:"100%",...n?{marginRight:"auto",marginLeft:"auto"}:{},...r("xs")})},filter:me,blur:me,brightness:me,contrast:me,grayscale:me,"hue-rotate":me,invert:me,saturate:me,sepia:me,"drop-shadow":me,backdrop:me},we={dark:"@media (prefers-color-scheme:dark)",sticky:"@supports ((position: -webkit-sticky) or (position:sticky))","motion-reduce":"@media (prefers-reduced-motion:reduce)","motion-safe":"@media (prefers-reduced-motion:no-preference)",first:"&:first-child",last:"&:last-child",even:"&:nth-child(2n)",odd:"&:nth-child(odd)",children:"&>*",siblings:"&~*",sibling:"&+*",override:"&&"},xe=t=>{let e=self.__twind;return e||(e=document.head.appendChild(document.createElement("style")),e.id="__twind",t&&(e.nonce=t),e.appendChild(document.createTextNode(""))),e},ye=({nonce:t,target:e=xe(t).sheet}={})=>{const i=e.cssRules.length;return{target:e,insert:(t,n)=>e.insertRule(t,i+n)}},ve=t=>({unknown(t,e=[],i,n){i||this.report({id:"UNKNOWN_THEME_VALUE",key:t+"."+at(e)},n)},report:({id:e,...i})=>t(`[${e}] ${JSON.stringify(i)}`)}),$e=ve((t=>console.warn(t))),Se=ve((t=>{throw new Error(t)})),ke=ve(ut),_e=(t,e,i)=>`${t}:${e}${i?" !important":""}`,Ae=(t,e,i)=>{let n="";const o=function(t){return K.get(t)}(t);o&&(n+=`${_e(o,e,i)};`);let r=function(t){var e=/^(?:(text-(?:decoration$|e|or|si)|back(?:ground-cl|d|f)|box-d|mask(?:$|-[ispro]|-cl))|(tab-|column(?!-s)|text-align-l)|(ap)|(u|hy))/i.exec(t);return e?e[1]?1:e[2]?2:e[3]?3:5:0}(t);return 1&r&&(n+=`-webkit-${_e(t,e,i)};`),2&r&&(n+=`-moz-${_e(t,e,i)};`),4&r&&(n+=`-ms-${_e(t,e,i)};`),r=function(t,e){var i=/^(?:(pos)|(cli)|(background-i)|((?:max-|min-)?(?:block-s|inl|he|widt))|(dis))/i.exec(t);return i?i[1]?/^sti/i.test(e)?1:0:i[2]?/^pat/i.test(e)?1:0:i[3]?/^image-/i.test(e)?1:0:i[4]?"-"===e[3]?2:0:/^(?:inline-)?grid$/i.test(e)?4:0:0}(t,e),1&r&&(n+=`${_e(t,`-webkit-${e}`,i)};`),2&r&&(n+=`${_e(t,`-moz-${e}`,i)};`),4&r&&(n+=`${_e(t,`-ms-${e}`,i)};`),n+=_e(t,e,i),n},Ee=(t,e)=>{const i={};do{for(let e=1;e<t;e++)i[`${e}/${t}`]=Number((e/t*100).toFixed(6))+"%"}while(++t<=e);return i},Ce=(t,e,i=0)=>{const n={};for(;i<=t;i=2*i||1)n[i]=i+e;return n},Pe=(t,e="",i=1,n=0,o=1,r={})=>{for(;n<=t;n+=o)r[n]=n/i+e;return r},Le=t=>e=>e(t),Te={screens:{sm:"640px",md:"768px",lg:"1024px",xl:"1280px","2xl":"1536px"},colors:{transparent:"transparent",current:"currentColor",black:"#000",white:"#fff",gray:{50:"#f9fafb",100:"#f3f4f6",200:"#e5e7eb",300:"#d1d5db",400:"#9ca3af",500:"#6b7280",600:"#4b5563",700:"#374151",800:"#1f2937",900:"#111827"},red:{50:"#fef2f2",100:"#fee2e2",200:"#fecaca",300:"#fca5a5",400:"#f87171",500:"#ef4444",600:"#dc2626",700:"#b91c1c",800:"#991b1b",900:"#7f1d1d"},yellow:{50:"#fffbeb",100:"#fef3c7",200:"#fde68a",300:"#fcd34d",400:"#fbbf24",500:"#f59e0b",600:"#d97706",700:"#b45309",800:"#92400e",900:"#78350f"},green:{50:"#ecfdf5",100:"#d1fae5",200:"#a7f3d0",300:"#6ee7b7",400:"#34d399",500:"#10b981",600:"#059669",700:"#047857",800:"#065f46",900:"#064e3b"},blue:{50:"#eff6ff",100:"#dbeafe",200:"#bfdbfe",300:"#93c5fd",400:"#60a5fa",500:"#3b82f6",600:"#2563eb",700:"#1d4ed8",800:"#1e40af",900:"#1e3a8a"},indigo:{50:"#eef2ff",100:"#e0e7ff",200:"#c7d2fe",300:"#a5b4fc",400:"#818cf8",500:"#6366f1",600:"#4f46e5",700:"#4338ca",800:"#3730a3",900:"#312e81"},purple:{50:"#f5f3ff",100:"#ede9fe",200:"#ddd6fe",300:"#c4b5fd",400:"#a78bfa",500:"#8b5cf6",600:"#7c3aed",700:"#6d28d9",800:"#5b21b6",900:"#4c1d95"},pink:{50:"#fdf2f8",100:"#fce7f3",200:"#fbcfe8",300:"#f9a8d4",400:"#f472b6",500:"#ec4899",600:"#db2777",700:"#be185d",800:"#9d174d",900:"#831843"}},spacing:{px:"1px",0:"0px",...Pe(4,"rem",4,.5,.5),...Pe(12,"rem",4,5),14:"3.5rem",...Pe(64,"rem",4,16,4),72:"18rem",80:"20rem",96:"24rem"},durations:{75:"75ms",100:"100ms",150:"150ms",200:"200ms",300:"300ms",500:"500ms",700:"700ms",1e3:"1000ms"},animation:{none:"none",spin:"spin 1s linear infinite",ping:"ping 1s cubic-bezier(0, 0, 0.2, 1) infinite",pulse:"pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",bounce:"bounce 1s infinite"},backdropBlur:Le("blur"),backdropBrightness:Le("brightness"),backdropContrast:Le("contrast"),backdropGrayscale:Le("grayscale"),backdropHueRotate:Le("hueRotate"),backdropInvert:Le("invert"),backdropOpacity:Le("opacity"),backdropSaturate:Le("saturate"),backdropSepia:Le("sepia"),backgroundColor:Le("colors"),backgroundImage:{none:"none"},backgroundOpacity:Le("opacity"),backgroundSize:{auto:"auto",cover:"cover",contain:"contain"},blur:{0:"0",sm:"4px",DEFAULT:"8px",md:"12px",lg:"16px",xl:"24px","2xl":"40px","3xl":"64px"},brightness:{...Pe(200,"",100,0,50),...Pe(110,"",100,90,5),75:"0.75",125:"1.25"},borderColor:t=>({...t("colors"),DEFAULT:t("colors.gray.200","currentColor")}),borderOpacity:Le("opacity"),borderRadius:{none:"0px",sm:"0.125rem",DEFAULT:"0.25rem",md:"0.375rem",lg:"0.5rem",xl:"0.75rem","2xl":"1rem","3xl":"1.5rem","1/2":"50%",full:"9999px"},borderWidth:{DEFAULT:"1px",...Ce(8,"px")},boxShadow:{sm:"0 1px 2px 0 rgba(0, 0, 0, 0.05)",DEFAULT:"0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)",md:"0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",lg:"0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",xl:"0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)","2xl":"0 25px 50px -12px rgba(0, 0, 0, 0.25)",inner:"inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)",none:"none"},contrast:{...Pe(200,"",100,0,50),75:"0.75",125:"1.25"},divideColor:Le("borderColor"),divideOpacity:Le("borderOpacity"),divideWidth:Le("borderWidth"),dropShadow:{sm:"0 1px 1px rgba(0,0,0,0.05)",DEFAULT:["0 1px 2px rgba(0, 0, 0, 0.1)","0 1px 1px rgba(0, 0, 0, 0.06)"],md:["0 4px 3px rgba(0, 0, 0, 0.07)","0 2px 2px rgba(0, 0, 0, 0.06)"],lg:["0 10px 8px rgba(0, 0, 0, 0.04)","0 4px 3px rgba(0, 0, 0, 0.1)"],xl:["0 20px 13px rgba(0, 0, 0, 0.03)","0 8px 5px rgba(0, 0, 0, 0.08)"],"2xl":"0 25px 25px rgba(0, 0, 0, 0.15)",none:"0 0 #0000"},fill:{current:"currentColor"},grayscale:{0:"0",DEFAULT:"100%"},hueRotate:{0:"0deg",15:"15deg",30:"30deg",60:"60deg",90:"90deg",180:"180deg"},invert:{0:"0",DEFAULT:"100%"},flex:{1:"1 1 0%",auto:"1 1 auto",initial:"0 1 auto",none:"none"},fontFamily:{sans:'ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"'.split(","),serif:'ui-serif,Georgia,Cambria,"Times New Roman",Times,serif'.split(","),mono:'ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace'.split(",")},fontSize:{xs:["0.75rem","1rem"],sm:["0.875rem","1.25rem"],base:["1rem","1.5rem"],lg:["1.125rem","1.75rem"],xl:["1.25rem","1.75rem"],"2xl":["1.5rem","2rem"],"3xl":["1.875rem","2.25rem"],"4xl":["2.25rem","2.5rem"],"5xl":["3rem","1"],"6xl":["3.75rem","1"],"7xl":["4.5rem","1"],"8xl":["6rem","1"],"9xl":["8rem","1"]},fontWeight:{thin:"100",extralight:"200",light:"300",normal:"400",medium:"500",semibold:"600",bold:"700",extrabold:"800",black:"900"},gridTemplateColumns:{},gridTemplateRows:{},gridAutoColumns:{min:"min-content",max:"max-content",fr:"minmax(0,1fr)"},gridAutoRows:{min:"min-content",max:"max-content",fr:"minmax(0,1fr)"},gridColumn:{auto:"auto","span-full":"1 / -1"},gridRow:{auto:"auto","span-full":"1 / -1"},gap:Le("spacing"),gradientColorStops:Le("colors"),height:t=>({auto:"auto",...t("spacing"),...Ee(2,6),full:"100%",screen:"100vh"}),inset:t=>({auto:"auto",...t("spacing"),...Ee(2,4),full:"100%"}),keyframes:{spin:{from:{transform:"rotate(0deg)"},to:{transform:"rotate(360deg)"}},ping:{"0%":{transform:"scale(1)",opacity:"1"},"75%,100%":{transform:"scale(2)",opacity:"0"}},pulse:{"0%,100%":{opacity:"1"},"50%":{opacity:".5"}},bounce:{"0%, 100%":{transform:"translateY(-25%)",animationTimingFunction:"cubic-bezier(0.8,0,1,1)"},"50%":{transform:"none",animationTimingFunction:"cubic-bezier(0,0,0.2,1)"}}},letterSpacing:{tighter:"-0.05em",tight:"-0.025em",normal:"0em",wide:"0.025em",wider:"0.05em",widest:"0.1em"},lineHeight:{none:"1",tight:"1.25",snug:"1.375",normal:"1.5",relaxed:"1.625",loose:"2",...Pe(10,"rem",4,3)},margin:t=>({auto:"auto",...t("spacing")}),maxHeight:t=>({...t("spacing"),full:"100%",screen:"100vh"}),maxWidth:(t,{breakpoints:e})=>({none:"none",0:"0rem",xs:"20rem",sm:"24rem",md:"28rem",lg:"32rem",xl:"36rem","2xl":"42rem","3xl":"48rem","4xl":"56rem","5xl":"64rem","6xl":"72rem","7xl":"80rem",full:"100%",min:"min-content",max:"max-content",prose:"65ch",...e(t("screens"))}),minHeight:{0:"0px",full:"100%",screen:"100vh"},minWidth:{0:"0px",full:"100%",min:"min-content",max:"max-content"},opacity:{...Pe(100,"",100,0,10),5:"0.05",25:"0.25",75:"0.75",95:"0.95"},order:{first:"-9999",last:"9999",none:"0",...Pe(12,"",1,1)},outline:{none:["2px solid transparent","2px"],white:["2px dotted white","2px"],black:["2px dotted black","2px"]},padding:Le("spacing"),placeholderColor:Le("colors"),placeholderOpacity:Le("opacity"),ringColor:t=>({DEFAULT:t("colors.blue.500","#3b82f6"),...t("colors")}),ringOffsetColor:Le("colors"),ringOffsetWidth:Ce(8,"px"),ringOpacity:t=>({DEFAULT:"0.5",...t("opacity")}),ringWidth:{DEFAULT:"3px",...Ce(8,"px")},rotate:{...Ce(2,"deg"),...Ce(12,"deg",3),...Ce(180,"deg",45)},saturate:Pe(200,"",100,0,50),scale:{...Pe(150,"",100,0,50),...Pe(110,"",100,90,5),75:"0.75",125:"1.25"},sepia:{0:"0",DEFAULT:"100%"},skew:{...Ce(2,"deg"),...Ce(12,"deg",3)},space:Le("spacing"),stroke:{current:"currentColor"},strokeWidth:Pe(2),textColor:Le("colors"),textOpacity:Le("opacity"),transitionDuration:t=>({DEFAULT:"150ms",...t("durations")}),transitionDelay:Le("durations"),transitionProperty:{none:"none",all:"all",DEFAULT:"background-color,border-color,color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter",colors:"background-color,border-color,color,fill,stroke",opacity:"opacity",shadow:"box-shadow",transform:"transform"},transitionTimingFunction:{DEFAULT:"cubic-bezier(0.4,0,0.2,1)",linear:"linear",in:"cubic-bezier(0.4,0,1,1)",out:"cubic-bezier(0,0,0.2,1)","in-out":"cubic-bezier(0.4,0,0.2,1)"},translate:t=>({...t("spacing"),...Ee(2,4),full:"100%"}),width:t=>({auto:"auto",...t("spacing"),...Ee(2,6),...Ee(12,12),screen:"100vw",full:"100%",min:"min-content",max:"max-content"}),zIndex:{auto:"auto",...Pe(50,"",1,0,10)}},ze=(t,e={},i=[])=>(Object.keys(t).forEach((n=>{const o=t[n];"DEFAULT"==n&&(e[at(i)]=o,e[at(i,".")]=o);const r=[...i,n];e[at(r)]=o,e[at(r,".")]=o,o&&"object"==typeof o&&ze(o,e,r)}),e),e),Fe={negative:()=>({}),breakpoints:t=>Object.keys(t).filter((e=>"string"==typeof t[e])).reduce(((e,i)=>(e["screen-"+i]=t[i],e)),{})},Oe=t=>{const e=new Map,i={...Te,...t},n=(t,e)=>{const i=t&&t[e],n="function"==typeof i?i(o,Fe):i;return n&&"colors"==e?ze(n):n},o=(t,o,r)=>{const s=t.split(".");t=s[0],s.length>1&&(r=o,o=at(ct(s),"."));let a=e.get(t);if(a||(e.set(t,a={...n(i,t)}),Object.assign(a,n(i.extend,t))),null!=o){const e=((t,e)=>(e="["==e[0]&&"]"==e.slice(-1)&&e.slice(1,-1))&&st(t,"olor")==/^(#|(hsl|rgb)a?\(|[a-z]+$)/.test(e)&&(st(e,"calc(")?e.replace(/(-?\d*\.?\d(?!\b-.+[,)](?![^+\-/*])\D)(?:%|[a-z]+)?|\))([+\-/*])/g,"$1 $2 "):e))(t,o=(Array.isArray(o)?at(o):o)||"DEFAULT")||a[o];return null==e?r:Array.isArray(e)&&!st(["fontSize","outline","dropShadow"],t)?at(e,","):e}return a};return o},je=/^:(group(?:(?!-focus).+?)*)-(.+)$/,De=/^(:not)-(.+)/,Ue=t=>"["==t[1]?ct(t):t,Ne=t=>(31&((rt=/(?:^|min-width: *)(\d+(?:.\d+)?)(p)?/.exec(t))?+rt[1]/(rt[2]?15:1)/10:0))<<22,Re=t=>{rt=0;for(let e=t.length;e--;)rt+=st("-:,",t[e]);return rt},Me=t=>(15&Re(t))<<18,Ie=["rst","st","en","d","nk","sited","pty","ecked","cus-w","ver","cus","cus-v","tive","sable","ad-on","tiona","quire"],He=(t,e)=>(i,n)=>{return i|((rt=t("screens",ct(n),""))?1<<27|Ne(xt(rt)):":dark"==n?1<<30:"@"==(rt=e[n]||n.replace(De,":$2"))[0]?Me(rt):(o=n,1<<(~(rt=Ie.indexOf(o.replace(je,":$2").slice(3,8)))?rt:17)));var o},Be=(t,e)=>e+"{"+t+"}",We=(t,e,i)=>{const{theme:n,tag:o}=i,r=(t,e)=>"--"+o(e),s=t=>`${t}`.replace(/--(tw-[\w-]+)\b/g,r);let a;const l=(e,n,o,r,c)=>{if(Array.isArray(r))return void r.forEach((t=>t&&l(e,n,o,t,c)));let d="",u=0,p=0;r["@apply"]&&(r=bt(ht(Dt(r["@apply"]),i),{...r,"@apply":void 0},i)),Object.keys(r).forEach((f=>{const h=ht(r[f],i);if(mt(f,h)){if(""!==h&&f.length>1){const e=ft(f);p+=1,u=Math.max(u,(t=>"-"==t[0]?0:Re(t)+((rt=/^(?:(border-(?!w|c|sty)|[tlbr].{2,4}m?$|c.{7}$)|([fl].{5}l|g.{8}$|pl))/.exec(t))?+!!rt[1]||-!!rt[2]:0)+1)(e)),d=(d&&d+";")+((e,i,n)=>(e=s(e),Array.isArray(i)?at(i.filter(Boolean).map((i=>t(e,s(i),n))),";"):t(e,s(i),n)))(e,h,c)}}else if(h)if(":global"==f&&(f="@global"),"@"==f[0])if("g"==f[1])l([],"",0,h,c);else if("f"==f[1])l([],f,0,h,c);else if("k"==f[1]){const t=a.length;l([],"",0,h,c);const e=a.splice(t,a.length-t);a.push({r:Be(at(e.map((t=>t.r)),""),f),p:e.reduce(((t,e)=>t+e.p),0)})}else"i"==f[1]?(Array.isArray(h)?h:[h]).forEach((t=>t&&a.push({p:0,r:`${f} ${t};`}))):("c"==f[2]&&(f=xt(i.theme("screens",ct(f,8).trim()))),l([...e,f],n,o|Ne(f)|Me(f),h,c));else l(e,n?at(n.split(/,(?![^[]*])/g).map((t=>at(f.split(/,(?![^[]*])/g).map((e=>st(e,"&")?e.replace(/&/g,t):(t&&t+" ")+e)),","))),","):f,o,h,c)})),p&&a.push({r:e.reduceRight(Be,Be(d,n)),p:256*o+((15&Math.max(0,15-p))<<4|15&(u||15))})},c=He(n,e);return(t,e,i,n=0)=>(n<<=28,a=[],l([],e?"."+wt(e):"",i?i.v.reduceRight(c,n):n,t,i&&i.i),a)},Je=(t,e,i,n=e)=>!1===t?i:!0===t?n:t||e,qe=(t,e)=>t+(":"==e[1]?ct(e,2)+":":ct(e))+":",Xe=(t,e=t.d)=>"function"==typeof e?"":t.v.reduce(qe,"")+(t.i?"!":"")+(t.n?"-":"")+e,Ge={_:{value:"",writable:!0}},Ve=(t={})=>{const e=Oe(t.theme),i=(t=>("string"==typeof t?{t:Se,a:$e,i:ke}[t[1]]:t)||$e)(t.mode),n=Je(t.hash,!1,!1,yt),o=t.important;let r={v:[]},s=0;const a=[],l={tw:(...t)=>y(t),theme:(t,n,o)=>{var s;const a=null!=(s=e(t,n,o))?s:i.unknown(t,null==n||Array.isArray(n)?n:n.split("."),null!=o,l);return r.n&&a&&st("rg",(typeof a)[5])?`calc(${a} * -1)`:a},tag:t=>n?n(t):t,css:t=>{s++;const e=a.length;try{("string"==typeof t?Tt([t]):t).forEach(x);const i=Object.create(null,Ge);for(let t=e;t<a.length;t++){const e=a[t];if(e)switch(typeof e){case"object":bt(i,e,l);break;case"string":i._+=(i._&&" ")+e}}return i}finally{a.length=e,s--}}},c=((t,e)=>(i,n)=>{if("function"==typeof i.d)return i.d(e);const o=i.d.split(/-(?![^[]*])/g);if(!n&&"tw"==o[0]&&i.$==i.d)return i.$;for(let i=o.length;i;i--){const r=at(o.slice(0,i)),s=t[r];if(s)return"function"==typeof s?s(ct(o,i),e,r):"string"==typeof s?e[n?"css":"tw"](s):s}})({...be,...t.plugins},l),d={...we,...t.variants},u=((t,e,{theme:i,tag:n})=>{const o=(o,r)=>(ot=i("screens",ct(r),""))?{[xt(ot)]:o}:":dark"==r&&"class"==t?{".dark &":o}:(ot=je.exec(r))?{[`.${wt(n(ot[1]))}:${ot[2]} &`]:o}:{[e[ct(r)]||"&"+r.replace(De,((t,e,i)=>e+"("+Ue(":"+i)+")"))]:o};return(t,e)=>e.v.reduceRight(o,t)})(t.darkMode||"media",d,l),p=We(Je(t.prefix,Ae,_e),d,l),f=t.sheet||("undefined"==typeof window?{target:null,insert:ut}:ye(t)),{init:h=(t=>t())}=f,g=((t,e,i,n)=>{let o,r;return i(((t=[])=>o=t)),i(((t=new Set)=>r=t)),({r:i,p:s})=>{if(!r.has(i)){r.add(i);const a=((t,e)=>{for(var i=0,n=t.length;i<n;){const o=n+i>>1;t[o]<=e?i=o+1:n=o}return n})(o,s);try{t.insert(i,a),o.splice(a,0,s)}catch(t){/:-[mwo]/.test(i)||e.report({id:"INJECT_CSS_ERROR",css:i,error:t},n)}}}})(f,i,h,l);let m;h(((t=new Map)=>m=t));const b=new WeakMap,w=(t,e)=>"_"==t?void 0:"function"==typeof e?JSON.stringify(ht(e,l),w):e,x=t=>{!s&&r.v.length&&(t={...t,v:[...r.v,...t.v],$:""}),t.$||(t.$=Xe(t,b.get(t.d)));let e=s?null:m.get(t.$);if(null==e){let d=(t=>{const e=r;r=t;try{return ht(c(t),l)}finally{r=e}})(t);if(t.$||(t.$=yt(JSON.stringify(d,w)),b.set(t.d,t.$),t.$=Xe(t,t.$)),d&&"object"==typeof d)if(t.v=t.v.map(Ue),o&&(t.i=o),d=u(d,t),s)a.push(d);else{const i="function"==typeof t.d?"string"==typeof d._?1:3:2;e=n||"function"==typeof t.d?(n||yt)(i+t.$):t.$,p(d,e,t,i).forEach(g),d._&&(e+=" "+d._)}else"string"==typeof d?e=d:(e=t.$,i.report({id:"UNKNOWN_DIRECTIVE",rule:e},l)),s&&"function"!=typeof t.d&&a.push(e);s||(m.set(t.$,e),gt(m,3e4))}return e},y=t=>at(Tt(t).map(x).filter(Boolean)," "),v=Je(t.preflight,dt,!1);if(v){const t=(t=>({":root":{tabSize:4},"body,blockquote,dl,dd,h1,h2,h3,h4,h5,h6,hr,figure,p,pre,fieldset,ol,ul":{margin:"0"},button:{backgroundColor:"transparent",backgroundImage:"none"},'button,[type="button"],[type="reset"],[type="submit"]':{WebkitAppearance:"button"},"button:focus":{outline:["1px dotted","5px auto -webkit-focus-ring-color"]},"fieldset,ol,ul,legend":{padding:"0"},"ol,ul":{listStyle:"none"},html:{lineHeight:"1.5",WebkitTextSizeAdjust:"100%",fontFamily:t("fontFamily.sans","ui-sans-serif,system-ui,sans-serif")},body:{fontFamily:"inherit",lineHeight:"inherit"},"*,::before,::after":{boxSizing:"border-box",border:`0 solid ${t("borderColor.DEFAULT","currentColor")}`},hr:{height:"0",color:"inherit",borderTopWidth:"1px"},img:{borderStyle:"solid"},textarea:{resize:"vertical"},"input::placeholder,textarea::placeholder":{opacity:"1",color:t("placeholderColor.DEFAULT",t("colors.gray.400","#a1a1aa"))},'button,[role="button"]':{cursor:"pointer"},table:{textIndent:"0",borderColor:"inherit",borderCollapse:"collapse"},"h1,h2,h3,h4,h5,h6":{fontSize:"inherit",fontWeight:"inherit"},a:{color:"inherit",textDecoration:"inherit"},"button,input,optgroup,select,textarea":{fontFamily:"inherit",fontSize:"100%",margin:"0",padding:"0",lineHeight:"inherit",color:"inherit"},"button,select":{textTransform:"none"},"::-moz-focus-inner":{borderStyle:"none",padding:"0"},":-moz-focusring":{outline:"1px dotted ButtonText"},":-moz-ui-invalid":{boxShadow:"none"},progress:{verticalAlign:"baseline"},"::-webkit-inner-spin-button,::-webkit-outer-spin-button":{height:"auto"},'[type="search"]':{WebkitAppearance:"textfield",outlineOffset:"-2px"},"::-webkit-search-decoration":{WebkitAppearance:"none"},"::-webkit-file-upload-button":{WebkitAppearance:"button",font:"inherit"},summary:{display:"list-item"},"abbr[title]":{textDecoration:"underline dotted"},"b,strong":{fontWeight:"bolder"},"pre,code,kbd,samp":{fontFamily:t("fontFamily","mono","ui-monospace,monospace"),fontSize:"1em"},"sub,sup":{fontSize:"75%",lineHeight:"0",position:"relative",verticalAlign:"baseline"},sub:{bottom:"-0.25em"},sup:{top:"-0.5em"},"img,svg,video,canvas,audio,iframe,embed,object":{display:"block",verticalAlign:"middle"},"img,video":{maxWidth:"100%",height:"auto"}}))(e),i=p("function"==typeof v?ht(v(t,l),l)||t:{...t,...v});h(((t=(i.forEach(g),!0))=>t))}return{init:()=>i.report({id:"LATE_SETUP_CALL"},l),process:y}},Ye=t=>{let e,i=t=>(n(),i(t)),n=t=>{({process:i,init:n}=Ve(t))};t&&n(t);return{tw:Object.defineProperties(((...t)=>i(t)),{theme:{get:(o="theme",()=>(e||i([t=>(e=t,"")]),e[o]))}}),setup:t=>n(t)};var o},{tw:Ke,setup:Ze}=Ye(),Qe=(t,e)=>!!~t.indexOf(e),ti=(t,e)=>{for(;"function"==typeof t;)t=t(e);return t},ei=(t,e,i)=>e?Object.keys(e).reduce(((t,n)=>{const o=ti(e[n],i);return((t,e)=>!Qe("@:&",t[0])&&(Qe("rg",(typeof e)[5])||Array.isArray(e)))(n,o)?t[(t=>t.replace(/[A-Z]/g,"-$&").toLowerCase())(n)]=o:t[n]="@"==n[0]&&Qe("figa",n[1])?(t[n]||[]).concat(o):ei(t[n]||{},o,i),t}),t):t,ii=/\s*(?:([\w-%@]+)\s*:?\s*([^{;]+?)\s*(?:;|$|})|([^;}{]*?)\s*{)|(})/gi,ni=/\/\*[\s\S]*?\*\/|\s+|\n/gm,oi=(t,e)=>t.reduceRight(((t,e)=>({[e]:t})),e),ri=(t,e,i)=>{i&&t.push(oi(e,i))},si=(t,e)=>((t,e)=>{const i=(t,n)=>Array.isArray(n)?n.reduce(i,t):ei(t,ti(n,e),e);return t.reduce(i,{})})(Array.isArray(t[0])&&Array.isArray(t[0].raw)?((t,e)=>{const i=[],n=[];let o,r;for(let s=0;s<t.length;s++){const a=t[s];if("string"==typeof a){for(;r=ii.exec(a.replace(ni," "));)if(r[0])if(r[4]&&(o=ri(n,i,o),i.pop()),r[3])o=ri(n,i,o),i.push(r[3]);else if(!r[4]){o||(o={});const i=r[2]&&/\S/.test(r[2])?r[2]:t[++s];i&&("@apply"==r[1]?ei(o,ti(Dt(i),e),e):o[r[1]]=i)}}else o=ri(n,i,o),n.push(oi(i,a))}return ri(n,i,o),n})(((t,e,i)=>{let n=t[0];const o=[];for(let r=0;r<e.length;){const s=ti(e[r],i);s&&"object"==typeof s?(o.push(n,s),n=t[++r]):n+=(s||"")+t[++r]}return o.push(n),o})(t[0],t.slice(1),e),e):t,e),ai=(...t)=>Ot(si,t),li=(t,e)=>{const i=si(t,e),n=yt(JSON.stringify(i));return e.tw((()=>({[`@keyframes ${n}`]:i}))),n},ci=(...t)=>Ot(li,t),di=(t,e)=>void 0===e?(...e)=>di(t,ci(...e)):ai({...t&&"object"==typeof t?t:{animation:t},animationName:"function"==typeof e?e:ci(e)});const ui=di("1s ease-in-out forwards",{"0%":{"max-height":"0vh"},"100%":{"max-height":"70vh"}}),pi=di(".75s ease-in-out forwards",{"0%":{"max-height":"0px",opacity:0},"100%":{"max-height":"300px",opacity:1}}),fi=di(".5s .5s ease-in-ot forwards",{"0%":{opacity:0},"100%":{opacity:1}}),hi=di(".5s ease-in-ot forwards",{"0%":{opacity:0},"100%":{opacity:1}}),gi=ye({target:new CSSStyleSheet}),{tw:mi}=Ye({sheet:gi});class bi extends V{static styles=[gi.target];static properties={menu:{type:Boolean},location:{type:String},detector:{type:Boolean},detectorInteracted:{type:Boolean},menuList:{type:Array},regionSelector:{type:Boolean},regions:{type:Array},showLogin:{type:Boolean},crtFlag:{type:String}};constructor(){super(),this.menu=!1,this.location="Kastrup, Danmark",this.detector=!1,this.regionSelector=!1,this.detectorInteracted=!1,this.showLogin=!1,this.crtFlag="./images/flags/denmark.svg",this.regions=[{imgSrc:"./images/flags/usa.svg",title:"USA",anchor:"#",active:!1},{imgSrc:"./images/flags/denmark.svg",title:"Danmark",active:!0},{imgSrc:"./images/flags/german.svg",title:"Deutshland",active:!1},{imgSrc:"./images/flags/norway.svg",title:"Norge",active:!1},{imgSrc:"./images/flags/finland.svg",title:"Suomi",active:!1},{imgSrc:"./images/flags/sweden.svg",title:"Sverige",active:!1}],this.menuList=[{text:"Hvordan virker det?",anchor:"#"},{text:"Casinos",anchor:"#",dropdown:{shown:!1,list:[{text:"Tilbud",anchor:"#"},{text:"Casino anmeldelser",anchor:"#"},{text:"Hotte Online Casioner",anchor:"#"},{text:"Nye Online Casioner",anchor:"#"}]}},{text:"Spil",anchor:"#",dropdown:{shown:!1,list:[{text:"Gratis konkurrencer",anchor:"#"},{text:"Vindere",anchor:"#"},{text:"Spilanmeldelser",anchor:"#"}]}}]}toggleRegion(t){this.regions.forEach((t=>{t.active=!1})),t.active=!0,this.crtFlag=t.imgSrc}toggleMenu(){this.menu=!this.menu,this.showLogin&&(this.showLogin=!1),this.menu&&(this.regionSelector=!1,this.detector&&(this.detector=!1),this.menuList.forEach((t=>{t.dropdown&&(t.dropdown.shown=!1)})))}render(){return L`<nav class="${mi`flex justify-between px-[5%] h-16 bg-[#eaeff7] items-center shadow-md z-20 fixed w-full top-0 sm:h-[4.563rem] gap-2`}"><a href="#"><img src="./images/header.svg" alt="header" class="${mi`w-32 sm:w-full`}"></a><div class="flex items-center">${screen.width<640?L`<button @click="${()=>{this.showLogin=!0,this.menu&&(this.menu=!1),this.requestUpdate(),console.log(this.showLogin)}}" class="${mi`p-2 w-10 h-10 rounded bg-black mr-4`}"><img src="./images/login.svg" alt="Login Icon"></button> <button class="${"mr-4"}"><img src="./images/search.svg" alt="search icon"></button> <button @click="${this.toggleMenu}"><img class="${mi`w-8`}" src="./images/${this.menu?"burger-exit.svg":"burger-menu.svg"}" alt="menu icon"></button> ${this.menu?L`<nav class="${mi`fixed top-16 right-0 h-[70vh] bg-[#eaeff7] w-[100vw] z-10 flex shadow-md ${ui}`}"><div class="${mi`w-full relative ${fi} opacity-0`}"><div class="${mi`flex py-8 px-12 gap-5`}"><button class="${mi`text-white text-[19px] leading-9 rounded-[3px] font-bold w-full h-10 flex justify-center items-center gap-3
-                                ${ai`&{background:linear-gradient(to right,#0060e9 0,#3d8bdd 50%,#80bad0 100%)}`}
-                                `}"><p class="${mi`mb-1`}">Shop</p><img src="./images/cart.svg" alt="cart"></button> <button class="${mi`w-12`}" @click="${()=>{this.detectorInteracted?this.regionSelector=!this.regionSelector:this.detector=!this.detector}}"><img src="${this.crtFlag}" alt="Region Selector"></button></div>${this.detector?L`<div class="${mi`${hi} opacity-0 shadow-lg transition-opacity rounded-lg absolute w-2/3 right-12 top-20 px-4 py-5 bg-[#1a2433] text-white`}"><p class="${"font-bold text-blue-800"}">We detected that you visit us from ${this.location}</p><button class="${mi`underline text-[#FFBC3F]`}" @click="${()=>{this.regionSelector=!0,this.detectorInteracted=!0,this.detector=!1}}">Is this not accurate?</button></div>`:""} ${this.regionSelector?L`<ul class="${mi`flex flex-col gap-2 shadow-xl bg-[#eaeff7] absolute top-20 right-[2.65rem] rounded-lg p-[5px] ${pi} overflow-hidden`}">${this.regions.map((t=>t.imgSrc!=this.crtFlag?L`<li><button class="${mi`flex gap-2 w-10`}" @click="${()=>{this.toggleRegion(t),this.regionSelector=!1,this.requestUpdate()}}"><img src="${t.imgSrc}" alt="${t.title} Flag"></button></li>`:""))}</ul>`:""}<ul class="${mi`font-bold`}">${this.menuList.map((t=>L`<li @click="${()=>{t.dropdown&&(t.dropdown.shown=!t.dropdown.shown,this.menuList.forEach((e=>{e.dropdown&&e!=t&&(e.dropdown.shown=!1)})),this.requestUpdate())}}" class="${mi`pl-[20%] pb-4 flex items-start gap-2`}"><div><a class="${mi`flex items-center gap-3 text-[19px] mt-4 mb-2`}" href="${t.anchor}" style="color:${t.dropdown&&t.dropdown.shown?"#2B7EE1":"inherit"}">${t.text} ${t.dropdown&&L`<svg style="transform:rotate(${t.dropdown.shown?"0":"180deg"})" class="${mi`mt-1 inline-block`}" xmlns="http://www.w3.org/2000/svg" width="7" height="6" viewBox="0 0 7 6"><path id="Polygon_4" data-name="Polygon 4" d="M2.636,1.481a1,1,0,0,1,1.728,0L6.123,4.5A1,1,0,0,1,5.259,6H1.741A1,1,0,0,1,.877,4.5Z" transform="translate(7 6) rotate(180)" fill="${t.dropdown&&t.dropdown.shown?"#2B7EE1":"inherit"}"/></svg>`}</a> ${t.dropdown&&t.dropdown.shown?L`<ul class="${mi`flex flex-col gap-3 ${pi} overflow-hidden`}">${t.dropdown.list.map((t=>L`<li class="${mi`font-normal text-[#959CA7] text-[17px]`}"><a href="${t.anchor}">${t.text}</a></li>`))}</ul>`:""}</div></li><hr class="${mi`bg-[#DEE1E6]`}">`))}</ul></div></nav>`:""}`:L`<ul class="${mi`flex items-center gap-[2vw] relative mr-8`}">${this.menuList.map((t=>L`<li @click="${()=>{t.dropdown&&(t.dropdown.shown=!t.dropdown.shown,this.menuList.forEach((e=>{e.dropdown&&e!=t&&(e.dropdown.shown=!1)})),this.requestUpdate())}}" class="${mi`flex items-start gap-2`}"><div><a class="${mi`flex items-center gap-3 lg:text-[19px] md:text-base`}" href="${t.anchor}" style="color:${t.dropdown&&t.dropdown.shown?"#2B7EE1":"inherit"}">${t.text} ${t.dropdown&&L`<svg style="transform:rotate(${t.dropdown.shown?"0":"180deg"})" class="${mi`mt-1 inline-block`}" xmlns="http://www.w3.org/2000/svg" width="7" height="6" viewBox="0 0 7 6"><path id="Polygon_4" data-name="Polygon 4" d="M2.636,1.481a1,1,0,0,1,1.728,0L6.123,4.5A1,1,0,0,1,5.259,6H1.741A1,1,0,0,1,.877,4.5Z" transform="translate(7 6) rotate(180)" fill="${t.dropdown&&t.dropdown.shown?"#2B7EE1":"inherit"}"/></svg>`}</a> ${t.dropdown&&t.dropdown.shown?L`<ul class="${mi`flex flex-col ${pi} overflow-hidden absolute top-10 bg-[#eaeff7] rounded-b-md`}">${t.dropdown.list.map((t=>L`<li class="${mi`font-normal p-4 border-b-1 border-[#959CA750]`}"><a class="${mi`hover:text-[#3E8CDC] text-[#959CA7] text-[17px]`}" href="${t.anchor}">${t.text}</a></li>`))}</ul>`:""}</div></li>`))}</ul><button class="${mi`text-white text-[17px] leading-9 rounded font-bold w-24 h-10 flex justify-center items-center gap-2 mr-[7vw]
-                    ${ai`&{background:linear-gradient(to right,#0060e9 0,#3d8bdd 50%,#80bad0 100%)}`}
-                  `}"><p class="${mi`mb-1`}">Shop</p><img src="./images/cart.svg" alt="cart"></button> <button @click="${()=>{this.showLogin=!0,this.menu&&(this.menu=!1),this.requestUpdate(),console.log(this.showLogin)}}" class="${mi`p-2 w-10 h-10 rounded bg-black mr-4`}"><img src="./images/login.svg" alt="Login Icon"></button> <button><img src="./images/search.svg" alt="search icon"></button> <button class="${mi`w-10 h-10 ml-4`}" @click="${()=>{this.detectorInteracted?this.regionSelector=!this.regionSelector:this.detector=!this.detector}}"><img src="${this.crtFlag}" alt="Region Selector"></button> ${this.detector?L`<div class="${mi`${hi} opacity-0 shadow-lg transition-opacity rounded-lg absolute w-1/5 right-[5%] top-20 px-4 py-5 bg-[#1a2433] text-white`}"><p class="${"font-bold text-blue-800"}">We detected that you visit us from ${this.location}</p><button class="${mi`underline text-[#FFBC3F]`}" @click="${()=>{this.regionSelector=!0,this.detectorInteracted=!0,this.detector=!1}}">Is this not accurate?</button></div>`:""} ${this.regionSelector?L`<ul class="${mi`flex flex-col gap-2 shadow-xl bg-[#eaeff7] absolute top-16 right-[4.8%] rounded-lg p-[5px] ${pi} overflow-hidden`}">${this.regions.map((t=>t.imgSrc!=this.crtFlag?L`<li><button class="${mi`flex gap-2 w-10`}" @click="${()=>{this.toggleRegion(t),this.regionSelector=!1,this.requestUpdate()}}"><img src="${t.imgSrc}" alt="${t.title} Flag"></button></li>`:""))}</ul>`:""}`}</div></nav>${this.showLogin?L`<div class="${mi`fixed w-[100vw] h-full sm:w-[28.625rem] sm:h-[34.375rem] sm:right-[50%] sm:mr-[-14.312rem] sm:top-[20vh] sm:rounded bg-[#eaeff7] top-16 right-0 pb-20 px-4 z-20 ${hi} ${ai`&{background:transparent linear-gradient(151deg,#eaeff7 0,#d8e2f2 100%)}`}`}"><div class="${mi`flex flex-col text-center h-full relative sm:pt-[8rem]`}"><button @click="${()=>{this.showLogin=!1}}" class="${mi`flex items-center absolute top-3 right-2 bg-[#f1f5fa] p-3 rounded-full w-9 h-9 shadow-sm z-10`}"><img src="./images/burger-exit.svg" alt="Close Icon"></button> <img src="./images/money.png" alt="Jackpot" class="${mi`sm:absolute sm:top-[-6.265rem] sm:px-[2vw]`}"><h2 class="${mi`text-[2.188rem] text-[#3988DE] font-bold`}">Tilmeld dig</h2><p class="${mi`font-medium text-[17px]`}">Og få 1000 EP med det samme!</p><div class="${mi`flex justify-center gap-3 mb-4 mt-6`}"><a href="#" class="${mi`w-10 h-10 bg-[#f1f5fa] flex rounded-lg p-2 justify-center`}"><img src="./images/social-icons/google.svg"></a><a href="#" class="${mi`w-10 h-10 bg-[#f1f5fa] flex rounded-lg p-2 justify-center`}"><img src="./images/social-icons/facebook.svg"></a><a href="#" class="${mi`w-10 h-10 bg-[#f1f5fa] flex rounded-lg p-2 justify-center`}"><img src="./images/social-icons/apple.svg"></a></div><form action="#" class="${mi`text-center flex flex-col px-10 gap-3`}" (submit)="(false)"><input type="text" placeholder="Brugernavn..." class="${mi`pb-1 px-4 h-10 w-full rounded-lg bg-[#f1f5fa] placeholder-[#D1D4D9]`}" required> <input type="email" placeholder="Email..." class="${mi`pb-1 px-4 h-10 w-full rounded-lg bg-[#f1f5fa] placeholder-[#D1D4D9]`}" required> <input type="password" placeholder="Kodeord..." class="${mi`pb-1 px-4 h-10 w-full rounded-lg bg-[#f1f5fa] placeholder-[#D1D4D9]`}" required> <input type="submit" value="Fortsæt" class="${mi`mx-auto rounded-md cursor-pointer shadow-md w-24 h-10 flex justify-center items-center text-lg font-medium text-white ${ai`&{background:transparent linear-gradient(206deg,#ff930f 0,#ffd45b 100%)}`}`}"><div class="${mi`leading-4`}"><p class="${mi`text-[13px]`}">Har du allerede en bruger?</p><a href="#" class="${mi`text-[#3585DF] text-[13px] font-bold`}">Log ind her</a></div></form></div></div>`:""}`}}window.customElements.define("nav-bar",bi);const wi=ye({target:new CSSStyleSheet}),{tw:xi}=Ye({sheet:wi});class yi extends V{static styles=[wi.target];static properties={};constructor(){super()}render(){return L`<footer class="${xi`bg-white`}" style="box-shadow:-1px -1px 11px 1px rgb(0 0 0 / 22%)"><div class="${xi`flex justify-center items-center gap-2 pb-5 pt-10`}"><div class="${xi`w-full bg-[#eeeeee] h-[2px]`}"></div><a class="${xi`w-24 `}" href="#"><img src="./images/facebook.png" alt="Facebook Icon"> </a><a class="${xi`w-24 mx-2`}" href="#"><img src="./images/twitch.png" alt="Twitch Icon"> </a><a class="${xi`w-24 `}" href="#"><img src="./images/youtube.png" alt="Youtube Icon"></a><div class="${xi`w-full bg-[#eeeeee] h-[2px]`}"></div></div><div class="${xi`bg-[#273789] py-10 px-[9%] flex flex-col items-center`}"><img src="./images/logo-big.png" alt="Logo" class="${xi`mb-10 w-3/4`}"><p class="${xi`text-white text-xs text-center`}">18+ | Spil ansvarligt | StopSpillet: 70 22 28 25 | ROFUS.nu Husk at pengespil kan være vanedannende, så spil ansvarligt. Hos EkstraPoint gør vi derfor en indsats for at opretholde og følge retningslinjer udstukket af den danske Spillemyndighed. Man skal være fyldt 18 både for at spille på EkstraPoint, og på alle casinosider der er repræsenteret herpå. Casino- og spilanmeldelser på vores side er som udgangspunkt kommercielt indhold. Regler og vilkår gælder. Spil ansvarligt. Selvudelukkelse via ROFUS. Kontakt Spillemyndighedens hjælpelinje på StopSpillet.dk <a href="https://www.spillemyndigheden.dk/">https://www.spillemyndigheden.dk/</a></p><div class="${xi`flex flex-wrap justify-center items-center gap-y-2 mt-6`}"><div><img class="${xi`max-w-[10.938rem] max-h-14 px-2`}" src="./images/footer/gambleaware.png"></div><div><img class="${xi`max-w-[10.938rem] max-h-14 px-2`}" src="./images/footer/mga.png"></div><div><img class="${xi`max-w-[10.938rem] max-h-14 px-2`}" src="./images/footer/agerestrict.png"></div><div><img class="${xi`max-w-[10.938rem] max-h-14 px-2`}" src="./images/footer/gpwa.gif"></div><div><img class="${xi`max-w-[10.938rem] max-h-14 px-2`}" src="./images/footer/egr.webp"></div><div><img class="${xi`max-w-[10.938rem] max-h-14 px-2`}" src="./images/footer/lottofy.webp"></div><div><img class="${xi`max-w-[10.938rem] max-h-14 px-2`}" src="./images/footer/smartsoft.webp"></div></div></div></footer>`}}window.customElements.define("app-footer",yi);const vi=ye({target:new CSSStyleSheet}),{tw:$i}=Ye({sheet:vi}),Si=ai({"&":{"background-image":"linear-gradient(to left, #a8ebe9, #fae4fe)","background-clip":"text","-webkit-background-clip":"text","-webkit-text-fill-color":"transparent"}}),ki=ai({content:'""',"@apply":"absolute w-1 h-1 flex justify-center items-center bg-[#f82858] rounded-full top-1 right-1"});class _i extends V{static styles=[vi.target];render(){return L`<section class="${$i`flex justify-between items-center rounded-md h-12 bg-[#1A2433] px-3 my-2 gap-1`}"><h2 class="${$i`${Si} font-bold text-xl mb-1`}">$52.526</h2><p class="${$i`font-medium text-white text-sm text-center`}">In rewards the last 30 days!</p><div class="${$i`flex items-center rounded-md gap-1 px-1 ml-[2%] min-w-[5rem] w-20 bg-[#EAEFF7] after::${ki} relative`}"><img src="./images/person.svg" alt="person icon"><p class="${$i`font-medium text-sm mb-1`}">1361</p><p class="${$i`font-light text-sm mb-1`}">Live</p></div></section>`}}window.customElements.define("app-rewards",_i);const Ai=ye({target:new CSSStyleSheet}),{tw:Ei}=Ye({sheet:Ai});class Ci extends V{static styles=[Ai.target];static properties={wins:{type:Array},index:{type:Number},imgSrc:{type:String},username:{type:String},winAmount:{type:Number},timerSec:{type:Number}};constructor(){super(),this.wins=[{imgSrc:"user-icon.svg",username:"Daniel44",winAmount:1800},{imgSrc:"user-icon.svg",username:"Mark1234",winAmount:2e3},{imgSrc:"user-icon.svg",username:"Nick201",winAmount:6200},{imgSrc:"user-icon.svg",username:"Bot002",winAmount:9400}],this.timerSec=6,this.index=0,this.username=this.wins[0].username,this.winAmount=this.wins[0].winAmount,this.imgSrc=this.wins[0].imgSrc}firstUpdated(){const t=this.shadowRoot.querySelector("#card");setInterval((()=>{this.index<this.wins.length-1?this.index++:this.index=0,"rotateX(180deg)"!=t.style.transform?t.style.transform="rotateX(180deg)":t.style.transform="rotateX(0)",this.wins.forEach((t=>{this.wins.indexOf(t)===this.index&&setTimeout((()=>{this.imgSrc=t.imgSrc,this.username=t.username,this.winAmount=t.winAmount}),500)}))}),`${this.timerSec}000`)}render(){return L`<article class="${Ei`w-full h-12 rounded-md overflow-hidden mb-3`}"><div class="${Ei`w-full h-full relative ${ai({"transform-style":"preserve-3d",transition:"2s"})}`}" id="card"><div class="${Ei`flex justify-center gap-[2%] items-center text-white p-2 pr-[5%] absolute w-full h-full bg-[#1A2433] ${ai({"-webkit-backface-visibility":" hidden","backface-visibility":"hidden"})}`}"><img src="./images/${this.imgSrc}" alt="${this.username}" class="${Ei`w-auto mr-auto`}"><h2 class="${Ei`font-bold text-base`}">${this.username}</h2><p class="${Ei`mr-auto flex gap-2`}">Just won <span class="${Ei`text-[#FFA626] font-bold`}">${this.winAmount} EP </span><a href="#" class="${Ei`underline`}">here!</a></p></div><div class="${Ei`absolute w-full h-full flex justify-center gap-[2%] items-center bg-[#1A2433] text-white p-2 pr-[5%] ${ai({"-webkit-backface-visibility":" hidden","backface-visibility":"hidden",transform:"rotateX(180deg)"})}`}"><img src="./images/${this.imgSrc}" alt="${this.username}" class="${Ei`w-auto mr-auto`}"><h2 class="${Ei`font-bold text-base`}">${this.username}</h2><p class="${Ei`mr-auto flex gap-2`}">Just won <span class="${Ei`text-[#FFA626] font-bold`}">${this.winAmount} EP </span><a href="#" class="${Ei`underline`}">here!</a></p></div></div></article>`}}window.customElements.define("win-display",Ci);const Pi=ye({target:new CSSStyleSheet}),{tw:Li}=Ye({sheet:Pi}),Ti=ai({content:'""',"@apply":"absolute w-1 h-1 flex justify-center items-center bg-[#f82858] rounded-full top-0 right-[-0.25rem]"});class zi extends V{static styles=[Pi.target];static properties={monthNames:{type:Array}};constructor(){super(),this.monthNames=["January","February","March","April","May","June","July","August","September","October","November","December"]}render(){return L`<div class="${Li`${ai`&{background-image:linear-gradient(to right,#0060e9,#80bad0)}`} p-2 rounded-xl grid shadow-md`}"><img src="./images/game.png" alt="Current Biggest Game" class="${Li`w-full ${ai`&{grid-area:1/1/1/1}`}`}"><div class="${Li`text-white flex flex-col justify-end px-4 py-5 ${ai`&{grid-area:1/1/1/1}`}`}"><div class="${Li`flex mb-auto justify-end items-center gap-1`}"><svg class="${Li`mt-1`}" xmlns="http://www.w3.org/2000/svg" width="8.217" height="9.136" viewBox="0 0 8.217 9.136"><path id="Union_5" data-name="Union 5" d="M.416,8.136A.363.363,0,0,1,.1,8.01.414.414,0,0,1,.008,7.8,4.084,4.084,0,0,1,.276,5.984,3.642,3.642,0,0,1,2.205,4c.019-.008.037-.019.067-.032A2.261,2.261,0,0,1,2.041.691,2.143,2.143,0,0,1,3.614,0h0a2.12,2.12,0,0,1,1.5.624,2.261,2.261,0,0,1-.157,3.338.321.321,0,0,0,.059.032A3.623,3.623,0,0,1,7.174,6.823a6.157,6.157,0,0,1,.042.975.344.344,0,0,1-.31.332.549.549,0,0,1-.094.005Z" transform="translate(0.5 0.5)" fill="#12ee9a" stroke="rgba(0,0,0,0)" stroke-miterlimit="10" stroke-width="1"/></svg><p>374</p><p class="${Li`after::${Ti} relative font-light`}">Live</p></div><div class="${Li`flex justify-between items-end pb-2`}"><p class="${Li`text-base font-medium leading-4`}">${this.monthNames[(new Date).getMonth()]}'s biggest<br>tournament</p><p class="${Li`text-lg tracking-widest`}">01:29:51</p></div><div class="${Li`flex justify-between`}"><h2 class="${Li`text-4xl font-bold`}">Win €5.000</h2><a href="#" class="${Li`rounded-md shadow-md mt-auto pb-1 w-24 h-10 flex justify-center items-center text-lg font-medium text-white ${ai`&{background:transparent linear-gradient(206deg,#ff930f 0,#ffd45b 100%)}`}`}">Join</a></div></div></div>`}}window.customElements.define("game-big",zi);const Fi=ye({target:new CSSStyleSheet}),{tw:Oi}=Ye({sheet:Fi});ai({content:'""',"@apply":"absolute w-1 h-1 flex justify-center items-center bg-[#f82858] rounded-full top-0 right-[-0.25rem]"});class ji extends V{static styles=[Fi.target];render(){return L`<div class="${Oi`${ai`&{background-image:linear-gradient(to right,#0060e9,#80bad0)}`} px-5 py-4 text-white rounded-lg gap-1 flex flex-col mb-3`}"><p class="${Oi`font-medium text-[15px]`}">Register to collect your welcome bonus!</p><div class="${Oi`flex justify-between`}"><h4 class="${Oi`text-4xl font-bold`}">20.000 EP</h4><a href="#" class="${Oi`rounded-md shadow-md mt-auto pb-1 w-24 h-10 flex justify-center items-center text-lg font-medium text-white ${ai`&{background:transparent linear-gradient(206deg,#ff930f 0,#ffd45b 100%)}`}`}">Join</a></div></div>`}}window.customElements.define("signup-bonus",ji);const Di=ye({target:new CSSStyleSheet}),{tw:Ui}=Ye({sheet:Di});class Ni extends V{static styles=[Di.target];static properties={icon:{type:String},caption:{type:String},points:{type:Number},color:{type:String}};render(){return L`<a href="#" class="${Ui`flex flex-col items-center text-center bg-black rounded-lg h-[115px] py-3 px-2`}"><div class="${Ui`w-8 h-10 mb-1`}"><img src="./images/${this.icon}" ${this.caption}></div><p class="${Ui`text-[0.813rem] font-medium leading-3`}">${this.caption}:</p><p class="${Ui`font-bold mt-auto ${ai`&{color:${this.color}}`}`}">+ ${String(this.points)}</p></a>`}}window.customElements.define("point-bonus",Ni);const Ri=ye({target:new CSSStyleSheet}),{tw:Mi}=Ye({sheet:Ri});class Ii extends V{static styles=[Ri.target];render(){return L`<div class="${Mi`flex gap-2 text-white my-4 justify-between`}"><point-bonus .icon="${"slot-machine.svg"}" .caption="${"Premium Casinos"}" .points="${300}" .color="${"#16C07F"}"></point-bonus><point-bonus .icon="${"crown.svg"}" .caption="${"Live tournaments"}" .points="${15}" .color="${"#FF296D"}"></point-bonus><point-bonus .icon="${"coin.svg"}" .caption="${"Exclusive products"}" .points="${20}" .color="${"#4E97D9"}"></point-bonus></div>`}}window.customElements.define("point-offers",Ii);const Hi=ye({target:new CSSStyleSheet}),{tw:Bi}=Ye({sheet:Hi});class Wi extends V{static styles=[Hi.target];static properties={game:{type:Object}};render(){return L`<div class="${Bi`${ai`&{background-image:linear-gradient(to bottom left,#ff5858 50%,#ff0080 100%)}`} 
-          rounded-xl text-white w-[18.125rem] h-[18.125rem] flex flex-col`}"><div class="${Bi`grid`}"><img src="./images/${this.game.img}" class="${Bi`${ai`&{grid-area:1/1/1/1}`}`}"><p class="${Bi`text-sm self-end p-3 ${ai`&{grid-area:1/1/1/1}`}`}"><span class="${Bi`mr-4`}">${this.game.days} days</span>${this.game.time}</p></div><div class="${Bi`flex items-center justify-between px-3 my-auto`}"><h3 class="${Bi`text-xl font-bold`}">€${String(this.game.cost)}</h3><div class="${Bi`h-9 w-[1px] bg-white`}"></div><p class="${Bi`text-base`}">${String(this.game.cost)}.000 EP</p><a href="#" class="${Bi`rounded-md shadow-md mt-auto pb-1 w-[6.25rem] h-10 flex justify-center items-center text-lg font-medium text-white ${ai`&{background:transparent linear-gradient(206deg,#ff930f 0,#ffd45b 100%)}`}`}">Play</a></div></div>`}}window.customElements.define("game-slide",Wi);
+ */var l,o;class s extends a$2{constructor(){super(...arguments),this.renderOptions={host:this},this._$Dt=void 0;}createRenderRoot(){var t,e;const i=super.createRenderRoot();return null!==(t=(e=this.renderOptions).renderBefore)&&void 0!==t||(e.renderBefore=i.firstChild),i}update(t){const i=this.render();this.hasUpdated||(this.renderOptions.isConnected=this.isConnected),super.update(t),this._$Dt=x(i,this.renderRoot,this.renderOptions);}connectedCallback(){var t;super.connectedCallback(),null===(t=this._$Dt)||void 0===t||t.setConnected(!0);}disconnectedCallback(){var t;super.disconnectedCallback(),null===(t=this._$Dt)||void 0===t||t.setConnected(!1);}render(){return b}}s.finalized=!0,s._$litElement$=!0,null===(l=globalThis.litElementHydrateSupport)||void 0===l||l.call(globalThis,{LitElement:s});const n=globalThis.litElementPolyfillSupport;null==n||n({LitElement:s});(null!==(o=globalThis.litElementVersions)&&void 0!==o?o:globalThis.litElementVersions=[]).push("3.2.0");
+
+var i=new Map([["align-self","-ms-grid-row-align"],["color-adjust","-webkit-print-color-adjust"],["column-gap","grid-column-gap"],["forced-color-adjust","-ms-high-contrast-adjust"],["gap","grid-gap"],["grid-template-columns","-ms-grid-columns"],["grid-template-rows","-ms-grid-rows"],["justify-self","-ms-grid-column-align"],["margin-inline-end","-webkit-margin-end"],["margin-inline-start","-webkit-margin-start"],["mask-border","-webkit-mask-box-image"],["mask-border-outset","-webkit-mask-box-image-outset"],["mask-border-slice","-webkit-mask-box-image-slice"],["mask-border-source","-webkit-mask-box-image-source"],["mask-border-repeat","-webkit-mask-box-image-repeat"],["mask-border-width","-webkit-mask-box-image-width"],["overflow-wrap","word-wrap"],["padding-inline-end","-webkit-padding-end"],["padding-inline-start","-webkit-padding-start"],["row-gap","grid-row-gap"],["scroll-margin-bottom","scroll-snap-margin-bottom"],["scroll-margin-left","scroll-snap-margin-left"],["scroll-margin-right","scroll-snap-margin-right"],["scroll-margin-top","scroll-snap-margin-top"],["scroll-margin","scroll-snap-margin"],["text-combine-upright","-ms-text-combine-horizontal"]]);function r(r){return i.get(r)}function a(i){var r=/^(?:(text-(?:decoration$|e|or|si)|back(?:ground-cl|d|f)|box-d|mask(?:$|-[ispro]|-cl))|(tab-|column(?!-s)|text-align-l)|(ap)|(u|hy))/i.exec(i);return r?r[1]?1:r[2]?2:r[3]?3:5:0}function t(i,r){var a=/^(?:(pos)|(cli)|(background-i)|((?:max-|min-)?(?:block-s|inl|he|widt))|(dis))/i.exec(i);return a?a[1]?/^sti/i.test(r)?1:0:a[2]?/^pat/i.test(r)?1:0:a[3]?/^image-/i.test(r)?1:0:a[4]?"-"===r[3]?2:0:/^(?:inline-)?grid$/i.test(r)?4:0:0}
+
+// src/internal/util.ts
+var includes$2 = (value, search) => !!~value.indexOf(search);
+var join = (parts, separator = "-") => parts.join(separator);
+var joinTruthy = (parts, separator) => join(parts.filter(Boolean), separator);
+var tail = (array, startIndex = 1) => array.slice(startIndex);
+var identity = (value) => value;
+var noop$1 = () => {
+};
+var capitalize = (value) => value[0].toUpperCase() + tail(value);
+var hyphenate$1 = (value) => value.replace(/[A-Z]/g, "-$&").toLowerCase();
+var evalThunk$1 = (value, context) => {
+  while (typeof value == "function") {
+    value = value(context);
+  }
+  return value;
+};
+var ensureMaxSize = (map, max) => {
+  if (map.size > max) {
+    map.delete(map.keys().next().value);
+  }
+};
+var isCSSProperty$1 = (key, value) => !includes$2("@:&", key[0]) && (includes$2("rg", (typeof value)[5]) || Array.isArray(value));
+var merge$2 = (target, source, context) => source ? Object.keys(source).reduce((target2, key) => {
+  const value = evalThunk$1(source[key], context);
+  if (isCSSProperty$1(key, value)) {
+    target2[hyphenate$1(key)] = value;
+  } else {
+    target2[key] = key[0] == "@" && includes$2("figa", key[1]) ? (target2[key] || []).concat(value) : merge$2(target2[key] || {}, value, context);
+  }
+  return target2;
+}, target) : target;
+var escape = typeof CSS !== "undefined" && CSS.escape || ((className) => className.replace(/[!"'`*+.,;:\\/<=>?@#$%&^|~()[\]{}]/g, "\\$&").replace(/^\d/, "\\3$& "));
+var buildMediaQuery = (screen) => {
+  if (!Array.isArray(screen)) {
+    screen = [screen];
+  }
+  return "@media " + join(screen.map((screen2) => {
+    if (typeof screen2 == "string") {
+      screen2 = {min: screen2};
+    }
+    return screen2.raw || join(Object.keys(screen2).map((feature) => `(${feature}-width:${screen2[feature]})`), " and ");
+  }), ",");
+};
+var cyrb32 = (value) => {
+  for (var h = 9, index = value.length; index--; ) {
+    h = Math.imul(h ^ value.charCodeAt(index), 1597334677);
+  }
+  return "tw-" + ((h ^ h >>> 9) >>> 0).toString(36);
+};
+var sortedInsertionIndex = (array, element) => {
+  for (var low = 0, high = array.length; low < high; ) {
+    const pivot = high + low >> 1;
+    if (array[pivot] <= element) {
+      low = pivot + 1;
+    } else {
+      high = pivot;
+    }
+  }
+  return high;
+};
+
+// src/twind/parse.ts
+var groupings;
+var rules;
+var startGrouping = (value = "") => {
+  groupings.push(value);
+  return "";
+};
+var endGrouping = (isWhitespace) => {
+  groupings.length = Math.max(groupings.lastIndexOf("") + ~~isWhitespace, 0);
+};
+var onlyPrefixes = (s) => s && !includes$2("!:", s[0]);
+var onlyVariants = (s) => s[0] == ":";
+var addRule = (directive2, negate) => {
+  rules.push({
+    v: groupings.filter(onlyVariants),
+    d: directive2,
+    n: negate,
+    i: includes$2(groupings, "!"),
+    $: ""
+  });
+};
+var saveRule = (buffer) => {
+  const negate = buffer[0] == "-";
+  if (negate) {
+    buffer = tail(buffer);
+  }
+  const prefix = join(groupings.filter(onlyPrefixes));
+  addRule(buffer == "&" ? prefix : (prefix && prefix + "-") + buffer, negate);
+  return "";
+};
+var parseString = (token, isVariant) => {
+  let buffer = "";
+  for (let char, dynamic = false, position2 = 0; char = token[position2++]; ) {
+    if (dynamic || char == "[") {
+      buffer += char;
+      dynamic = char != "]";
+      continue;
+    }
+    switch (char) {
+      case ":":
+        buffer = buffer && startGrouping(":" + (token[position2] == char ? token[position2++] : "") + buffer);
+        break;
+      case "(":
+        buffer = buffer && startGrouping(buffer);
+        startGrouping();
+        break;
+      case "!":
+        startGrouping(char);
+        break;
+      case ")":
+      case " ":
+      case "	":
+      case "\n":
+      case "\r":
+        buffer = buffer && saveRule(buffer);
+        endGrouping(char !== ")");
+        break;
+      default:
+        buffer += char;
+    }
+  }
+  if (buffer) {
+    if (isVariant) {
+      startGrouping(":" + buffer);
+    } else if (buffer.slice(-1) == "-") {
+      startGrouping(buffer.slice(0, -1));
+    } else {
+      saveRule(buffer);
+    }
+  }
+};
+var parseGroupedToken = (token) => {
+  startGrouping();
+  parseToken(token);
+  endGrouping();
+};
+var parseGroup = (key, token) => {
+  if (token) {
+    startGrouping();
+    const isVariant = includes$2("tbu", (typeof token)[1]);
+    parseString(key, isVariant);
+    if (isVariant) {
+      parseGroupedToken(token);
+    }
+    endGrouping();
+  }
+};
+var parseToken = (token) => {
+  switch (typeof token) {
+    case "string":
+      parseString(token);
+      break;
+    case "function":
+      addRule(token);
+      break;
+    case "object":
+      if (Array.isArray(token)) {
+        token.forEach(parseGroupedToken);
+      } else if (token) {
+        Object.keys(token).forEach((key) => {
+          parseGroup(key, token[key]);
+        });
+      }
+  }
+};
+var staticsCaches = new WeakMap();
+var buildStatics = (strings) => {
+  let statics = staticsCaches.get(strings);
+  if (!statics) {
+    let slowModeIndex = NaN;
+    let buffer = "";
+    statics = strings.map((token, index) => {
+      if (slowModeIndex !== slowModeIndex && (token.slice(-1) == "[" || includes$2(":-(", (strings[index + 1] || "")[0]))) {
+        slowModeIndex = index;
+      }
+      if (index >= slowModeIndex) {
+        return (interpolation) => {
+          if (index == slowModeIndex) {
+            buffer = "";
+          }
+          buffer += token;
+          if (includes$2("rg", (typeof interpolation)[5])) {
+            buffer += interpolation;
+          } else if (interpolation) {
+            parseString(buffer);
+            buffer = "";
+            parseToken(interpolation);
+          }
+          if (index == strings.length - 1) {
+            parseString(buffer);
+          }
+        };
+      }
+      const staticRules = rules = [];
+      parseString(token);
+      const activeGroupings = [...groupings];
+      rules = [];
+      return (interpolation) => {
+        rules.push(...staticRules);
+        groupings = [...activeGroupings];
+        if (interpolation) {
+          parseToken(interpolation);
+        }
+      };
+    });
+    staticsCaches.set(strings, statics);
+  }
+  return statics;
+};
+var parse = (tokens) => {
+  groupings = [];
+  rules = [];
+  if (Array.isArray(tokens[0]) && Array.isArray(tokens[0].raw)) {
+    buildStatics(tokens[0]).forEach((apply2, index) => apply2(tokens[index + 1]));
+  } else {
+    parseToken(tokens);
+  }
+  return rules;
+};
+
+// src/twind/directive.ts
+var isFunctionFree;
+var detectFunction = (key, value) => {
+  if (typeof value == "function") {
+    isFunctionFree = false;
+  }
+  return value;
+};
+var stringify = (data) => {
+  isFunctionFree = true;
+  const key = JSON.stringify(data, detectFunction);
+  return isFunctionFree && key;
+};
+var cacheByFactory = new WeakMap();
+var directive = (factory, data) => {
+  const key = stringify(data);
+  let directive2;
+  if (key) {
+    var cache = cacheByFactory.get(factory);
+    if (!cache) {
+      cacheByFactory.set(factory, cache = new Map());
+    }
+    directive2 = cache.get(key);
+  }
+  if (!directive2) {
+    directive2 = Object.defineProperty((params, context) => {
+      context = Array.isArray(params) ? context : params;
+      return evalThunk$1(factory(data, context), context);
+    }, "toJSON", {
+      value: () => key || data
+    });
+    if (cache) {
+      cache.set(key, directive2);
+      ensureMaxSize(cache, 1e4);
+    }
+  }
+  return directive2;
+};
+
+// src/twind/apply.ts
+var applyFactory = (tokens, {css}) => css(parse(tokens));
+var apply = (...tokens) => directive(applyFactory, tokens);
+
+// src/twind/helpers.ts
+var positions = (resolve) => (value, position2, prefix, suffix) => {
+  if (value) {
+    const properties = position2 && resolve(position2);
+    if (properties && properties.length > 0) {
+      return properties.reduce((declarations, property2) => {
+        declarations[joinTruthy([prefix, property2, suffix])] = value;
+        return declarations;
+      }, {});
+    }
+  }
+};
+var corners = /* @__PURE__ */ positions((key) => ({
+  t: ["top-left", "top-right"],
+  r: ["top-right", "bottom-right"],
+  b: ["bottom-left", "bottom-right"],
+  l: ["bottom-left", "top-left"],
+  tl: ["top-left"],
+  tr: ["top-right"],
+  bl: ["bottom-left"],
+  br: ["bottom-right"]
+})[key]);
+var expandEdges = (key) => {
+  const parts = ({x: "lr", y: "tb"}[key] || key || "").split("").sort();
+  for (let index = parts.length; index--; ) {
+    if (!(parts[index] = {
+      t: "top",
+      r: "right",
+      b: "bottom",
+      l: "left"
+    }[parts[index]]))
+      return;
+  }
+  if (parts.length)
+    return parts;
+};
+var edges = /* @__PURE__ */ positions(expandEdges);
+
+// src/twind/plugins.ts
+var _;
+var __;
+var $;
+var toColumnsOrRows = (x) => x == "cols" ? "columns" : "rows";
+var property = (property2) => (params, context, id) => ({
+  [property2]: id + ((_ = join(params)) && "-" + _)
+});
+var propertyValue = (property2, separator) => (params, context, id) => (_ = join(params, separator)) && {
+  [property2 || id]: _
+};
+var themeProperty = (section) => (params, {theme: theme2}, id) => (_ = theme2(section || id, params)) && {
+  [section || id]: _
+};
+var themePropertyFallback = (section, separator) => (params, {theme: theme2}, id) => (_ = theme2(section || id, params, join(params, separator))) && {
+  [section || id]: _
+};
+var alias = (handler, name) => (params, context) => handler(params, context, name);
+var display$1 = property("display");
+var position = property("position");
+var textTransform = property("textTransform");
+var textDecoration = property("textDecoration");
+var fontStyle = property("fontStyle");
+var fontVariantNumeric = (key) => (params, context, id) => ({
+  ["--tw-" + key]: id,
+  fontVariantNumeric: "var(--tw-ordinal,/*!*/ /*!*/) var(--tw-slashed-zero,/*!*/ /*!*/) var(--tw-numeric-figure,/*!*/ /*!*/) var(--tw-numeric-spacing,/*!*/ /*!*/) var(--tw-numeric-fraction,/*!*/ /*!*/)"
+});
+var inset = (params, {theme: theme2}, id) => (_ = theme2("inset", params)) && {[id]: _};
+var opacityProperty = (params, theme2, id, section = id) => (_ = theme2(section + "Opacity", tail(params))) && {
+  [`--tw-${id}-opacity`]: _
+};
+var parseColorComponent = (chars, factor) => Math.round(parseInt(chars, 16) * factor);
+var asRGBA = (color, opacityProperty2, opacityDefault) => {
+  if (color && color[0] == "#" && (_ = (color.length - 1) / 3) && ($ = [17, 1, 0.062272][_ - 1])) {
+    return `rgba(${parseColorComponent(color.substr(1, _), $)},${parseColorComponent(color.substr(1 + _, _), $)},${parseColorComponent(color.substr(1 + 2 * _, _), $)},${opacityProperty2 ? `var(--tw-${opacityProperty2}${opacityDefault ? "," + opacityDefault : ""})` : opacityDefault || 1})`;
+  }
+  return color;
+};
+var withOpacityFallback = (property2, kind, color) => color && typeof color == "string" ? (_ = asRGBA(color, kind + "-opacity")) && _ !== color ? {
+  [`--tw-${kind}-opacity`]: "1",
+  [property2]: [color, _]
+} : {[property2]: color} : void 0;
+var transparentTo = (color) => ($ = asRGBA(color, "", "0")) == _ ? "transparent" : $;
+var reversableEdge = (params, {theme: theme2}, id, section, prefix, suffix) => (_ = {x: ["right", "left"], y: ["bottom", "top"]}[params[0]]) && ($ = `--tw-${id}-${params[0]}-reverse`) ? params[1] == "reverse" ? {
+  [$]: "1"
+} : {
+  [$]: "0",
+  [joinTruthy([prefix, _[0], suffix])]: (__ = theme2(section, tail(params))) && `calc(${__} * var(${$}))`,
+  [joinTruthy([prefix, _[1], suffix])]: __ && [__, `calc(${__} * calc(1 - var(${$})))`]
+} : void 0;
+var placeHelper = (property2, params) => params[0] && {
+  [property2]: (includes$2("wun", (params[0] || "")[3]) ? "space-" : "") + params[0]
+};
+var contentPluginFor = (property2) => (params) => includes$2(["start", "end"], params[0]) ? {[property2]: "flex-" + params[0]} : placeHelper(property2, params);
+var gridPlugin = (kind) => (params, {theme: theme2}) => {
+  if (_ = theme2("grid" + capitalize(kind), params, "")) {
+    return {["grid-" + kind]: _};
+  }
+  switch (params[0]) {
+    case "span":
+      return params[1] && {
+        ["grid-" + kind]: `span ${params[1]} / span ${params[1]}`
+      };
+    case "start":
+    case "end":
+      return (_ = theme2("grid" + capitalize(kind) + capitalize(params[0]), tail(params), join(tail(params)))) && {
+        [`grid-${kind}-${params[0]}`]: _
+      };
+  }
+};
+var border = (params, {theme: theme2}, id) => {
+  switch (params[0]) {
+    case "solid":
+    case "dashed":
+    case "dotted":
+    case "double":
+    case "none":
+      return propertyValue("borderStyle")(params);
+    case "collapse":
+    case "separate":
+      return propertyValue("borderCollapse")(params);
+    case "opacity":
+      return opacityProperty(params, theme2, id);
+  }
+  return (_ = theme2(id + "Width", params, "")) ? {borderWidth: _} : withOpacityFallback("borderColor", id, theme2(id + "Color", params));
+};
+var transform = (gpu) => (gpu ? "translate3d(var(--tw-translate-x,0),var(--tw-translate-y,0),0)" : "translateX(var(--tw-translate-x,0)) translateY(var(--tw-translate-y,0))") + " rotate(var(--tw-rotate,0)) skewX(var(--tw-skew-x,0)) skewY(var(--tw-skew-y,0)) scaleX(var(--tw-scale-x,1)) scaleY(var(--tw-scale-y,1))";
+var transformXYFunction = (params, context, id) => params[0] && (_ = context.theme(id, params[1] || params[0])) && {
+  [`--tw-${id}-x`]: params[0] !== "y" && _,
+  [`--tw-${id}-y`]: params[0] !== "x" && _,
+  transform: [`${id}${params[1] ? params[0].toUpperCase() : ""}(${_})`, transform()]
+};
+var edgesPluginFor = (key) => (params, context, id) => id[1] ? edges(context.theme(key, params), id[1], key) : themeProperty(key)(params, context, id);
+var padding = edgesPluginFor("padding");
+var margin = edgesPluginFor("margin");
+var minMax = (params, {theme: theme2}, id) => (_ = {w: "width", h: "height"}[params[0]]) && {
+  [_ = `${id}${capitalize(_)}`]: theme2(_, tail(params))
+};
+var filter = (params, {theme: theme2}, id) => {
+  const parts = id.split("-");
+  const prefix = parts[0] == "backdrop" ? parts[0] + "-" : "";
+  if (!prefix) {
+    params.unshift(...parts);
+  }
+  if (params[0] == "filter") {
+    const filters = [
+      "blur",
+      "brightness",
+      "contrast",
+      "grayscale",
+      "hue-rotate",
+      "invert",
+      prefix && "opacity",
+      "saturate",
+      "sepia",
+      !prefix && "drop-shadow"
+    ].filter(Boolean);
+    return params[1] == "none" ? {[prefix + "filter"]: "none"} : filters.reduce((css, key) => {
+      css["--tw-" + prefix + key] = "var(--tw-empty,/*!*/ /*!*/)";
+      return css;
+    }, {
+      [prefix + "filter"]: filters.map((key) => `var(--tw-${prefix}${key})`).join(" ")
+    });
+  }
+  $ = params.shift();
+  if (includes$2(["hue", "drop"], $))
+    $ += capitalize(params.shift());
+  return (_ = theme2(prefix ? "backdrop" + capitalize($) : $, params)) && {
+    ["--tw-" + prefix + $]: (Array.isArray(_) ? _ : [_]).map((_4) => `${hyphenate$1($)}(${_4})`).join(" ")
+  };
+};
+var corePlugins = {
+  group: (params, {tag}, id) => tag(join([id, ...params])),
+  hidden: alias(display$1, "none"),
+  inline: display$1,
+  block: display$1,
+  contents: display$1,
+  flow: display$1,
+  table: (params, context, id) => includes$2(["auto", "fixed"], params[0]) ? {tableLayout: params[0]} : display$1(params, context, id),
+  flex(params, context, id) {
+    switch (params[0]) {
+      case "row":
+      case "col":
+        return {
+          flexDirection: join(params[0] == "col" ? ["column", ...tail(params)] : params)
+        };
+      case "nowrap":
+      case "wrap":
+        return {flexWrap: join(params)};
+      case "grow":
+      case "shrink":
+        _ = context.theme("flex" + capitalize(params[0]), tail(params), params[1] || 1);
+        return _ != null && {
+          ["flex-" + params[0]]: "" + _
+        };
+    }
+    return (_ = context.theme("flex", params, "")) ? {flex: _} : display$1(params, context, id);
+  },
+  grid(params, context, id) {
+    switch (params[0]) {
+      case "cols":
+      case "rows":
+        return (_ = context.theme("gridTemplate" + capitalize(toColumnsOrRows(params[0])), tail(params), params.length == 2 && Number(params[1]) ? `repeat(${params[1]},minmax(0,1fr))` : join(tail(params)))) && {
+          ["gridTemplate-" + toColumnsOrRows(params[0])]: _
+        };
+      case "flow":
+        return params.length > 1 && {
+          gridAutoFlow: join(params[1] == "col" ? ["column", ...tail(params, 2)] : tail(params), " ")
+        };
+    }
+    return display$1(params, context, id);
+  },
+  auto: (params, {theme: theme2}) => includes$2(["cols", "rows"], params[0]) && (_ = theme2("gridAuto" + capitalize(toColumnsOrRows(params[0])), tail(params), join(tail(params)))) && {
+    ["gridAuto-" + toColumnsOrRows(params[0])]: _
+  },
+  static: position,
+  fixed: position,
+  absolute: position,
+  relative: position,
+  sticky: position,
+  visible: {visibility: "visible"},
+  invisible: {visibility: "hidden"},
+  antialiased: {
+    WebkitFontSmoothing: "antialiased",
+    MozOsxFontSmoothing: "grayscale"
+  },
+  "subpixel-antialiased": {
+    WebkitFontSmoothing: "auto",
+    MozOsxFontSmoothing: "auto"
+  },
+  truncate: {
+    overflow: "hidden",
+    whiteSpace: "nowrap",
+    textOverflow: "ellipsis"
+  },
+  "sr-only": {
+    position: "absolute",
+    width: "1px",
+    height: "1px",
+    padding: "0",
+    margin: "-1px",
+    overflow: "hidden",
+    whiteSpace: "nowrap",
+    clip: "rect(0,0,0,0)",
+    borderWidth: "0"
+  },
+  "not-sr-only": {
+    position: "static",
+    width: "auto",
+    height: "auto",
+    padding: "0",
+    margin: "0",
+    overflow: "visible",
+    whiteSpace: "normal",
+    clip: "auto"
+  },
+  resize: (params) => ({
+    resize: {x: "horizontal", y: "vertical"}[params[0]] || params[0] || "both"
+  }),
+  box: (params) => params[0] && {boxSizing: params[0] + "-box"},
+  appearance: propertyValue(),
+  cursor: themePropertyFallback(),
+  float: propertyValue(),
+  clear: propertyValue(),
+  decoration: propertyValue("boxDecorationBreak"),
+  isolate: {isolation: "isolate"},
+  isolation: propertyValue(),
+  "mix-blend": propertyValue("mixBlendMode"),
+  top: inset,
+  right: inset,
+  bottom: inset,
+  left: inset,
+  inset: (params, {theme: theme2}) => (_ = expandEdges(params[0])) ? edges(theme2("inset", tail(params)), params[0]) : (_ = theme2("inset", params)) && {
+    top: _,
+    right: _,
+    bottom: _,
+    left: _
+  },
+  underline: textDecoration,
+  "line-through": textDecoration,
+  "no-underline": alias(textDecoration, "none"),
+  "text-underline": alias(textDecoration, "underline"),
+  "text-no-underline": alias(textDecoration, "none"),
+  "text-line-through": alias(textDecoration, "line-through"),
+  uppercase: textTransform,
+  lowercase: textTransform,
+  capitalize: textTransform,
+  "normal-case": alias(textTransform, "none"),
+  "text-normal-case": alias(textTransform, "none"),
+  italic: fontStyle,
+  "not-italic": alias(fontStyle, "normal"),
+  "font-italic": alias(fontStyle, "italic"),
+  "font-not-italic": alias(fontStyle, "normal"),
+  font: (params, context, id) => (_ = context.theme("fontFamily", params, "")) ? {fontFamily: _} : themeProperty("fontWeight")(params, context, id),
+  items: (params) => params[0] && {
+    alignItems: includes$2(["start", "end"], params[0]) ? "flex-" + params[0] : join(params)
+  },
+  "justify-self": propertyValue(),
+  "justify-items": propertyValue(),
+  justify: contentPluginFor("justifyContent"),
+  content: contentPluginFor("alignContent"),
+  self: contentPluginFor("alignSelf"),
+  place: (params) => params[0] && placeHelper("place-" + params[0], tail(params)),
+  overscroll: (params) => params[0] && {
+    ["overscrollBehavior" + (params[1] ? "-" + params[0] : "")]: params[1] || params[0]
+  },
+  col: gridPlugin("column"),
+  row: gridPlugin("row"),
+  duration: themeProperty("transitionDuration"),
+  delay: themeProperty("transitionDelay"),
+  tracking: themeProperty("letterSpacing"),
+  leading: themeProperty("lineHeight"),
+  z: themeProperty("zIndex"),
+  opacity: themeProperty(),
+  ease: themeProperty("transitionTimingFunction"),
+  p: padding,
+  py: padding,
+  px: padding,
+  pt: padding,
+  pr: padding,
+  pb: padding,
+  pl: padding,
+  m: margin,
+  my: margin,
+  mx: margin,
+  mt: margin,
+  mr: margin,
+  mb: margin,
+  ml: margin,
+  w: themeProperty("width"),
+  h: themeProperty("height"),
+  min: minMax,
+  max: minMax,
+  fill: themeProperty(),
+  order: themeProperty(),
+  origin: themePropertyFallback("transformOrigin", " "),
+  select: propertyValue("userSelect"),
+  "pointer-events": propertyValue(),
+  align: propertyValue("verticalAlign"),
+  whitespace: propertyValue("whiteSpace"),
+  "normal-nums": {fontVariantNumeric: "normal"},
+  ordinal: fontVariantNumeric("ordinal"),
+  "slashed-zero": fontVariantNumeric("slashed-zero"),
+  "lining-nums": fontVariantNumeric("numeric-figure"),
+  "oldstyle-nums": fontVariantNumeric("numeric-figure"),
+  "proportional-nums": fontVariantNumeric("numeric-spacing"),
+  "tabular-nums": fontVariantNumeric("numeric-spacing"),
+  "diagonal-fractions": fontVariantNumeric("numeric-fraction"),
+  "stacked-fractions": fontVariantNumeric("numeric-fraction"),
+  overflow: (params, context, id) => includes$2(["ellipsis", "clip"], params[0]) ? propertyValue("textOverflow")(params) : params[1] ? {["overflow-" + params[0]]: params[1]} : propertyValue()(params, context, id),
+  transform: (params) => params[0] == "none" ? {transform: "none"} : {
+    "--tw-translate-x": "0",
+    "--tw-translate-y": "0",
+    "--tw-rotate": "0",
+    "--tw-skew-x": "0",
+    "--tw-skew-y": "0",
+    "--tw-scale-x": "1",
+    "--tw-scale-y": "1",
+    transform: transform(params[0] == "gpu")
+  },
+  rotate: (params, {theme: theme2}) => (_ = theme2("rotate", params)) && {
+    "--tw-rotate": _,
+    transform: [`rotate(${_})`, transform()]
+  },
+  scale: transformXYFunction,
+  translate: transformXYFunction,
+  skew: transformXYFunction,
+  gap: (params, context, id) => (_ = {x: "column", y: "row"}[params[0]]) ? {[_ + "Gap"]: context.theme("gap", tail(params))} : themeProperty("gap")(params, context, id),
+  stroke: (params, context, id) => (_ = context.theme("stroke", params, "")) ? {stroke: _} : themeProperty("strokeWidth")(params, context, id),
+  outline: (params, {theme: theme2}) => (_ = theme2("outline", params)) && {
+    outline: _[0],
+    outlineOffset: _[1]
+  },
+  "break-normal": {
+    wordBreak: "normal",
+    overflowWrap: "normal"
+  },
+  "break-words": {overflowWrap: "break-word"},
+  "break-all": {wordBreak: "break-all"},
+  text(params, {theme: theme2}, id) {
+    switch (params[0]) {
+      case "left":
+      case "center":
+      case "right":
+      case "justify":
+        return {textAlign: params[0]};
+      case "uppercase":
+      case "lowercase":
+      case "capitalize":
+        return textTransform([], _, params[0]);
+      case "opacity":
+        return opacityProperty(params, theme2, id);
+    }
+    const fontSize = theme2("fontSize", params, "");
+    if (fontSize) {
+      return typeof fontSize == "string" ? {fontSize} : {
+        fontSize: fontSize[0],
+        ...typeof fontSize[1] == "string" ? {lineHeight: fontSize[1]} : fontSize[1]
+      };
+    }
+    return withOpacityFallback("color", "text", theme2("textColor", params));
+  },
+  bg(params, {theme: theme2}, id) {
+    switch (params[0]) {
+      case "fixed":
+      case "local":
+      case "scroll":
+        return propertyValue("backgroundAttachment", ",")(params);
+      case "bottom":
+      case "center":
+      case "left":
+      case "right":
+      case "top":
+        return propertyValue("backgroundPosition", " ")(params);
+      case "no":
+        return params[1] == "repeat" && propertyValue("backgroundRepeat")(params);
+      case "repeat":
+        return includes$2("xy", params[1]) ? propertyValue("backgroundRepeat")(params) : {backgroundRepeat: params[1] || params[0]};
+      case "opacity":
+        return opacityProperty(params, theme2, id, "background");
+      case "clip":
+      case "origin":
+        return params[1] && {
+          ["background-" + params[0]]: params[1] + (params[1] == "text" ? "" : "-box")
+        };
+      case "blend":
+        return propertyValue("background-blend-mode")(tail(params));
+      case "gradient":
+        if (params[1] == "to" && (_ = expandEdges(params[2]))) {
+          return {
+            backgroundImage: `linear-gradient(to ${join(_, " ")},var(--tw-gradient-stops))`
+          };
+        }
+    }
+    return (_ = theme2("backgroundPosition", params, "")) ? {backgroundPosition: _} : (_ = theme2("backgroundSize", params, "")) ? {backgroundSize: _} : (_ = theme2("backgroundImage", params, "")) ? {backgroundImage: _} : withOpacityFallback("backgroundColor", "bg", theme2("backgroundColor", params));
+  },
+  from: (params, {theme: theme2}) => (_ = theme2("gradientColorStops", params)) && {
+    "--tw-gradient-from": _,
+    "--tw-gradient-stops": `var(--tw-gradient-from),var(--tw-gradient-to,${transparentTo(_)})`
+  },
+  via: (params, {theme: theme2}) => (_ = theme2("gradientColorStops", params)) && {
+    "--tw-gradient-stops": `var(--tw-gradient-from),${_},var(--tw-gradient-to,${transparentTo(_)})`
+  },
+  to: (params, {theme: theme2}) => (_ = theme2("gradientColorStops", params)) && {
+    "--tw-gradient-to": _
+  },
+  border: (params, context, id) => expandEdges(params[0]) ? edges(context.theme("borderWidth", tail(params)), params[0], "border", "width") : border(params, context, id),
+  divide: (params, context, id) => (_ = reversableEdge(params, context, id, "divideWidth", "border", "width") || border(params, context, id)) && {
+    "&>:not([hidden])~:not([hidden])": _
+  },
+  space: (params, context, id) => (_ = reversableEdge(params, context, id, "space", "margin")) && {
+    "&>:not([hidden])~:not([hidden])": _
+  },
+  placeholder: (params, {theme: theme2}, id) => (_ = params[0] == "opacity" ? opacityProperty(params, theme2, id) : withOpacityFallback("color", "placeholder", theme2("placeholderColor", params))) && {
+    "&::placeholder": _
+  },
+  shadow: (params, {theme: theme2}) => (_ = theme2("boxShadow", params)) && {
+    ":global": {
+      "*": {
+        "--tw-shadow": "0 0 transparent"
+      }
+    },
+    "--tw-shadow": _ == "none" ? "0 0 transparent" : _,
+    boxShadow: [
+      _,
+      `var(--tw-ring-offset-shadow,0 0 transparent),var(--tw-ring-shadow,0 0 transparent),var(--tw-shadow)`
+    ]
+  },
+  animate: (params, {theme: theme2, tag}) => {
+    if ($ = theme2("animation", params)) {
+      const parts = $.split(" ");
+      if ((_ = theme2("keyframes", parts[0], __ = {})) !== __) {
+        return ($ = tag(parts[0])) && {
+          animation: $ + " " + join(tail(parts), " "),
+          ["@keyframes " + $]: _
+        };
+      }
+      return {animation: $};
+    }
+  },
+  ring(params, {theme: theme2}, id) {
+    switch (params[0]) {
+      case "inset":
+        return {"--tw-ring-inset": "inset"};
+      case "opacity":
+        return opacityProperty(params, theme2, id);
+      case "offset":
+        return (_ = theme2("ringOffsetWidth", tail(params), "")) ? {
+          "--tw-ring-offset-width": _
+        } : {
+          "--tw-ring-offset-color": theme2("ringOffsetColor", tail(params))
+        };
+    }
+    return (_ = theme2("ringWidth", params, "")) ? {
+      "--tw-ring-offset-shadow": `var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color)`,
+      "--tw-ring-shadow": `var(--tw-ring-inset) 0 0 0 calc(${_} + var(--tw-ring-offset-width)) var(--tw-ring-color)`,
+      boxShadow: `var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow,0 0 transparent)`,
+      ":global": {
+        "*": {
+          "--tw-ring-inset": "var(--tw-empty,/*!*/ /*!*/)",
+          "--tw-ring-offset-width": theme2("ringOffsetWidth", "", "0px"),
+          "--tw-ring-offset-color": theme2("ringOffsetColor", "", "#fff"),
+          "--tw-ring-color": asRGBA(theme2("ringColor", "", "#93c5fd"), "ring-opacity", theme2("ringOpacity", "", "0.5")),
+          "--tw-ring-offset-shadow": "0 0 transparent",
+          "--tw-ring-shadow": "0 0 transparent"
+        }
+      }
+    } : {
+      "--tw-ring-opacity": "1",
+      "--tw-ring-color": asRGBA(theme2("ringColor", params), "ring-opacity")
+    };
+  },
+  object: (params, context, id) => includes$2(["contain", "cover", "fill", "none", "scale-down"], join(params)) ? {objectFit: join(params)} : themePropertyFallback("objectPosition", " ")(params, context, id),
+  list: (params, context, id) => join(params) == "item" ? display$1(params, context, id) : includes$2(["inside", "outside"], join(params)) ? {listStylePosition: params[0]} : themePropertyFallback("listStyleType")(params, context, id),
+  rounded: (params, context, id) => corners(context.theme("borderRadius", tail(params), ""), params[0], "border", "radius") || themeProperty("borderRadius")(params, context, id),
+  "transition-none": {transitionProperty: "none"},
+  transition: (params, {theme: theme2}) => ({
+    transitionProperty: theme2("transitionProperty", params),
+    transitionTimingFunction: theme2("transitionTimingFunction", ""),
+    transitionDuration: theme2("transitionDuration", "")
+  }),
+  container: (params, {theme: theme2}) => {
+    const {screens = theme2("screens"), center, padding: padding2} = theme2("container");
+    const paddingFor = (screen) => (_ = padding2 && (typeof padding2 == "string" ? padding2 : padding2[screen] || padding2.DEFAULT)) ? {
+      paddingRight: _,
+      paddingLeft: _
+    } : {};
+    return Object.keys(screens).reduce((rules2, screen) => {
+      if (($ = screens[screen]) && typeof $ == "string") {
+        rules2[buildMediaQuery($)] = {
+          "&": {
+            "max-width": $,
+            ...paddingFor(screen)
+          }
+        };
+      }
+      return rules2;
+    }, {
+      width: "100%",
+      ...center ? {marginRight: "auto", marginLeft: "auto"} : {},
+      ...paddingFor("xs")
+    });
+  },
+  filter,
+  blur: filter,
+  brightness: filter,
+  contrast: filter,
+  grayscale: filter,
+  "hue-rotate": filter,
+  invert: filter,
+  saturate: filter,
+  sepia: filter,
+  "drop-shadow": filter,
+  backdrop: filter
+};
+
+// src/twind/preflight.ts
+var createPreflight = (theme2) => ({
+  ":root": {tabSize: 4},
+  "body,blockquote,dl,dd,h1,h2,h3,h4,h5,h6,hr,figure,p,pre,fieldset,ol,ul": {margin: "0"},
+  button: {backgroundColor: "transparent", backgroundImage: "none"},
+  'button,[type="button"],[type="reset"],[type="submit"]': {WebkitAppearance: "button"},
+  "button:focus": {outline: ["1px dotted", "5px auto -webkit-focus-ring-color"]},
+  "fieldset,ol,ul,legend": {padding: "0"},
+  "ol,ul": {listStyle: "none"},
+  html: {
+    lineHeight: "1.5",
+    WebkitTextSizeAdjust: "100%",
+    fontFamily: theme2("fontFamily.sans", "ui-sans-serif,system-ui,sans-serif")
+  },
+  body: {fontFamily: "inherit", lineHeight: "inherit"},
+  "*,::before,::after": {
+    boxSizing: "border-box",
+    border: `0 solid ${theme2("borderColor.DEFAULT", "currentColor")}`
+  },
+  hr: {height: "0", color: "inherit", borderTopWidth: "1px"},
+  img: {borderStyle: "solid"},
+  textarea: {resize: "vertical"},
+  "input::placeholder,textarea::placeholder": {
+    opacity: "1",
+    color: theme2("placeholderColor.DEFAULT", theme2("colors.gray.400", "#a1a1aa"))
+  },
+  'button,[role="button"]': {cursor: "pointer"},
+  table: {textIndent: "0", borderColor: "inherit", borderCollapse: "collapse"},
+  "h1,h2,h3,h4,h5,h6": {fontSize: "inherit", fontWeight: "inherit"},
+  a: {color: "inherit", textDecoration: "inherit"},
+  "button,input,optgroup,select,textarea": {
+    fontFamily: "inherit",
+    fontSize: "100%",
+    margin: "0",
+    padding: "0",
+    lineHeight: "inherit",
+    color: "inherit"
+  },
+  "button,select": {textTransform: "none"},
+  "::-moz-focus-inner": {borderStyle: "none", padding: "0"},
+  ":-moz-focusring": {outline: "1px dotted ButtonText"},
+  ":-moz-ui-invalid": {boxShadow: "none"},
+  progress: {verticalAlign: "baseline"},
+  "::-webkit-inner-spin-button,::-webkit-outer-spin-button": {height: "auto"},
+  '[type="search"]': {WebkitAppearance: "textfield", outlineOffset: "-2px"},
+  "::-webkit-search-decoration": {WebkitAppearance: "none"},
+  "::-webkit-file-upload-button": {WebkitAppearance: "button", font: "inherit"},
+  summary: {display: "list-item"},
+  "abbr[title]": {textDecoration: "underline dotted"},
+  "b,strong": {fontWeight: "bolder"},
+  "pre,code,kbd,samp": {
+    fontFamily: theme2("fontFamily", "mono", "ui-monospace,monospace"),
+    fontSize: "1em"
+  },
+  "sub,sup": {fontSize: "75%", lineHeight: "0", position: "relative", verticalAlign: "baseline"},
+  sub: {bottom: "-0.25em"},
+  sup: {top: "-0.5em"},
+  "img,svg,video,canvas,audio,iframe,embed,object": {display: "block", verticalAlign: "middle"},
+  "img,video": {maxWidth: "100%", height: "auto"}
+});
+
+// src/twind/variants.ts
+var coreVariants = {
+  dark: "@media (prefers-color-scheme:dark)",
+  sticky: "@supports ((position: -webkit-sticky) or (position:sticky))",
+  "motion-reduce": "@media (prefers-reduced-motion:reduce)",
+  "motion-safe": "@media (prefers-reduced-motion:no-preference)",
+  first: "&:first-child",
+  last: "&:last-child",
+  even: "&:nth-child(2n)",
+  odd: "&:nth-child(odd)",
+  children: "&>*",
+  siblings: "&~*",
+  sibling: "&+*",
+  override: "&&"
+};
+
+// src/internal/dom.ts
+var STYLE_ELEMENT_ID = "__twind";
+var getStyleElement = (nonce) => {
+  let element = self[STYLE_ELEMENT_ID];
+  if (!element) {
+    element = document.head.appendChild(document.createElement("style"));
+    element.id = STYLE_ELEMENT_ID;
+    nonce && (element.nonce = nonce);
+    element.appendChild(document.createTextNode(""));
+  }
+  return element;
+};
+
+// src/twind/sheets.ts
+var cssomSheet = ({
+  nonce,
+  target = getStyleElement(nonce).sheet
+} = {}) => {
+  const offset = target.cssRules.length;
+  return {
+    target,
+    insert: (rule, index) => target.insertRule(rule, offset + index)
+  };
+};
+var voidSheet = () => ({
+  target: null,
+  insert: noop$1
+});
+
+// src/twind/modes.ts
+var mode = (report) => ({
+  unknown(section, key = [], optional, context) {
+    if (!optional) {
+      this.report({id: "UNKNOWN_THEME_VALUE", key: section + "." + join(key)}, context);
+    }
+  },
+  report({id, ...info}) {
+    return report(`[${id}] ${JSON.stringify(info)}`);
+  }
+});
+var warn = /* @__PURE__ */ mode((message) => console.warn(message));
+var strict = /* @__PURE__ */ mode((message) => {
+  throw new Error(message);
+});
+var silent = /* @__PURE__ */ mode(noop$1);
+var noprefix = (property2, value, important) => `${property2}:${value}${important ? " !important" : ""}`;
+var autoprefix = (property2, value, important) => {
+  let cssText = "";
+  const propertyAlias = r(property2);
+  if (propertyAlias)
+    cssText += `${noprefix(propertyAlias, value, important)};`;
+  let flags = a(property2);
+  if (flags & 1)
+    cssText += `-webkit-${noprefix(property2, value, important)};`;
+  if (flags & 2)
+    cssText += `-moz-${noprefix(property2, value, important)};`;
+  if (flags & 4)
+    cssText += `-ms-${noprefix(property2, value, important)};`;
+  flags = t(property2, value);
+  if (flags & 1)
+    cssText += `${noprefix(property2, `-webkit-${value}`, important)};`;
+  if (flags & 2)
+    cssText += `${noprefix(property2, `-moz-${value}`, important)};`;
+  if (flags & 4)
+    cssText += `${noprefix(property2, `-ms-${value}`, important)};`;
+  cssText += noprefix(property2, value, important);
+  return cssText;
+};
+
+// src/twind/theme.ts
+var ratios = (start, end) => {
+  const result = {};
+  do {
+    for (let dividend = 1; dividend < start; dividend++) {
+      result[`${dividend}/${start}`] = Number((dividend / start * 100).toFixed(6)) + "%";
+    }
+  } while (++start <= end);
+  return result;
+};
+var exponential = (stop, unit, start = 0) => {
+  const result = {};
+  for (; start <= stop; start = start * 2 || 1) {
+    result[start] = start + unit;
+  }
+  return result;
+};
+var linear = (stop, unit = "", divideBy = 1, start = 0, step = 1, result = {}) => {
+  for (; start <= stop; start += step) {
+    result[start] = start / divideBy + unit;
+  }
+  return result;
+};
+var alias2 = (section) => (theme2) => theme2(section);
+var defaultTheme = {
+  screens: {
+    sm: "640px",
+    md: "768px",
+    lg: "1024px",
+    xl: "1280px",
+    "2xl": "1536px"
+  },
+  colors: {
+    transparent: "transparent",
+    current: "currentColor",
+    black: "#000",
+    white: "#fff",
+    gray: {
+      50: "#f9fafb",
+      100: "#f3f4f6",
+      200: "#e5e7eb",
+      300: "#d1d5db",
+      400: "#9ca3af",
+      500: "#6b7280",
+      600: "#4b5563",
+      700: "#374151",
+      800: "#1f2937",
+      900: "#111827"
+    },
+    red: {
+      50: "#fef2f2",
+      100: "#fee2e2",
+      200: "#fecaca",
+      300: "#fca5a5",
+      400: "#f87171",
+      500: "#ef4444",
+      600: "#dc2626",
+      700: "#b91c1c",
+      800: "#991b1b",
+      900: "#7f1d1d"
+    },
+    yellow: {
+      50: "#fffbeb",
+      100: "#fef3c7",
+      200: "#fde68a",
+      300: "#fcd34d",
+      400: "#fbbf24",
+      500: "#f59e0b",
+      600: "#d97706",
+      700: "#b45309",
+      800: "#92400e",
+      900: "#78350f"
+    },
+    green: {
+      50: "#ecfdf5",
+      100: "#d1fae5",
+      200: "#a7f3d0",
+      300: "#6ee7b7",
+      400: "#34d399",
+      500: "#10b981",
+      600: "#059669",
+      700: "#047857",
+      800: "#065f46",
+      900: "#064e3b"
+    },
+    blue: {
+      50: "#eff6ff",
+      100: "#dbeafe",
+      200: "#bfdbfe",
+      300: "#93c5fd",
+      400: "#60a5fa",
+      500: "#3b82f6",
+      600: "#2563eb",
+      700: "#1d4ed8",
+      800: "#1e40af",
+      900: "#1e3a8a"
+    },
+    indigo: {
+      50: "#eef2ff",
+      100: "#e0e7ff",
+      200: "#c7d2fe",
+      300: "#a5b4fc",
+      400: "#818cf8",
+      500: "#6366f1",
+      600: "#4f46e5",
+      700: "#4338ca",
+      800: "#3730a3",
+      900: "#312e81"
+    },
+    purple: {
+      50: "#f5f3ff",
+      100: "#ede9fe",
+      200: "#ddd6fe",
+      300: "#c4b5fd",
+      400: "#a78bfa",
+      500: "#8b5cf6",
+      600: "#7c3aed",
+      700: "#6d28d9",
+      800: "#5b21b6",
+      900: "#4c1d95"
+    },
+    pink: {
+      50: "#fdf2f8",
+      100: "#fce7f3",
+      200: "#fbcfe8",
+      300: "#f9a8d4",
+      400: "#f472b6",
+      500: "#ec4899",
+      600: "#db2777",
+      700: "#be185d",
+      800: "#9d174d",
+      900: "#831843"
+    }
+  },
+  spacing: {
+    px: "1px",
+    0: "0px",
+    .../* @__PURE__ */ linear(4, "rem", 4, 0.5, 0.5),
+    .../* @__PURE__ */ linear(12, "rem", 4, 5),
+    14: "3.5rem",
+    .../* @__PURE__ */ linear(64, "rem", 4, 16, 4),
+    72: "18rem",
+    80: "20rem",
+    96: "24rem"
+  },
+  durations: {
+    75: "75ms",
+    100: "100ms",
+    150: "150ms",
+    200: "200ms",
+    300: "300ms",
+    500: "500ms",
+    700: "700ms",
+    1e3: "1000ms"
+  },
+  animation: {
+    none: "none",
+    spin: "spin 1s linear infinite",
+    ping: "ping 1s cubic-bezier(0, 0, 0.2, 1) infinite",
+    pulse: "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+    bounce: "bounce 1s infinite"
+  },
+  backdropBlur: /* @__PURE__ */ alias2("blur"),
+  backdropBrightness: /* @__PURE__ */ alias2("brightness"),
+  backdropContrast: /* @__PURE__ */ alias2("contrast"),
+  backdropGrayscale: /* @__PURE__ */ alias2("grayscale"),
+  backdropHueRotate: /* @__PURE__ */ alias2("hueRotate"),
+  backdropInvert: /* @__PURE__ */ alias2("invert"),
+  backdropOpacity: /* @__PURE__ */ alias2("opacity"),
+  backdropSaturate: /* @__PURE__ */ alias2("saturate"),
+  backdropSepia: /* @__PURE__ */ alias2("sepia"),
+  backgroundColor: /* @__PURE__ */ alias2("colors"),
+  backgroundImage: {
+    none: "none"
+  },
+  backgroundOpacity: /* @__PURE__ */ alias2("opacity"),
+  backgroundSize: {
+    auto: "auto",
+    cover: "cover",
+    contain: "contain"
+  },
+  blur: {
+    0: "0",
+    sm: "4px",
+    DEFAULT: "8px",
+    md: "12px",
+    lg: "16px",
+    xl: "24px",
+    "2xl": "40px",
+    "3xl": "64px"
+  },
+  brightness: {
+    .../* @__PURE__ */ linear(200, "", 100, 0, 50),
+    .../* @__PURE__ */ linear(110, "", 100, 90, 5),
+    75: "0.75",
+    125: "1.25"
+  },
+  borderColor: (theme2) => ({
+    ...theme2("colors"),
+    DEFAULT: theme2("colors.gray.200", "currentColor")
+  }),
+  borderOpacity: /* @__PURE__ */ alias2("opacity"),
+  borderRadius: {
+    none: "0px",
+    sm: "0.125rem",
+    DEFAULT: "0.25rem",
+    md: "0.375rem",
+    lg: "0.5rem",
+    xl: "0.75rem",
+    "2xl": "1rem",
+    "3xl": "1.5rem",
+    "1/2": "50%",
+    full: "9999px"
+  },
+  borderWidth: {
+    DEFAULT: "1px",
+    .../* @__PURE__ */ exponential(8, "px")
+  },
+  boxShadow: {
+    sm: "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
+    DEFAULT: "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)",
+    md: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+    lg: "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
+    xl: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+    "2xl": "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+    inner: "inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)",
+    none: "none"
+  },
+  contrast: {
+    .../* @__PURE__ */ linear(200, "", 100, 0, 50),
+    75: "0.75",
+    125: "1.25"
+  },
+  divideColor: /* @__PURE__ */ alias2("borderColor"),
+  divideOpacity: /* @__PURE__ */ alias2("borderOpacity"),
+  divideWidth: /* @__PURE__ */ alias2("borderWidth"),
+  dropShadow: {
+    sm: "0 1px 1px rgba(0,0,0,0.05)",
+    DEFAULT: ["0 1px 2px rgba(0, 0, 0, 0.1)", "0 1px 1px rgba(0, 0, 0, 0.06)"],
+    md: ["0 4px 3px rgba(0, 0, 0, 0.07)", "0 2px 2px rgba(0, 0, 0, 0.06)"],
+    lg: ["0 10px 8px rgba(0, 0, 0, 0.04)", "0 4px 3px rgba(0, 0, 0, 0.1)"],
+    xl: ["0 20px 13px rgba(0, 0, 0, 0.03)", "0 8px 5px rgba(0, 0, 0, 0.08)"],
+    "2xl": "0 25px 25px rgba(0, 0, 0, 0.15)",
+    none: "0 0 #0000"
+  },
+  fill: {current: "currentColor"},
+  grayscale: {
+    0: "0",
+    DEFAULT: "100%"
+  },
+  hueRotate: {
+    0: "0deg",
+    15: "15deg",
+    30: "30deg",
+    60: "60deg",
+    90: "90deg",
+    180: "180deg"
+  },
+  invert: {
+    0: "0",
+    DEFAULT: "100%"
+  },
+  flex: {
+    1: "1 1 0%",
+    auto: "1 1 auto",
+    initial: "0 1 auto",
+    none: "none"
+  },
+  fontFamily: {
+    sans: 'ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"'.split(","),
+    serif: 'ui-serif,Georgia,Cambria,"Times New Roman",Times,serif'.split(","),
+    mono: 'ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace'.split(",")
+  },
+  fontSize: {
+    xs: ["0.75rem", "1rem"],
+    sm: ["0.875rem", "1.25rem"],
+    base: ["1rem", "1.5rem"],
+    lg: ["1.125rem", "1.75rem"],
+    xl: ["1.25rem", "1.75rem"],
+    "2xl": ["1.5rem", "2rem"],
+    "3xl": ["1.875rem", "2.25rem"],
+    "4xl": ["2.25rem", "2.5rem"],
+    "5xl": ["3rem", "1"],
+    "6xl": ["3.75rem", "1"],
+    "7xl": ["4.5rem", "1"],
+    "8xl": ["6rem", "1"],
+    "9xl": ["8rem", "1"]
+  },
+  fontWeight: {
+    thin: "100",
+    extralight: "200",
+    light: "300",
+    normal: "400",
+    medium: "500",
+    semibold: "600",
+    bold: "700",
+    extrabold: "800",
+    black: "900"
+  },
+  gridTemplateColumns: {},
+  gridTemplateRows: {},
+  gridAutoColumns: {
+    min: "min-content",
+    max: "max-content",
+    fr: "minmax(0,1fr)"
+  },
+  gridAutoRows: {
+    min: "min-content",
+    max: "max-content",
+    fr: "minmax(0,1fr)"
+  },
+  gridColumn: {
+    auto: "auto",
+    "span-full": "1 / -1"
+  },
+  gridRow: {
+    auto: "auto",
+    "span-full": "1 / -1"
+  },
+  gap: /* @__PURE__ */ alias2("spacing"),
+  gradientColorStops: /* @__PURE__ */ alias2("colors"),
+  height: (theme2) => ({
+    auto: "auto",
+    ...theme2("spacing"),
+    ...ratios(2, 6),
+    full: "100%",
+    screen: "100vh"
+  }),
+  inset: (theme2) => ({
+    auto: "auto",
+    ...theme2("spacing"),
+    ...ratios(2, 4),
+    full: "100%"
+  }),
+  keyframes: {
+    spin: {
+      from: {
+        transform: "rotate(0deg)"
+      },
+      to: {
+        transform: "rotate(360deg)"
+      }
+    },
+    ping: {
+      "0%": {
+        transform: "scale(1)",
+        opacity: "1"
+      },
+      "75%,100%": {
+        transform: "scale(2)",
+        opacity: "0"
+      }
+    },
+    pulse: {
+      "0%,100%": {
+        opacity: "1"
+      },
+      "50%": {
+        opacity: ".5"
+      }
+    },
+    bounce: {
+      "0%, 100%": {
+        transform: "translateY(-25%)",
+        animationTimingFunction: "cubic-bezier(0.8,0,1,1)"
+      },
+      "50%": {
+        transform: "none",
+        animationTimingFunction: "cubic-bezier(0,0,0.2,1)"
+      }
+    }
+  },
+  letterSpacing: {
+    tighter: "-0.05em",
+    tight: "-0.025em",
+    normal: "0em",
+    wide: "0.025em",
+    wider: "0.05em",
+    widest: "0.1em"
+  },
+  lineHeight: {
+    none: "1",
+    tight: "1.25",
+    snug: "1.375",
+    normal: "1.5",
+    relaxed: "1.625",
+    loose: "2",
+    .../* @__PURE__ */ linear(10, "rem", 4, 3)
+  },
+  margin: (theme2) => ({
+    auto: "auto",
+    ...theme2("spacing")
+  }),
+  maxHeight: (theme2) => ({
+    ...theme2("spacing"),
+    full: "100%",
+    screen: "100vh"
+  }),
+  maxWidth: (theme2, {breakpoints}) => ({
+    none: "none",
+    0: "0rem",
+    xs: "20rem",
+    sm: "24rem",
+    md: "28rem",
+    lg: "32rem",
+    xl: "36rem",
+    "2xl": "42rem",
+    "3xl": "48rem",
+    "4xl": "56rem",
+    "5xl": "64rem",
+    "6xl": "72rem",
+    "7xl": "80rem",
+    full: "100%",
+    min: "min-content",
+    max: "max-content",
+    prose: "65ch",
+    ...breakpoints(theme2("screens"))
+  }),
+  minHeight: {
+    0: "0px",
+    full: "100%",
+    screen: "100vh"
+  },
+  minWidth: {
+    0: "0px",
+    full: "100%",
+    min: "min-content",
+    max: "max-content"
+  },
+  opacity: {
+    .../* @__PURE__ */ linear(100, "", 100, 0, 10),
+    5: "0.05",
+    25: "0.25",
+    75: "0.75",
+    95: "0.95"
+  },
+  order: {
+    first: "-9999",
+    last: "9999",
+    none: "0",
+    .../* @__PURE__ */ linear(12, "", 1, 1)
+  },
+  outline: {
+    none: ["2px solid transparent", "2px"],
+    white: ["2px dotted white", "2px"],
+    black: ["2px dotted black", "2px"]
+  },
+  padding: /* @__PURE__ */ alias2("spacing"),
+  placeholderColor: /* @__PURE__ */ alias2("colors"),
+  placeholderOpacity: /* @__PURE__ */ alias2("opacity"),
+  ringColor: (theme2) => ({
+    DEFAULT: theme2("colors.blue.500", "#3b82f6"),
+    ...theme2("colors")
+  }),
+  ringOffsetColor: /* @__PURE__ */ alias2("colors"),
+  ringOffsetWidth: /* @__PURE__ */ exponential(8, "px"),
+  ringOpacity: (theme2) => ({
+    DEFAULT: "0.5",
+    ...theme2("opacity")
+  }),
+  ringWidth: {
+    DEFAULT: "3px",
+    .../* @__PURE__ */ exponential(8, "px")
+  },
+  rotate: {
+    .../* @__PURE__ */ exponential(2, "deg"),
+    .../* @__PURE__ */ exponential(12, "deg", 3),
+    .../* @__PURE__ */ exponential(180, "deg", 45)
+  },
+  saturate: /* @__PURE__ */ linear(200, "", 100, 0, 50),
+  scale: {
+    .../* @__PURE__ */ linear(150, "", 100, 0, 50),
+    .../* @__PURE__ */ linear(110, "", 100, 90, 5),
+    75: "0.75",
+    125: "1.25"
+  },
+  sepia: {
+    0: "0",
+    DEFAULT: "100%"
+  },
+  skew: {
+    .../* @__PURE__ */ exponential(2, "deg"),
+    .../* @__PURE__ */ exponential(12, "deg", 3)
+  },
+  space: /* @__PURE__ */ alias2("spacing"),
+  stroke: {
+    current: "currentColor"
+  },
+  strokeWidth: /* @__PURE__ */ linear(2),
+  textColor: /* @__PURE__ */ alias2("colors"),
+  textOpacity: /* @__PURE__ */ alias2("opacity"),
+  transitionDuration: (theme2) => ({
+    DEFAULT: "150ms",
+    ...theme2("durations")
+  }),
+  transitionDelay: /* @__PURE__ */ alias2("durations"),
+  transitionProperty: {
+    none: "none",
+    all: "all",
+    DEFAULT: "background-color,border-color,color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter",
+    colors: "background-color,border-color,color,fill,stroke",
+    opacity: "opacity",
+    shadow: "box-shadow",
+    transform: "transform"
+  },
+  transitionTimingFunction: {
+    DEFAULT: "cubic-bezier(0.4,0,0.2,1)",
+    linear: "linear",
+    in: "cubic-bezier(0.4,0,1,1)",
+    out: "cubic-bezier(0,0,0.2,1)",
+    "in-out": "cubic-bezier(0.4,0,0.2,1)"
+  },
+  translate: (theme2) => ({
+    ...theme2("spacing"),
+    ...ratios(2, 4),
+    full: "100%"
+  }),
+  width: (theme2) => ({
+    auto: "auto",
+    ...theme2("spacing"),
+    ...ratios(2, 6),
+    ...ratios(12, 12),
+    screen: "100vw",
+    full: "100%",
+    min: "min-content",
+    max: "max-content"
+  }),
+  zIndex: {
+    auto: "auto",
+    .../* @__PURE__ */ linear(50, "", 1, 0, 10)
+  }
+};
+var flattenColorPalette = (colors, target = {}, prefix = []) => {
+  Object.keys(colors).forEach((property2) => {
+    const value = colors[property2];
+    if (property2 == "DEFAULT") {
+      target[join(prefix)] = value;
+      target[join(prefix, ".")] = value;
+    }
+    const key = [...prefix, property2];
+    target[join(key)] = value;
+    target[join(key, ".")] = value;
+    if (value && typeof value == "object") {
+      flattenColorPalette(value, target, key);
+    }
+  }, target);
+  return target;
+};
+var resolveContext = {
+  negative: () => ({}),
+  breakpoints: (screens) => Object.keys(screens).filter((key) => typeof screens[key] == "string").reduce((target, key) => {
+    target["screen-" + key] = screens[key];
+    return target;
+  }, {})
+};
+var handleArbitraryValues = (section, key) => (key = key[0] == "[" && key.slice(-1) == "]" && key.slice(1, -1)) && includes$2(section, "olor") == /^(#|(hsl|rgb)a?\(|[a-z]+$)/.test(key) && (includes$2(key, "calc(") ? key.replace(/(-?\d*\.?\d(?!\b-.+[,)](?![^+\-/*])\D)(?:%|[a-z]+)?|\))([+\-/*])/g, "$1 $2 ") : key);
+var makeThemeResolver = (config) => {
+  const cache = new Map();
+  const theme2 = {...defaultTheme, ...config};
+  const deref = (theme3, section) => {
+    const base = theme3 && theme3[section];
+    const value = typeof base == "function" ? base(resolve, resolveContext) : base;
+    return value && section == "colors" ? flattenColorPalette(value) : value;
+  };
+  const resolve = (section, key, defaultValue) => {
+    const keypath = section.split(".");
+    section = keypath[0];
+    if (keypath.length > 1) {
+      defaultValue = key;
+      key = join(tail(keypath), ".");
+    }
+    let base = cache.get(section);
+    if (!base) {
+      cache.set(section, base = {...deref(theme2, section)});
+      Object.assign(base, deref(theme2.extend, section));
+    }
+    if (key != null) {
+      key = (Array.isArray(key) ? join(key) : key) || "DEFAULT";
+      const value = handleArbitraryValues(section, key) || base[key];
+      return value == null ? defaultValue : Array.isArray(value) && !includes$2(["fontSize", "outline", "dropShadow"], section) ? join(value, ",") : value;
+    }
+    return base;
+  };
+  return resolve;
+};
+
+// src/twind/translate.ts
+var translate$1 = (plugins, context) => (rule, isTranslating) => {
+  if (typeof rule.d == "function") {
+    return rule.d(context);
+  }
+  const parameters = rule.d.split(/-(?![^[]*])/g);
+  if (!isTranslating && parameters[0] == "tw" && rule.$ == rule.d) {
+    return rule.$;
+  }
+  for (let index = parameters.length; index; index--) {
+    const id = join(parameters.slice(0, index));
+    const plugin = plugins[id];
+    if (plugin) {
+      return typeof plugin == "function" ? plugin(tail(parameters, index), context, id) : typeof plugin == "string" ? context[isTranslating ? "css" : "tw"](plugin) : plugin;
+    }
+  }
+};
+
+// src/twind/decorate.ts
+var _2;
+var GROUP_RE = /^:(group(?:(?!-focus).+?)*)-(.+)$/;
+var NOT_PREFIX_RE = /^(:not)-(.+)/;
+var prepareVariantSelector = (variant) => variant[1] == "[" ? tail(variant) : variant;
+var decorate$1 = (darkMode, variants, {theme: theme2, tag}) => {
+  const applyVariant = (translation, variant) => {
+    if (_2 = theme2("screens", tail(variant), "")) {
+      return {[buildMediaQuery(_2)]: translation};
+    }
+    if (variant == ":dark" && darkMode == "class") {
+      return {".dark &": translation};
+    }
+    if (_2 = GROUP_RE.exec(variant)) {
+      return {[`.${escape(tag(_2[1]))}:${_2[2]} &`]: translation};
+    }
+    return {
+      [variants[tail(variant)] || "&" + variant.replace(NOT_PREFIX_RE, (_4, not, variant2) => not + "(" + prepareVariantSelector(":" + variant2) + ")")]: translation
+    };
+  };
+  return (translation, rule) => rule.v.reduceRight(applyVariant, translation);
+};
+
+// src/twind/presedence.ts
+var _3;
+var responsivePrecedence = (css) => (((_3 = /(?:^|min-width: *)(\d+(?:.\d+)?)(p)?/.exec(css)) ? +_3[1] / (_3[2] ? 15 : 1) / 10 : 0) & 31) << 22;
+var seperatorPrecedence = (string) => {
+  _3 = 0;
+  for (let index = string.length; index--; ) {
+    _3 += includes$2("-:,", string[index]);
+  }
+  return _3;
+};
+var atRulePresedence = (css) => (seperatorPrecedence(css) & 15) << 18;
+var PRECEDENCES_BY_PSEUDO_CLASS = [
+  "rst",
+  "st",
+  "en",
+  "d",
+  "nk",
+  "sited",
+  "pty",
+  "ecked",
+  "cus-w",
+  "ver",
+  "cus",
+  "cus-v",
+  "tive",
+  "sable",
+  "ad-on",
+  "tiona",
+  "quire"
+];
+var pseudoPrecedence = (pseudoClass) => 1 << (~(_3 = PRECEDENCES_BY_PSEUDO_CLASS.indexOf(pseudoClass.replace(GROUP_RE, ":$2").slice(3, 8))) ? _3 : 17);
+var makeVariantPresedenceCalculator = (theme2, variants) => (presedence, variant) => presedence | ((_3 = theme2("screens", tail(variant), "")) ? 1 << 27 | responsivePrecedence(buildMediaQuery(_3)) : variant == ":dark" ? 1 << 30 : (_3 = variants[variant] || variant.replace(NOT_PREFIX_RE, ":$2"))[0] == "@" ? atRulePresedence(_3) : pseudoPrecedence(variant));
+var declarationPropertyPrecedence = (property2) => property2[0] == "-" ? 0 : seperatorPrecedence(property2) + ((_3 = /^(?:(border-(?!w|c|sty)|[tlbr].{2,4}m?$|c.{7}$)|([fl].{5}l|g.{8}$|pl))/.exec(property2)) ? +!!_3[1] || -!!_3[2] : 0) + 1;
+
+// src/twind/serialize.ts
+var stringifyBlock = (body, selector) => selector + "{" + body + "}";
+var serialize = (prefix, variants, context) => {
+  const {theme: theme2, tag} = context;
+  const tagVar = (_4, property2) => "--" + tag(property2);
+  const tagVars = (value) => `${value}`.replace(/--(tw-[\w-]+)\b/g, tagVar);
+  const stringifyDeclaration = (property2, value, important) => {
+    property2 = tagVars(property2);
+    return Array.isArray(value) ? join(value.filter(Boolean).map((value2) => prefix(property2, tagVars(value2), important)), ";") : prefix(property2, tagVars(value), important);
+  };
+  let rules2;
+  const stringify3 = (atRules, selector, presedence, css, important) => {
+    if (Array.isArray(css)) {
+      css.forEach((css2) => css2 && stringify3(atRules, selector, presedence, css2, important));
+      return;
+    }
+    let declarations = "";
+    let maxPropertyPresedence = 0;
+    let numberOfDeclarations = 0;
+    if (css["@apply"]) {
+      css = merge$2(evalThunk$1(apply(css["@apply"]), context), {...css, "@apply": void 0}, context);
+    }
+    Object.keys(css).forEach((key) => {
+      const value = evalThunk$1(css[key], context);
+      if (isCSSProperty$1(key, value)) {
+        if (value !== "" && key.length > 1) {
+          const property2 = hyphenate$1(key);
+          numberOfDeclarations += 1;
+          maxPropertyPresedence = Math.max(maxPropertyPresedence, declarationPropertyPrecedence(property2));
+          declarations = (declarations && declarations + ";") + stringifyDeclaration(property2, value, important);
+        }
+      } else if (value) {
+        if (key == ":global") {
+          key = "@global";
+        }
+        if (key[0] == "@") {
+          if (key[1] == "g") {
+            stringify3([], "", 0, value, important);
+          } else if (key[1] == "f") {
+            stringify3([], key, 0, value, important);
+          } else if (key[1] == "k") {
+            const currentSize = rules2.length;
+            stringify3([], "", 0, value, important);
+            const waypoints = rules2.splice(currentSize, rules2.length - currentSize);
+            rules2.push({
+              r: stringifyBlock(join(waypoints.map((p) => p.r), ""), key),
+              p: waypoints.reduce((sum, p) => sum + p.p, 0)
+            });
+          } else if (key[1] == "i") {
+            (Array.isArray(value) ? value : [value]).forEach((value2) => value2 && rules2.push({p: 0, r: `${key} ${value2};`}));
+          } else {
+            if (key[2] == "c") {
+              key = buildMediaQuery(context.theme("screens", tail(key, 8).trim()));
+            }
+            stringify3([...atRules, key], selector, presedence | responsivePrecedence(key) | atRulePresedence(key), value, important);
+          }
+        } else {
+          stringify3(atRules, selector ? join(selector.split(/,(?![^[]*])/g).map((selectorPart) => join(key.split(/,(?![^[]*])/g).map((keyPart) => includes$2(keyPart, "&") ? keyPart.replace(/&/g, selectorPart) : (selectorPart && selectorPart + " ") + keyPart), ",")), ",") : key, presedence, value, important);
+        }
+      }
+    });
+    if (numberOfDeclarations) {
+      rules2.push({
+        r: atRules.reduceRight(stringifyBlock, stringifyBlock(declarations, selector)),
+        p: presedence * (1 << 8) + ((Math.max(0, 15 - numberOfDeclarations) & 15) << 4 | (maxPropertyPresedence || 15) & 15)
+      });
+    }
+  };
+  const variantPresedence = makeVariantPresedenceCalculator(theme2, variants);
+  return (css, className, rule, layer = 0) => {
+    layer <<= 28;
+    rules2 = [];
+    stringify3([], className ? "." + escape(className) : "", rule ? rule.v.reduceRight(variantPresedence, layer) : layer, css, rule && rule.i);
+    return rules2;
+  };
+};
+
+// src/twind/inject.ts
+var inject = (sheet, mode2, init, context) => {
+  let sortedPrecedences;
+  init((value = []) => sortedPrecedences = value);
+  let insertedRules;
+  init((value = new Set()) => insertedRules = value);
+  return ({r: css, p: presedence}) => {
+    if (!insertedRules.has(css)) {
+      insertedRules.add(css);
+      const index = sortedInsertionIndex(sortedPrecedences, presedence);
+      try {
+        sheet.insert(css, index);
+        sortedPrecedences.splice(index, 0, presedence);
+      } catch (error) {
+        if (!/:-[mwo]/.test(css)) {
+          mode2.report({id: "INJECT_CSS_ERROR", css, error}, context);
+        }
+      }
+    }
+  };
+};
+
+// src/twind/configure.ts
+var sanitize = (value, defaultValue, disabled, enabled = defaultValue) => value === false ? disabled : value === true ? enabled : value || defaultValue;
+var loadMode = (mode2) => (typeof mode2 == "string" ? {t: strict, a: warn, i: silent}[mode2[1]] : mode2) || warn;
+var stringifyVariant = (selector, variant) => selector + (variant[1] == ":" ? tail(variant, 2) + ":" : tail(variant)) + ":";
+var stringify2 = (rule, directive2 = rule.d) => typeof directive2 == "function" ? "" : rule.v.reduce(stringifyVariant, "") + (rule.i ? "!" : "") + (rule.n ? "-" : "") + directive2;
+var COMPONENT_PROPS = {_: {value: "", writable: true}};
+var configure = (config = {}) => {
+  const theme2 = makeThemeResolver(config.theme);
+  const mode2 = loadMode(config.mode);
+  const hash = sanitize(config.hash, false, false, cyrb32);
+  const important = config.important;
+  let activeRule = {v: []};
+  let translateDepth = 0;
+  const lastTranslations = [];
+  const context = {
+    tw: (...tokens) => process(tokens),
+    theme: (section, key, defaultValue) => {
+      var _a;
+      const value = (_a = theme2(section, key, defaultValue)) != null ? _a : mode2.unknown(section, key == null || Array.isArray(key) ? key : key.split("."), defaultValue != null, context);
+      return activeRule.n && value && includes$2("rg", (typeof value)[5]) ? `calc(${value} * -1)` : value;
+    },
+    tag: (value) => hash ? hash(value) : value,
+    css: (rules2) => {
+      translateDepth++;
+      const lastTranslationsIndex = lastTranslations.length;
+      try {
+        ;
+        (typeof rules2 == "string" ? parse([rules2]) : rules2).forEach(convert);
+        const css = Object.create(null, COMPONENT_PROPS);
+        for (let index = lastTranslationsIndex; index < lastTranslations.length; index++) {
+          const translation = lastTranslations[index];
+          if (translation) {
+            switch (typeof translation) {
+              case "object":
+                merge$2(css, translation, context);
+                break;
+              case "string":
+                css._ += (css._ && " ") + translation;
+            }
+          }
+        }
+        return css;
+      } finally {
+        lastTranslations.length = lastTranslationsIndex;
+        translateDepth--;
+      }
+    }
+  };
+  const translate2 = translate$1({...corePlugins, ...config.plugins}, context);
+  const doTranslate = (rule) => {
+    const parentRule = activeRule;
+    activeRule = rule;
+    try {
+      return evalThunk$1(translate2(rule), context);
+    } finally {
+      activeRule = parentRule;
+    }
+  };
+  const variants = {...coreVariants, ...config.variants};
+  const decorate2 = decorate$1(config.darkMode || "media", variants, context);
+  const serialize2 = serialize(sanitize(config.prefix, autoprefix, noprefix), variants, context);
+  const sheet = config.sheet || (typeof window == "undefined" ? voidSheet() : cssomSheet(config));
+  const {init = (callback) => callback()} = sheet;
+  const inject2 = inject(sheet, mode2, init, context);
+  let idToClassName;
+  init((value = new Map()) => idToClassName = value);
+  const inlineDirectiveName = new WeakMap();
+  const evaluateFunctions = (key, value) => key == "_" ? void 0 : typeof value == "function" ? JSON.stringify(evalThunk$1(value, context), evaluateFunctions) : value;
+  const convert = (rule) => {
+    if (!translateDepth && activeRule.v.length) {
+      rule = {...rule, v: [...activeRule.v, ...rule.v], $: ""};
+    }
+    if (!rule.$) {
+      rule.$ = stringify2(rule, inlineDirectiveName.get(rule.d));
+    }
+    let className = translateDepth ? null : idToClassName.get(rule.$);
+    if (className == null) {
+      let translation = doTranslate(rule);
+      if (!rule.$) {
+        rule.$ = cyrb32(JSON.stringify(translation, evaluateFunctions));
+        inlineDirectiveName.set(rule.d, rule.$);
+        rule.$ = stringify2(rule, rule.$);
+      }
+      if (translation && typeof translation == "object") {
+        rule.v = rule.v.map(prepareVariantSelector);
+        if (important)
+          rule.i = important;
+        translation = decorate2(translation, rule);
+        if (translateDepth) {
+          lastTranslations.push(translation);
+        } else {
+          const layer = typeof rule.d == "function" ? typeof translation._ == "string" ? 1 : 3 : 2;
+          className = hash || typeof rule.d == "function" ? (hash || cyrb32)(layer + rule.$) : rule.$;
+          serialize2(translation, className, rule, layer).forEach(inject2);
+          if (translation._) {
+            className += " " + translation._;
+          }
+        }
+      } else {
+        if (typeof translation == "string") {
+          className = translation;
+        } else {
+          className = rule.$;
+          mode2.report({id: "UNKNOWN_DIRECTIVE", rule: className}, context);
+        }
+        if (translateDepth && typeof rule.d !== "function") {
+          lastTranslations.push(className);
+        }
+      }
+      if (!translateDepth) {
+        idToClassName.set(rule.$, className);
+        ensureMaxSize(idToClassName, 3e4);
+      }
+    }
+    return className;
+  };
+  const process = (tokens) => join(parse(tokens).map(convert).filter(Boolean), " ");
+  const preflight = sanitize(config.preflight, identity, false);
+  if (preflight) {
+    const css = createPreflight(theme2);
+    const styles = serialize2(typeof preflight == "function" ? evalThunk$1(preflight(css, context), context) || css : {...css, ...preflight});
+    init((injected = (styles.forEach(inject2), true)) => injected);
+  }
+  return {
+    init: () => mode2.report({id: "LATE_SETUP_CALL"}, context),
+    process
+  };
+};
+
+// src/twind/instance.ts
+var create$1 = (config) => {
+  let process = (tokens) => {
+    init();
+    return process(tokens);
+  };
+  let init = (config2) => {
+    ({process, init} = configure(config2));
+  };
+  if (config)
+    init(config);
+  let context;
+  const fromContext = (key) => () => {
+    if (!context) {
+      process([
+        (_4) => {
+          context = _4;
+          return "";
+        }
+      ]);
+    }
+    return context[key];
+  };
+  return {
+    tw: Object.defineProperties((...tokens) => process(tokens), {
+      theme: {
+        get: fromContext("theme")
+      }
+    }),
+    setup: (config2) => init(config2)
+  };
+};
+
+// src/twind/default.ts
+var {tw: tw$f, setup} = /* @__PURE__ */ create$1();
+
+// src/css/index.ts
+
+// src/internal/util.ts
+var includes$1 = (value, search) => !!~value.indexOf(search);
+var hyphenate = (value) => value.replace(/[A-Z]/g, "-$&").toLowerCase();
+var evalThunk = (value, context) => {
+  while (typeof value == "function") {
+    value = value(context);
+  }
+  return value;
+};
+var isCSSProperty = (key, value) => !includes$1("@:&", key[0]) && (includes$1("rg", (typeof value)[5]) || Array.isArray(value));
+var merge$1 = (target, source, context) => source ? Object.keys(source).reduce((target2, key) => {
+  const value = evalThunk(source[key], context);
+  if (isCSSProperty(key, value)) {
+    target2[hyphenate(key)] = value;
+  } else {
+    target2[key] = key[0] == "@" && includes$1("figa", key[1]) ? (target2[key] || []).concat(value) : merge$1(target2[key] || {}, value, context);
+  }
+  return target2;
+}, target) : target;
+var translate = (tokens, context) => {
+  const collect = (target, token) => Array.isArray(token) ? token.reduce(collect, target) : merge$1(target, evalThunk(token, context), context);
+  return tokens.reduce(collect, {});
+};
+var newRule = /\s*(?:([\w-%@]+)\s*:?\s*([^{;]+?)\s*(?:;|$|})|([^;}{]*?)\s*{)|(})/gi;
+var ruleClean = /\/\*[\s\S]*?\*\/|\s+|\n/gm;
+var decorate = (selectors, currentBlock) => selectors.reduceRight((rules, selector) => ({[selector]: rules}), currentBlock);
+var saveBlock = (rules, selectors, currentBlock) => {
+  if (currentBlock) {
+    rules.push(decorate(selectors, currentBlock));
+  }
+};
+var interleave = (strings, interpolations, context) => {
+  let buffer = strings[0];
+  const result = [];
+  for (let index = 0; index < interpolations.length; ) {
+    const interpolation = evalThunk(interpolations[index], context);
+    if (interpolation && typeof interpolation == "object") {
+      result.push(buffer, interpolation);
+      buffer = strings[++index];
+    } else {
+      buffer += (interpolation || "") + strings[++index];
+    }
+  }
+  result.push(buffer);
+  return result;
+};
+var astish = (values, context) => {
+  const selectors = [];
+  const rules = [];
+  let currentBlock;
+  let match;
+  for (let index = 0; index < values.length; index++) {
+    const value = values[index];
+    if (typeof value == "string") {
+      while (match = newRule.exec(value.replace(ruleClean, " "))) {
+        if (!match[0])
+          continue;
+        if (match[4]) {
+          currentBlock = saveBlock(rules, selectors, currentBlock);
+          selectors.pop();
+        }
+        if (match[3]) {
+          currentBlock = saveBlock(rules, selectors, currentBlock);
+          selectors.push(match[3]);
+        } else if (!match[4]) {
+          if (!currentBlock)
+            currentBlock = {};
+          const value2 = match[2] && /\S/.test(match[2]) ? match[2] : values[++index];
+          if (value2) {
+            if (match[1] == "@apply") {
+              merge$1(currentBlock, evalThunk(apply(value2), context), context);
+            } else {
+              currentBlock[match[1]] = value2;
+            }
+          }
+        }
+      }
+    } else {
+      currentBlock = saveBlock(rules, selectors, currentBlock);
+      rules.push(decorate(selectors, value));
+    }
+  }
+  saveBlock(rules, selectors, currentBlock);
+  return rules;
+};
+var cssFactory = (tokens, context) => translate(Array.isArray(tokens[0]) && Array.isArray(tokens[0].raw) ? astish(interleave(tokens[0], tokens.slice(1), context), context) : tokens, context);
+var css = (...tokens) => directive(cssFactory, tokens);
+var keyframesFactory = (tokens, context) => {
+  const waypoints = cssFactory(tokens, context);
+  const id = cyrb32(JSON.stringify(waypoints));
+  context.tw(() => ({[`@keyframes ${id}`]: waypoints}));
+  return id;
+};
+var keyframes = (...tokens) => directive(keyframesFactory, tokens);
+var animation = (value, waypoints) => waypoints === void 0 ? (...args) => animation(value, keyframes(...args)) : css({
+  ...value && typeof value == "object" ? value : {animation: value},
+  animationName: typeof waypoints == "function" ? waypoints : keyframes(waypoints)
+});
+
+const slideIn = animation('1s ease-in-out forwards', {
+  '0%': {
+    'max-height': '0vh',
+  },
+  '100%': {
+    'max-height': '70vh',
+  },
+});
+
+const slideInAlt = animation('.75s ease-in-out forwards', {
+  '0%': {
+    'max-height': '0px',
+    opacity: 0,
+  },
+  '100%': {
+    'max-height': '300px',
+    opacity: 1,
+  },
+});
+
+const fadeIn = animation('.5s .5s ease-in-ot forwards', {
+  '0%': {
+    opacity: 0,
+  },
+  '100%': {
+    opacity: 1,
+  },
+});
+
+const fadeInAlt = animation('.5s ease-in-ot forwards', {
+  '0%': {
+    opacity: 0,
+  },
+  '100%': {
+    opacity: 1,
+  },
+});
+
+const sheet$e = cssomSheet({target: new CSSStyleSheet()});
+const {tw: tw$e} = create$1({sheet: sheet$e});
+
+class NavBar extends s {
+  static styles = [sheet$e.target];
+
+  static properties = {
+    menu: {type: Boolean},
+    location: {type: String},
+    detector: {type: Boolean},
+    detectorInteracted: {type: Boolean},
+    menuList: {type: Array},
+    regionSelector: {type: Boolean},
+    regions: {type: Array},
+    showLogin: {type: Boolean},
+    crtFlag: {type: String},
+  };
+
+  constructor() {
+    super();
+    this.menu = false;
+    this.location = 'Kastrup, Danmark';
+    this.detector = false;
+    this.regionSelector = false;
+    this.detectorInteracted = false;
+    this.showLogin = false;
+    this.crtFlag = './images/flags/denmark.svg';
+    this.regions = [
+      {
+        imgSrc: './images/flags/usa.svg',
+        title: 'USA',
+        anchor: '#',
+        active: false,
+      },
+      {
+        imgSrc: './images/flags/denmark.svg',
+        title: 'Danmark',
+        active: true,
+      },
+      {
+        imgSrc: './images/flags/german.svg',
+        title: 'Deutshland',
+        active: false,
+      },
+      {
+        imgSrc: './images/flags/norway.svg',
+        title: 'Norge',
+        active: false,
+      },
+      {
+        imgSrc: './images/flags/finland.svg',
+        title: 'Suomi',
+        active: false,
+      },
+      {
+        imgSrc: './images/flags/sweden.svg',
+        title: 'Sverige',
+        active: false,
+      },
+    ];
+    this.menuList = [
+      {text: 'Hvordan virker det?', anchor: '#'},
+      {
+        text: 'Casinos',
+        anchor: '#',
+        dropdown: {
+          shown: false,
+          list: [
+            {text: 'Tilbud', anchor: '#'},
+            {text: 'Casino anmeldelser', anchor: '#'},
+            {text: 'Hotte Online Casioner', anchor: '#'},
+            {text: 'Nye Online Casioner', anchor: '#'},
+          ],
+        },
+      },
+      {
+        text: 'Spil',
+        anchor: '#',
+        dropdown: {
+          shown: false,
+          list: [
+            {text: 'Gratis konkurrencer', anchor: '#'},
+            {text: 'Vindere', anchor: '#'},
+            {text: 'Spilanmeldelser', anchor: '#'},
+          ],
+        },
+      },
+    ];
+  }
+
+  toggleRegion(crtRegion) {
+    this.regions.forEach((region) => {
+      region.active = false;
+    });
+    crtRegion.active = true;
+    this.crtFlag = crtRegion.imgSrc;
+  }
+
+  toggleMenu() {
+    this.menu = !this.menu;
+    if (this.showLogin) this.showLogin = false;
+    if (this.menu) {
+      this.regionSelector = false;
+      if (this.detector) this.detector = false;
+      this.menuList.forEach((item) => {
+        if (item.dropdown) item.dropdown.shown = false;
+      });
+    }
+  }
+
+  render() {
+    return $$1`<nav class="${tw$e`flex justify-between px-[5%] h-16 bg-[#eaeff7] items-center shadow-md z-20 fixed w-full top-0 sm:h-[4.563rem] gap-2`}"><a href="#"><img src="./images/header.svg" alt="header" class="${tw$e`w-32 sm:w-full`}"></a><div class="flex items-center">${screen.width < 640
+            ? $$1`<button @click="${() => {
+                    this.showLogin = true;
+                    if (this.menu) this.menu = false;
+                    this.requestUpdate();
+                    console.log(this.showLogin);
+                  }}" class="${tw$e`p-2 w-10 h-10 rounded bg-black mr-4`}"><img src="./images/login.svg" alt="Login Icon"></button> <button class="${`mr-4`}"><img src="./images/search.svg" alt="search icon"></button> <button @click="${this.toggleMenu}"><img class="${tw$e`w-8`}" src="./images/${this.menu
+                      ? 'burger-exit.svg'
+                      : 'burger-menu.svg'}" alt="menu icon"></button> ${this.menu
+                  ? $$1`<nav class="${tw$e`fixed top-16 right-0 h-[70vh] bg-[#eaeff7] w-[100vw] z-10 flex shadow-md ${slideIn}`}"><div class="${tw$e`w-full relative ${fadeIn} opacity-0`}"><div class="${tw$e`flex py-8 px-12 gap-5`}"><button class="${tw$e`text-white text-[19px] leading-9 rounded-[3px] font-bold w-full h-10 flex justify-center items-center gap-3
+                                ${css`&{background:linear-gradient(to right,#0060e9 0,#3d8bdd 50%,#80bad0 100%)}`}
+                                `}"><p class="${tw$e`mb-1`}">Shop</p><img src="./images/cart.svg" alt="cart"></button> <button class="${tw$e`w-12`}" @click="${() => {
+                                if (!this.detectorInteracted) {
+                                  this.detector = !this.detector;
+                                } else
+                                  this.regionSelector = !this.regionSelector;
+                              }}"><img src="${this.crtFlag}" alt="Region Selector"></button></div>${this.detector
+                            ? $$1`<div class="${tw$e`${fadeInAlt} opacity-0 shadow-lg transition-opacity rounded-lg absolute w-2/3 right-12 top-20 px-4 py-5 bg-[#1a2433] text-white`}"><p class="${`font-bold text-blue-800`}">We detected that you visit us from ${this.location}</p><button class="${tw$e`underline text-[#FFBC3F]`}" @click="${() => {
+                                    this.regionSelector = true;
+                                    this.detectorInteracted = true;
+                                    this.detector = false;
+                                  }}">Is this not accurate?</button></div>`
+                            : ``} ${this.regionSelector
+                            ? $$1`<ul class="${tw$e`flex flex-col gap-2 shadow-xl bg-[#eaeff7] absolute top-20 right-[2.65rem] rounded-lg p-[5px] ${slideInAlt} overflow-hidden`}">${this.regions.map((region) => {
+                                    return region.imgSrc != this.crtFlag
+                                      ? $$1`<li><button class="${tw$e`flex gap-2 w-10`}" @click="${() => {
+                                                this.toggleRegion(region);
+                                                this.regionSelector = false;
+                                                this.requestUpdate();
+                                              }}"><img src="${region.imgSrc}" alt="${region.title} Flag"></button></li>`
+                                      : ``;
+                                  })}</ul>`
+                            : ``}<ul class="${tw$e`font-bold`}">${this.menuList.map((item) => {
+                              return $$1`<li @click="${() => {
+                                    if (item.dropdown) {
+                                      item.dropdown.shown =
+                                        !item.dropdown.shown;
+                                      this.menuList.forEach((menuItem) => {
+                                        if (
+                                          menuItem.dropdown &&
+                                          menuItem != item
+                                        )
+                                          menuItem.dropdown.shown = false;
+                                      });
+                                      this.requestUpdate();
+                                    }
+                                  }}" class="${tw$e`pl-[20%] pb-4 flex items-start gap-2`}"><div><a class="${tw$e`flex items-center gap-3 text-[19px] mt-4 mb-2`}" href="${item.anchor}" style="color:${item.dropdown &&
+                                      item.dropdown.shown
+                                        ? '#2B7EE1'
+                                        : 'inherit'}">${item.text} ${item.dropdown &&
+                                      $$1`<svg style="transform:rotate(${item.dropdown
+                                          .shown
+                                          ? '0'
+                                          : '180deg'})" class="${tw$e`mt-1 inline-block`}" xmlns="http://www.w3.org/2000/svg" width="7" height="6" viewBox="0 0 7 6"><path id="Polygon_4" data-name="Polygon 4" d="M2.636,1.481a1,1,0,0,1,1.728,0L6.123,4.5A1,1,0,0,1,5.259,6H1.741A1,1,0,0,1,.877,4.5Z" transform="translate(7 6) rotate(180)" fill="${item.dropdown &&
+                                          item.dropdown.shown
+                                            ? '#2B7EE1'
+                                            : 'inherit'}"/></svg>`}</a> ${item.dropdown && item.dropdown.shown
+                                      ? $$1`<ul class="${tw$e`flex flex-col gap-3 ${slideInAlt} overflow-hidden`}">${item.dropdown.list.map(
+                                            (dropItem) => {
+                                              return $$1`<li class="${tw$e`font-normal text-[#959CA7] text-[17px]`}"><a href="${dropItem.anchor}">${dropItem.text}</a></li>`;
+                                            }
+                                          )}</ul>`
+                                      : ``}</div></li><hr class="${tw$e`bg-[#DEE1E6]`}">`;
+                            })}</ul></div></nav>`
+                  : ``}`
+            : $$1`<ul class="${tw$e`flex items-center gap-[2vw] relative mr-8`}">${this.menuList.map((item) => {
+                    return $$1`<li @click="${() => {
+                          if (item.dropdown) {
+                            item.dropdown.shown = !item.dropdown.shown;
+                            this.menuList.forEach((menuItem) => {
+                              if (menuItem.dropdown && menuItem != item)
+                                menuItem.dropdown.shown = false;
+                            });
+                            this.requestUpdate();
+                          }
+                        }}" class="${tw$e`flex items-start gap-2`}"><div><a class="${tw$e`flex items-center gap-3 lg:text-[19px] md:text-base`}" href="${item.anchor}" style="color:${item.dropdown && item.dropdown.shown
+                              ? '#2B7EE1'
+                              : 'inherit'}">${item.text} ${item.dropdown &&
+                            $$1`<svg style="transform:rotate(${item.dropdown.shown
+                                ? '0'
+                                : '180deg'})" class="${tw$e`mt-1 inline-block`}" xmlns="http://www.w3.org/2000/svg" width="7" height="6" viewBox="0 0 7 6"><path id="Polygon_4" data-name="Polygon 4" d="M2.636,1.481a1,1,0,0,1,1.728,0L6.123,4.5A1,1,0,0,1,5.259,6H1.741A1,1,0,0,1,.877,4.5Z" transform="translate(7 6) rotate(180)" fill="${item.dropdown && item.dropdown.shown
+                                  ? '#2B7EE1'
+                                  : 'inherit'}"/></svg>`}</a> ${item.dropdown && item.dropdown.shown
+                            ? $$1`<ul class="${tw$e`flex flex-col ${slideInAlt} overflow-hidden absolute top-10 bg-[#eaeff7] rounded-b-md`}">${item.dropdown.list.map((dropItem) => {
+                                  return $$1`<li class="${tw$e`font-normal p-4 border-b-1 border-[#959CA750]`}"><a class="${tw$e`hover:text-[#3E8CDC] text-[#959CA7] text-[17px]`}" href="${dropItem.anchor}">${dropItem.text}</a></li>`;
+                                })}</ul>`
+                            : ``}</div></li>`;
+                  })}</ul><button class="${tw$e`text-white text-[17px] leading-9 rounded font-bold w-24 h-10 flex justify-center items-center gap-2 mr-[7vw]
+                    ${css`&{background:linear-gradient(to right,#0060e9 0,#3d8bdd 50%,#80bad0 100%)}`}
+                  `}"><p class="${tw$e`mb-1`}">Shop</p><img src="./images/cart.svg" alt="cart"></button> <button @click="${() => {
+                    this.showLogin = true;
+                    if (this.menu) this.menu = false;
+                    this.requestUpdate();
+                    console.log(this.showLogin);
+                  }}" class="${tw$e`p-2 w-10 h-10 rounded bg-black mr-4`}"><img src="./images/login.svg" alt="Login Icon"></button> <button><img src="./images/search.svg" alt="search icon"></button> <button class="${tw$e`w-10 h-10 ml-4`}" @click="${() => {
+                    if (!this.detectorInteracted) {
+                      this.detector = !this.detector;
+                    } else this.regionSelector = !this.regionSelector;
+                  }}"><img src="${this.crtFlag}" alt="Region Selector"></button> ${this.detector
+                  ? $$1`<div class="${tw$e`${fadeInAlt} opacity-0 shadow-lg transition-opacity rounded-lg absolute w-1/5 right-[5%] top-20 px-4 py-5 bg-[#1a2433] text-white`}"><p class="${`font-bold text-blue-800`}">We detected that you visit us from ${this.location}</p><button class="${tw$e`underline text-[#FFBC3F]`}" @click="${() => {
+                          this.regionSelector = true;
+                          this.detectorInteracted = true;
+                          this.detector = false;
+                        }}">Is this not accurate?</button></div>`
+                  : ``} ${this.regionSelector
+                  ? $$1`<ul class="${tw$e`flex flex-col gap-2 shadow-xl bg-[#eaeff7] absolute top-16 right-[4.8%] rounded-lg p-[5px] ${slideInAlt} overflow-hidden`}">${this.regions.map((region) => {
+                          return region.imgSrc != this.crtFlag
+                            ? $$1`<li><button class="${tw$e`flex gap-2 w-10`}" @click="${() => {
+                                      this.toggleRegion(region);
+                                      this.regionSelector = false;
+                                      this.requestUpdate();
+                                    }}"><img src="${region.imgSrc}" alt="${region.title} Flag"></button></li>`
+                            : ``;
+                        })}</ul>`
+                  : ``}`}</div></nav>${this.showLogin
+        ? $$1`<div class="${tw$e`fixed w-[100vw] h-full sm:w-[28.625rem] sm:h-[34.375rem] sm:right-[50%] sm:mr-[-14.312rem] sm:top-[20vh] sm:rounded bg-[#eaeff7] top-16 right-0 pb-20 px-4 z-20 ${fadeInAlt} ${css`&{background:transparent linear-gradient(151deg,#eaeff7 0,#d8e2f2 100%)}`}`}"><div class="${tw$e`flex flex-col text-center h-full relative sm:pt-[8rem]`}"><button @click="${() => {
+                    this.showLogin = false;
+                  }}" class="${tw$e`flex items-center absolute top-3 right-2 bg-[#f1f5fa] p-3 rounded-full w-9 h-9 shadow-sm z-10`}"><img src="./images/burger-exit.svg" alt="Close Icon"></button> <img src="./images/money.png" alt="Jackpot" class="${tw$e`sm:absolute sm:top-[-6.265rem] sm:px-[2vw]`}"><h2 class="${tw$e`text-[2.188rem] text-[#3988DE] font-bold`}">Tilmeld dig</h2><p class="${tw$e`font-medium text-[17px]`}">Og få 1000 EP med det samme!</p><div class="${tw$e`flex justify-center gap-3 mb-4 mt-6`}"><a href="#" class="${tw$e`w-10 h-10 bg-[#f1f5fa] flex rounded-lg p-2 justify-center`}"><img src="./images/social-icons/google.svg"></a><a href="#" class="${tw$e`w-10 h-10 bg-[#f1f5fa] flex rounded-lg p-2 justify-center`}"><img src="./images/social-icons/facebook.svg"></a><a href="#" class="${tw$e`w-10 h-10 bg-[#f1f5fa] flex rounded-lg p-2 justify-center`}"><img src="./images/social-icons/apple.svg"></a></div><form action="#" class="${tw$e`text-center flex flex-col px-10 gap-3`}" (submit)="(false)"><input type="text" placeholder="Brugernavn..." class="${tw$e`pb-1 px-4 h-10 w-full rounded-lg bg-[#f1f5fa] placeholder-[#D1D4D9]`}" required> <input type="email" placeholder="Email..." class="${tw$e`pb-1 px-4 h-10 w-full rounded-lg bg-[#f1f5fa] placeholder-[#D1D4D9]`}" required> <input type="password" placeholder="Kodeord..." class="${tw$e`pb-1 px-4 h-10 w-full rounded-lg bg-[#f1f5fa] placeholder-[#D1D4D9]`}" required> <input type="submit" value="Fortsæt" class="${tw$e`mx-auto rounded-md cursor-pointer shadow-md w-24 h-10 flex justify-center items-center text-lg font-medium text-white ${css`&{background:transparent linear-gradient(206deg,#ff930f 0,#ffd45b 100%)}`}`}"><div class="${tw$e`leading-4`}"><p class="${tw$e`text-[13px]`}">Har du allerede en bruger?</p><a href="#" class="${tw$e`text-[#3585DF] text-[13px] font-bold`}">Log ind her</a></div></form></div></div>`
+        : ``}`;
+  }
+}
+
+window.customElements.define('nav-bar', NavBar);
+
+const sheet$d = cssomSheet({target: new CSSStyleSheet()});
+const {tw: tw$d} = create$1({sheet: sheet$d});
+
+class Footer extends s {
+  static styles = [sheet$d.target];
+
+  static properties = {};
+
+  constructor() {
+    super();
+  }
+
+  render() {
+    return $$1`<footer class="${tw$d`bg-white`}" style="box-shadow:-1px -1px 11px 1px rgb(0 0 0 / 22%)"><div class="${tw$d`flex justify-center items-center gap-2 pb-5 pt-10`}"><div class="${tw$d`w-full bg-[#eeeeee] h-[2px]`}"></div><a class="${tw$d`w-24 `}" href="#"><img src="./images/facebook.png" alt="Facebook Icon"> </a><a class="${tw$d`w-24 mx-2`}" href="#"><img src="./images/twitch.png" alt="Twitch Icon"> </a><a class="${tw$d`w-24 `}" href="#"><img src="./images/youtube.png" alt="Youtube Icon"></a><div class="${tw$d`w-full bg-[#eeeeee] h-[2px]`}"></div></div><div class="${tw$d`bg-[#273789] py-10 px-[9%] flex flex-col items-center`}"><img src="./images/logo-big.png" alt="Logo" class="${tw$d`mb-10 w-3/4`}"><p class="${tw$d`text-white text-xs text-center`}">18+ | Spil ansvarligt | StopSpillet: 70 22 28 25 | ROFUS.nu Husk at pengespil kan være vanedannende, så spil ansvarligt. Hos EkstraPoint gør vi derfor en indsats for at opretholde og følge retningslinjer udstukket af den danske Spillemyndighed. Man skal være fyldt 18 både for at spille på EkstraPoint, og på alle casinosider der er repræsenteret herpå. Casino- og spilanmeldelser på vores side er som udgangspunkt kommercielt indhold. Regler og vilkår gælder. Spil ansvarligt. Selvudelukkelse via ROFUS. Kontakt Spillemyndighedens hjælpelinje på StopSpillet.dk <a href="https://www.spillemyndigheden.dk/">https://www.spillemyndigheden.dk/</a></p><div class="${tw$d`flex flex-wrap justify-center items-center gap-y-2 mt-6`}"><div><img class="${tw$d`max-w-[10.938rem] max-h-14 px-2`}" src="./images/footer/gambleaware.png"></div><div><img class="${tw$d`max-w-[10.938rem] max-h-14 px-2`}" src="./images/footer/mga.png"></div><div><img class="${tw$d`max-w-[10.938rem] max-h-14 px-2`}" src="./images/footer/agerestrict.png"></div><div><img class="${tw$d`max-w-[10.938rem] max-h-14 px-2`}" src="./images/footer/gpwa.gif"></div><div><img class="${tw$d`max-w-[10.938rem] max-h-14 px-2`}" src="./images/footer/egr.webp"></div><div><img class="${tw$d`max-w-[10.938rem] max-h-14 px-2`}" src="./images/footer/lottofy.webp"></div><div><img class="${tw$d`max-w-[10.938rem] max-h-14 px-2`}" src="./images/footer/smartsoft.webp"></div></div></div></footer>`;
+  }
+}
+
+window.customElements.define('app-footer', Footer);
+
+const sheet$c = cssomSheet({target: new CSSStyleSheet()});
+const {tw: tw$c} = create$1({sheet: sheet$c});
+
+const cyanGradient = css({
+  '&': {
+    'background-image': 'linear-gradient(to left, #a8ebe9, #fae4fe)',
+    'background-clip': 'text',
+    '-webkit-background-clip': 'text',
+    '-webkit-text-fill-color': 'transparent',
+  },
+});
+const liveDot$1 = css({
+  content: '""',
+  '@apply':
+    'absolute w-1 h-1 flex justify-center items-center bg-[#f82858] rounded-full top-1 right-1',
+});
+
+class Rewards extends s {
+  static styles = [sheet$c.target];
+
+  render() {
+    return $$1`<section class="${tw$c`flex justify-between items-center rounded-md h-12 bg-[#1A2433] px-3 my-2 gap-1`}"><h2 class="${tw$c`${cyanGradient} font-bold text-xl mb-1`}">$52.526</h2><p class="${tw$c`font-medium text-white text-sm text-center`}">In rewards the last 30 days!</p><div class="${tw$c`flex items-center rounded-md gap-1 px-1 ml-[2%] min-w-[5rem] w-20 bg-[#EAEFF7] after::${liveDot$1} relative`}"><img src="./images/person.svg" alt="person icon"><p class="${tw$c`font-medium text-sm mb-1`}">1361</p><p class="${tw$c`font-light text-sm mb-1`}">Live</p></div></section>`;
+  }
+}
+
+window.customElements.define('app-rewards', Rewards);
+
+const sheet$b = cssomSheet({target: new CSSStyleSheet()});
+const {tw: tw$b} = create$1({sheet: sheet$b});
+
+class WinDisplay extends s {
+  static styles = [sheet$b.target];
+
+  static properties = {
+    wins: {type: Array},
+    index: {type: Number},
+    imgSrc: {type: String},
+    username: {type: String},
+    winAmount: {type: Number},
+    timerSec: {type: Number},
+  };
+
+  constructor() {
+    super();
+    this.wins = [
+      {
+        imgSrc: 'user-icon.svg',
+        username: 'Daniel44',
+        winAmount: 1800,
+      },
+      {
+        imgSrc: 'user-icon.svg',
+        username: 'Mark1234',
+        winAmount: 2000,
+      },
+      {
+        imgSrc: 'user-icon.svg',
+        username: 'Nick201',
+        winAmount: 6200,
+      },
+      {
+        imgSrc: 'user-icon.svg',
+        username: 'Bot002',
+        winAmount: 9400,
+      },
+    ];
+    this.timerSec = 6;
+    this.index = 0;
+    this.username = this.wins[0].username;
+    this.winAmount = this.wins[0].winAmount;
+    this.imgSrc = this.wins[0].imgSrc;
+  }
+  firstUpdated() {
+    const card = this.shadowRoot.querySelector('#card');
+    setInterval(() => {
+      if (this.index < this.wins.length - 1) {
+        this.index++;
+      } else this.index = 0;
+      if (card.style.transform != 'rotateX(180deg)') {
+        card.style.transform = 'rotateX(180deg)';
+      } else {
+        card.style.transform = 'rotateX(0)';
+      }
+      this.wins.forEach((win) => {
+        if (this.wins.indexOf(win) === this.index) {
+          setTimeout(() => {
+            this.imgSrc = win.imgSrc;
+            this.username = win.username;
+            this.winAmount = win.winAmount;
+          }, 500);
+        }
+      });
+    }, `${this.timerSec}000`);
+  }
+  render() {
+    return $$1`<article class="${tw$b`w-full h-12 rounded-md overflow-hidden mb-3`}"><div class="${tw$b`w-full h-full relative ${css({
+            'transform-style': 'preserve-3d',
+            transition: '2s',
+          })}`}" id="card"><div class="${tw$b`flex justify-center gap-[2%] items-center text-white p-2 pr-[5%] absolute w-full h-full bg-[#1A2433] ${css(
+              {
+                '-webkit-backface-visibility': ' hidden',
+                'backface-visibility': 'hidden',
+              }
+            )}`}"><img src="./images/${this.imgSrc}" alt="${this.username}" class="${tw$b`w-auto mr-auto`}"><h2 class="${tw$b`font-bold text-base`}">${this.username}</h2><p class="${tw$b`mr-auto flex gap-2`}">Just won <span class="${tw$b`text-[#FFA626] font-bold`}">${this.winAmount} EP </span><a href="#" class="${tw$b`underline`}">here!</a></p></div><div class="${tw$b`absolute w-full h-full flex justify-center gap-[2%] items-center bg-[#1A2433] text-white p-2 pr-[5%] ${css(
+              {
+                '-webkit-backface-visibility': ' hidden',
+                'backface-visibility': 'hidden',
+                transform: 'rotateX(180deg)',
+              }
+            )}`}"><img src="./images/${this.imgSrc}" alt="${this.username}" class="${tw$b`w-auto mr-auto`}"><h2 class="${tw$b`font-bold text-base`}">${this.username}</h2><p class="${tw$b`mr-auto flex gap-2`}">Just won <span class="${tw$b`text-[#FFA626] font-bold`}">${this.winAmount} EP </span><a href="#" class="${tw$b`underline`}">here!</a></p></div></div></article>`;
+  }
+}
+
+window.customElements.define('win-display', WinDisplay);
+
+const sheet$a = cssomSheet({target: new CSSStyleSheet()});
+const {tw: tw$a} = create$1({sheet: sheet$a});
+
+const liveDot = css({
+  content: '""',
+  '@apply':
+    'absolute w-1 h-1 flex justify-center items-center bg-[#f82858] rounded-full top-0 right-[-0.25rem]',
+});
+
+class GameBig extends s {
+  static styles = [sheet$a.target];
+
+  static properties = {
+    monthNames: {type: Array},
+  };
+
+  constructor() {
+    super();
+    this.monthNames = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
+    ];
+  }
+  render() {
+    return $$1`<div class="${tw$a`${css`&{background-image:linear-gradient(to right,#0060e9,#80bad0)}`} p-2 rounded-xl grid shadow-md`}"><img src="./images/game.png" alt="Current Biggest Game" class="${tw$a`w-full ${css`&{grid-area:1/1/1/1}`}`}"><div class="${tw$a`text-white flex flex-col justify-end px-4 py-5 ${css`&{grid-area:1/1/1/1}`}`}"><div class="${tw$a`flex mb-auto justify-end items-center gap-1`}"><svg class="${tw$a`mt-1`}" xmlns="http://www.w3.org/2000/svg" width="8.217" height="9.136" viewBox="0 0 8.217 9.136"><path id="Union_5" data-name="Union 5" d="M.416,8.136A.363.363,0,0,1,.1,8.01.414.414,0,0,1,.008,7.8,4.084,4.084,0,0,1,.276,5.984,3.642,3.642,0,0,1,2.205,4c.019-.008.037-.019.067-.032A2.261,2.261,0,0,1,2.041.691,2.143,2.143,0,0,1,3.614,0h0a2.12,2.12,0,0,1,1.5.624,2.261,2.261,0,0,1-.157,3.338.321.321,0,0,0,.059.032A3.623,3.623,0,0,1,7.174,6.823a6.157,6.157,0,0,1,.042.975.344.344,0,0,1-.31.332.549.549,0,0,1-.094.005Z" transform="translate(0.5 0.5)" fill="#12ee9a" stroke="rgba(0,0,0,0)" stroke-miterlimit="10" stroke-width="1"/></svg><p>374</p><p class="${tw$a`after::${liveDot} relative font-light`}">Live</p></div><div class="${tw$a`flex justify-between items-end pb-2`}"><p class="${tw$a`text-base font-medium leading-4`}">${this.monthNames[new Date().getMonth()]}'s biggest<br>tournament</p><p class="${tw$a`text-lg tracking-widest`}">01:29:51</p></div><div class="${tw$a`flex justify-between`}"><h2 class="${tw$a`text-4xl font-bold`}">Win €5.000</h2><a href="#" class="${tw$a`rounded-md shadow-md mt-auto pb-1 w-24 h-10 flex justify-center items-center text-lg font-medium text-white ${css`&{background:transparent linear-gradient(206deg,#ff930f 0,#ffd45b 100%)}`}`}">Join</a></div></div></div>`;
+  }
+}
+
+window.customElements.define('game-big', GameBig);
+
+const sheet$9 = cssomSheet({target: new CSSStyleSheet()});
+const {tw: tw$9} = create$1({sheet: sheet$9});
+
+css({
+  content: '""',
+  '@apply':
+    'absolute w-1 h-1 flex justify-center items-center bg-[#f82858] rounded-full top-0 right-[-0.25rem]',
+});
+
+class SignupBonus extends s {
+  static styles = [sheet$9.target];
+
+  render() {
+    return $$1`<div class="${tw$9`${css`&{background-image:linear-gradient(to right,#0060e9,#80bad0)}`} px-5 py-4 text-white rounded-lg gap-1 flex flex-col mb-3`}"><p class="${tw$9`font-medium text-[15px]`}">Register to collect your welcome bonus!</p><div class="${tw$9`flex justify-between`}"><h4 class="${tw$9`text-4xl font-bold`}">20.000 EP</h4><a href="#" class="${tw$9`rounded-md shadow-md mt-auto pb-1 w-24 h-10 flex justify-center items-center text-lg font-medium text-white ${css`&{background:transparent linear-gradient(206deg,#ff930f 0,#ffd45b 100%)}`}`}">Join</a></div></div>`;
+  }
+}
+
+window.customElements.define('signup-bonus', SignupBonus);
+
+const sheet$8 = cssomSheet({target: new CSSStyleSheet()});
+const {tw: tw$8} = create$1({sheet: sheet$8});
+
+class PointBonus extends s {
+  static styles = [sheet$8.target];
+
+  static properties = {
+    icon: {type: String},
+    caption: {type: String},
+    points: {type: Number},
+    color: {type: String},
+  };
+
+  render() {
+    return $$1`<a href="#" class="${tw$8`flex flex-col items-center text-center bg-black rounded-lg h-[115px] py-3 px-2`}"><div class="${tw$8`w-8 h-10 mb-1`}"><img src="./images/${this.icon}" ${this.caption}></div><p class="${tw$8`text-[0.813rem] font-medium leading-3`}">${this.caption}:</p><p class="${tw$8`font-bold mt-auto ${css`&{color:${this.color}}`}`}">+ ${String(this.points)}</p></a>`;
+  }
+}
+
+window.customElements.define('point-bonus', PointBonus);
+
+const sheet$7 = cssomSheet({target: new CSSStyleSheet()});
+const {tw: tw$7} = create$1({sheet: sheet$7});
+
+class PointOffers extends s {
+  static styles = [sheet$7.target];
+
+  render() {
+    return $$1`<div class="${tw$7`flex gap-2 text-white my-4 justify-between`}"><point-bonus .icon="${'slot-machine.svg'}" .caption="${'Premium Casinos'}" .points="${300}" .color="${'#16C07F'}"></point-bonus><point-bonus .icon="${'crown.svg'}" .caption="${'Live tournaments'}" .points="${15}" .color="${'#FF296D'}"></point-bonus><point-bonus .icon="${'coin.svg'}" .caption="${'Exclusive products'}" .points="${20}" .color="${'#4E97D9'}"></point-bonus></div>`;
+  }
+}
+
+window.customElements.define('point-offers', PointOffers);
+
+const sheet$6 = cssomSheet({target: new CSSStyleSheet()});
+const {tw: tw$6} = create$1({sheet: sheet$6});
+
+class GameSlide extends s {
+  static styles = [sheet$6.target];
+
+  static properties = {
+    game: {type: Object},
+  };
+
+  render() {
+    return $$1`<div class="${tw$6`${css`&{background-image:linear-gradient(to bottom left,#ff5858 50%,#ff0080 100%)}`} 
+          rounded-xl text-white w-[18.125rem] h-[18.125rem] flex flex-col`}"><div class="${tw$6`grid`}"><img src="./images/${this.game.img}" class="${tw$6`${css`&{grid-area:1/1/1/1}`}`}"><p class="${tw$6`text-sm self-end p-3 ${css`&{grid-area:1/1/1/1}`}`}"><span class="${tw$6`mr-4`}">${this.game.days} days</span>${this.game
+              .time}</p></div><div class="${tw$6`flex items-center justify-between px-3 my-auto`}"><h3 class="${tw$6`text-xl font-bold`}">€${String(this.game.cost)}</h3><div class="${tw$6`h-9 w-[1px] bg-white`}"></div><p class="${tw$6`text-base`}">${String(this.game.cost)}.000 EP</p><a href="#" class="${tw$6`rounded-md shadow-md mt-auto pb-1 w-[6.25rem] h-10 flex justify-center items-center text-lg font-medium text-white ${css`&{background:transparent linear-gradient(206deg,#ff930f 0,#ffd45b 100%)}`}`}">Play</a></div></div>`;
+  }
+}
+
+window.customElements.define('game-slide', GameSlide);
+
 /*!
  * Splide.js
  * Version  : 3.6.12
  * License  : MIT
  * Copyright: 2022 Naotoshi Fujita
  */
-const Ji={CREATED:1,MOUNTED:2,IDLE:3,MOVING:4,DESTROYED:5};function qi(t){t.length=0}function Xi(t){return!Ki(t)&&"object"==typeof t}function Gi(t){return Array.isArray(t)}function Vi(t){return"string"==typeof t}function Yi(t){return void 0===t}function Ki(t){return null===t}function Zi(t){return t instanceof HTMLElement}function Qi(t){return Gi(t)?t:[t]}function tn(t,e){Qi(t).forEach(e)}function en(t,e){return t.indexOf(e)>-1}function nn(t,e){return t.push(...Qi(e)),t}const on=Array.prototype;function rn(t,e,i){return on.slice.call(t,e,i)}function sn(t,e,i){t&&tn(e,(e=>{e&&t.classList[i?"add":"remove"](e)}))}function an(t,e){sn(t,Vi(e)?e.split(" "):e,!0)}function ln(t,e){tn(e,t.appendChild.bind(t))}function cn(t,e){tn(t,(t=>{const i=e.parentNode;i&&i.insertBefore(t,e)}))}function dn(t,e){return Zi(t)&&(t.msMatchesSelector||t.matches).call(t,e)}function un(t,e){return t?rn(t.children).filter((t=>dn(t,e))):[]}function pn(t,e){return e?un(t,e)[0]:t.firstElementChild}function fn(t,e,i){if(t){let n=Object.keys(t);n=i?n.reverse():n;for(let i=0;i<n.length;i++){const o=n[i];if("__proto__"!==o&&!1===e(t[o],o))break}}return t}function hn(t){return rn(arguments,1).forEach((e=>{fn(e,((i,n)=>{t[n]=e[n]}))})),t}function gn(t,e){return fn(e,((e,i)=>{Gi(e)?t[i]=e.slice():Xi(e)?t[i]=gn(Xi(t[i])?t[i]:{},e):t[i]=e})),t}function mn(t,e){t&&tn(e,(e=>{t.removeAttribute(e)}))}function bn(t,e,i){Xi(e)?fn(e,((e,i)=>{bn(t,i,e)})):Ki(i)?mn(t,e):t.setAttribute(e,String(i))}function wn(t,e,i){const n=document.createElement(t);return e&&(Vi(e)?an(n,e):bn(n,e)),i&&ln(i,n),n}function xn(t,e,i){if(Yi(i))return getComputedStyle(t)[e];if(!Ki(i)){const{style:n}=t;i=`${i}`,n[e]!==i&&(n[e]=i)}}function yn(t,e){xn(t,"display",e)}function vn(t,e){return t.getAttribute(e)}function $n(t,e){return t&&t.classList.contains(e)}function Sn(t){return t.getBoundingClientRect()}function kn(t){tn(t,(t=>{t&&t.parentNode&&t.parentNode.removeChild(t)}))}function _n(t){return pn((new DOMParser).parseFromString(t,"text/html").body)}function An(t,e){t.preventDefault(),e&&(t.stopPropagation(),t.stopImmediatePropagation())}function En(t,e){return t&&t.querySelector(e)}function Cn(t,e){return rn(t.querySelectorAll(e))}function Pn(t,e){sn(t,e,!1)}function Ln(t){return Vi(t)?t:t?`${t}px`:""}function Tn(t,e=""){if(!t)throw new Error(`[splide] ${e}`)}function zn(t){setTimeout(t)}const Fn=()=>{};function On(t){return requestAnimationFrame(t)}const{min:jn,max:Dn,floor:Un,ceil:Nn,abs:Rn}=Math;function Mn(t,e,i,n){const o=jn(e,i),r=Dn(e,i);return n?o<t&&t<r:o<=t&&t<=r}function In(t,e,i){const n=jn(e,i),o=Dn(e,i);return jn(Dn(n,t),o)}function Hn(t){return+(t>0)-+(t<0)}function Bn(t,e){return tn(e,(e=>{t=t.replace("%s",`${e}`)})),t}function Wn(t){return t<10?`0${t}`:`${t}`}const Jn={};function qn(t){const{event:e}=t,i={};let n=[];function o(t,e,i){r(t,e,((t,e)=>{n=n.filter((n=>!!(n[0]!==t||n[1]!==e||i&&n[2]!==i)||(t.removeEventListener(e,n[2],n[3]),!1)))}))}function r(t,e,i){tn(t,(t=>{t&&e.split(" ").forEach(i.bind(null,t))}))}function s(){n=n.filter((t=>o(t[0],t[1]))),e.offBy(i)}return e.on("destroy",s,i),{on:function(t,n,o){e.on(t,n,i,o)},off:function(t){e.off(t,i)},emit:e.emit,bind:function(t,e,i,o){r(t,e,((t,e)=>{n.push([t,e,i,o]),t.addEventListener(e,i,o)}))},unbind:o,destroy:s}}function Xn(t,e,i,n){const{now:o}=Date;let r,s,a=0,l=!0,c=0;function d(){if(!l){const s=o()-r;if(s>=t?(a=1,r=o()):a=s/t,i&&i(a),1===a&&(e(),n&&++c>=n))return u();On(d)}}function u(){l=!0}function p(){cancelAnimationFrame(s),a=0,s=0,l=!0}return{start:function(e){!e&&p(),r=o()-(e?a*t:0),l=!1,On(d)},rewind:function(){r=o(),a=0,i&&i(a)},pause:u,cancel:p,set:function(e){t=e},isPaused:function(){return l}}}function Gn(t,e){let i;return function(){i||(i=Xn(e||0,(()=>{t.apply(this,arguments),i=null}),null,1),i.start())}}const Vn={marginRight:["marginBottom","marginLeft"],autoWidth:["autoHeight"],fixedWidth:["fixedHeight"],paddingLeft:["paddingTop","paddingRight"],paddingRight:["paddingBottom","paddingLeft"],width:["height"],left:["top","right"],right:["bottom","left"],x:["y"],X:["Y"],Y:["X"],ArrowLeft:["ArrowUp","ArrowRight"],ArrowRight:["ArrowDown","ArrowLeft"]};const Yn=["is-active","is-visible","is-prev","is-next","is-loading"],Kn={slide:"splide__slide",clone:"splide__slide--clone",arrows:"splide__arrows",arrow:"splide__arrow",prev:"splide__arrow--prev",next:"splide__arrow--next",pagination:"splide__pagination",page:"splide__pagination__page",spinner:"splide__spinner"};const Zn=["role","aria-controls","aria-current","aria-label","aria-hidden","aria-orientation","tabindex","disabled"],Qn="slide",to="loop";function eo(t,e,i,n){const{on:o,emit:r,bind:s,destroy:a}=qn(t),{Components:l,root:c,options:d}=t,{isNavigation:u,updateOnMove:p}=d,{resolve:f}=l.Direction,h=vn(n,"style"),g=i>-1,m=pn(n,".splide__slide__container"),b=d.focusableNodes&&Cn(n,d.focusableNodes);let w;function x(){const o=g?i:e,r=Bn(d.i18n.slideX,o+1),s=t.splides.map((t=>t.splide.root.id)).join(" ");bn(n,"aria-label",r),bn(n,"aria-controls",s),bn(n,"role","menuitem"),$(S())}function y(){w||v()}function v(){if(!w){const{index:i}=t;$(S()),function(t){const e=!t&&(!S()||g);bn(n,"aria-hidden",e||null),bn(n,"tabindex",!e&&d.slideFocus?0:null),b&&b.forEach((t=>{bn(t,"tabindex",e?-1:null)}));t!==$n(n,"is-visible")&&(sn(n,"is-visible",t),r(t?"visible":"hidden",k))}(function(){if(t.is("fade"))return S();const e=Sn(l.Elements.track),i=Sn(n),o=f("left"),r=f("right");return Un(e[o])<=Nn(i[o])&&Un(i[r])<=Nn(e[r])}()),sn(n,"is-prev",e===i-1),sn(n,"is-next",e===i+1)}}function $(t){t!==$n(n,"is-active")&&(sn(n,"is-active",t),u&&bn(n,"aria-current",t||null),r(t?"active":"inactive",k))}function S(){const{index:n}=t;return n===e||d.cloneStatus&&n===i}const k={index:e,slideIndex:i,slide:n,container:m,isClone:g,mount:function(){g||(n.id=`${c.id}-slide${Wn(e+1)}`),s(n,"click keydown",(t=>{r("click"===t.type?"click":"slide:keydown",k,t)})),o(["refresh","repositioned","shifted","moved","scrolled"],v),o("navigation:mounted",x),p&&o("move",y)},destroy:function(){w=!0,a(),Pn(n,Yn),mn(n,Zn),bn(n,"style",h)},update:v,style:function(t,e,i){xn(i&&m||n,t,e)},isWithin:function(i,n){let o=Rn(i-e);return g||!d.rewind&&!t.is("loop")||(o=jn(o,t.length-o)),o<=n}};return k}const io={passive:!1,capture:!0};const no=["Left","Right","Up","Down"];const oo=[" ","Enter","Spacebar"];var ro=Object.freeze({__proto__:null,Options:function(t,e,i){const n=Gn(l);let o,r,s;function a(t){t&&removeEventListener("resize",n)}function l(){const e=(n=t=>t[1].matches,rn(r).filter(n)[0]||[]);var n;e[0]!==s&&function(e){const n=i.breakpoints[e]||o;n.destroy?(t.options=o,t.destroy("completely"===n.destroy)):(t.state.is(5)&&(a(!0),t.mount()),t.options=n)}(s=e[0])}return{setup:function(){try{gn(i,JSON.parse(vn(t.root,"data-splide")))}catch(t){Tn(!1,t.message)}o=gn({},i);const{breakpoints:e}=i;if(e){const t="min"===i.mediaQuery;r=Object.keys(e).sort(((e,i)=>t?+i-+e:+e-+i)).map((e=>[e,matchMedia(`(${t?"min":"max"}-width:${e}px)`)])),l()}},mount:function(){r&&addEventListener("resize",n)},destroy:a}},Direction:function(t,e,i){return{resolve:function(t,e){const{direction:n}=i;return Vn[t]["rtl"!==n||e?"ttb"===n?0:-1:1]||t},orient:function(t){return t*("rtl"===i.direction?1:-1)}}},Elements:function(t,e,i){const{on:n}=qn(t),{root:o}=t,r={},s=[];let a,l,c,d;function u(){!function(){l=pn(o,".splide__slider"),c=En(o,".splide__track"),d=pn(c,".splide__list"),Tn(c&&d,"A track/list element is missing."),nn(s,un(d,".splide__slide:not(.splide__slide--clone)"));const t=g(".splide__autoplay"),e=g(".splide__arrows");hn(r,{root:o,slider:l,track:c,list:d,slides:s,arrows:e,autoplay:t,prev:En(e,".splide__arrow--prev"),next:En(e,".splide__arrow--next"),bar:En(g(".splide__progress"),".splide__progress__bar"),play:En(t,".splide__play"),pause:En(t,".splide__pause")})}(),function(){const t=o.id||(e="splide",`${e}${Wn(Jn[e]=(Jn[e]||0)+1)}`);var e;o.id=t,c.id=c.id||`${t}-track`,d.id=d.id||`${t}-list`}(),an(o,a=m())}function p(){[o,c,d].forEach((t=>{mn(t,"style")})),qi(s),Pn(o,a)}function f(){p(),u()}function h(){Pn(o,a),an(o,a=m())}function g(t){return pn(o,t)||pn(l,t)}function m(){return[`splide--${i.type}`,`splide--${i.direction}`,i.drag&&"splide--draggable",i.isNavigation&&"splide--nav","is-active"]}return hn(r,{setup:u,mount:function(){n("refresh",f,8),n("updated",h)},destroy:p})},Slides:function(t,e,i){const{on:n,emit:o,bind:r}=qn(t),{slides:s,list:a}=e.Elements,l=[];function c(){s.forEach(((t,e)=>{p(t,e,-1)}))}function d(){h((t=>{t.destroy()})),qi(l)}function u(){d(),c()}function p(e,i,n){const o=eo(t,i,n,e);o.mount(),l.push(o)}function f(t){return t?g((t=>!t.isClone)):l}function h(t,e){f(e).forEach(t)}function g(t){return l.filter("function"==typeof t?t:e=>Vi(t)?dn(e.slide,t):en(Qi(t),e.index))}return{mount:function(){c(),n("refresh",u),n(["mounted","refresh"],(()=>{l.sort(((t,e)=>t.index-e.index))}))},destroy:d,update:function(){h((t=>{t.update()}))},register:p,get:f,getIn:function(t){const{Controller:n}=e,o=n.toIndex(t),r=n.hasFocus()?1:i.perPage;return g((t=>Mn(t.index,o,o+r-1)))},getAt:function(t){return g(t)[0]},add:function(t,e){tn(t,(t=>{if(Vi(t)&&(t=_n(t)),Zi(t)){const n=s[e];n?cn(t,n):ln(a,t),an(t,i.classes.slide),function(t,e){const i=Cn(t,"img");let{length:n}=i;n?i.forEach((t=>{r(t,"load error",(()=>{--n||e()}))})):e()}(t,o.bind(null,"resize"))}})),o("refresh")},remove:function(t){kn(g(t).map((t=>t.slide))),o("refresh")},forEach:h,filter:g,style:function(t,e,i){h((n=>{n.style(t,e,i)}))},getLength:function(t){return t?s.length:l.length},isEnough:function(){return l.length>i.perPage}}},Layout:function(t,e,i){const{on:n,bind:o,emit:r}=qn(t),{Slides:s}=e,{resolve:a}=e.Direction,{root:l,track:c,list:d}=e.Elements,{getAt:u}=s;let p,f;function h(){f=null,p="ttb"===i.direction,xn(l,"maxWidth",Ln(i.width)),xn(c,a("paddingLeft"),m(!1)),xn(c,a("paddingRight"),m(!0)),g()}function g(){const t=Sn(l);f&&f.width===t.width&&f.height===t.height||(xn(c,"height",function(){let t="";p&&(t=b(),Tn(t,"height or heightRatio is missing."),t=`calc(${t} - ${m(!1)} - ${m(!0)})`);return t}()),s.style(a("marginRight"),Ln(i.gap)),s.style("width",(i.autoWidth?"":Ln(i.fixedWidth)||(p?"":w()))||null),s.style("height",Ln(i.fixedHeight)||(p?i.autoHeight?"":w():b())||null,!0),f=t,r("resized"))}function m(t){const{padding:e}=i,n=a(t?"right":"left");return e&&Ln(e[n]||(Xi(e)?0:e))||"0px"}function b(){return Ln(i.height||Sn(d).width*i.heightRatio)}function w(){const t=Ln(i.gap);return`calc((100%${t&&` + ${t}`})/${i.perPage||1}${t&&` - ${t}`})`}function x(t,e){const i=u(t);if(i){const t=Sn(i.slide)[a("right")],n=Sn(d)[a("left")];return Rn(t-n)+(e?0:y())}return 0}function y(){const t=u(0);return t&&parseFloat(xn(t.slide,a("marginRight")))||0}return{mount:function(){h(),o(window,"resize load",Gn(r.bind(this,"resize"))),n(["updated","refresh"],h),n("resize",g)},listSize:function(){return Sn(d)[a("width")]},slideSize:function(t,e){const i=u(t||0);return i?Sn(i.slide)[a("width")]+(e?0:y()):0},sliderSize:function(){return x(t.length-1,!0)-x(-1,!0)},totalSize:x,getPadding:function(t){return parseFloat(xn(c,a("padding"+(t?"Right":"Left"))))||0}}},Clones:function(t,e,i){const{on:n,emit:o}=qn(t),{Elements:r,Slides:s}=e,{resolve:a}=e.Direction,l=[];let c;function d(){(c=h())&&(!function(e){const n=s.get().slice(),{length:o}=n;if(o){for(;n.length<e;)nn(n,n);nn(n.slice(-e),n.slice(0,e)).forEach(((a,c)=>{const d=c<e,u=function(e,n){const o=e.cloneNode(!0);return an(o,i.classes.clone),o.id=`${t.root.id}-clone${Wn(n+1)}`,o}(a.slide,c);d?cn(u,n[0].slide):ln(r.list,u),nn(l,u),s.register(u,c-e+(d?0:o),a.index)}))}}(c),o("resize"))}function u(){kn(l),qi(l)}function p(){u(),d()}function f(){c<h()&&o("refresh")}function h(){let{clones:e}=i;if(t.is("loop")){if(!e){const n=function(t,e){if(Vi(e)){const i=wn("div",{style:`width: ${e}; position: absolute;`},t);e=Sn(i).width,kn(i)}return e}(r.list,i[a("fixedWidth")]);e=(n&&Nn(Sn(r.track)[a("width")]/n)||i[a("autoWidth")]&&t.length||i.perPage)*(i.drag?(i.flickMaxPages||1)+1:2)}}else e=0;return e}return{mount:function(){d(),n("refresh",p),n(["updated","resize"],f)},destroy:u}},Move:function(t,e,i){const{on:n,emit:o}=qn(t),{slideSize:r,getPadding:s,totalSize:a,listSize:l,sliderSize:c}=e.Layout,{resolve:d,orient:u}=e.Direction,{list:p,track:f}=e.Elements;let h;function g(){$()||(e.Scroll.cancel(),m(t.index),o("repositioned"))}function m(t){b(x(t,!0))}function b(e,i){if(!t.is("fade")){const n=i?e:function(e){if(t.is(to)){const t=u(e-y()),i=S(!1,e)&&t<0,n=S(!0,e)&&t>0;(i||n)&&(e=w(e,n))}return e}(e);p.style.transform=`translate${d("X")}(${n}px)`,e!==n&&o("shifted")}}function w(t,e){const i=t-v(e),n=c();return t-=u(n*(Nn(Rn(i)/n)||1))*(e?1:-1)}function x(e,n){const o=u(a(e-1)-function(t){const{focus:e}=i;return"center"===e?(l()-r(t,!0))/2:+e*r(t)||0}(e));return n?function(e){i.trimSpace&&t.is("slide")&&(e=In(e,0,u(c()-l())));return e}(o):o}function y(){const t=d("left");return Sn(p)[t]-Sn(f)[t]+u(s(!1))}function v(t){return x(t?e.Controller.getEnd():0,!!i.trimSpace)}function $(){return t.state.is(4)&&i.waitForTransition}function S(t,e){e=Yi(e)?y():e;const i=!0!==t&&u(e)<u(v(!1)),n=!1!==t&&u(e)>u(v(!0));return i||n}return{mount:function(){h=e.Transition,n(["mounted","resized","updated","refresh"],g)},destroy:function(){mn(p,"style")},move:function(n,r,s,a){if(!$()){const{set:l}=t.state,c=y();n!==r&&(h.cancel(),b(w(c,n>r),!0)),l(4),o("move",r,s,n),h.start(r,(()=>{l(3),o("moved",r,s,n),"move"===i.trimSpace&&n!==s&&c===y()?e.Controller.go(n>s?">":"<",!1,a):a&&a()}))}},jump:m,translate:b,shift:w,cancel:function(){b(y()),h.cancel()},toIndex:function(t){const i=e.Slides.get();let n=0,o=1/0;for(let e=0;e<i.length;e++){const r=i[e].index,s=Rn(x(r,!0)-t);if(!(s<=o))break;o=s,n=r}return n},toPosition:x,getPosition:y,getLimit:v,isBusy:$,exceededLimit:S}},Controller:function(t,e,i){const{on:n}=qn(t),{Move:o}=e,{getPosition:r,getLimit:s}=o,{isEnough:a,getLength:l}=e.Slides,c=t.is(to),d=t.is("slide");let u,p,f,h=i.start||0,g=h;function m(){u=l(!0),p=i.perMove,f=i.perPage,h=In(h,0,u-1)}function b(t,i,n,r,s){const a=i?t:A(t);e.Scroll.scroll(i||n?o.toPosition(a,!0):t,r,(()=>{E(o.toIndex(o.getPosition())),s&&s()}))}function w(t){return y(!1,t)}function x(t){return y(!0,t)}function y(t,e){const i=p||(C()?1:f),n=v(h+i*(t?-1:1),h);return-1===n&&d&&!function(t,e,i){return Rn(t-e)<i}(r(),s(!t),1)?t?0:$():e?n:S(n)}function v(t,e,n){if(a()){const o=$();t<0||t>o?t=Mn(0,t,e,!0)||Mn(o,e,t,!0)?k(_(t)):c?p||C()?t:t<0?-(u%f||f):u:i.rewind?t<0?o:0:-1:n||t===e||(t=p?t:k(_(e)+(t<e?-1:1)))}else t=-1;return t}function $(){let t=u-f;return(C()||c&&p)&&(t=u-1),Dn(t,0)}function S(t){return c?a()?t%u+(t<0?u:0):-1:t}function k(t){return In(C()?t:f*t,0,$())}function _(t){return C()||(t=Mn(t,u-f,u-1)?u-1:t,t=Un(t/f)),t}function A(t){const e=o.toIndex(t);return d?In(e,0,$()):e}function E(t){t!==h&&(g=h,h=t)}function C(){return!Yi(i.focus)||i.isNavigation}return{mount:function(){m(),n(["updated","refresh"],m,9)},go:function(t,e,n){const r=function(t){let e=h;if(Vi(t)){const[,i,n]=t.match(/([+\-<>])(\d+)?/)||[];"+"===i||"-"===i?e=v(h+ +`${i}${+n||1}`,h,!0):">"===i?e=n?k(+n):w(!0):"<"===i&&(e=x(!0))}else e=c?t:In(t,0,$());return e}(t);if(i.useScroll)b(r,!0,!0,i.speed,n);else{const t=S(r);t>-1&&!o.isBusy()&&(e||t!==h)&&(E(t),o.move(r,t,g,n))}},scroll:b,getNext:w,getPrev:x,getAdjacent:y,getEnd:$,setIndex:E,getIndex:function(t){return t?g:h},toIndex:k,toPage:_,toDest:A,hasFocus:C}},Arrows:function(t,e,i){const{on:n,bind:o,emit:r}=qn(t),{classes:s,i18n:a}=i,{Elements:l,Controller:c}=e;let d,u=l.arrows,p=l.prev,f=l.next;const h={};function g(){if(i.arrows&&(p&&f||(u=wn("div",s.arrows),p=m(!0),f=m(!1),d=!0,ln(u,[p,f]),cn(u,pn("slider"===i.arrows&&l.slider||t.root)))),p&&f)if(h.prev)yn(u,!1===i.arrows?"none":"");else{const{id:t}=l.track;bn(p,"aria-controls",t),bn(f,"aria-controls",t),h.prev=p,h.next=f,function(){const{go:t}=c;n(["mounted","moved","updated","refresh","scrolled"],b),o(f,"click",(()=>{t(">",!0)})),o(p,"click",(()=>{t("<",!0)}))}(),r("arrows:mounted",p,f)}}function m(t){return _n(`<button class="${s.arrow} ${t?s.prev:s.next}" type="button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="40" height="40"><path d="${i.arrowPath||"m15.5 0.932-4.3 4.38 14.5 14.6-14.5 14.5 4.3 4.4 14.6-14.6 4.4-4.3-4.4-4.4-14.6-14.6z"}" />`)}function b(){const e=t.index,i=c.getPrev(),n=c.getNext(),o=i>-1&&e<i?a.last:a.prev,s=n>-1&&e>n?a.first:a.next;p.disabled=i<0,f.disabled=n<0,bn(p,"aria-label",o),bn(f,"aria-label",s),r("arrows:updated",p,f,i,n)}return{arrows:h,mount:function(){g(),n("updated",g)},destroy:function(){d?kn(u):(mn(p,Zn),mn(f,Zn))}}},Autoplay:function(t,e,i){const{on:n,bind:o,emit:r}=qn(t),s=Xn(i.interval,t.go.bind(t,">"),(function(t){const{bar:e}=l;e&&xn(e,"width",100*t+"%"),r("autoplay:playing",t)})),{isPaused:a}=s,{Elements:l}=e;let c,d,u;function p(t){const e=t?"pause":"play",n=l[e];n&&(bn(n,"aria-controls",l.track.id),bn(n,"aria-label",i.i18n[e]),o(n,"click",t?h:f))}function f(){a()&&e.Slides.isEnough()&&(s.start(!i.resetProgress),d=c=u=!1,r("autoplay:play"))}function h(t=!0){a()||(s.pause(),r("autoplay:pause")),u=t}function g(){u||(c||d?h(!1):f())}function m(){const n=e.Slides.getAt(t.index);s.set(n&&+vn(n.slide,"data-splide-interval")||i.interval)}return{mount:function(){const{autoplay:t}=i;t&&(p(!0),p(!1),function(){const{root:t}=l;i.pauseOnHover&&o(t,"mouseenter mouseleave",(t=>{c="mouseenter"===t.type,g()}));i.pauseOnFocus&&o(t,"focusin focusout",(t=>{d="focusin"===t.type,g()}));n(["move","scroll","refresh"],s.rewind),n("move",m)}(),"pause"!==t&&f())},destroy:s.cancel,play:f,pause:h,isPaused:a}},Cover:function(t,e,i){const{on:n}=qn(t);function o(t){e.Slides.forEach((e=>{const i=pn(e.container||e.slide,"img");i&&i.src&&r(t,i,e)}))}function r(t,e,i){i.style("background",t?`center/cover no-repeat url("${e.src}")`:"",!0),yn(e,t?"none":"")}return{mount:function(){i.cover&&(n("lazyload:loaded",((t,e)=>{r(!0,t,e)})),n(["mounted","updated","refresh"],o.bind(null,!0)))},destroy:function(){o(!1)}}},Scroll:function(t,e,i){const{on:n,emit:o}=qn(t),{Move:r}=e,{getPosition:s,getLimit:a,exceededLimit:l}=r;let c,d;function u(e,n,h,g){const m=s();let b=1;var w;n=n||(w=Rn(e-m),Dn(w/1.5,800)),d=h,f(),c=Xn(n,p,(n=>{const o=s(),c=m+(e-m)*function(t){const{easingFunc:e}=i;return e?e(t):1-Math.pow(1-t,4)}(n),d=(c-s())*b;var p;r.translate(o+d),t.is("slide")&&!g&&l()&&(b*=.6,Rn(d)<10&&(p=l(!1),u(a(!p),600,null,!0)))}),1),o("scroll"),c.start()}function p(){const e=s(),i=r.toIndex(e);Mn(i,0,t.length-1)||r.translate(r.shift(e,i>0),!0),d&&d(),o("scrolled")}function f(){c&&c.cancel()}function h(){c&&!c.isPaused()&&(f(),p())}return{mount:function(){n("move",f),n(["updated","refresh"],h)},destroy:f,scroll:u,cancel:h}},Drag:function(t,e,i){const{on:n,emit:o,bind:r,unbind:s}=qn(t),{Move:a,Scroll:l,Controller:c}=e,{track:d}=e.Elements,{resolve:u,orient:p}=e.Direction,{getPosition:f,exceededLimit:h}=a;let g,m,b,w,x,y,v,$,S,k=!1;function _(){const{drag:t}=i;j(!t),x="free"===t}function A(t){if(!$){const{noDrag:e}=i,n=O(t),o=!e||!dn(t.target,e);v=!1,!o||!n&&t.button||(a.isBusy()?An(t,!0):(S=n?d:window,b=null,w=null,r(S,"touchmove mousemove",E,io),r(S,"touchend touchcancel mouseup",C,io),a.cancel(),l.cancel(),P(t)))}}function E(e){if(w||o("drag"),w=e,e.cancelable){const n=z(e)-z(m);if(y){a.translate(g+function(e){return e/(k&&t.is("slide")?5:1)}(n));const i=F(e)-F(m)>200,r=k!==(k=h());(i||r)&&P(e),o("dragging"),v=!0,An(e)}else{let{dragMinThreshold:t}=i;t=Xi(t)?t:{mouse:0,touch:+t||10},y=Rn(n)>(O(e)?t.touch:t.mouse),T()&&An(e)}}}function C(n){s(S,"touchmove mousemove",E),s(S,"touchend touchcancel mouseup",C);const{index:r}=t;if(w){if(y||n.cancelable&&T()){const o=function(e){if(t.is(to)||!k){const t=m===w&&b||m,i=z(w)-z(t),n=F(e)-F(t),o=F(e)-F(w)<200;if(n&&o)return i/n}return 0}(n),s=function(t){return f()+Hn(t)*jn(Rn(t)*(i.flickPower||600),x?1/0:e.Layout.listSize()*(i.flickMaxPages||1))}(o);x?c.scroll(s):t.is("fade")?c.go(r+p(Hn(o))):c.go(c.toDest(s),!0),An(n)}o("dragged")}else x||f()===a.toPosition(r)||c.go(r,!0);y=!1}function P(t){b=m,m=t,g=f()}function L(t){!$&&v&&An(t,!0)}function T(){return Rn(z(w)-z(m))>Rn(z(w,!0)-z(m,!0))}function z(t,e){return(O(t)?t.touches[0]:t)[`page${u(e?"Y":"X")}`]}function F(t){return t.timeStamp}function O(t){return"undefined"!=typeof TouchEvent&&t instanceof TouchEvent}function j(t){$=t}return{mount:function(){r(d,"touchmove mousemove",Fn,io),r(d,"touchend touchcancel mouseup",Fn,io),r(d,"touchstart mousedown",A,io),r(d,"click",L,{capture:!0}),r(d,"dragstart",An),n(["mounted","updated"],_)},disable:j,isDragging:function(){return y}}},Keyboard:function(t,e,i){const{on:n,bind:o,unbind:r}=qn(t),{root:s}=t,{resolve:a}=e.Direction;let l,c;function d(){const{keyboard:t}=i;t&&("focused"===t?(l=s,bn(s,"tabindex",0)):l=window,o(l,"keydown",h))}function u(){r(l,"keydown"),Zi(l)&&mn(l,"tabindex")}function p(){const t=c;c=!0,zn((()=>{c=t}))}function f(){u(),d()}function h(e){if(!c){const{key:i}=e,n=en(no,i)?`Arrow${i}`:i;n===a("ArrowLeft")?t.go("<"):n===a("ArrowRight")&&t.go(">")}}return{mount:function(){d(),n("updated",f),n("move",p)},destroy:u,disable:function(t){c=t}}},LazyLoad:function(t,e,i){const{on:n,off:o,bind:r,emit:s}=qn(t),a="sequential"===i.lazyLoad;let l=[],c=0;function d(){p(),u()}function u(){e.Slides.forEach((t=>{Cn(t.slide,"[data-splide-lazy], [data-splide-lazy-srcset]").forEach((e=>{const n=vn(e,"data-splide-lazy"),o=vn(e,"data-splide-lazy-srcset");if(n!==e.src||o!==e.srcset){const r=i.classes.spinner,s=e.parentElement,a=pn(s,`.${r}`)||wn("span",r,s);bn(a,"role","presentation"),l.push({_img:e,_Slide:t,src:n,srcset:o,_spinner:a}),!e.src&&yn(e,"none")}}))})),a&&g()}function p(){c=0,l=[]}function f(){l=l.filter((e=>{const n=i.perPage*((i.preloadPages||1)+1)-1;return!e._Slide.isWithin(t.index,n)||h(e)})),l.length||o("moved")}function h(t){const{_img:e}=t;an(t._Slide.slide,"is-loading"),r(e,"load error",(e=>{!function(t,e){const{_Slide:i}=t;Pn(i.slide,"is-loading"),e||(kn(t._spinner),yn(t._img,""),s("lazyload:loaded",t._img,i),s("resize"));a&&g()}(t,"error"===e.type)})),["srcset","src"].forEach((i=>{t[i]&&(bn(e,i,t[i]),mn(e,"src"===i?"data-splide-lazy":"data-splide-lazy-srcset"))}))}function g(){c<l.length&&h(l[c++])}return{mount:function(){i.lazyLoad&&(u(),n("refresh",d),a||n(["mounted","refresh","moved","scrolled"],f))},destroy:p}},Pagination:function(t,e,i){const{on:n,emit:o,bind:r,unbind:s}=qn(t),{Slides:a,Elements:l,Controller:c}=e,{hasFocus:d,getIndex:u}=c,p=[];let f;function h(){g(),i.pagination&&a.isEnough()&&(!function(){const{length:e}=t,{classes:n,i18n:o,perPage:s}=i,c="slider"===i.pagination&&l.slider||l.root,u=d()?e:Nn(e/s);f=wn("ul",n.pagination,c);for(let t=0;t<u;t++){const e=wn("li",null,f),i=wn("button",{class:n.page,type:"button"},e),l=a.getIn(t).map((t=>t.slide.id)),c=!d()&&s>1?o.pageX:o.slideX;r(i,"click",m.bind(null,t)),bn(i,"aria-controls",l.join(" ")),bn(i,"aria-label",Bn(c,t+1)),p.push({li:e,button:i,page:t})}}(),o("pagination:mounted",{list:f,items:p},b(t.index)),w())}function g(){f&&(kn(f),p.forEach((t=>{s(t.button,"click")})),qi(p),f=null)}function m(t){c.go(`>${t}`,!0,(()=>{const e=a.getAt(c.toIndex(t));var i;e&&((i=e.slide).setActive&&i.setActive()||i.focus({preventScroll:!0}))}))}function b(t){return p[c.toPage(t)]}function w(){const t=b(u(!0)),e=b(u());t&&(Pn(t.button,"is-active"),mn(t.button,"aria-current")),e&&(an(e.button,"is-active"),bn(e.button,"aria-current",!0)),o("pagination:updated",{list:f,items:p},t,e)}return{items:p,mount:function(){h(),n(["updated","refresh"],h),n(["move","scrolled"],w)},destroy:g,getAt:b,update:w}},Sync:function(t,e,i){const{list:n}=e.Elements,o=[];function r(){t.splides.forEach((e=>{var i;!e.isParent&&(i=e.splide,[t,i].forEach((e=>{const n=qn(e),r=e===t?i:t;n.on("move",((t,e,i)=>{r.go(r.is(to)?i:t)})),o.push(n)})))})),i.isNavigation&&function(){const e=qn(t),{on:i}=e;i("click",l),i("slide:keydown",c),i(["mounted","updated"],a),bn(n,"role","menu"),o.push(e),e.emit("navigation:mounted",t.splides)}()}function s(){mn(n,Zn),o.forEach((t=>{t.destroy()})),qi(o)}function a(){bn(n,"aria-orientation","ttb"!==i.direction?"horizontal":null)}function l(e){t.go(e.index)}function c(t,e){en(oo,e.key)&&(l(t),An(e))}return{mount:r,destroy:s,remount:function(){s(),r()}}},Wheel:function(t,e,i){const{bind:n}=qn(t);function o(n){if(n.cancelable){const{deltaY:o}=n;if(o){const r=o<0;t.go(r?"<":">"),function(n){return!i.releaseWheel||t.state.is(4)||-1!==e.Controller.getAdjacent(n)}(r)&&An(n)}}}return{mount:function(){i.wheel&&n(e.Elements.track,"wheel",o,io)}}}});const so={type:"slide",speed:400,waitForTransition:!0,perPage:1,cloneStatus:!0,arrows:!0,pagination:!0,interval:5e3,pauseOnHover:!0,pauseOnFocus:!0,resetProgress:!0,keyboard:!0,easing:"cubic-bezier(0.25, 1, 0.5, 1)",drag:!0,direction:"ltr",slideFocus:!0,trimSpace:!0,focusableNodes:"a, button, textarea, input, select, iframe",classes:Kn,i18n:{prev:"Previous slide",next:"Next slide",first:"Go to first slide",last:"Go to last slide",slideX:"Go to slide %s",pageX:"Go to page %s",play:"Start autoplay",pause:"Pause autoplay"}};function ao(t,e,i){const{on:n}=qn(t);return{mount:function(){n(["mounted","refresh"],(()=>{zn((()=>{e.Slides.style("transition",`opacity ${i.speed}ms ${i.easing}`)}))}))},start:function(t,i){const{track:n}=e.Elements;xn(n,"height",Ln(Sn(n).height)),zn((()=>{i(),xn(n,"height","")}))},cancel:Fn}}function lo(t,e,i){const{bind:n}=qn(t),{Move:o,Controller:r}=e,{list:s}=e.Elements;let a;function l(){c("")}function c(t){xn(s,"transition",t)}return{mount:function(){n(s,"transitionend",(t=>{t.target===s&&a&&(l(),a())}))},start:function(e,n){const s=o.toPosition(e,!0),l=o.getPosition(),d=function(e){const{rewindSpeed:n}=i;if(t.is(Qn)&&n){const t=r.getIndex(!0),i=r.getEnd();if(0===t&&e>=i||t>=i&&0===e)return n}return i.speed}(e);Rn(s-l)>=1&&d>=1?(c(`transform ${d}ms ${i.easing}`),o.translate(s,!0),a=n):(o.jump(e),n())},cancel:l}}const co=class{constructor(t,e){this.event=function(){let t={};function e(e,n){i(e,((e,i)=>{const o=t[e];t[e]=o&&o.filter((t=>t._key?t._key!==n:n||t._namespace!==i))}))}function i(t,e){Qi(t).join(" ").split(" ").forEach((t=>{const i=t.split(".");e(i[0],i[1])}))}return{on:function(e,n,o,r=10){i(e,((e,i)=>{t[e]=t[e]||[],nn(t[e],{_event:e,_callback:n,_namespace:i,_priority:r,_key:o}).sort(((t,e)=>t._priority-e._priority))}))},off:e,offBy:function(i){fn(t,((t,n)=>{e(n,i)}))},emit:function(e){(t[e]||[]).forEach((t=>{t._callback.apply(t,rn(arguments,1))}))},destroy:function(){t={}}}}(),this.Components={},this.state=function(t){let e=t;return{set:function(t){e=t},is:function(t){return en(Qi(t),e)}}}(1),this.splides=[],this._options={},this._Extensions={};const i=Vi(t)?En(document,t):t;Tn(i,`${i} is invalid.`),this.root=i,gn(so,co.defaults),gn(gn(this._options,so),e||{})}mount(t,e){const{state:i,Components:n}=this;Tn(i.is([1,5]),"Already mounted!"),i.set(1),this._Components=n,this._Transition=e||this._Transition||(this.is("fade")?ao:lo),this._Extensions=t||this._Extensions;return fn(hn({},ro,this._Extensions,{Transition:this._Transition}),((t,e)=>{const i=t(this,n,this._options);n[e]=i,i.setup&&i.setup()})),fn(n,(t=>{t.mount&&t.mount()})),this.emit("mounted"),an(this.root,"is-initialized"),i.set(3),this.emit("ready"),this}sync(t){return this.splides.push({splide:t}),t.splides.push({splide:this,isParent:!0}),this.state.is(3)&&(this._Components.Sync.remount(),t.Components.Sync.remount()),this}go(t){return this._Components.Controller.go(t),this}on(t,e){return this.event.on(t,e,null,20),this}off(t){return this.event.off(t),this}emit(t){return this.event.emit(t,...rn(arguments,1)),this}add(t,e){return this._Components.Slides.add(t,e),this}remove(t){return this._Components.Slides.remove(t),this}is(t){return this._options.type===t}refresh(){return this.emit("refresh"),this}destroy(t=!0){const{event:e,state:i}=this;return i.is(1)?e.on("ready",this.destroy.bind(this,t),this):(fn(this._Components,(e=>{e.destroy&&e.destroy(t)}),!0),e.emit("destroy"),e.destroy(),t&&qi(this.splides),i.set(5)),this}get options(){return this._options}set options(t){const{_options:e}=this;gn(e,t),this.state.is(1)||this.emit("updated",e)}get length(){return this._Components.Slides.getLength(!0)}get index(){return this._Components.Controller.getIndex()}};let uo=co;uo.defaults={},uo.STATES=Ji;const po=ye({target:new CSSStyleSheet}),{tw:fo}=Ye({sheet:po});class ho extends V{static styles=[po.target];static properties={};firstUpdated(){const t=this.shadowRoot.querySelector("#slider");new uo(t,{type:"slide",arrows:!1,gap:15,direction:"ltr",focus:"center",pagination:!1}).mount()}render(){return L`<div class="${fo`flex flex-col pl-[5%] pt-5 pb-8 bg-white`}"><div class="${fo`pb-5 pr-8 flex flex-col gap-5`}"><slot></slot></div><div class="splide ${fo`relative`}" id="slider"><div class="splide__track ${fo`overflow-hidden relative z-0`}"><ul class="splide__list ${fo`flex`}"><li class="splide__slide"><game-slide .game="${{img:"samurai-game.png",alt:"Samurai Game",days:2,time:"01:29:51",cost:25}}"></game-slide></li><li class="splide__slide"><game-slide .game="${{img:"bankjob-game.png",alt:"Bank Job Game",days:1,time:"15:04:21",cost:100}}"></game-slide></li></ul></div></div><div class="${fo`mx-auto pt-6 pb-3 pr-8`}"><a href="#" class="${fo`rounded-md shadow-md mt-auto pb-1 w-[15.625rem] h-10 flex justify-center items-center text-lg font-medium text-white ${ai`&{background:transparent linear-gradient(206deg,#ff930f 0,#ffd45b 100%)}`}`}">Go to all our tournaments</a></div></div>`}}window.customElements.define("game-slider",ho);const go=ye({target:new CSSStyleSheet}),{tw:mo}=Ye({sheet:go});class bo extends V{static styles=[go.target];static properties={offer:{type:Object}};render(){return L`<div class="${mo`rounded-xl p-[2px] ${ai`&{background:linear-gradient(to top right,${this.offer.golden?"#FFA626, #FFD45B":"#259C63, #0FD792"})}`}`}"><img class="${mo`w-full`}" src="images/welcome-offers/${this.offer.img}" alt="${this.offer.alt}"><div class="${mo`p-2`}"><h4 class="${mo`text-[${this.offer.golden?"#000":"#FFBC3F"}] font-bold text-3xl`}">€${this.offer.claim}</h4><p class="${mo`text-white text-[10px] mb-1`}">100% up to €${this.offer.claim} + ${this.offer.claim} Free Spins</p><a href="#" class="${mo`rounded-md shadow-md mt-auto pb-1 w-full h-10 flex justify-center items-center text-lg font-medium text-white ${ai`&{background:linear-gradient(206deg,#ff930f 0,#ffd45b 100%)}`}`}">Claim</a></div></div>`}}window.customElements.define("welcome-offer",bo);const wo=ye({target:new CSSStyleSheet}),{tw:xo}=Ye({sheet:wo});class yo extends V{static styles=[wo.target];render(){return L`<section class="${xo`px-[5%] py-6`}"><h2 class="${xo`${ai`&{background:linear-gradient(to top right,#259c63,#0fd792);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent}`} text-4xl font-bold mb-4 leading-8`}">Exclusive<br>Welcome Offers</h2><div class="${xo`grid grid-cols-2 gap-3`}"><welcome-offer .offer="${{img:"tonybet.png",alt:"Tonybet",claim:120,golden:!1}}"></welcome-offer><welcome-offer .offer="${{img:"luckydreams.png",alt:"Lucky Dreams",claim:120,golden:!0}}"></welcome-offer><welcome-offer .offer="${{img:"kingbilly.png",alt:"King Billy",claim:120,golden:!1}}"></welcome-offer><welcome-offer .offer="${{img:"cashimashi.png",alt:"Cashimashi",claim:120,golden:!1}}"></welcome-offer><welcome-offer .offer="${{img:"casiplay.png",alt:"Casiplay",claim:120,golden:!1}}"></welcome-offer><welcome-offer .offer="${{img:"casinotown.png",alt:"Casinotown",claim:120,golden:!1}}"></welcome-offer></div></section>`}}window.customElements.define("welcome-offers",yo);const vo=ye({target:new CSSStyleSheet}),{tw:$o}=Ye({sheet:vo});class So extends V{static styles=[vo.target];static properties={item:{type:Object}};render(){return L`<li class="${$o`${ai`&{background-image:linear-gradient(to top right,#0060e9,#80bad0)}`} rounded-xl flex overflow-hidden`}"><div class="${$o`overflow-hidden`}"><img src="./images/shop/${this.item.img}" alt="${this.item.title}" class="${$o`w-full h-full flex-1 ${ai`&{object-fit:cover}`}`}"></div><div class="${$o`py-2 px-3 flex h-full w-full gap-[2%] justify-between items-center flex-[2]`}"><div><p class="${$o`text-white text-[0.813rem] font-normal`}" [ngStyle]="background ? { color: 'black' } : {}">${String(this.item.bonus)}€ Bonus Package for ${this.item.title}</p><h3 class="${$o`text-[#FFA626] text-[1rem] font-bold`}">${String(this.item.cost)} EP</h3></div><a href="#" class="${$o`rounded-md shadow-md pb-1 min-w-[70px] h-14 flex justify-center items-center text-lg font-medium text-white ${ai`&{background:linear-gradient(to bottom left,#ff930f 0,#ffd45b 100%)}`}`}">Buy</a></div></li>`}}window.customElements.define("shop-item",So);const ko=ye({target:new CSSStyleSheet}),{tw:_o}=Ye({sheet:ko});class Ao extends V{static styles=[ko.target];static properties={};constructor(){super()}render(){return L`<section class="${_o`flex flex-col px-[5%] py-6 bg-white`}"><h2 class="${_o`font-bold text-4xl ${ai`&{background:linear-gradient(to top right,#0b119b,#172dd6);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent}`}`}">Shop with<br>EkstraPoints</h2><ul class="${_o`flex flex-col gap-y-3 my-5`}"><shop-item .item="${{img:"winnermagic.png",title:"Winner's Magic",cost:"30.000",bonus:5}}"></shop-item><shop-item .item="${{img:"millionpot.png",title:"Millionpot",cost:"30.000",bonus:5}}"></shop-item><shop-item .item="${{img:"luckythrillz.png",title:"Lucky Thrillz",cost:"30.000",bonus:5}}"></shop-item><shop-item .item="${{img:"jackiejackpot.png",title:"Jackie Jackpot",cost:"30.000",bonus:5}}"></shop-item><shop-item .item="${{img:"tradacasino.png",title:"Trada Casino",cost:"30.000",bonus:5}}"></shop-item></ul><a href="#" class="${_o`rounded-md shadow-md my-6 mx-auto pb-1 w-[15.625rem] h-10 flex justify-center items-center text-lg font-medium text-white ${ai`&{background:linear-gradient(206deg,#ff930f 0,#ffd45b 100%)}`}`}">Go to EkstraPoints shop</a></section>`}}window.customElements.define("point-shop",Ao);const Eo=ye({target:new CSSStyleSheet}),{tw:Co}=Ye({sheet:Eo});Ze({preflight:{"@import":"url('https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.12/dist/css/splide.min.css')"}});class Po extends V{static styles=[Eo.target];render(){return L`<div class="${Co`font-['sofia-pro'] pt-16 sm:pt-[4.563rem] bg-[#EAEFF7]`}"><nav-bar></nav-bar><section class="${Co`px-[5%]`}"><app-rewards></app-rewards><win-display></win-display><game-big></game-big><h3 class="${Co`text-[39px] font-bold mt-7 mb-5 leading-[2.75rem]`}">Sign up. <span class="${Co`${ai`&{background-image:linear-gradient(to bottom right,#ff9515 0,#ff502e 50%,#ff4e2f 100%);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent}`}`}">Play free.</span><br>Biggest reward Site in the world</h3><signup-bonus></signup-bonus><point-offers></point-offers></section><game-slider><h2 class="${Co`${ai`&{background-image:linear-gradient(to top right,#ff0180,#ff5858);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent}`} font-bold text-4xl leading-8`}">Current<br>Tournaments</h2></game-slider><welcome-offers></welcome-offers><point-shop></point-shop><app-footer></app-footer></div>`}}window.customElements.define("my-app",Po);export{Po as MyApp};
+const PROJECT_CODE = "splide";
+const DATA_ATTRIBUTE = `data-${PROJECT_CODE}`;
+
+const CREATED = 1;
+const MOUNTED = 2;
+const IDLE = 3;
+const MOVING = 4;
+const DESTROYED = 5;
+const STATES = {
+  CREATED,
+  MOUNTED,
+  IDLE,
+  MOVING,
+  DESTROYED
+};
+
+const DEFAULT_EVENT_PRIORITY = 10;
+const DEFAULT_USER_EVENT_PRIORITY = 20;
+
+function empty(array) {
+  array.length = 0;
+}
+
+function isObject(subject) {
+  return !isNull(subject) && typeof subject === "object";
+}
+function isArray(subject) {
+  return Array.isArray(subject);
+}
+function isFunction(subject) {
+  return typeof subject === "function";
+}
+function isString(subject) {
+  return typeof subject === "string";
+}
+function isUndefined(subject) {
+  return typeof subject === "undefined";
+}
+function isNull(subject) {
+  return subject === null;
+}
+function isHTMLElement(subject) {
+  return subject instanceof HTMLElement;
+}
+
+function toArray(value) {
+  return isArray(value) ? value : [value];
+}
+
+function forEach(values, iteratee) {
+  toArray(values).forEach(iteratee);
+}
+
+function includes(array, value) {
+  return array.indexOf(value) > -1;
+}
+
+function push(array, items) {
+  array.push(...toArray(items));
+  return array;
+}
+
+const arrayProto = Array.prototype;
+
+function slice(arrayLike, start, end) {
+  return arrayProto.slice.call(arrayLike, start, end);
+}
+
+function find(arrayLike, predicate) {
+  return slice(arrayLike).filter(predicate)[0];
+}
+
+function toggleClass(elm, classes, add) {
+  if (elm) {
+    forEach(classes, (name) => {
+      if (name) {
+        elm.classList[add ? "add" : "remove"](name);
+      }
+    });
+  }
+}
+
+function addClass(elm, classes) {
+  toggleClass(elm, isString(classes) ? classes.split(" ") : classes, true);
+}
+
+function append(parent, children) {
+  forEach(children, parent.appendChild.bind(parent));
+}
+
+function before(nodes, ref) {
+  forEach(nodes, (node) => {
+    const parent = ref.parentNode;
+    if (parent) {
+      parent.insertBefore(node, ref);
+    }
+  });
+}
+
+function matches(elm, selector) {
+  return isHTMLElement(elm) && (elm["msMatchesSelector"] || elm.matches).call(elm, selector);
+}
+
+function children(parent, selector) {
+  return parent ? slice(parent.children).filter((child) => matches(child, selector)) : [];
+}
+
+function child(parent, selector) {
+  return selector ? children(parent, selector)[0] : parent.firstElementChild;
+}
+
+function forOwn(object, iteratee, right) {
+  if (object) {
+    let keys = Object.keys(object);
+    keys = right ? keys.reverse() : keys;
+    for (let i = 0; i < keys.length; i++) {
+      const key = keys[i];
+      if (key !== "__proto__") {
+        if (iteratee(object[key], key) === false) {
+          break;
+        }
+      }
+    }
+  }
+  return object;
+}
+
+function assign(object) {
+  slice(arguments, 1).forEach((source) => {
+    forOwn(source, (value, key) => {
+      object[key] = source[key];
+    });
+  });
+  return object;
+}
+
+function merge(object, source) {
+  forOwn(source, (value, key) => {
+    if (isArray(value)) {
+      object[key] = value.slice();
+    } else if (isObject(value)) {
+      object[key] = merge(isObject(object[key]) ? object[key] : {}, value);
+    } else {
+      object[key] = value;
+    }
+  });
+  return object;
+}
+
+function removeAttribute(elm, attrs) {
+  if (elm) {
+    forEach(attrs, (attr) => {
+      elm.removeAttribute(attr);
+    });
+  }
+}
+
+function setAttribute(elm, attrs, value) {
+  if (isObject(attrs)) {
+    forOwn(attrs, (value2, name) => {
+      setAttribute(elm, name, value2);
+    });
+  } else {
+    isNull(value) ? removeAttribute(elm, attrs) : elm.setAttribute(attrs, String(value));
+  }
+}
+
+function create(tag, attrs, parent) {
+  const elm = document.createElement(tag);
+  if (attrs) {
+    isString(attrs) ? addClass(elm, attrs) : setAttribute(elm, attrs);
+  }
+  parent && append(parent, elm);
+  return elm;
+}
+
+function style(elm, prop, value) {
+  if (isUndefined(value)) {
+    return getComputedStyle(elm)[prop];
+  }
+  if (!isNull(value)) {
+    const { style: style2 } = elm;
+    value = `${value}`;
+    if (style2[prop] !== value) {
+      style2[prop] = value;
+    }
+  }
+}
+
+function display(elm, display2) {
+  style(elm, "display", display2);
+}
+
+function focus(elm) {
+  elm["setActive"] && elm["setActive"]() || elm.focus({ preventScroll: true });
+}
+
+function getAttribute(elm, attr) {
+  return elm.getAttribute(attr);
+}
+
+function hasClass(elm, className) {
+  return elm && elm.classList.contains(className);
+}
+
+function rect(target) {
+  return target.getBoundingClientRect();
+}
+
+function remove(nodes) {
+  forEach(nodes, (node) => {
+    if (node && node.parentNode) {
+      node.parentNode.removeChild(node);
+    }
+  });
+}
+
+function measure(parent, value) {
+  if (isString(value)) {
+    const div = create("div", { style: `width: ${value}; position: absolute;` }, parent);
+    value = rect(div).width;
+    remove(div);
+  }
+  return value;
+}
+
+function parseHtml(html) {
+  return child(new DOMParser().parseFromString(html, "text/html").body);
+}
+
+function prevent(e, stopPropagation) {
+  e.preventDefault();
+  if (stopPropagation) {
+    e.stopPropagation();
+    e.stopImmediatePropagation();
+  }
+}
+
+function query(parent, selector) {
+  return parent && parent.querySelector(selector);
+}
+
+function queryAll(parent, selector) {
+  return slice(parent.querySelectorAll(selector));
+}
+
+function removeClass(elm, classes) {
+  toggleClass(elm, classes, false);
+}
+
+function unit(value) {
+  return isString(value) ? value : value ? `${value}px` : "";
+}
+
+function assert(condition, message = "") {
+  if (!condition) {
+    throw new Error(`[${PROJECT_CODE}] ${message}`);
+  }
+}
+
+function nextTick(callback) {
+  setTimeout(callback);
+}
+
+const noop = () => {
+};
+
+function raf(func) {
+  return requestAnimationFrame(func);
+}
+
+const { min, max, floor, ceil, abs } = Math;
+
+function approximatelyEqual(x, y, epsilon) {
+  return abs(x - y) < epsilon;
+}
+
+function between(number, minOrMax, maxOrMin, exclusive) {
+  const minimum = min(minOrMax, maxOrMin);
+  const maximum = max(minOrMax, maxOrMin);
+  return exclusive ? minimum < number && number < maximum : minimum <= number && number <= maximum;
+}
+
+function clamp(number, x, y) {
+  const minimum = min(x, y);
+  const maximum = max(x, y);
+  return min(max(minimum, number), maximum);
+}
+
+function sign(x) {
+  return +(x > 0) - +(x < 0);
+}
+
+function format(string, replacements) {
+  forEach(replacements, (replacement) => {
+    string = string.replace("%s", `${replacement}`);
+  });
+  return string;
+}
+
+function pad(number) {
+  return number < 10 ? `0${number}` : `${number}`;
+}
+
+const ids = {};
+function uniqueId(prefix) {
+  return `${prefix}${pad(ids[prefix] = (ids[prefix] || 0) + 1)}`;
+}
+
+function EventBus() {
+  let handlers = {};
+  function on(events, callback, key, priority = DEFAULT_EVENT_PRIORITY) {
+    forEachEvent(events, (event, namespace) => {
+      handlers[event] = handlers[event] || [];
+      push(handlers[event], {
+        _event: event,
+        _callback: callback,
+        _namespace: namespace,
+        _priority: priority,
+        _key: key
+      }).sort((handler1, handler2) => handler1._priority - handler2._priority);
+    });
+  }
+  function off(events, key) {
+    forEachEvent(events, (event, namespace) => {
+      const eventHandlers = handlers[event];
+      handlers[event] = eventHandlers && eventHandlers.filter((handler) => {
+        return handler._key ? handler._key !== key : key || handler._namespace !== namespace;
+      });
+    });
+  }
+  function offBy(key) {
+    forOwn(handlers, (eventHandlers, event) => {
+      off(event, key);
+    });
+  }
+  function emit(event) {
+    (handlers[event] || []).forEach((handler) => {
+      handler._callback.apply(handler, slice(arguments, 1));
+    });
+  }
+  function destroy() {
+    handlers = {};
+  }
+  function forEachEvent(events, iteratee) {
+    toArray(events).join(" ").split(" ").forEach((eventNS) => {
+      const fragments = eventNS.split(".");
+      iteratee(fragments[0], fragments[1]);
+    });
+  }
+  return {
+    on,
+    off,
+    offBy,
+    emit,
+    destroy
+  };
+}
+
+const EVENT_MOUNTED = "mounted";
+const EVENT_READY = "ready";
+const EVENT_MOVE = "move";
+const EVENT_MOVED = "moved";
+const EVENT_SHIFTED = "shifted";
+const EVENT_CLICK = "click";
+const EVENT_ACTIVE = "active";
+const EVENT_INACTIVE = "inactive";
+const EVENT_VISIBLE = "visible";
+const EVENT_HIDDEN = "hidden";
+const EVENT_SLIDE_KEYDOWN = "slide:keydown";
+const EVENT_REFRESH = "refresh";
+const EVENT_UPDATED = "updated";
+const EVENT_RESIZE = "resize";
+const EVENT_RESIZED = "resized";
+const EVENT_REPOSITIONED = "repositioned";
+const EVENT_DRAG = "drag";
+const EVENT_DRAGGING = "dragging";
+const EVENT_DRAGGED = "dragged";
+const EVENT_SCROLL = "scroll";
+const EVENT_SCROLLED = "scrolled";
+const EVENT_DESTROY = "destroy";
+const EVENT_ARROWS_MOUNTED = "arrows:mounted";
+const EVENT_ARROWS_UPDATED = "arrows:updated";
+const EVENT_PAGINATION_MOUNTED = "pagination:mounted";
+const EVENT_PAGINATION_UPDATED = "pagination:updated";
+const EVENT_NAVIGATION_MOUNTED = "navigation:mounted";
+const EVENT_AUTOPLAY_PLAY = "autoplay:play";
+const EVENT_AUTOPLAY_PLAYING = "autoplay:playing";
+const EVENT_AUTOPLAY_PAUSE = "autoplay:pause";
+const EVENT_LAZYLOAD_LOADED = "lazyload:loaded";
+
+function EventInterface(Splide2) {
+  const { event } = Splide2;
+  const key = {};
+  let listeners = [];
+  function on(events, callback, priority) {
+    event.on(events, callback, key, priority);
+  }
+  function off(events) {
+    event.off(events, key);
+  }
+  function bind(targets, events, callback, options) {
+    forEachEvent(targets, events, (target, event2) => {
+      listeners.push([target, event2, callback, options]);
+      target.addEventListener(event2, callback, options);
+    });
+  }
+  function unbind(targets, events, callback) {
+    forEachEvent(targets, events, (target, event2) => {
+      listeners = listeners.filter((listener) => {
+        if (listener[0] === target && listener[1] === event2 && (!callback || listener[2] === callback)) {
+          target.removeEventListener(event2, listener[2], listener[3]);
+          return false;
+        }
+        return true;
+      });
+    });
+  }
+  function forEachEvent(targets, events, iteratee) {
+    forEach(targets, (target) => {
+      if (target) {
+        events.split(" ").forEach(iteratee.bind(null, target));
+      }
+    });
+  }
+  function destroy() {
+    listeners = listeners.filter((data) => unbind(data[0], data[1]));
+    event.offBy(key);
+  }
+  event.on(EVENT_DESTROY, destroy, key);
+  return {
+    on,
+    off,
+    emit: event.emit,
+    bind,
+    unbind,
+    destroy
+  };
+}
+
+function RequestInterval(interval, onInterval, onUpdate, limit) {
+  const { now } = Date;
+  let startTime;
+  let rate = 0;
+  let id;
+  let paused = true;
+  let count = 0;
+  function update() {
+    if (!paused) {
+      const elapsed = now() - startTime;
+      if (elapsed >= interval) {
+        rate = 1;
+        startTime = now();
+      } else {
+        rate = elapsed / interval;
+      }
+      if (onUpdate) {
+        onUpdate(rate);
+      }
+      if (rate === 1) {
+        onInterval();
+        if (limit && ++count >= limit) {
+          return pause();
+        }
+      }
+      raf(update);
+    }
+  }
+  function start(resume) {
+    !resume && cancel();
+    startTime = now() - (resume ? rate * interval : 0);
+    paused = false;
+    raf(update);
+  }
+  function pause() {
+    paused = true;
+  }
+  function rewind() {
+    startTime = now();
+    rate = 0;
+    if (onUpdate) {
+      onUpdate(rate);
+    }
+  }
+  function cancel() {
+    cancelAnimationFrame(id);
+    rate = 0;
+    id = 0;
+    paused = true;
+  }
+  function set(time) {
+    interval = time;
+  }
+  function isPaused() {
+    return paused;
+  }
+  return {
+    start,
+    rewind,
+    pause,
+    cancel,
+    set,
+    isPaused
+  };
+}
+
+function State(initialState) {
+  let state = initialState;
+  function set(value) {
+    state = value;
+  }
+  function is(states) {
+    return includes(toArray(states), state);
+  }
+  return { set, is };
+}
+
+function Throttle(func, duration) {
+  let interval;
+  function throttled() {
+    if (!interval) {
+      interval = RequestInterval(duration || 0, () => {
+        func.apply(this, arguments);
+        interval = null;
+      }, null, 1);
+      interval.start();
+    }
+  }
+  return throttled;
+}
+
+function Options(Splide2, Components2, options) {
+  const throttledObserve = Throttle(observe);
+  let initialOptions;
+  let points;
+  let currPoint;
+  function setup() {
+    try {
+      merge(options, JSON.parse(getAttribute(Splide2.root, DATA_ATTRIBUTE)));
+    } catch (e) {
+      assert(false, e.message);
+    }
+    initialOptions = merge({}, options);
+    const { breakpoints } = options;
+    if (breakpoints) {
+      const isMin = options.mediaQuery === "min";
+      points = Object.keys(breakpoints).sort((n, m) => isMin ? +m - +n : +n - +m).map((point) => [
+        point,
+        matchMedia(`(${isMin ? "min" : "max"}-width:${point}px)`)
+      ]);
+      observe();
+    }
+  }
+  function mount() {
+    if (points) {
+      addEventListener("resize", throttledObserve);
+    }
+  }
+  function destroy(completely) {
+    if (completely) {
+      removeEventListener("resize", throttledObserve);
+    }
+  }
+  function observe() {
+    const item = find(points, (item2) => item2[1].matches) || [];
+    if (item[0] !== currPoint) {
+      onMatch(currPoint = item[0]);
+    }
+  }
+  function onMatch(point) {
+    const newOptions = options.breakpoints[point] || initialOptions;
+    if (newOptions.destroy) {
+      Splide2.options = initialOptions;
+      Splide2.destroy(newOptions.destroy === "completely");
+    } else {
+      if (Splide2.state.is(DESTROYED)) {
+        destroy(true);
+        Splide2.mount();
+      }
+      Splide2.options = newOptions;
+    }
+  }
+  return {
+    setup,
+    mount,
+    destroy
+  };
+}
+
+const RTL = "rtl";
+const TTB = "ttb";
+
+const ORIENTATION_MAP = {
+  marginRight: ["marginBottom", "marginLeft"],
+  autoWidth: ["autoHeight"],
+  fixedWidth: ["fixedHeight"],
+  paddingLeft: ["paddingTop", "paddingRight"],
+  paddingRight: ["paddingBottom", "paddingLeft"],
+  width: ["height"],
+  left: ["top", "right"],
+  right: ["bottom", "left"],
+  x: ["y"],
+  X: ["Y"],
+  Y: ["X"],
+  ArrowLeft: ["ArrowUp", "ArrowRight"],
+  ArrowRight: ["ArrowDown", "ArrowLeft"]
+};
+function Direction(Splide2, Components2, options) {
+  function resolve(prop, axisOnly) {
+    const { direction } = options;
+    const index = direction === RTL && !axisOnly ? 1 : direction === TTB ? 0 : -1;
+    return ORIENTATION_MAP[prop][index] || prop;
+  }
+  function orient(value) {
+    return value * (options.direction === RTL ? 1 : -1);
+  }
+  return {
+    resolve,
+    orient
+  };
+}
+
+const CLASS_ROOT = PROJECT_CODE;
+const CLASS_SLIDER = `${PROJECT_CODE}__slider`;
+const CLASS_TRACK = `${PROJECT_CODE}__track`;
+const CLASS_LIST = `${PROJECT_CODE}__list`;
+const CLASS_SLIDE = `${PROJECT_CODE}__slide`;
+const CLASS_CLONE = `${CLASS_SLIDE}--clone`;
+const CLASS_CONTAINER = `${CLASS_SLIDE}__container`;
+const CLASS_ARROWS = `${PROJECT_CODE}__arrows`;
+const CLASS_ARROW = `${PROJECT_CODE}__arrow`;
+const CLASS_ARROW_PREV = `${CLASS_ARROW}--prev`;
+const CLASS_ARROW_NEXT = `${CLASS_ARROW}--next`;
+const CLASS_PAGINATION = `${PROJECT_CODE}__pagination`;
+const CLASS_PAGINATION_PAGE = `${CLASS_PAGINATION}__page`;
+const CLASS_PROGRESS = `${PROJECT_CODE}__progress`;
+const CLASS_PROGRESS_BAR = `${CLASS_PROGRESS}__bar`;
+const CLASS_AUTOPLAY = `${PROJECT_CODE}__autoplay`;
+const CLASS_PLAY = `${PROJECT_CODE}__play`;
+const CLASS_PAUSE = `${PROJECT_CODE}__pause`;
+const CLASS_SPINNER = `${PROJECT_CODE}__spinner`;
+const CLASS_INITIALIZED = "is-initialized";
+const CLASS_ACTIVE = "is-active";
+const CLASS_PREV = "is-prev";
+const CLASS_NEXT = "is-next";
+const CLASS_VISIBLE = "is-visible";
+const CLASS_LOADING = "is-loading";
+const STATUS_CLASSES = [CLASS_ACTIVE, CLASS_VISIBLE, CLASS_PREV, CLASS_NEXT, CLASS_LOADING];
+const CLASSES = {
+  slide: CLASS_SLIDE,
+  clone: CLASS_CLONE,
+  arrows: CLASS_ARROWS,
+  arrow: CLASS_ARROW,
+  prev: CLASS_ARROW_PREV,
+  next: CLASS_ARROW_NEXT,
+  pagination: CLASS_PAGINATION,
+  page: CLASS_PAGINATION_PAGE,
+  spinner: CLASS_SPINNER
+};
+
+function Elements(Splide2, Components2, options) {
+  const { on } = EventInterface(Splide2);
+  const { root } = Splide2;
+  const elements = {};
+  const slides = [];
+  let classes;
+  let slider;
+  let track;
+  let list;
+  function setup() {
+    collect();
+    identify();
+    addClass(root, classes = getClasses());
+  }
+  function mount() {
+    on(EVENT_REFRESH, refresh, DEFAULT_EVENT_PRIORITY - 2);
+    on(EVENT_UPDATED, update);
+  }
+  function destroy() {
+    [root, track, list].forEach((elm) => {
+      removeAttribute(elm, "style");
+    });
+    empty(slides);
+    removeClass(root, classes);
+  }
+  function refresh() {
+    destroy();
+    setup();
+  }
+  function update() {
+    removeClass(root, classes);
+    addClass(root, classes = getClasses());
+  }
+  function collect() {
+    slider = child(root, `.${CLASS_SLIDER}`);
+    track = query(root, `.${CLASS_TRACK}`);
+    list = child(track, `.${CLASS_LIST}`);
+    assert(track && list, "A track/list element is missing.");
+    push(slides, children(list, `.${CLASS_SLIDE}:not(.${CLASS_CLONE})`));
+    const autoplay = find(`.${CLASS_AUTOPLAY}`);
+    const arrows = find(`.${CLASS_ARROWS}`);
+    assign(elements, {
+      root,
+      slider,
+      track,
+      list,
+      slides,
+      arrows,
+      autoplay,
+      prev: query(arrows, `.${CLASS_ARROW_PREV}`),
+      next: query(arrows, `.${CLASS_ARROW_NEXT}`),
+      bar: query(find(`.${CLASS_PROGRESS}`), `.${CLASS_PROGRESS_BAR}`),
+      play: query(autoplay, `.${CLASS_PLAY}`),
+      pause: query(autoplay, `.${CLASS_PAUSE}`)
+    });
+  }
+  function identify() {
+    const id = root.id || uniqueId(PROJECT_CODE);
+    root.id = id;
+    track.id = track.id || `${id}-track`;
+    list.id = list.id || `${id}-list`;
+  }
+  function find(selector) {
+    return child(root, selector) || child(slider, selector);
+  }
+  function getClasses() {
+    return [
+      `${CLASS_ROOT}--${options.type}`,
+      `${CLASS_ROOT}--${options.direction}`,
+      options.drag && `${CLASS_ROOT}--draggable`,
+      options.isNavigation && `${CLASS_ROOT}--nav`,
+      CLASS_ACTIVE
+    ];
+  }
+  return assign(elements, {
+    setup,
+    mount,
+    destroy
+  });
+}
+
+const ROLE = "role";
+const ARIA_CONTROLS = "aria-controls";
+const ARIA_CURRENT = "aria-current";
+const ARIA_LABEL = "aria-label";
+const ARIA_HIDDEN = "aria-hidden";
+const TAB_INDEX = "tabindex";
+const DISABLED = "disabled";
+const ARIA_ORIENTATION = "aria-orientation";
+const ALL_ATTRIBUTES = [
+  ROLE,
+  ARIA_CONTROLS,
+  ARIA_CURRENT,
+  ARIA_LABEL,
+  ARIA_HIDDEN,
+  ARIA_ORIENTATION,
+  TAB_INDEX,
+  DISABLED
+];
+
+const SLIDE = "slide";
+const LOOP = "loop";
+const FADE = "fade";
+
+function Slide$1(Splide2, index, slideIndex, slide) {
+  const { on, emit, bind, destroy: destroyEvents } = EventInterface(Splide2);
+  const { Components, root, options } = Splide2;
+  const { isNavigation, updateOnMove } = options;
+  const { resolve } = Components.Direction;
+  const styles = getAttribute(slide, "style");
+  const isClone = slideIndex > -1;
+  const container = child(slide, `.${CLASS_CONTAINER}`);
+  const focusableNodes = options.focusableNodes && queryAll(slide, options.focusableNodes);
+  let destroyed;
+  function mount() {
+    if (!isClone) {
+      slide.id = `${root.id}-slide${pad(index + 1)}`;
+    }
+    bind(slide, "click keydown", (e) => {
+      emit(e.type === "click" ? EVENT_CLICK : EVENT_SLIDE_KEYDOWN, self, e);
+    });
+    on([EVENT_REFRESH, EVENT_REPOSITIONED, EVENT_SHIFTED, EVENT_MOVED, EVENT_SCROLLED], update);
+    on(EVENT_NAVIGATION_MOUNTED, initNavigation);
+    if (updateOnMove) {
+      on(EVENT_MOVE, onMove);
+    }
+  }
+  function destroy() {
+    destroyed = true;
+    destroyEvents();
+    removeClass(slide, STATUS_CLASSES);
+    removeAttribute(slide, ALL_ATTRIBUTES);
+    setAttribute(slide, "style", styles);
+  }
+  function initNavigation() {
+    const idx = isClone ? slideIndex : index;
+    const label = format(options.i18n.slideX, idx + 1);
+    const controls = Splide2.splides.map((target) => target.splide.root.id).join(" ");
+    setAttribute(slide, ARIA_LABEL, label);
+    setAttribute(slide, ARIA_CONTROLS, controls);
+    setAttribute(slide, ROLE, "menuitem");
+    updateActivity(isActive());
+  }
+  function onMove() {
+    if (!destroyed) {
+      update();
+    }
+  }
+  function update() {
+    if (!destroyed) {
+      const { index: currIndex } = Splide2;
+      updateActivity(isActive());
+      updateVisibility(isVisible());
+      toggleClass(slide, CLASS_PREV, index === currIndex - 1);
+      toggleClass(slide, CLASS_NEXT, index === currIndex + 1);
+    }
+  }
+  function updateActivity(active) {
+    if (active !== hasClass(slide, CLASS_ACTIVE)) {
+      toggleClass(slide, CLASS_ACTIVE, active);
+      if (isNavigation) {
+        setAttribute(slide, ARIA_CURRENT, active || null);
+      }
+      emit(active ? EVENT_ACTIVE : EVENT_INACTIVE, self);
+    }
+  }
+  function updateVisibility(visible) {
+    const hidden = !visible && (!isActive() || isClone);
+    setAttribute(slide, ARIA_HIDDEN, hidden || null);
+    setAttribute(slide, TAB_INDEX, !hidden && options.slideFocus ? 0 : null);
+    if (focusableNodes) {
+      focusableNodes.forEach((node) => {
+        setAttribute(node, TAB_INDEX, hidden ? -1 : null);
+      });
+    }
+    if (visible !== hasClass(slide, CLASS_VISIBLE)) {
+      toggleClass(slide, CLASS_VISIBLE, visible);
+      emit(visible ? EVENT_VISIBLE : EVENT_HIDDEN, self);
+    }
+  }
+  function style$1(prop, value, useContainer) {
+    style(useContainer && container || slide, prop, value);
+  }
+  function isActive() {
+    const { index: curr } = Splide2;
+    return curr === index || options.cloneStatus && curr === slideIndex;
+  }
+  function isVisible() {
+    if (Splide2.is(FADE)) {
+      return isActive();
+    }
+    const trackRect = rect(Components.Elements.track);
+    const slideRect = rect(slide);
+    const left = resolve("left");
+    const right = resolve("right");
+    return floor(trackRect[left]) <= ceil(slideRect[left]) && floor(slideRect[right]) <= ceil(trackRect[right]);
+  }
+  function isWithin(from, distance) {
+    let diff = abs(from - index);
+    if (!isClone && (options.rewind || Splide2.is(LOOP))) {
+      diff = min(diff, Splide2.length - diff);
+    }
+    return diff <= distance;
+  }
+  const self = {
+    index,
+    slideIndex,
+    slide,
+    container,
+    isClone,
+    mount,
+    destroy,
+    update,
+    style: style$1,
+    isWithin
+  };
+  return self;
+}
+
+function Slides(Splide2, Components2, options) {
+  const { on, emit, bind } = EventInterface(Splide2);
+  const { slides, list } = Components2.Elements;
+  const Slides2 = [];
+  function mount() {
+    init();
+    on(EVENT_REFRESH, refresh);
+    on([EVENT_MOUNTED, EVENT_REFRESH], () => {
+      Slides2.sort((Slide1, Slide2) => Slide1.index - Slide2.index);
+    });
+  }
+  function init() {
+    slides.forEach((slide, index) => {
+      register(slide, index, -1);
+    });
+  }
+  function destroy() {
+    forEach$1((Slide2) => {
+      Slide2.destroy();
+    });
+    empty(Slides2);
+  }
+  function refresh() {
+    destroy();
+    init();
+  }
+  function update() {
+    forEach$1((Slide2) => {
+      Slide2.update();
+    });
+  }
+  function register(slide, index, slideIndex) {
+    const object = Slide$1(Splide2, index, slideIndex, slide);
+    object.mount();
+    Slides2.push(object);
+  }
+  function get(excludeClones) {
+    return excludeClones ? filter((Slide2) => !Slide2.isClone) : Slides2;
+  }
+  function getIn(page) {
+    const { Controller } = Components2;
+    const index = Controller.toIndex(page);
+    const max = Controller.hasFocus() ? 1 : options.perPage;
+    return filter((Slide2) => between(Slide2.index, index, index + max - 1));
+  }
+  function getAt(index) {
+    return filter(index)[0];
+  }
+  function add(items, index) {
+    forEach(items, (slide) => {
+      if (isString(slide)) {
+        slide = parseHtml(slide);
+      }
+      if (isHTMLElement(slide)) {
+        const ref = slides[index];
+        ref ? before(slide, ref) : append(list, slide);
+        addClass(slide, options.classes.slide);
+        observeImages(slide, emit.bind(null, EVENT_RESIZE));
+      }
+    });
+    emit(EVENT_REFRESH);
+  }
+  function remove$1(matcher) {
+    remove(filter(matcher).map((Slide2) => Slide2.slide));
+    emit(EVENT_REFRESH);
+  }
+  function forEach$1(iteratee, excludeClones) {
+    get(excludeClones).forEach(iteratee);
+  }
+  function filter(matcher) {
+    return Slides2.filter(isFunction(matcher) ? matcher : (Slide2) => isString(matcher) ? matches(Slide2.slide, matcher) : includes(toArray(matcher), Slide2.index));
+  }
+  function style(prop, value, useContainer) {
+    forEach$1((Slide2) => {
+      Slide2.style(prop, value, useContainer);
+    });
+  }
+  function observeImages(elm, callback) {
+    const images = queryAll(elm, "img");
+    let { length } = images;
+    if (length) {
+      images.forEach((img) => {
+        bind(img, "load error", () => {
+          if (!--length) {
+            callback();
+          }
+        });
+      });
+    } else {
+      callback();
+    }
+  }
+  function getLength(excludeClones) {
+    return excludeClones ? slides.length : Slides2.length;
+  }
+  function isEnough() {
+    return Slides2.length > options.perPage;
+  }
+  return {
+    mount,
+    destroy,
+    update,
+    register,
+    get,
+    getIn,
+    getAt,
+    add,
+    remove: remove$1,
+    forEach: forEach$1,
+    filter,
+    style,
+    getLength,
+    isEnough
+  };
+}
+
+function Layout(Splide2, Components2, options) {
+  const { on, bind, emit } = EventInterface(Splide2);
+  const { Slides } = Components2;
+  const { resolve } = Components2.Direction;
+  const { root, track, list } = Components2.Elements;
+  const { getAt } = Slides;
+  let vertical;
+  let rootRect;
+  function mount() {
+    init();
+    bind(window, "resize load", Throttle(emit.bind(this, EVENT_RESIZE)));
+    on([EVENT_UPDATED, EVENT_REFRESH], init);
+    on(EVENT_RESIZE, resize);
+  }
+  function init() {
+    rootRect = null;
+    vertical = options.direction === TTB;
+    style(root, "maxWidth", unit(options.width));
+    style(track, resolve("paddingLeft"), cssPadding(false));
+    style(track, resolve("paddingRight"), cssPadding(true));
+    resize();
+  }
+  function resize() {
+    const newRect = rect(root);
+    if (!rootRect || rootRect.width !== newRect.width || rootRect.height !== newRect.height) {
+      style(track, "height", cssTrackHeight());
+      Slides.style(resolve("marginRight"), unit(options.gap));
+      Slides.style("width", cssSlideWidth() || null);
+      setSlidesHeight();
+      rootRect = newRect;
+      emit(EVENT_RESIZED);
+    }
+  }
+  function setSlidesHeight() {
+    Slides.style("height", cssSlideHeight() || null, true);
+  }
+  function cssPadding(right) {
+    const { padding } = options;
+    const prop = resolve(right ? "right" : "left");
+    return padding && unit(padding[prop] || (isObject(padding) ? 0 : padding)) || "0px";
+  }
+  function cssTrackHeight() {
+    let height = "";
+    if (vertical) {
+      height = cssHeight();
+      assert(height, "height or heightRatio is missing.");
+      height = `calc(${height} - ${cssPadding(false)} - ${cssPadding(true)})`;
+    }
+    return height;
+  }
+  function cssHeight() {
+    return unit(options.height || rect(list).width * options.heightRatio);
+  }
+  function cssSlideWidth() {
+    return options.autoWidth ? "" : unit(options.fixedWidth) || (vertical ? "" : cssSlideSize());
+  }
+  function cssSlideHeight() {
+    return unit(options.fixedHeight) || (vertical ? options.autoHeight ? "" : cssSlideSize() : cssHeight());
+  }
+  function cssSlideSize() {
+    const gap = unit(options.gap);
+    return `calc((100%${gap && ` + ${gap}`})/${options.perPage || 1}${gap && ` - ${gap}`})`;
+  }
+  function listSize() {
+    return rect(list)[resolve("width")];
+  }
+  function slideSize(index, withoutGap) {
+    const Slide = getAt(index || 0);
+    return Slide ? rect(Slide.slide)[resolve("width")] + (withoutGap ? 0 : getGap()) : 0;
+  }
+  function totalSize(index, withoutGap) {
+    const Slide = getAt(index);
+    if (Slide) {
+      const right = rect(Slide.slide)[resolve("right")];
+      const left = rect(list)[resolve("left")];
+      return abs(right - left) + (withoutGap ? 0 : getGap());
+    }
+    return 0;
+  }
+  function sliderSize() {
+    return totalSize(Splide2.length - 1, true) - totalSize(-1, true);
+  }
+  function getGap() {
+    const Slide = getAt(0);
+    return Slide && parseFloat(style(Slide.slide, resolve("marginRight"))) || 0;
+  }
+  function getPadding(right) {
+    return parseFloat(style(track, resolve(`padding${right ? "Right" : "Left"}`))) || 0;
+  }
+  return {
+    mount,
+    listSize,
+    slideSize,
+    sliderSize,
+    totalSize,
+    getPadding
+  };
+}
+
+function Clones(Splide2, Components2, options) {
+  const { on, emit } = EventInterface(Splide2);
+  const { Elements, Slides } = Components2;
+  const { resolve } = Components2.Direction;
+  const clones = [];
+  let cloneCount;
+  function mount() {
+    init();
+    on(EVENT_REFRESH, refresh);
+    on([EVENT_UPDATED, EVENT_RESIZE], observe);
+  }
+  function init() {
+    if (cloneCount = computeCloneCount()) {
+      generate(cloneCount);
+      emit(EVENT_RESIZE);
+    }
+  }
+  function destroy() {
+    remove(clones);
+    empty(clones);
+  }
+  function refresh() {
+    destroy();
+    init();
+  }
+  function observe() {
+    if (cloneCount < computeCloneCount()) {
+      emit(EVENT_REFRESH);
+    }
+  }
+  function generate(count) {
+    const slides = Slides.get().slice();
+    const { length } = slides;
+    if (length) {
+      while (slides.length < count) {
+        push(slides, slides);
+      }
+      push(slides.slice(-count), slides.slice(0, count)).forEach((Slide, index) => {
+        const isHead = index < count;
+        const clone = cloneDeep(Slide.slide, index);
+        isHead ? before(clone, slides[0].slide) : append(Elements.list, clone);
+        push(clones, clone);
+        Slides.register(clone, index - count + (isHead ? 0 : length), Slide.index);
+      });
+    }
+  }
+  function cloneDeep(elm, index) {
+    const clone = elm.cloneNode(true);
+    addClass(clone, options.classes.clone);
+    clone.id = `${Splide2.root.id}-clone${pad(index + 1)}`;
+    return clone;
+  }
+  function computeCloneCount() {
+    let { clones: clones2 } = options;
+    if (!Splide2.is(LOOP)) {
+      clones2 = 0;
+    } else if (!clones2) {
+      const fixedSize = measure(Elements.list, options[resolve("fixedWidth")]);
+      const fixedCount = fixedSize && ceil(rect(Elements.track)[resolve("width")] / fixedSize);
+      const baseCount = fixedCount || options[resolve("autoWidth")] && Splide2.length || options.perPage;
+      clones2 = baseCount * (options.drag ? (options.flickMaxPages || 1) + 1 : 2);
+    }
+    return clones2;
+  }
+  return {
+    mount,
+    destroy
+  };
+}
+
+function Move(Splide2, Components2, options) {
+  const { on, emit } = EventInterface(Splide2);
+  const { slideSize, getPadding, totalSize, listSize, sliderSize } = Components2.Layout;
+  const { resolve, orient } = Components2.Direction;
+  const { list, track } = Components2.Elements;
+  let Transition;
+  function mount() {
+    Transition = Components2.Transition;
+    on([EVENT_MOUNTED, EVENT_RESIZED, EVENT_UPDATED, EVENT_REFRESH], reposition);
+  }
+  function destroy() {
+    removeAttribute(list, "style");
+  }
+  function reposition() {
+    if (!isBusy()) {
+      Components2.Scroll.cancel();
+      jump(Splide2.index);
+      emit(EVENT_REPOSITIONED);
+    }
+  }
+  function move(dest, index, prev, callback) {
+    if (!isBusy()) {
+      const { set } = Splide2.state;
+      const position = getPosition();
+      if (dest !== index) {
+        Transition.cancel();
+        translate(shift(position, dest > index), true);
+      }
+      set(MOVING);
+      emit(EVENT_MOVE, index, prev, dest);
+      Transition.start(index, () => {
+        set(IDLE);
+        emit(EVENT_MOVED, index, prev, dest);
+        if (options.trimSpace === "move" && dest !== prev && position === getPosition()) {
+          Components2.Controller.go(dest > prev ? ">" : "<", false, callback);
+        } else {
+          callback && callback();
+        }
+      });
+    }
+  }
+  function jump(index) {
+    translate(toPosition(index, true));
+  }
+  function translate(position, preventLoop) {
+    if (!Splide2.is(FADE)) {
+      const destination = preventLoop ? position : loop(position);
+      list.style.transform = `translate${resolve("X")}(${destination}px)`;
+      position !== destination && emit(EVENT_SHIFTED);
+    }
+  }
+  function loop(position) {
+    if (Splide2.is(LOOP)) {
+      const diff = orient(position - getPosition());
+      const exceededMin = exceededLimit(false, position) && diff < 0;
+      const exceededMax = exceededLimit(true, position) && diff > 0;
+      if (exceededMin || exceededMax) {
+        position = shift(position, exceededMax);
+      }
+    }
+    return position;
+  }
+  function shift(position, backwards) {
+    const excess = position - getLimit(backwards);
+    const size = sliderSize();
+    position -= orient(size * (ceil(abs(excess) / size) || 1)) * (backwards ? 1 : -1);
+    return position;
+  }
+  function cancel() {
+    translate(getPosition());
+    Transition.cancel();
+  }
+  function toIndex(position) {
+    const Slides = Components2.Slides.get();
+    let index = 0;
+    let minDistance = Infinity;
+    for (let i = 0; i < Slides.length; i++) {
+      const slideIndex = Slides[i].index;
+      const distance = abs(toPosition(slideIndex, true) - position);
+      if (distance <= minDistance) {
+        minDistance = distance;
+        index = slideIndex;
+      } else {
+        break;
+      }
+    }
+    return index;
+  }
+  function toPosition(index, trimming) {
+    const position = orient(totalSize(index - 1) - offset(index));
+    return trimming ? trim(position) : position;
+  }
+  function getPosition() {
+    const left = resolve("left");
+    return rect(list)[left] - rect(track)[left] + orient(getPadding(false));
+  }
+  function trim(position) {
+    if (options.trimSpace && Splide2.is(SLIDE)) {
+      position = clamp(position, 0, orient(sliderSize() - listSize()));
+    }
+    return position;
+  }
+  function offset(index) {
+    const { focus } = options;
+    return focus === "center" ? (listSize() - slideSize(index, true)) / 2 : +focus * slideSize(index) || 0;
+  }
+  function getLimit(max) {
+    return toPosition(max ? Components2.Controller.getEnd() : 0, !!options.trimSpace);
+  }
+  function isBusy() {
+    return Splide2.state.is(MOVING) && options.waitForTransition;
+  }
+  function exceededLimit(max, position) {
+    position = isUndefined(position) ? getPosition() : position;
+    const exceededMin = max !== true && orient(position) < orient(getLimit(false));
+    const exceededMax = max !== false && orient(position) > orient(getLimit(true));
+    return exceededMin || exceededMax;
+  }
+  return {
+    mount,
+    destroy,
+    move,
+    jump,
+    translate,
+    shift,
+    cancel,
+    toIndex,
+    toPosition,
+    getPosition,
+    getLimit,
+    isBusy,
+    exceededLimit
+  };
+}
+
+function Controller(Splide2, Components2, options) {
+  const { on } = EventInterface(Splide2);
+  const { Move } = Components2;
+  const { getPosition, getLimit } = Move;
+  const { isEnough, getLength } = Components2.Slides;
+  const isLoop = Splide2.is(LOOP);
+  const isSlide = Splide2.is(SLIDE);
+  let currIndex = options.start || 0;
+  let prevIndex = currIndex;
+  let slideCount;
+  let perMove;
+  let perPage;
+  function mount() {
+    init();
+    on([EVENT_UPDATED, EVENT_REFRESH], init, DEFAULT_EVENT_PRIORITY - 1);
+  }
+  function init() {
+    slideCount = getLength(true);
+    perMove = options.perMove;
+    perPage = options.perPage;
+    currIndex = clamp(currIndex, 0, slideCount - 1);
+  }
+  function go(control, allowSameIndex, callback) {
+    const dest = parse(control);
+    if (options.useScroll) {
+      scroll(dest, true, true, options.speed, callback);
+    } else {
+      const index = loop(dest);
+      if (index > -1 && !Move.isBusy() && (allowSameIndex || index !== currIndex)) {
+        setIndex(index);
+        Move.move(dest, index, prevIndex, callback);
+      }
+    }
+  }
+  function scroll(destination, useIndex, snap, duration, callback) {
+    const dest = useIndex ? destination : toDest(destination);
+    Components2.Scroll.scroll(useIndex || snap ? Move.toPosition(dest, true) : destination, duration, () => {
+      setIndex(Move.toIndex(Move.getPosition()));
+      callback && callback();
+    });
+  }
+  function parse(control) {
+    let index = currIndex;
+    if (isString(control)) {
+      const [, indicator, number] = control.match(/([+\-<>])(\d+)?/) || [];
+      if (indicator === "+" || indicator === "-") {
+        index = computeDestIndex(currIndex + +`${indicator}${+number || 1}`, currIndex, true);
+      } else if (indicator === ">") {
+        index = number ? toIndex(+number) : getNext(true);
+      } else if (indicator === "<") {
+        index = getPrev(true);
+      }
+    } else {
+      index = isLoop ? control : clamp(control, 0, getEnd());
+    }
+    return index;
+  }
+  function getNext(destination) {
+    return getAdjacent(false, destination);
+  }
+  function getPrev(destination) {
+    return getAdjacent(true, destination);
+  }
+  function getAdjacent(prev, destination) {
+    const number = perMove || (hasFocus() ? 1 : perPage);
+    const dest = computeDestIndex(currIndex + number * (prev ? -1 : 1), currIndex);
+    if (dest === -1 && isSlide) {
+      if (!approximatelyEqual(getPosition(), getLimit(!prev), 1)) {
+        return prev ? 0 : getEnd();
+      }
+    }
+    return destination ? dest : loop(dest);
+  }
+  function computeDestIndex(dest, from, incremental) {
+    if (isEnough()) {
+      const end = getEnd();
+      if (dest < 0 || dest > end) {
+        if (between(0, dest, from, true) || between(end, from, dest, true)) {
+          dest = toIndex(toPage(dest));
+        } else {
+          if (isLoop) {
+            dest = perMove || hasFocus() ? dest : dest < 0 ? -(slideCount % perPage || perPage) : slideCount;
+          } else if (options.rewind) {
+            dest = dest < 0 ? end : 0;
+          } else {
+            dest = -1;
+          }
+        }
+      } else {
+        if (!incremental && dest !== from) {
+          dest = perMove ? dest : toIndex(toPage(from) + (dest < from ? -1 : 1));
+        }
+      }
+    } else {
+      dest = -1;
+    }
+    return dest;
+  }
+  function getEnd() {
+    let end = slideCount - perPage;
+    if (hasFocus() || isLoop && perMove) {
+      end = slideCount - 1;
+    }
+    return max(end, 0);
+  }
+  function loop(index) {
+    if (isLoop) {
+      return isEnough() ? index % slideCount + (index < 0 ? slideCount : 0) : -1;
+    }
+    return index;
+  }
+  function toIndex(page) {
+    return clamp(hasFocus() ? page : perPage * page, 0, getEnd());
+  }
+  function toPage(index) {
+    if (!hasFocus()) {
+      index = between(index, slideCount - perPage, slideCount - 1) ? slideCount - 1 : index;
+      index = floor(index / perPage);
+    }
+    return index;
+  }
+  function toDest(destination) {
+    const closest = Move.toIndex(destination);
+    return isSlide ? clamp(closest, 0, getEnd()) : closest;
+  }
+  function setIndex(index) {
+    if (index !== currIndex) {
+      prevIndex = currIndex;
+      currIndex = index;
+    }
+  }
+  function getIndex(prev) {
+    return prev ? prevIndex : currIndex;
+  }
+  function hasFocus() {
+    return !isUndefined(options.focus) || options.isNavigation;
+  }
+  return {
+    mount,
+    go,
+    scroll,
+    getNext,
+    getPrev,
+    getAdjacent,
+    getEnd,
+    setIndex,
+    getIndex,
+    toIndex,
+    toPage,
+    toDest,
+    hasFocus
+  };
+}
+
+const XML_NAME_SPACE = "http://www.w3.org/2000/svg";
+const PATH = "m15.5 0.932-4.3 4.38 14.5 14.6-14.5 14.5 4.3 4.4 14.6-14.6 4.4-4.3-4.4-4.4-14.6-14.6z";
+const SIZE = 40;
+
+function Arrows(Splide2, Components2, options) {
+  const { on, bind, emit } = EventInterface(Splide2);
+  const { classes, i18n } = options;
+  const { Elements, Controller } = Components2;
+  let wrapper = Elements.arrows;
+  let prev = Elements.prev;
+  let next = Elements.next;
+  let created;
+  const arrows = {};
+  function mount() {
+    init();
+    on(EVENT_UPDATED, init);
+  }
+  function init() {
+    if (options.arrows) {
+      if (!prev || !next) {
+        createArrows();
+      }
+    }
+    if (prev && next) {
+      if (!arrows.prev) {
+        const { id } = Elements.track;
+        setAttribute(prev, ARIA_CONTROLS, id);
+        setAttribute(next, ARIA_CONTROLS, id);
+        arrows.prev = prev;
+        arrows.next = next;
+        listen();
+        emit(EVENT_ARROWS_MOUNTED, prev, next);
+      } else {
+        display(wrapper, options.arrows === false ? "none" : "");
+      }
+    }
+  }
+  function destroy() {
+    if (created) {
+      remove(wrapper);
+    } else {
+      removeAttribute(prev, ALL_ATTRIBUTES);
+      removeAttribute(next, ALL_ATTRIBUTES);
+    }
+  }
+  function listen() {
+    const { go } = Controller;
+    on([EVENT_MOUNTED, EVENT_MOVED, EVENT_UPDATED, EVENT_REFRESH, EVENT_SCROLLED], update);
+    bind(next, "click", () => {
+      go(">", true);
+    });
+    bind(prev, "click", () => {
+      go("<", true);
+    });
+  }
+  function createArrows() {
+    wrapper = create("div", classes.arrows);
+    prev = createArrow(true);
+    next = createArrow(false);
+    created = true;
+    append(wrapper, [prev, next]);
+    before(wrapper, child(options.arrows === "slider" && Elements.slider || Splide2.root));
+  }
+  function createArrow(prev2) {
+    const arrow = `<button class="${classes.arrow} ${prev2 ? classes.prev : classes.next}" type="button"><svg xmlns="${XML_NAME_SPACE}" viewBox="0 0 ${SIZE} ${SIZE}" width="${SIZE}" height="${SIZE}"><path d="${options.arrowPath || PATH}" />`;
+    return parseHtml(arrow);
+  }
+  function update() {
+    const index = Splide2.index;
+    const prevIndex = Controller.getPrev();
+    const nextIndex = Controller.getNext();
+    const prevLabel = prevIndex > -1 && index < prevIndex ? i18n.last : i18n.prev;
+    const nextLabel = nextIndex > -1 && index > nextIndex ? i18n.first : i18n.next;
+    prev.disabled = prevIndex < 0;
+    next.disabled = nextIndex < 0;
+    setAttribute(prev, ARIA_LABEL, prevLabel);
+    setAttribute(next, ARIA_LABEL, nextLabel);
+    emit(EVENT_ARROWS_UPDATED, prev, next, prevIndex, nextIndex);
+  }
+  return {
+    arrows,
+    mount,
+    destroy
+  };
+}
+
+const INTERVAL_DATA_ATTRIBUTE = `${DATA_ATTRIBUTE}-interval`;
+
+function Autoplay(Splide2, Components2, options) {
+  const { on, bind, emit } = EventInterface(Splide2);
+  const interval = RequestInterval(options.interval, Splide2.go.bind(Splide2, ">"), update);
+  const { isPaused } = interval;
+  const { Elements } = Components2;
+  let hovered;
+  let focused;
+  let paused;
+  function mount() {
+    const { autoplay } = options;
+    if (autoplay) {
+      initButton(true);
+      initButton(false);
+      listen();
+      if (autoplay !== "pause") {
+        play();
+      }
+    }
+  }
+  function initButton(forPause) {
+    const prop = forPause ? "pause" : "play";
+    const button = Elements[prop];
+    if (button) {
+      setAttribute(button, ARIA_CONTROLS, Elements.track.id);
+      setAttribute(button, ARIA_LABEL, options.i18n[prop]);
+      bind(button, "click", forPause ? pause : play);
+    }
+  }
+  function listen() {
+    const { root } = Elements;
+    if (options.pauseOnHover) {
+      bind(root, "mouseenter mouseleave", (e) => {
+        hovered = e.type === "mouseenter";
+        autoToggle();
+      });
+    }
+    if (options.pauseOnFocus) {
+      bind(root, "focusin focusout", (e) => {
+        focused = e.type === "focusin";
+        autoToggle();
+      });
+    }
+    on([EVENT_MOVE, EVENT_SCROLL, EVENT_REFRESH], interval.rewind);
+    on(EVENT_MOVE, updateInterval);
+  }
+  function play() {
+    if (isPaused() && Components2.Slides.isEnough()) {
+      interval.start(!options.resetProgress);
+      focused = hovered = paused = false;
+      emit(EVENT_AUTOPLAY_PLAY);
+    }
+  }
+  function pause(manual = true) {
+    if (!isPaused()) {
+      interval.pause();
+      emit(EVENT_AUTOPLAY_PAUSE);
+    }
+    paused = manual;
+  }
+  function autoToggle() {
+    if (!paused) {
+      if (!hovered && !focused) {
+        play();
+      } else {
+        pause(false);
+      }
+    }
+  }
+  function update(rate) {
+    const { bar } = Elements;
+    bar && style(bar, "width", `${rate * 100}%`);
+    emit(EVENT_AUTOPLAY_PLAYING, rate);
+  }
+  function updateInterval() {
+    const Slide = Components2.Slides.getAt(Splide2.index);
+    interval.set(Slide && +getAttribute(Slide.slide, INTERVAL_DATA_ATTRIBUTE) || options.interval);
+  }
+  return {
+    mount,
+    destroy: interval.cancel,
+    play,
+    pause,
+    isPaused
+  };
+}
+
+function Cover(Splide2, Components2, options) {
+  const { on } = EventInterface(Splide2);
+  function mount() {
+    if (options.cover) {
+      on(EVENT_LAZYLOAD_LOADED, (img, Slide) => {
+        toggle(true, img, Slide);
+      });
+      on([EVENT_MOUNTED, EVENT_UPDATED, EVENT_REFRESH], apply.bind(null, true));
+    }
+  }
+  function destroy() {
+    apply(false);
+  }
+  function apply(cover) {
+    Components2.Slides.forEach((Slide) => {
+      const img = child(Slide.container || Slide.slide, "img");
+      if (img && img.src) {
+        toggle(cover, img, Slide);
+      }
+    });
+  }
+  function toggle(cover, img, Slide) {
+    Slide.style("background", cover ? `center/cover no-repeat url("${img.src}")` : "", true);
+    display(img, cover ? "none" : "");
+  }
+  return {
+    mount,
+    destroy
+  };
+}
+
+const BOUNCE_DIFF_THRESHOLD = 10;
+const BOUNCE_DURATION = 600;
+const FRICTION_FACTOR = 0.6;
+const BASE_VELOCITY = 1.5;
+const MIN_DURATION = 800;
+
+function Scroll(Splide2, Components2, options) {
+  const { on, emit } = EventInterface(Splide2);
+  const { Move } = Components2;
+  const { getPosition, getLimit, exceededLimit } = Move;
+  let interval;
+  let scrollCallback;
+  function mount() {
+    on(EVENT_MOVE, clear);
+    on([EVENT_UPDATED, EVENT_REFRESH], cancel);
+  }
+  function scroll(destination, duration, callback, suppressConstraint) {
+    const start = getPosition();
+    let friction = 1;
+    duration = duration || computeDuration(abs(destination - start));
+    scrollCallback = callback;
+    clear();
+    interval = RequestInterval(duration, onScrolled, (rate) => {
+      const position = getPosition();
+      const target = start + (destination - start) * easing(rate);
+      const diff = (target - getPosition()) * friction;
+      Move.translate(position + diff);
+      if (Splide2.is(SLIDE) && !suppressConstraint && exceededLimit()) {
+        friction *= FRICTION_FACTOR;
+        if (abs(diff) < BOUNCE_DIFF_THRESHOLD) {
+          bounce(exceededLimit(false));
+        }
+      }
+    }, 1);
+    emit(EVENT_SCROLL);
+    interval.start();
+  }
+  function bounce(backwards) {
+    scroll(getLimit(!backwards), BOUNCE_DURATION, null, true);
+  }
+  function onScrolled() {
+    const position = getPosition();
+    const index = Move.toIndex(position);
+    if (!between(index, 0, Splide2.length - 1)) {
+      Move.translate(Move.shift(position, index > 0), true);
+    }
+    scrollCallback && scrollCallback();
+    emit(EVENT_SCROLLED);
+  }
+  function computeDuration(distance) {
+    return max(distance / BASE_VELOCITY, MIN_DURATION);
+  }
+  function clear() {
+    if (interval) {
+      interval.cancel();
+    }
+  }
+  function cancel() {
+    if (interval && !interval.isPaused()) {
+      clear();
+      onScrolled();
+    }
+  }
+  function easing(t) {
+    const { easingFunc } = options;
+    return easingFunc ? easingFunc(t) : 1 - Math.pow(1 - t, 4);
+  }
+  return {
+    mount,
+    destroy: clear,
+    scroll,
+    cancel
+  };
+}
+
+const SCROLL_LISTENER_OPTIONS = { passive: false, capture: true };
+
+const FRICTION = 5;
+const LOG_INTERVAL = 200;
+const POINTER_DOWN_EVENTS = "touchstart mousedown";
+const POINTER_MOVE_EVENTS = "touchmove mousemove";
+const POINTER_UP_EVENTS = "touchend touchcancel mouseup";
+
+function Drag(Splide2, Components2, options) {
+  const { on, emit, bind, unbind } = EventInterface(Splide2);
+  const { Move, Scroll, Controller } = Components2;
+  const { track } = Components2.Elements;
+  const { resolve, orient } = Components2.Direction;
+  const { getPosition, exceededLimit } = Move;
+  let basePosition;
+  let baseEvent;
+  let prevBaseEvent;
+  let lastEvent;
+  let isFree;
+  let dragging;
+  let hasExceeded = false;
+  let clickPrevented;
+  let disabled;
+  let target;
+  function mount() {
+    bind(track, POINTER_MOVE_EVENTS, noop, SCROLL_LISTENER_OPTIONS);
+    bind(track, POINTER_UP_EVENTS, noop, SCROLL_LISTENER_OPTIONS);
+    bind(track, POINTER_DOWN_EVENTS, onPointerDown, SCROLL_LISTENER_OPTIONS);
+    bind(track, "click", onClick, { capture: true });
+    bind(track, "dragstart", prevent);
+    on([EVENT_MOUNTED, EVENT_UPDATED], init);
+  }
+  function init() {
+    const { drag } = options;
+    disable(!drag);
+    isFree = drag === "free";
+  }
+  function onPointerDown(e) {
+    if (!disabled) {
+      const { noDrag } = options;
+      const isTouch = isTouchEvent(e);
+      const isDraggable = !noDrag || !matches(e.target, noDrag);
+      clickPrevented = false;
+      if (isDraggable && (isTouch || !e.button)) {
+        if (!Move.isBusy()) {
+          target = isTouch ? track : window;
+          prevBaseEvent = null;
+          lastEvent = null;
+          bind(target, POINTER_MOVE_EVENTS, onPointerMove, SCROLL_LISTENER_OPTIONS);
+          bind(target, POINTER_UP_EVENTS, onPointerUp, SCROLL_LISTENER_OPTIONS);
+          Move.cancel();
+          Scroll.cancel();
+          save(e);
+        } else {
+          prevent(e, true);
+        }
+      }
+    }
+  }
+  function onPointerMove(e) {
+    if (!lastEvent) {
+      emit(EVENT_DRAG);
+    }
+    lastEvent = e;
+    if (e.cancelable) {
+      const diff = coordOf(e) - coordOf(baseEvent);
+      if (dragging) {
+        Move.translate(basePosition + constrain(diff));
+        const expired = timeOf(e) - timeOf(baseEvent) > LOG_INTERVAL;
+        const exceeded = hasExceeded !== (hasExceeded = exceededLimit());
+        if (expired || exceeded) {
+          save(e);
+        }
+        emit(EVENT_DRAGGING);
+        clickPrevented = true;
+        prevent(e);
+      } else {
+        let { dragMinThreshold: thresholds } = options;
+        thresholds = isObject(thresholds) ? thresholds : { mouse: 0, touch: +thresholds || 10 };
+        dragging = abs(diff) > (isTouchEvent(e) ? thresholds.touch : thresholds.mouse);
+        if (isSliderDirection()) {
+          prevent(e);
+        }
+      }
+    }
+  }
+  function onPointerUp(e) {
+    unbind(target, POINTER_MOVE_EVENTS, onPointerMove);
+    unbind(target, POINTER_UP_EVENTS, onPointerUp);
+    const { index } = Splide2;
+    if (lastEvent) {
+      if (dragging || e.cancelable && isSliderDirection()) {
+        const velocity = computeVelocity(e);
+        const destination = computeDestination(velocity);
+        if (isFree) {
+          Controller.scroll(destination);
+        } else if (Splide2.is(FADE)) {
+          Controller.go(index + orient(sign(velocity)));
+        } else {
+          Controller.go(Controller.toDest(destination), true);
+        }
+        prevent(e);
+      }
+      emit(EVENT_DRAGGED);
+    } else {
+      if (!isFree && getPosition() !== Move.toPosition(index)) {
+        Controller.go(index, true);
+      }
+    }
+    dragging = false;
+  }
+  function save(e) {
+    prevBaseEvent = baseEvent;
+    baseEvent = e;
+    basePosition = getPosition();
+  }
+  function onClick(e) {
+    if (!disabled && clickPrevented) {
+      prevent(e, true);
+    }
+  }
+  function isSliderDirection() {
+    const diffX = abs(coordOf(lastEvent) - coordOf(baseEvent));
+    const diffY = abs(coordOf(lastEvent, true) - coordOf(baseEvent, true));
+    return diffX > diffY;
+  }
+  function computeVelocity(e) {
+    if (Splide2.is(LOOP) || !hasExceeded) {
+      const base = baseEvent === lastEvent && prevBaseEvent || baseEvent;
+      const diffCoord = coordOf(lastEvent) - coordOf(base);
+      const diffTime = timeOf(e) - timeOf(base);
+      const isFlick = timeOf(e) - timeOf(lastEvent) < LOG_INTERVAL;
+      if (diffTime && isFlick) {
+        return diffCoord / diffTime;
+      }
+    }
+    return 0;
+  }
+  function computeDestination(velocity) {
+    return getPosition() + sign(velocity) * min(abs(velocity) * (options.flickPower || 600), isFree ? Infinity : Components2.Layout.listSize() * (options.flickMaxPages || 1));
+  }
+  function coordOf(e, orthogonal) {
+    return (isTouchEvent(e) ? e.touches[0] : e)[`page${resolve(orthogonal ? "Y" : "X")}`];
+  }
+  function timeOf(e) {
+    return e.timeStamp;
+  }
+  function constrain(diff) {
+    return diff / (hasExceeded && Splide2.is(SLIDE) ? FRICTION : 1);
+  }
+  function isTouchEvent(e) {
+    return typeof TouchEvent !== "undefined" && e instanceof TouchEvent;
+  }
+  function isDragging() {
+    return dragging;
+  }
+  function disable(value) {
+    disabled = value;
+  }
+  return {
+    mount,
+    disable,
+    isDragging
+  };
+}
+
+const IE_ARROW_KEYS = ["Left", "Right", "Up", "Down"];
+const KEYBOARD_EVENT = "keydown";
+function Keyboard(Splide2, Components2, options) {
+  const { on, bind, unbind } = EventInterface(Splide2);
+  const { root } = Splide2;
+  const { resolve } = Components2.Direction;
+  let target;
+  let disabled;
+  function mount() {
+    init();
+    on(EVENT_UPDATED, onUpdated);
+    on(EVENT_MOVE, onMove);
+  }
+  function init() {
+    const { keyboard } = options;
+    if (keyboard) {
+      if (keyboard === "focused") {
+        target = root;
+        setAttribute(root, TAB_INDEX, 0);
+      } else {
+        target = window;
+      }
+      bind(target, KEYBOARD_EVENT, onKeydown);
+    }
+  }
+  function destroy() {
+    unbind(target, KEYBOARD_EVENT);
+    if (isHTMLElement(target)) {
+      removeAttribute(target, TAB_INDEX);
+    }
+  }
+  function disable(value) {
+    disabled = value;
+  }
+  function onMove() {
+    const _disabled = disabled;
+    disabled = true;
+    nextTick(() => {
+      disabled = _disabled;
+    });
+  }
+  function onUpdated() {
+    destroy();
+    init();
+  }
+  function onKeydown(e) {
+    if (!disabled) {
+      const { key } = e;
+      const normalizedKey = includes(IE_ARROW_KEYS, key) ? `Arrow${key}` : key;
+      if (normalizedKey === resolve("ArrowLeft")) {
+        Splide2.go("<");
+      } else if (normalizedKey === resolve("ArrowRight")) {
+        Splide2.go(">");
+      }
+    }
+  }
+  return {
+    mount,
+    destroy,
+    disable
+  };
+}
+
+const SRC_DATA_ATTRIBUTE = `${DATA_ATTRIBUTE}-lazy`;
+const SRCSET_DATA_ATTRIBUTE = `${SRC_DATA_ATTRIBUTE}-srcset`;
+const IMAGE_SELECTOR = `[${SRC_DATA_ATTRIBUTE}], [${SRCSET_DATA_ATTRIBUTE}]`;
+
+function LazyLoad(Splide2, Components2, options) {
+  const { on, off, bind, emit } = EventInterface(Splide2);
+  const isSequential = options.lazyLoad === "sequential";
+  let images = [];
+  let index = 0;
+  function mount() {
+    if (options.lazyLoad) {
+      init();
+      on(EVENT_REFRESH, refresh);
+      if (!isSequential) {
+        on([EVENT_MOUNTED, EVENT_REFRESH, EVENT_MOVED, EVENT_SCROLLED], observe);
+      }
+    }
+  }
+  function refresh() {
+    destroy();
+    init();
+  }
+  function init() {
+    Components2.Slides.forEach((_Slide) => {
+      queryAll(_Slide.slide, IMAGE_SELECTOR).forEach((_img) => {
+        const src = getAttribute(_img, SRC_DATA_ATTRIBUTE);
+        const srcset = getAttribute(_img, SRCSET_DATA_ATTRIBUTE);
+        if (src !== _img.src || srcset !== _img.srcset) {
+          const className = options.classes.spinner;
+          const parent = _img.parentElement;
+          const _spinner = child(parent, `.${className}`) || create("span", className, parent);
+          setAttribute(_spinner, ROLE, "presentation");
+          images.push({ _img, _Slide, src, srcset, _spinner });
+          !_img.src && display(_img, "none");
+        }
+      });
+    });
+    if (isSequential) {
+      loadNext();
+    }
+  }
+  function destroy() {
+    index = 0;
+    images = [];
+  }
+  function observe() {
+    images = images.filter((data) => {
+      const distance = options.perPage * ((options.preloadPages || 1) + 1) - 1;
+      if (data._Slide.isWithin(Splide2.index, distance)) {
+        return load(data);
+      }
+      return true;
+    });
+    if (!images.length) {
+      off(EVENT_MOVED);
+    }
+  }
+  function load(data) {
+    const { _img } = data;
+    addClass(data._Slide.slide, CLASS_LOADING);
+    bind(_img, "load error", (e) => {
+      onLoad(data, e.type === "error");
+    });
+    ["srcset", "src"].forEach((name) => {
+      if (data[name]) {
+        setAttribute(_img, name, data[name]);
+        removeAttribute(_img, name === "src" ? SRC_DATA_ATTRIBUTE : SRCSET_DATA_ATTRIBUTE);
+      }
+    });
+  }
+  function onLoad(data, error) {
+    const { _Slide } = data;
+    removeClass(_Slide.slide, CLASS_LOADING);
+    if (!error) {
+      remove(data._spinner);
+      display(data._img, "");
+      emit(EVENT_LAZYLOAD_LOADED, data._img, _Slide);
+      emit(EVENT_RESIZE);
+    }
+    if (isSequential) {
+      loadNext();
+    }
+  }
+  function loadNext() {
+    if (index < images.length) {
+      load(images[index++]);
+    }
+  }
+  return {
+    mount,
+    destroy
+  };
+}
+
+function Pagination(Splide2, Components2, options) {
+  const { on, emit, bind, unbind } = EventInterface(Splide2);
+  const { Slides, Elements, Controller } = Components2;
+  const { hasFocus, getIndex } = Controller;
+  const items = [];
+  let list;
+  function mount() {
+    init();
+    on([EVENT_UPDATED, EVENT_REFRESH], init);
+    on([EVENT_MOVE, EVENT_SCROLLED], update);
+  }
+  function init() {
+    destroy();
+    if (options.pagination && Slides.isEnough()) {
+      createPagination();
+      emit(EVENT_PAGINATION_MOUNTED, { list, items }, getAt(Splide2.index));
+      update();
+    }
+  }
+  function destroy() {
+    if (list) {
+      remove(list);
+      items.forEach((item) => {
+        unbind(item.button, "click");
+      });
+      empty(items);
+      list = null;
+    }
+  }
+  function createPagination() {
+    const { length } = Splide2;
+    const { classes, i18n, perPage } = options;
+    const parent = options.pagination === "slider" && Elements.slider || Elements.root;
+    const max = hasFocus() ? length : ceil(length / perPage);
+    list = create("ul", classes.pagination, parent);
+    for (let i = 0; i < max; i++) {
+      const li = create("li", null, list);
+      const button = create("button", { class: classes.page, type: "button" }, li);
+      const controls = Slides.getIn(i).map((Slide) => Slide.slide.id);
+      const text = !hasFocus() && perPage > 1 ? i18n.pageX : i18n.slideX;
+      bind(button, "click", onClick.bind(null, i));
+      setAttribute(button, ARIA_CONTROLS, controls.join(" "));
+      setAttribute(button, ARIA_LABEL, format(text, i + 1));
+      items.push({ li, button, page: i });
+    }
+  }
+  function onClick(page) {
+    Controller.go(`>${page}`, true, () => {
+      const Slide = Slides.getAt(Controller.toIndex(page));
+      Slide && focus(Slide.slide);
+    });
+  }
+  function getAt(index) {
+    return items[Controller.toPage(index)];
+  }
+  function update() {
+    const prev = getAt(getIndex(true));
+    const curr = getAt(getIndex());
+    if (prev) {
+      removeClass(prev.button, CLASS_ACTIVE);
+      removeAttribute(prev.button, ARIA_CURRENT);
+    }
+    if (curr) {
+      addClass(curr.button, CLASS_ACTIVE);
+      setAttribute(curr.button, ARIA_CURRENT, true);
+    }
+    emit(EVENT_PAGINATION_UPDATED, { list, items }, prev, curr);
+  }
+  return {
+    items,
+    mount,
+    destroy,
+    getAt,
+    update
+  };
+}
+
+const TRIGGER_KEYS = [" ", "Enter", "Spacebar"];
+function Sync(Splide2, Components2, options) {
+  const { list } = Components2.Elements;
+  const events = [];
+  function mount() {
+    Splide2.splides.forEach((target) => {
+      !target.isParent && sync(target.splide);
+    });
+    if (options.isNavigation) {
+      navigate();
+    }
+  }
+  function destroy() {
+    removeAttribute(list, ALL_ATTRIBUTES);
+    events.forEach((event) => {
+      event.destroy();
+    });
+    empty(events);
+  }
+  function remount() {
+    destroy();
+    mount();
+  }
+  function sync(splide) {
+    [Splide2, splide].forEach((instance) => {
+      const event = EventInterface(instance);
+      const target = instance === Splide2 ? splide : Splide2;
+      event.on(EVENT_MOVE, (index, prev, dest) => {
+        target.go(target.is(LOOP) ? dest : index);
+      });
+      events.push(event);
+    });
+  }
+  function navigate() {
+    const event = EventInterface(Splide2);
+    const { on } = event;
+    on(EVENT_CLICK, onClick);
+    on(EVENT_SLIDE_KEYDOWN, onKeydown);
+    on([EVENT_MOUNTED, EVENT_UPDATED], update);
+    setAttribute(list, ROLE, "menu");
+    events.push(event);
+    event.emit(EVENT_NAVIGATION_MOUNTED, Splide2.splides);
+  }
+  function update() {
+    setAttribute(list, ARIA_ORIENTATION, options.direction !== TTB ? "horizontal" : null);
+  }
+  function onClick(Slide) {
+    Splide2.go(Slide.index);
+  }
+  function onKeydown(Slide, e) {
+    if (includes(TRIGGER_KEYS, e.key)) {
+      onClick(Slide);
+      prevent(e);
+    }
+  }
+  return {
+    mount,
+    destroy,
+    remount
+  };
+}
+
+function Wheel(Splide2, Components2, options) {
+  const { bind } = EventInterface(Splide2);
+  function mount() {
+    if (options.wheel) {
+      bind(Components2.Elements.track, "wheel", onWheel, SCROLL_LISTENER_OPTIONS);
+    }
+  }
+  function onWheel(e) {
+    if (e.cancelable) {
+      const { deltaY } = e;
+      if (deltaY) {
+        const backwards = deltaY < 0;
+        Splide2.go(backwards ? "<" : ">");
+        shouldPrevent(backwards) && prevent(e);
+      }
+    }
+  }
+  function shouldPrevent(backwards) {
+    return !options.releaseWheel || Splide2.state.is(MOVING) || Components2.Controller.getAdjacent(backwards) !== -1;
+  }
+  return {
+    mount
+  };
+}
+
+var ComponentConstructors = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  Options: Options,
+  Direction: Direction,
+  Elements: Elements,
+  Slides: Slides,
+  Layout: Layout,
+  Clones: Clones,
+  Move: Move,
+  Controller: Controller,
+  Arrows: Arrows,
+  Autoplay: Autoplay,
+  Cover: Cover,
+  Scroll: Scroll,
+  Drag: Drag,
+  Keyboard: Keyboard,
+  LazyLoad: LazyLoad,
+  Pagination: Pagination,
+  Sync: Sync,
+  Wheel: Wheel
+});
+
+const I18N = {
+  prev: "Previous slide",
+  next: "Next slide",
+  first: "Go to first slide",
+  last: "Go to last slide",
+  slideX: "Go to slide %s",
+  pageX: "Go to page %s",
+  play: "Start autoplay",
+  pause: "Pause autoplay"
+};
+
+const DEFAULTS = {
+  type: "slide",
+  speed: 400,
+  waitForTransition: true,
+  perPage: 1,
+  cloneStatus: true,
+  arrows: true,
+  pagination: true,
+  interval: 5e3,
+  pauseOnHover: true,
+  pauseOnFocus: true,
+  resetProgress: true,
+  keyboard: true,
+  easing: "cubic-bezier(0.25, 1, 0.5, 1)",
+  drag: true,
+  direction: "ltr",
+  slideFocus: true,
+  trimSpace: true,
+  focusableNodes: "a, button, textarea, input, select, iframe",
+  classes: CLASSES,
+  i18n: I18N
+};
+
+function Fade(Splide2, Components2, options) {
+  const { on } = EventInterface(Splide2);
+  function mount() {
+    on([EVENT_MOUNTED, EVENT_REFRESH], () => {
+      nextTick(() => {
+        Components2.Slides.style("transition", `opacity ${options.speed}ms ${options.easing}`);
+      });
+    });
+  }
+  function start(index, done) {
+    const { track } = Components2.Elements;
+    style(track, "height", unit(rect(track).height));
+    nextTick(() => {
+      done();
+      style(track, "height", "");
+    });
+  }
+  return {
+    mount,
+    start,
+    cancel: noop
+  };
+}
+
+function Slide(Splide2, Components2, options) {
+  const { bind } = EventInterface(Splide2);
+  const { Move, Controller } = Components2;
+  const { list } = Components2.Elements;
+  let endCallback;
+  function mount() {
+    bind(list, "transitionend", (e) => {
+      if (e.target === list && endCallback) {
+        cancel();
+        endCallback();
+      }
+    });
+  }
+  function start(index, done) {
+    const destination = Move.toPosition(index, true);
+    const position = Move.getPosition();
+    const speed = getSpeed(index);
+    if (abs(destination - position) >= 1 && speed >= 1) {
+      apply(`transform ${speed}ms ${options.easing}`);
+      Move.translate(destination, true);
+      endCallback = done;
+    } else {
+      Move.jump(index);
+      done();
+    }
+  }
+  function cancel() {
+    apply("");
+  }
+  function getSpeed(index) {
+    const { rewindSpeed } = options;
+    if (Splide2.is(SLIDE) && rewindSpeed) {
+      const prev = Controller.getIndex(true);
+      const end = Controller.getEnd();
+      if (prev === 0 && index >= end || prev >= end && index === 0) {
+        return rewindSpeed;
+      }
+    }
+    return options.speed;
+  }
+  function apply(transition) {
+    style(list, "transition", transition);
+  }
+  return {
+    mount,
+    start,
+    cancel
+  };
+}
+
+const _Splide = class {
+  constructor(target, options) {
+    this.event = EventBus();
+    this.Components = {};
+    this.state = State(CREATED);
+    this.splides = [];
+    this._options = {};
+    this._Extensions = {};
+    const root = isString(target) ? query(document, target) : target;
+    assert(root, `${root} is invalid.`);
+    this.root = root;
+    merge(DEFAULTS, _Splide.defaults);
+    merge(merge(this._options, DEFAULTS), options || {});
+  }
+  mount(Extensions, Transition) {
+    const { state, Components: Components2 } = this;
+    assert(state.is([CREATED, DESTROYED]), "Already mounted!");
+    state.set(CREATED);
+    this._Components = Components2;
+    this._Transition = Transition || this._Transition || (this.is(FADE) ? Fade : Slide);
+    this._Extensions = Extensions || this._Extensions;
+    const Constructors = assign({}, ComponentConstructors, this._Extensions, { Transition: this._Transition });
+    forOwn(Constructors, (Component, key) => {
+      const component = Component(this, Components2, this._options);
+      Components2[key] = component;
+      component.setup && component.setup();
+    });
+    forOwn(Components2, (component) => {
+      component.mount && component.mount();
+    });
+    this.emit(EVENT_MOUNTED);
+    addClass(this.root, CLASS_INITIALIZED);
+    state.set(IDLE);
+    this.emit(EVENT_READY);
+    return this;
+  }
+  sync(splide) {
+    this.splides.push({ splide });
+    splide.splides.push({ splide: this, isParent: true });
+    if (this.state.is(IDLE)) {
+      this._Components.Sync.remount();
+      splide.Components.Sync.remount();
+    }
+    return this;
+  }
+  go(control) {
+    this._Components.Controller.go(control);
+    return this;
+  }
+  on(events, callback) {
+    this.event.on(events, callback, null, DEFAULT_USER_EVENT_PRIORITY);
+    return this;
+  }
+  off(events) {
+    this.event.off(events);
+    return this;
+  }
+  emit(event) {
+    this.event.emit(event, ...slice(arguments, 1));
+    return this;
+  }
+  add(slides, index) {
+    this._Components.Slides.add(slides, index);
+    return this;
+  }
+  remove(matcher) {
+    this._Components.Slides.remove(matcher);
+    return this;
+  }
+  is(type) {
+    return this._options.type === type;
+  }
+  refresh() {
+    this.emit(EVENT_REFRESH);
+    return this;
+  }
+  destroy(completely = true) {
+    const { event, state } = this;
+    if (state.is(CREATED)) {
+      event.on(EVENT_READY, this.destroy.bind(this, completely), this);
+    } else {
+      forOwn(this._Components, (component) => {
+        component.destroy && component.destroy(completely);
+      }, true);
+      event.emit(EVENT_DESTROY);
+      event.destroy();
+      completely && empty(this.splides);
+      state.set(DESTROYED);
+    }
+    return this;
+  }
+  get options() {
+    return this._options;
+  }
+  set options(options) {
+    const { _options } = this;
+    merge(_options, options);
+    if (!this.state.is(CREATED)) {
+      this.emit(EVENT_UPDATED, _options);
+    }
+  }
+  get length() {
+    return this._Components.Slides.getLength(true);
+  }
+  get index() {
+    return this._Components.Controller.getIndex();
+  }
+};
+let Splide = _Splide;
+Splide.defaults = {};
+Splide.STATES = STATES;
+
+const sheet$5 = cssomSheet({target: new CSSStyleSheet()});
+const {tw: tw$5} = create$1({sheet: sheet$5});
+
+class GameSlider extends s {
+  static styles = [sheet$5.target];
+  static properties = {};
+
+  firstUpdated() {
+    const slider = this.shadowRoot.querySelector('#slider');
+    new Splide(slider, {
+      type: 'slide',
+      arrows: false,
+      gap: 15,
+      direction: 'ltr',
+      focus: 'center',
+      pagination: false,
+    }).mount();
+  }
+
+  render() {
+    return $$1`<div class="${tw$5`flex flex-col pl-[5%] pt-5 pb-8 bg-white`}"><div class="${tw$5`pb-5 pr-8 flex flex-col gap-5`}"><slot></slot></div><div class="splide ${tw$5`relative`}" id="slider"><div class="splide__track ${tw$5`overflow-hidden relative z-0`}"><ul class="splide__list ${tw$5`flex`}"><li class="splide__slide"><game-slide .game="${{
+                    img: 'samurai-game.png',
+                    alt: 'Samurai Game',
+                    days: 2,
+                    time: '01:29:51',
+                    cost: 25,
+                  }}"></game-slide></li><li class="splide__slide"><game-slide .game="${{
+                    img: 'bankjob-game.png',
+                    alt: 'Bank Job Game',
+                    days: 1,
+                    time: '15:04:21',
+                    cost: 100,
+                  }}"></game-slide></li></ul></div></div><div class="${tw$5`mx-auto pt-6 pb-3 pr-8`}"><a href="#" class="${tw$5`rounded-md shadow-md mt-auto pb-1 w-[15.625rem] h-10 flex justify-center items-center text-lg font-medium text-white ${css`&{background:transparent linear-gradient(206deg,#ff930f 0,#ffd45b 100%)}`}`}">Go to all our tournaments</a></div></div>`;
+  }
+}
+
+window.customElements.define('game-slider', GameSlider);
+
+const sheet$4 = cssomSheet({target: new CSSStyleSheet()});
+const {tw: tw$4} = create$1({sheet: sheet$4});
+
+class WelcomeOffer extends s {
+  static styles = [sheet$4.target];
+  static properties = {
+    offer: {type: Object},
+  };
+
+  render() {
+    return $$1`<div class="${tw$4`rounded-xl p-[2px] ${css`&{background:linear-gradient(to top right,${this.offer.golden ? '#FFA626, #FFD45B' : '#259C63, #0FD792'})}`}`}"><img class="${tw$4`w-full`}" src="images/welcome-offers/${this.offer.img}" alt="${this.offer.alt}"><div class="${tw$4`p-2`}"><h4 class="${tw$4`text-[${
+              this.offer.golden ? '#000' : '#FFBC3F'
+            }] font-bold text-3xl`}">€${this.offer.claim}</h4><p class="${tw$4`text-white text-[10px] mb-1`}">100% up to €${this.offer.claim} + ${this.offer.claim} Free Spins</p><a href="#" class="${tw$4`rounded-md shadow-md mt-auto pb-1 w-full h-10 flex justify-center items-center text-lg font-medium text-white ${css`&{background:linear-gradient(206deg,#ff930f 0,#ffd45b 100%)}`}`}">Claim</a></div></div>`;
+  }
+}
+
+window.customElements.define('welcome-offer', WelcomeOffer);
+
+const sheet$3 = cssomSheet({target: new CSSStyleSheet()});
+const {tw: tw$3} = create$1({sheet: sheet$3});
+
+class WelcomeOffers extends s {
+  static styles = [sheet$3.target];
+
+  render() {
+    return $$1`<section class="${tw$3`px-[5%] py-6`}"><h2 class="${tw$3`${css`&{background:linear-gradient(to top right,#259c63,#0fd792);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent}`} text-4xl font-bold mb-4 leading-8`}">Exclusive<br>Welcome Offers</h2><div class="${tw$3`grid grid-cols-2 gap-3`}"><welcome-offer .offer="${{
+              img: 'tonybet.png',
+              alt: 'Tonybet',
+              claim: 120,
+              golden: false,
+            }}"></welcome-offer><welcome-offer .offer="${{
+              img: 'luckydreams.png',
+              alt: 'Lucky Dreams',
+              claim: 120,
+              golden: true,
+            }}"></welcome-offer><welcome-offer .offer="${{
+              img: 'kingbilly.png',
+              alt: 'King Billy',
+              claim: 120,
+              golden: false,
+            }}"></welcome-offer><welcome-offer .offer="${{
+              img: 'cashimashi.png',
+              alt: 'Cashimashi',
+              claim: 120,
+              golden: false,
+            }}"></welcome-offer><welcome-offer .offer="${{
+              img: 'casiplay.png',
+              alt: 'Casiplay',
+              claim: 120,
+              golden: false,
+            }}"></welcome-offer><welcome-offer .offer="${{
+              img: 'casinotown.png',
+              alt: 'Casinotown',
+              claim: 120,
+              golden: false,
+            }}"></welcome-offer></div></section>`;
+  }
+}
+
+window.customElements.define('welcome-offers', WelcomeOffers);
+
+const sheet$2 = cssomSheet({target: new CSSStyleSheet()});
+const {tw: tw$2} = create$1({sheet: sheet$2});
+
+class ShopItem extends s {
+  static styles = [sheet$2.target];
+  static properties = {
+    item: {type: Object},
+  };
+
+  render() {
+    return $$1`<li class="${tw$2`${css`&{background-image:linear-gradient(to top right,#0060e9,#80bad0)}`} rounded-xl flex overflow-hidden`}"><div class="${tw$2`overflow-hidden`}"><img src="./images/shop/${this.item.img}" alt="${this.item.title}" class="${tw$2`w-full h-full flex-1 ${css`&{object-fit:cover}`}`}"></div><div class="${tw$2`py-2 px-3 flex h-full w-full gap-[2%] justify-between items-center flex-[2]`}"><div><p class="${tw$2`text-white text-[0.813rem] font-normal`}" [ngStyle]="background ? { color: 'black' } : {}">${String(this.item.bonus)}€ Bonus Package for ${this.item.title}</p><h3 class="${tw$2`text-[#FFA626] text-[1rem] font-bold`}">${String(this.item.cost)} EP</h3></div><a href="#" class="${tw$2`rounded-md shadow-md pb-1 min-w-[70px] h-14 flex justify-center items-center text-lg font-medium text-white ${css`&{background:linear-gradient(to bottom left,#ff930f 0,#ffd45b 100%)}`}`}">Buy</a></div></li>`;
+  }
+}
+
+window.customElements.define('shop-item', ShopItem);
+
+const sheet$1 = cssomSheet({target: new CSSStyleSheet()});
+const {tw: tw$1} = create$1({sheet: sheet$1});
+
+class Shop extends s {
+  static styles = [sheet$1.target];
+  static properties = {};
+  constructor() {
+    super();
+  }
+  render() {
+    return $$1`<section class="${tw$1`flex flex-col px-[5%] py-6 bg-white`}"><h2 class="${tw$1`font-bold text-4xl ${css`&{background:linear-gradient(to top right,#0b119b,#172dd6);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent}`}`}">Shop with<br>EkstraPoints</h2><ul class="${tw$1`flex flex-col gap-y-3 my-5`}"><shop-item .item="${{
+              img: 'winnermagic.png',
+              title: "Winner's Magic",
+              cost: '30.000',
+              bonus: 5,
+            }}"></shop-item><shop-item .item="${{
+              img: 'millionpot.png',
+              title: 'Millionpot',
+              cost: '30.000',
+              bonus: 5,
+            }}"></shop-item><shop-item .item="${{
+              img: 'luckythrillz.png',
+              title: 'Lucky Thrillz',
+              cost: '30.000',
+              bonus: 5,
+            }}"></shop-item><shop-item .item="${{
+              img: 'jackiejackpot.png',
+              title: 'Jackie Jackpot',
+              cost: '30.000',
+              bonus: 5,
+            }}"></shop-item><shop-item .item="${{
+              img: 'tradacasino.png',
+              title: 'Trada Casino',
+              cost: '30.000',
+              bonus: 5,
+            }}"></shop-item></ul><a href="#" class="${tw$1`rounded-md shadow-md my-6 mx-auto pb-1 w-[15.625rem] h-10 flex justify-center items-center text-lg font-medium text-white ${css`&{background:linear-gradient(206deg,#ff930f 0,#ffd45b 100%)}`}`}">Go to EkstraPoints shop</a></section>`;
+  }
+}
+
+window.customElements.define('point-shop', Shop);
+
+const sheet = cssomSheet({target: new CSSStyleSheet()});
+const {tw} = create$1({sheet});
+
+setup({
+  preflight: {
+    '@import': `url('https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.12/dist/css/splide.min.css')`,
+  },
+});
+
+class MyApp extends s {
+  static styles = [sheet.target];
+
+  render() {
+    return $$1`<div class="${tw`font-['sofia-pro'] pt-16 sm:pt-[4.563rem] bg-[#EAEFF7]`}"><nav-bar></nav-bar><section class="${tw`px-[5%]`}"><app-rewards></app-rewards><win-display></win-display><game-big></game-big><h3 class="${tw`text-[39px] font-bold mt-7 mb-5 leading-[2.75rem]`}">Sign up. <span class="${tw`${css`&{background-image:linear-gradient(to bottom right,#ff9515 0,#ff502e 50%,#ff4e2f 100%);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent}`}`}">Play free.</span><br>Biggest reward Site in the world</h3><signup-bonus></signup-bonus><point-offers></point-offers></section><game-slider><h2 class="${tw`${css`&{background-image:linear-gradient(to top right,#ff0180,#ff5858);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent}`} font-bold text-4xl leading-8`}">Current<br>Tournaments</h2></game-slider><welcome-offers></welcome-offers><point-shop></point-shop><app-footer></app-footer></div>`;
+  }
+}
+
+window.customElements.define('my-app', MyApp);
+
+export { MyApp };
