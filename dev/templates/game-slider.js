@@ -1,7 +1,7 @@
 import {LitElement, html} from 'lit';
 import {create, cssomSheet} from 'twind';
 import {css} from 'twind/css';
-import {GameSlide} from './game-slide';
+import {GameSlide} from '../components/game-slide';
 import {Splide} from '@splidejs/splide';
 
 const sheet = cssomSheet({target: new CSSStyleSheet()});
@@ -25,8 +25,10 @@ export class GameSlider extends LitElement {
 
   render() {
     return html`
-      <div class="${tw`flex flex-col pl-8 pt-5 pb-8 bg-white`}">
-        <slot></slot>
+      <div class="${tw`flex flex-col pl-[5%] pt-5 pb-8 bg-white`}">
+        <div class="${tw`pb-5 pr-8 flex flex-col gap-5`}">
+          <slot></slot>
+        </div>
         <div class="splide ${tw`relative`}" id="slider">
           <div class="splide__track ${tw`overflow-hidden relative z-0`}">
             <ul class="splide__list ${tw`flex`}">

@@ -18,15 +18,21 @@ export class ShopItem extends LitElement {
           & {
             background-image: linear-gradient(to top right, #0060e9, #80bad0);
           }
-        `} rounded-xl flex items-center h-20 overflow-hidden`}"
+        `} rounded-xl flex overflow-hidden`}"
       >
-        <img
-          src="./images/shop/${this.item.img}"
-          alt="${this.item.title}"
-          class="${tw`w-full h-full flex-1`}"
-        />
+        <div class="${tw`overflow-hidden`}">
+          <img
+            src="./images/shop/${this.item.img}"
+            alt="${this.item.title}"
+            class="${tw`w-full h-full flex-1 ${css`
+              & {
+                object-fit: cover;
+              }
+            `}`}"
+          />
+        </div>
         <div
-          class="${tw`py-2 px-3 flex w-full gap-[2%] justify-between flex-[2]`}"
+          class="${tw`py-2 px-3 flex h-full w-full gap-[2%] justify-between items-center flex-[2]`}"
         >
           <div>
             <p
@@ -41,7 +47,7 @@ export class ShopItem extends LitElement {
           </div>
           <a
             href="#"
-            class="${tw`rounded-md shadow-md pb-1 min-w-[70px] min-h-full flex justify-center items-center text-lg font-medium text-white ${css`
+            class="${tw`rounded-md shadow-md pb-1 min-w-[70px] h-14 flex justify-center items-center text-lg font-medium text-white ${css`
               & {
                 background: linear-gradient(
                   to bottom left,
