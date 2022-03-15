@@ -36,7 +36,7 @@ export class MyApp extends LitElement {
 
   render() {
     return html`
-      <div class="${tw`font-sofia bg-lightBlue`}">
+      <div class="${tw`font-sofia`}">
         <!-- <nav-bar></nav-bar> -->
         <section class="${tw`px-[5%]`}">
           <app-rewards></app-rewards>
