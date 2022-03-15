@@ -1,4 +1,4 @@
-# EP Redesign
+# EP Redesign Repo
 
 ## Instruktioner:
 
@@ -17,3 +17,10 @@ Componentet `<my-app> </my-app>` indeholder alle subcomponents som bliver vist p
 Component `<log-in></log-in>` er login modulet som bliver toggled på login knappen i navbaren.
 
 Navigationen `<nav></nav>` og footeren `<footer></footer>` er bygget statisk.
+
+Buildet på GitHub Pages virker nuværende ikke på andre browsere end **Chrome**, og **Andriod**.
+Men det har selvfølgelig ikke indflydelse på koden og kan sagtens blive trukket ud, uden problemer.
+
+## HUSK!<br/>
+
+[Hard reload](https://fabricdigital.co.nz/blog/how-to-hard-refresh-your-browser-and-clear-cache) og clear cachen så du får det nyeste version af css'en.
