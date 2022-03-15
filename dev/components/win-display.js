@@ -1,9 +1,13 @@
 import {LitElement, html} from 'lit';
 import {create, cssomSheet} from 'twind';
+import {theme} from '../twind.config';
 import {css} from 'twind/css';
 
 const sheet = cssomSheet({target: new CSSStyleSheet()});
-const {tw} = create({sheet});
+const {tw} = create({
+  sheet,
+  theme: theme,
+});
 
 export class WinDisplay extends LitElement {
   static styles = [sheet.target];
@@ -80,7 +84,7 @@ export class WinDisplay extends LitElement {
           id="card"
         >
           <div
-            class="${tw`flex justify-center gap-[2%] items-center text-white p-2 pr-[5%] absolute w-full h-full bg-[#1A2433] ${css(
+            class="${tw`flex justify-center gap-[2%] items-center text-white p-2 pr-[5%] absolute w-full h-full bg-black ${css(
               {
                 '-webkit-backface-visibility': ' hidden',
                 'backface-visibility': 'hidden',
@@ -95,14 +99,14 @@ export class WinDisplay extends LitElement {
             <h2 class="${tw`font-bold text-base`}">${this.username}</h2>
             <p class="${tw`mr-auto flex gap-2`}">
               Just won
-              <span class="${tw`text-[#FFA626] font-bold`}"
+              <span class="${tw`text-orange font-bold`}"
                 >${this.winAmount} EP
               </span>
               <a href="#" class="${tw`underline`}">here!</a>
             </p>
           </div>
           <div
-            class="${tw`absolute w-full h-full flex justify-center gap-[2%] items-center bg-[#1A2433] text-white p-2 pr-[5%] ${css(
+            class="${tw`absolute w-full h-full flex justify-center gap-[2%] items-center bg-black text-white p-2 pr-[5%] ${css(
               {
                 '-webkit-backface-visibility': ' hidden',
                 'backface-visibility': 'hidden',
@@ -118,7 +122,7 @@ export class WinDisplay extends LitElement {
             <h2 class="${tw`font-bold text-base`}">${this.username}</h2>
             <p class="${tw`mr-auto flex gap-2`}">
               Just won
-              <span class="${tw`text-[#FFA626] font-bold`}"
+              <span class="${tw`text-orange font-bold`}"
                 >${this.winAmount} EP
               </span>
               <a href="#" class="${tw`underline`}">here!</a>

@@ -6,17 +6,267 @@
     <script src="assets/webcomponents-loader-97836d09.js"></script>
     <script src="assets/polyfill-support-9bc7af0b.js"></script>
     
-    <link rel="stylesheet" href="assets/styles-60929737.css">
+    
+    <link rel="stylesheet" href="assets/output-eaf22a5b.css">
     <link rel="stylesheet" href="https://use.typekit.net/uin3khw.css">
+  </head>
+  <body class="pt-16 sm:pt-[4.563rem]">
+    <!--Navigation (functionality depends on "script.js")-->
+    <nav class="flex justify-between px-[5%] h-16 bg-lightBlue items-center shadow-md z-20 fixed w-full top-0 sm:h-[4.563rem] gap-2">
+      <a href="#" class="sm:hidden lg:block"><img src="assets/header-dbc6c636.svg" alt="header" class="w-32 sm:w-full">
+      </a>
+      <div class="flex items-center sm:justify-between sm:w-full lg:justify-start lg:w-[initial]">
+        <!--Menu Dekstop-->
+        <ul class="hidden sm:flex menuList font-bold gap-[3vw] mr-[4vw]">
+          <!--Dropdown Item Desktop 00-->
+          <li class="pl-[20%] sm:pl-0 sm:pb-0 pb-4 flex flex-col items-start gap-2">
+            <a href="#" class="flex items-center gap-3 lg:text-[19px] text-base mt-4 mb-2 sm:my-0 text-black font-sofia">
+              Hvordan virker det?
+            </a>
+          </li>
+          <!--Dropdown Item Desktop End 00-->
+          <!--Dropdown Item Desktop 01-->
+          <li class="pl-[20%] sm:pl-0 sm:pb-0 pb-4 flex flex-col items-start gap-2">
+            <button href="#" onclick="toggleDropdown(this)" data-active="false" class="dropdownBtn flex items-center gap-3 lg:text-[19px] text-base mt-4 mb-2 sm:my-0 text-black font-sofia">
+              Casinos
+              <svg viewBox="0 0 7 6" xmlns="http://www.w3.org/2000/svg" class="mt-1 inline-block w-1.5 triangle">
+                <path d="M2.636,1.481a1,1,0,0,1,1.728,0L6.123,4.5A1,1,0,0,1,5.259,6H1.741A1,1,0,0,1,.877,4.5Z" fill="currentColor" data-name="Polygon 4"></path>
+              </svg>
+            </button>
+            <!--Dropdown List 01-->
+            <ul class="dropdown flex flex-col gap-3 sm:gap-0 overflow-hidden animate-slideInAlt dropdown hide sm:absolute sm:top-[73px] sm:bg-lightBlue sm:rounded-b-md sm:shadow-sm sm:max-w-[170px]">
+              <li class="font-normal text-[#959CA7] lg:text-[17px] text-base sm:p-4">
+                <a href="#" class="font-sofia">Tilbud</a>
+              </li>
+              <hr style="border-color: #dee1e6">
+              <li class="font-normal text-[#959CA7] lg:text-[17px] text-base sm:p-4">
+                <a href="#" class="font-sofia">Casino anmeldelser</a>
+              </li>
+              <hr style="border-color: #dee1e6">
+              <li class="font-normal text-[#959CA7] lg:text-[17px] text-base sm:p-4">
+                <a href="#" class="font-sofia">Hotte Online Casinoer</a>
+              </li>
+              <hr style="border-color: #dee1e6">
+              <li class="font-normal text-[#959CA7] lg:text-[17px] text-base sm:p-4">
+                <a href="#" class="font-sofia">Nye Online Casinoer</a>
+              </li>
+            </ul>
+          </li>
+          <!--Dropdown Item Desktop End 01-->
+          <!--Dropdown Item Desktop 02-->
+          <li class="pl-[20%] sm:pl-0 sm:pb-0 pb-4 flex flex-col items-start gap-2">
+            <button href="#" onclick="toggleDropdown(this)" data-active="false" class="dropdownBtn flex items-center gap-3 lg:text-[19px] text-base mt-4 mb-2 sm:my-0 text-black font-sofia">
+              Spil
+              <svg viewBox="0 0 7 6" xmlns="http://www.w3.org/2000/svg" class="mt-1 inline-block w-1.5 triangle">
+                <path d="M2.636,1.481a1,1,0,0,1,1.728,0L6.123,4.5A1,1,0,0,1,5.259,6H1.741A1,1,0,0,1,.877,4.5Z" fill="currentColor" data-name="Polygon 4"></path>
+              </svg>
+            </button>
+            <!--Dropdown List 02-->
+            <ul class="dropdown flex flex-col gap-3 sm:gap-0 overflow-hidden animate-slideInAlt dropdown hide sm:absolute sm:top-[73px] sm:bg-lightBlue sm:rounded-b-md sm:shadow-sm sm:max-w-[170px]">
+              <li class="font-normal text-[#959CA7] lg:text-[17px] text-base sm:p-4">
+                <a href="#" class="font-sofia">Gratis konkurrencer</a>
+              </li>
+              <hr style="border-color: #dee1e6">
+              <li class="font-normal text-[#959CA7] lg:text-[17px] text-base sm:p-4">
+                <a href="#" class="font-sofia">Vindere</a>
+              </li>
+              <hr style="border-color: #dee1e6">
+              <li class="font-normal text-[#959CA7] lg:text-[17px] text-base sm:p-4">
+                <a href="#" class="font-sofia">Spilanmeldelser</a>
+              </li>
+            </ul>
+          </li>
+          <!--Dropdown Item Desktop End 02-->
+        </ul>
+        <!--Menu Desktop End-->
+        <div class="flex">
+          <button class="sm:flex bg-gradient-to-r from-[#0060e9] via-[#3d8bdd] to-[#80bad0] text-white text-[17px] leading-9 rounded font-bold w-24 h-10 hidden justify-center items-center gap-2 md:mr-[7vw] mr-4">
+            <p class="mb-1 font-sofia">Shop</p>
+            <img src="assets/cart-c672b8af.svg" alt="cart" class="w-1/4">
+          </button>
+          <button class="p-2 w-10 h-10 rounded bg-black mr-4" id="loginBtn">
+            <img src="assets/login-bec40511.svg" alt="Login Icon">
+          </button>
+          <button class="mr-4">
+            <img src="assets/search-2dc88d79.svg" alt="search icon">
+          </button>
+          <button class="sm:hidden" id="menuBtn">
+            <img alt="menu icon" class="w-8" src="assets/burger-menu-0d7e90c7.svg">
+          </button>
+          <!--Region Btn Dekstop-->
+          <div class="relative">
+            <button class="regionBtn min-w-[2.5rem] hidden sm:block rounded-md overflow-hidden shadow-sm">
+              <img class="w-10" alt="Region Selector" src="assets/german-a28c1fb6.svg">
+              <!--Region Menu Desktop-->
+            </button>
+            <ul class="hidden sm:flex z-[-1] regionMenu hide flex-col gap-2 shadow-xl bg-mediumGray absolute pt-[54px] top-[-6px] right-[-5px] rounded-lg p-[5px] overflow-hidden animate-slideInAlt"></ul>
+          </div>
+        </div>
+      </div>
+      <!--Menu Mobile-->
+      <nav id="menu" class="sm:hidden fixed top-16 right-0 h-[100vh] bg-lightBlue w-[100vw] z-10 shadow-md animate-slideIn hide">
+        <div class="w-full relative opacity-0 animate-fadeIn">
+          <div class="flex py-8 px-12 gap-5">
+            <button class="text-white font-sofia text-[19px] leading-9 rounded font-bold w-full h-10 flex justify-center items-center gap-3 bg-gradient-to-r from-[#0060e9] via-[#3d8bdd] to-[#80bad0]">
+              <p class="mb-1">Shop</p>
+              <img src="assets/cart-c672b8af.svg" alt="cart" class="w-7">
+            </button>
+            <!--Region Btn Mobile-->
+            <button class="regionBtn min-w-[2.5rem] z-10 rounded-md overflow-hidden">
+              <img alt="Region Selector" src="assets/german-a28c1fb6.svg" class="w-10">
+            </button>
+            <ul class="regionMenu hide flex flex-col gap-2 shadow-xl bg-mediumGray absolute pt-[3.375rem] top-[1.625rem] right-[43px] rounded-lg p-[5px] overflow-hidden animate-slideInAlt"></ul>
+          </div>
+          <!--Dropdown List Mobile-->
+          <ul class="menuList font-bold">
+            <!--Dropdown Item Mobile 00-->
+            <li class="pl-[20%] sm:pl-0 sm:pb-0 pb-4 flex flex-col items-start gap-2">
+              <a href="#" class="flex items-center gap-3 text-[19px] mt-4 mb-2 sm:my-0 text-black font-sofia">
+                Hvordan virker det?
+              </a>
+            </li>
+            <hr class="opacity-15" style="border-color: #7c838f">
+            <!--Dropdown Item Mobile End 00-->
+            <!--Dropdown Item Mobile 01-->
+            <li class="pl-[20%] sm:pl-0 sm:pb-0 pb-4 flex flex-col items-start gap-2">
+              <a href="#" onclick="toggleDropdown(this)" data-active="false" class="dropdownBtn flex items-center gap-3 text-[19px] mt-4 mb-2 sm:my-0 text-black font-sofia">
+                Casinos
+                <svg viewBox="0 0 7 6" xmlns="http://www.w3.org/2000/svg" class="mt-1 inline-block w-1.5 triangle">
+                  <path d="M2.636,1.481a1,1,0,0,1,1.728,0L6.123,4.5A1,1,0,0,1,5.259,6H1.741A1,1,0,0,1,.877,4.5Z" fill="currentColor" data-name="Polygon 4"></path>
+                </svg>
+              </a>
+              <ul class="dropdown flex flex-col gap-3 sm:gap-0 overflow-hidden animate-slideInAlt dropdown hide sm:absolute sm:top-[73px] sm:bg-lightBlue sm:rounded-b-md sm:shadow-sm sm:max-w-[170px]">
+                <li class="font-normal text-[#959CA7] text-[17px] sm:p-4">
+                  <a href="#" class="font-sofia">Tilbud</a>
+                </li>
+                <li class="font-normal text-[#959CA7] text-[17px] sm:p-4">
+                  <a href="#" class="font-sofia">Casino anmeldelser</a>
+                </li>
+                <li class="font-normal text-[#959CA7] text-[17px] sm:p-4">
+                  <a href="#" class="font-sofia">Hotte Online Casinoer</a>
+                </li>
+                <li class="font-normal text-[#959CA7] text-[17px] sm:p-4">
+                  <a href="#" class="font-sofia">Nye Online Casinoer</a>
+                </li>
+                <hr class="hidden sm:block opacity-15" style="border-color: #7c838f">
+              </ul>
+            </li>
+            <hr class="sm:hidden" style="border-color: #dee1e6">
+            <!--Dropdown Item Mobile End 01-->
+            <!--Dropdown Item Mobile 02-->
+            <li class="pl-[20%] sm:pl-0 sm:pb-0 pb-4 flex flex-col items-start gap-2">
+              <a href="#" onclick="toggleDropdown(this)" data-active="false" class="dropdownBtn flex items-center gap-3 text-[19px] mt-4 mb-2 sm:my-0 text-black font-sofia">
+                Spil
+                <svg viewBox="0 0 7 6" xmlns="http://www.w3.org/2000/svg" class="mt-1 inline-block w-1.5 triangle">
+                  <path d="M2.636,1.481a1,1,0,0,1,1.728,0L6.123,4.5A1,1,0,0,1,5.259,6H1.741A1,1,0,0,1,.877,4.5Z" fill="currentColor" data-name="Polygon 4"></path>
+                </svg>
+              </a>
+              <ul class="dropdown flex flex-col gap-3 sm:gap-0 overflow-hidden animate-slideInAlt dropdown hide sm:absolute sm:top-[73px] sm:bg-lightBlue sm:rounded-b-md sm:shadow-sm sm:max-w-[170px]">
+                <li class="font-normal text-[#959CA7] text-[17px] sm:p-4">
+                  <a href="#" class="font-sofia">Tilbud</a>
+                </li>
+                <li class="font-normal text-[#959CA7] text-[17px] sm:p-4">
+                  <a href="#" class="font-sofia">Vindere</a>
+                </li>
+                <li class="font-normal text-[#959CA7] text-[17px] sm:p-4">
+                  <a href="#" class="font-sofia">Spilanmeldelser</a>
+                </li>
+                <hr class="hidden sm:block opacity-15" style="border-color: #7c838f">
+              </ul>
+            </li>
+            <hr class="sm:hidden" style="border-color: #dee1e6">
+            <!--Dropdown Item Mobile End 02-->
+          </ul>
+        </div>
+      </nav>
+    </nav>
+    <my-app></my-app>
+    <!--Footer-->
+    <footer>
+      <footer class="bg-lightBlue shadow-t-md font-sofia">
+        <div class="py-10 px-4 hidden sm:flex justify-center gap-[12vw]">
+          <section>
+            <h3 class="text-[19px] font-bold">About us</h3>
+            <ul class="opacity-50">
+              <li><a href="#">Seals of approval</a></li>
+              <li><a href="#">Terms and conditions</a></li>
+              <li><a href="#">Competition Terms</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Cookie Policy</a></li>
+            </ul>
+          </section>
+          <section>
+            <h3 class="text-[19px] font-bold">Learn more</h3>
+            <ul class="opacity-50">
+              <li><a href="#">What is EkstaPont</a></li>
+              <li><a href="#">Start using EkstraPoint</a></li>
+              <li><a href="#">Why EkstraPoint</a></li>
+              <li><a href="#">How to become top player</a></li>
+              <li><a href="#">EkstraPoint User Tiers</a></li>
+            </ul>
+          </section>
+          <section>
+            <h3 class="text-[19px] font-bold">New on EP</h3>
+            <ul class="opacity-50">
+              <li><a href="#">New games</a></li>
+              <li><a href="#">New NetEnt gamest</a></li>
+              <li><a href="#">Best NetEnt games</a></li>
+              <li><a href="#">Best casino slots</a></li>
+            </ul>
+          </section>
+          <section>
+            <h3 class="text-[19px] font-bold">Contact us</h3>
+            <ul class="opacity-50">
+              <li><a href="#">Support</a></li>
+              <li><a href="#">Meet the team</a></li>
+              <li><a href="#">Our brands</a></li>
+              <li><a href="#">FAQ</a></li>
+            </ul>
+          </section>
+        </div>
+        <div class="bg-black py-10 px-[9%] flex flex-col items-center">
+          <img src="assets/logo-big-2bbe689e.svg" alt="Logo" class="mb-4 w-40">
+          <p class="text-[#7C838F] text-xs text-center hidden sm:block">
+            18+ | Spil ansvarligt | StopSpillet: 70 22 28 25 | ROFUS.nu Husk at
+            pengespil kan være vanedannende, så spil ansvarligt. Hos EkstraPoint
+            gør vi derfor en indsats for at opretholde og følge retningslinjer
+            udstukket af den danske Spillemyndighed. Man skal være fyldt 18 både
+            for at spille på EkstraPoint, og på alle casinosider der er
+            repræsenteret herpå. Casino- og spilanmeldelser på vores side er som
+            udgangspunkt kommercielt indhold. Regler og vilkår gælder. Spil
+            ansvarligt. Selvudelukkelse via ROFUS. Kontakt Spillemyndighedens
+            hjælpelinje på StopSpillet.dk
+            <a href="https://www.spillemyndigheden.dk/">https://www.spillemyndigheden.dk/</a>
+          </p>
+          <div class="flex-wrap justify-center items-center gap-y-2 mt-6 hidden sm:flex">
+            <div>
+              <img class="max-w-[10.938rem] max-h-14 px-2" src="assets/gambleaware-a2d4b92e.png">
+            </div>
+            <div>
+              <img class="max-w-[10.938rem] max-h-14 px-2" src="assets/mga-0ee9d400.png">
+            </div>
+            <div>
+              <img class="max-w-[10.938rem] max-h-14 px-2" src="assets/agerestrict-9b55efaf.png">
+            </div>
+            <div>
+              <img class="max-w-[10.938rem] max-h-14 px-2" src="assets/gpwa-0c2aae1a.gif">
+            </div>
+            <div>
+              <img class="max-w-[10.938rem] max-h-14 px-2" src="assets/egr-b335f950.webp">
+            </div>
+            <div>
+              <img class="max-w-[10.938rem] max-h-14 px-2" src="assets/lottofy-cb85ca4d.webp">
+            </div>
+            <div>
+              <img class="max-w-[10.938rem] max-h-14 px-2" src="assets/smartsoft-23a8c52e.webp">
+            </div>
+          </div>
+        </div>
+      </footer>
+    </footer>
+    <log-in class="hide" id="login"></log-in>
+    <script src="assets/script-64c4da8b.js"></script>
   
-<link rel="preload" href="./my-app.js" as="script" crossorigin="anonymous" />
-</head>
-  <body>
-    <my-app> </my-app>
-  
 
 
-
-<script type="module" src="./my-app.js"></script>
-
-</body></html>
+<script type="module" src="./my-app.js"></script><script type="module" src="./login.js"></script></body></html>

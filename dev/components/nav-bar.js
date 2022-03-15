@@ -1,5 +1,6 @@
 import {LitElement, html} from 'lit';
 import {create, cssomSheet} from 'twind';
+import {theme} from '../twind.config';
 import {animation, css} from 'twind/css';
 
 const slideIn = animation('1s ease-in-out forwards', {
@@ -40,8 +41,19 @@ const fadeInAlt = animation('.5s ease-in-ot forwards', {
   },
 });
 
+const globalStyles = css({
+  ':global': {
+    'button:focus': {
+      outline: '1px solid #eaeff7',
+    },
+  },
+});
+
 const sheet = cssomSheet({target: new CSSStyleSheet()});
-const {tw} = create({sheet});
+const {tw} = create({
+  sheet,
+  theme: theme,
+});
 
 export class NavBar extends LitElement {
   static styles = [sheet.target];
@@ -60,6 +72,7 @@ export class NavBar extends LitElement {
 
   constructor() {
     super();
+    console.log(theme);
     this.menu = false;
     this.location = 'Kastrup, Danmark';
     this.detector = false;
@@ -153,7 +166,7 @@ export class NavBar extends LitElement {
   render() {
     return html`
       <nav
-        class="${tw`flex justify-between px-[5%] h-16 bg-[#eaeff7] items-center shadow-md z-20 fixed w-full top-0 sm:h-[4.563rem] gap-2`}"
+        class="${tw`${globalStyles} flex justify-between px-[5%] h-16 bg-lightBlue items-center shadow-md z-20 fixed w-full top-0 sm:h-[4.563rem] gap-2`}"
       >
         <a href="#"
           ><img
@@ -192,7 +205,7 @@ export class NavBar extends LitElement {
                   ? html`
                       <!-- Navigation Menu -->
                       <nav
-                        class="${tw`fixed top-16 right-0 h-[70vh] bg-[#eaeff7] w-[100vw] z-10 flex shadow-md ${slideIn}`}"
+                        class="${tw`fixed top-16 right-0 h-[70vh] bg-lightBlue w-[100vw] z-10 flex shadow-md ${slideIn}`}"
                       >
                         <div class="${tw`w-full relative ${fadeIn} opacity-0`}">
                           <div class="${tw`flex py-8 px-12 gap-5`}">
@@ -228,14 +241,14 @@ export class NavBar extends LitElement {
                           <!-- location pop-up -->
                           ${this.detector
                             ? html`<div
-                                class="${tw`${fadeInAlt} opacity-0 shadow-lg transition-opacity rounded-lg absolute w-2/3 right-12 top-20 px-4 py-5 bg-[#1a2433] text-white`}"
+                                class="${tw`${fadeInAlt} opacity-0 shadow-lg transition-opacity rounded-lg absolute w-2/3 right-12 top-20 px-4 py-5 bg-black text-white`}"
                               >
                                 <p class="${`font-bold text-blue-800`}">
                                   We detected that you visit us from
                                   ${this.location}
                                 </p>
                                 <button
-                                  class="${tw`underline text-[#FFBC3F]`}"
+                                  class="${tw`underline text-yellow`}"
                                   @click=${() => {
                                     this.regionSelector = true;
                                     this.detectorInteracted = true;
@@ -249,7 +262,7 @@ export class NavBar extends LitElement {
                           ${this.regionSelector
                             ? html`
                                 <ul
-                                  class="${tw`flex flex-col gap-2 shadow-xl bg-[#eaeff7] absolute top-20 right-[2.65rem] rounded-lg p-[5px] ${slideInAlt} overflow-hidden`}"
+                                  class="${tw`flex flex-col gap-2 shadow-xl bg-lightBlue absolute top-20 right-[2.65rem] rounded-lg p-[5px] ${slideInAlt} overflow-hidden`}"
                                 >
                                   ${this.regions.map((region) => {
                                     return region.imgSrc != this.crtFlag
@@ -411,7 +424,7 @@ export class NavBar extends LitElement {
                           >
                           ${item.dropdown && item.dropdown.shown
                             ? html`<ul
-                                class="${tw`flex flex-col ${slideInAlt} overflow-hidden absolute top-10 bg-[#eaeff7] rounded-b-md`}"
+                                class="${tw`flex flex-col ${slideInAlt} overflow-hidden absolute top-10 bg-lightBlue rounded-b-md`}"
                               >
                                 ${item.dropdown.list.map((dropItem) => {
                                   return html`
@@ -478,13 +491,13 @@ export class NavBar extends LitElement {
                 <!-- location pop-up -->
                 ${this.detector
                   ? html`<div
-                      class="${tw`${fadeInAlt} opacity-0 shadow-lg transition-opacity rounded-lg absolute w-1/5 right-[5%] top-20 px-4 py-5 bg-[#1a2433] text-white`}"
+                      class="${tw`${fadeInAlt} opacity-0 shadow-lg transition-opacity rounded-lg absolute w-1/5 right-[5%] top-20 px-4 py-5 bg-black text-white`}"
                     >
                       <p class="${`font-bold text-blue-800`}">
                         We detected that you visit us from ${this.location}
                       </p>
                       <button
-                        class="${tw`underline text-[#FFBC3F]`}"
+                        class="${tw`underline text-yellow`}"
                         @click=${() => {
                           this.regionSelector = true;
                           this.detectorInteracted = true;
@@ -498,7 +511,7 @@ export class NavBar extends LitElement {
                 ${this.regionSelector
                   ? html`
                       <ul
-                        class="${tw`flex flex-col gap-2 shadow-xl bg-[#eaeff7] absolute top-16 right-[4.8%] rounded-lg p-[5px] ${slideInAlt} overflow-hidden`}"
+                        class="${tw`flex flex-col gap-2 shadow-xl bg-lightBlue absolute top-16 right-[4.8%] rounded-lg p-[5px] ${slideInAlt} overflow-hidden`}"
                       >
                         ${this.regions.map((region) => {
                           return region.imgSrc != this.crtFlag
@@ -531,7 +544,7 @@ export class NavBar extends LitElement {
       ${this.showLogin
         ? html`
             <div
-              class="${tw`fixed w-[100vw] h-full sm:w-[28.625rem] sm:h-[34.375rem] sm:right-[50%] sm:mr-[-14.312rem] sm:top-[20vh] sm:rounded bg-[#eaeff7] top-16 right-0 pb-20 px-4 z-20 ${fadeInAlt} ${css`
+              class="${tw`fixed w-[100vw] h-full sm:w-[28.625rem] sm:h-[34.375rem] sm:right-[50%] sm:mr-[-14.312rem] sm:top-[20vh] sm:rounded bg-lightBlue top-16 right-0 pb-20 px-4 z-20 ${fadeInAlt} ${css`
                 & {
                   background: transparent
                     linear-gradient(151deg, #eaeff7 0%, #d8e2f2 100%);
@@ -545,7 +558,7 @@ export class NavBar extends LitElement {
                   @click=${() => {
                     this.showLogin = false;
                   }}
-                  class="${tw`flex items-center absolute top-3 right-2 bg-[#f1f5fa] p-3 rounded-full w-9 h-9 shadow-sm z-10`}"
+                  class="${tw`flex items-center absolute top-3 right-2 bg-lightGray p-3 rounded-full w-9 h-9 shadow-sm z-10`}"
                 >
                   <img src="./images/burger-exit.svg" alt="Close Icon" />
                 </button>
@@ -563,17 +576,17 @@ export class NavBar extends LitElement {
                 <div class="${tw`flex justify-center gap-3 mb-4 mt-6`}">
                   <a
                     href="#"
-                    class="${tw`w-10 h-10 bg-[#f1f5fa] flex rounded-lg p-2 justify-center`}"
+                    class="${tw`w-10 h-10 bg-lightGray flex rounded-lg p-2 justify-center`}"
                     ><img src="./images/social-icons/google.svg"
                   /></a>
                   <a
                     href="#"
-                    class="${tw`w-10 h-10 bg-[#f1f5fa] flex rounded-lg p-2 justify-center`}"
+                    class="${tw`w-10 h-10 bg-lightGray flex rounded-lg p-2 justify-center`}"
                     ><img src="./images/social-icons/facebook.svg"
                   /></a>
                   <a
                     href="#"
-                    class="${tw`w-10 h-10 bg-[#f1f5fa] flex rounded-lg p-2 justify-center`}"
+                    class="${tw`w-10 h-10 bg-lightGray flex rounded-lg p-2 justify-center`}"
                     ><img src="./images/social-icons/apple.svg"
                   /></a>
                 </div>
@@ -585,19 +598,19 @@ export class NavBar extends LitElement {
                   <input
                     type="text"
                     placeholder="Brugernavn..."
-                    class="${tw`pb-1 px-4 h-10 w-full rounded-lg bg-[#f1f5fa] placeholder-[#D1D4D9]`}"
+                    class="${tw`pb-1 px-4 h-10 w-full rounded-lg bg-lightGray placeholder-[#D1D4D9]`}"
                     required
                   />
                   <input
                     type="email"
                     placeholder="Email..."
-                    class="${tw`pb-1 px-4 h-10 w-full rounded-lg bg-[#f1f5fa] placeholder-[#D1D4D9]`}"
+                    class="${tw`pb-1 px-4 h-10 w-full rounded-lg bg-lightGray placeholder-[#D1D4D9]`}"
                     required
                   />
                   <input
                     type="password"
                     placeholder="Kodeord..."
-                    class="${tw`pb-1 px-4 h-10 w-full rounded-lg bg-[#f1f5fa] placeholder-[#D1D4D9]`}"
+                    class="${tw`pb-1 px-4 h-10 w-full rounded-lg bg-lightGray placeholder-[#D1D4D9]`}"
                     required
                   />
                   <input

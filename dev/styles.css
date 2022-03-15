@@ -1,3 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.hide {
+  display: none !important;
+}
+
 body {
   font-size: 0.875rem;
 }
@@ -25,6 +33,11 @@ button {
   font-weight: inherit;
 }
 
+button:focus,
+a:focus {
+  outline: 1px solid #eaeff7;
+}
+
 button,
 a {
   color: inherit;
@@ -46,7 +59,8 @@ textarea:focus {
   outline: none;
 }
 
-ul {
+ul,
+li {
   list-style: none;
 }
 

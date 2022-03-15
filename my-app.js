@@ -1,8 +1,7 @@
 import {LitElement, html} from 'lit';
 import {create, cssomSheet, setup} from 'twind';
+import {theme} from './dev/twind.config';
 import {css} from 'twind/css';
-import {NavBar} from './dev/components/nav-bar';
-import {Footer} from './dev/templates/footer';
 import {Rewards} from './dev/components/rewards';
 import {WinDisplay} from './dev/components/win-display';
 import {GameBig} from './dev/components/game-big';
@@ -13,22 +12,32 @@ import {WelcomeOffers} from './dev/templates/welcome-offers';
 import {Shop} from './dev/templates/shop';
 
 const sheet = cssomSheet({target: new CSSStyleSheet()});
-const {tw} = create({sheet});
-setup({
+const {tw} = create({
+  sheet,
+  theme: theme,
+});
+
+/* setup({
   preflight: {
     '@import': `url('https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.12/dist/css/splide.min.css')`,
   },
-});
+}); */
+
+/* const globalStyles = css({
+  ':global': {
+    button: {
+      background: '#000',
+    },
+  },
+}); */
 
 export class MyApp extends LitElement {
   static styles = [sheet.target];
 
   render() {
     return html`
-      <div
-        class="${tw`font-['sofia-pro'] pt-16 sm:pt-[4.563rem] bg-[#EAEFF7]`}"
-      >
-        <nav-bar></nav-bar>
+      <div class="${tw`font-sofia bg-lightBlue`}">
+        <!-- <nav-bar></nav-bar> -->
         <section class="${tw`px-[5%]`}">
           <app-rewards></app-rewards>
           <win-display></win-display>
@@ -75,7 +84,6 @@ export class MyApp extends LitElement {
         </game-slider>
         <welcome-offers></welcome-offers>
         <point-shop></point-shop>
-        <app-footer></app-footer>
       </div>
     `;
   }

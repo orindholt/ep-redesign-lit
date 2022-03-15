@@ -1,9 +1,13 @@
 import {LitElement, html} from 'lit';
 import {create, cssomSheet} from 'twind';
+import {theme} from '../twind.config';
 import {css} from 'twind/css';
 
 const sheet = cssomSheet({target: new CSSStyleSheet()});
-const {tw} = create({sheet});
+const {tw} = create({
+  sheet,
+  theme: theme,
+});
 
 export class ShopItem extends LitElement {
   static styles = [sheet.target];
@@ -41,7 +45,7 @@ export class ShopItem extends LitElement {
             >
               ${String(this.item.bonus)}€ Bonus Package for ${this.item.title}
             </p>
-            <h3 class="${tw`text-[#FFA626] text-[1rem] font-bold`}">
+            <h3 class="${tw`text-orange text-[1rem] font-bold`}">
               ${String(this.item.cost)} EP
             </h3>
           </div>

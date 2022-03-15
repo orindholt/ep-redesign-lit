@@ -1,14 +1,18 @@
 import {LitElement, html} from 'lit';
 import {create, cssomSheet} from 'twind';
+import {theme} from '../twind.config';
 import {css} from 'twind/css';
 
 const sheet = cssomSheet({target: new CSSStyleSheet()});
-const {tw} = create({sheet});
+const {tw} = create({
+  sheet,
+  theme: theme,
+});
 
 const liveDot = css({
   content: '""',
   '@apply':
-    'absolute w-1 h-1 flex justify-center items-center bg-[#f82858] rounded-full top-0 right-[-0.25rem]',
+    'absolute w-1 h-1 flex justify-center items-center bg-red rounded-full top-0 right-[-0.25rem]',
 });
 
 export class SignupBonus extends LitElement {
