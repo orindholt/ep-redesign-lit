@@ -3,6 +3,7 @@ let detector = false;
 let regionSelector = false;
 let detectorInteracted = false;
 let showLogin = false;
+let crtState = '+';
 let crtFlag = 'denmark.svg';
 const local = 'Kastrup, Danmark';
 const regions = [
@@ -73,18 +74,24 @@ regionBtn.forEach((btn) => {
   btn.addEventListener('click', toggleRegionSelector);
 });
 
-const setRegionIcon = (url) => {
+const setRegionIcon = (url, state = '') => {
+  console.log(state);
   regionIcon.forEach((icon) => {
+    icon.nextElementSibling.textContent = state;
     icon.setAttribute('src', url);
   });
 };
 
+const states = ['CA', 'NJ', 'NY'];
+
 /* Region Click Handler */
-const regionClickHandler = (e) => {
+const regionClickHandler = (e, state = '') => {
+  regionSelector && toggleRegionSelector();
   if (e) {
-    regionSelector && toggleRegionSelector();
-    crtFlag = e.target.getAttribute('src');
-    setRegionIcon(crtFlag);
+    typeof e != 'string'
+      ? (crtFlag = e.target.getAttribute('src'))
+      : (crtFlag = e);
+    setRegionIcon(crtFlag, state);
     regions.forEach((region) => {
       if (crtFlag == region.imgSrc) {
         region.active = true;
@@ -94,15 +101,32 @@ const regionClickHandler = (e) => {
   regionEl.forEach((element) => {
     element.innerHTML = ``;
   });
-
   regions.forEach(({imgSrc, title, active}) => {
     if (!active)
       regionEl.forEach((element) => {
-        element.innerHTML += `
+        element.innerHTML +=
+          title.toLowerCase() != 'usa'
+            ? `
         <li>
           <button class="flex gap-2 w-10 region rounded-md overflow-hidden shadow-sm" onclick="regionClickHandler(event)">
             <img src="${imgSrc}" alt="${title}" />
           </button>
+        </li>
+      `
+            : `
+        <li>
+        <select 
+          class="flex px-[2px] py-[1px] justify-start items-end gap-2 w-10 h-10 region rounded-md shadow-sm appearance-none bg-black text-white text-xs font-bold cursor-pointer" 
+          style="background-image: url(${imgSrc})"
+          onchange="regionClickHandler('${imgSrc}', event.target.value)"
+        >
+            <option value="" disabled hidden selected>+</option>
+            ${states
+              .map((state) => {
+                return `<option value="${state}">${state}</option>`;
+              })
+              .join('')}
+          </select>
         </li>
       `;
       });

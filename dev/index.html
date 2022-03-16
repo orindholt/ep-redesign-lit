@@ -203,13 +203,16 @@
           <!--Region Btn Dekstop-->
           <div class="relative">
             <button
-              class="regionBtn min-w-[2.5rem] hidden sm:block rounded-md overflow-hidden shadow-sm"
+              class="regionBtn min-w-[2.5rem] hidden sm:block rounded-md overflow-hidden shadow-sm relative"
             >
               <img
-                class="w-10"
+                class="w-10 max-h-[2.5rem]"
                 alt="Region Selector"
                 src="./images/flags/german.svg"
               />
+              <p
+                class="state text-white text-[8px] font-bold bottom-[1px] left-[1px] absolute"
+              ></p>
               <!--Region Menu Desktop-->
             </button>
             <ul
@@ -226,7 +229,7 @@
         <div class="w-full relative opacity-0 animate-fadeIn">
           <!--Dropdown List Mobile-->
           <ul class="menuList font-bold">
-            <div class="flex justify-between py-4 pl-[20%] pr-12 gap-5">
+            <div class="flex justify-between py-4 pl-[20%] pr-[5%] gap-5">
               <!--Region Btn Mobile-->
               <li class="flex flex-col items-start gap-2">
                 <a
@@ -237,17 +240,20 @@
                 </a>
               </li>
               <button
-                class="regionBtn min-w-[2.5rem] h-10 z-10 rounded-md overflow-hidden"
+                class="regionBtn min-w-[2.5rem] h-10 z-10 rounded-md overflow-hidden relative"
               >
                 <img
                   alt="Region Selector"
                   src="./images/flags/german.svg"
-                  class="w-10"
+                  class="w-10 max-h-[2.5rem]"
                 />
+                <p
+                  class="state text-white text-[8px] font-bold bottom-[1px] left-[1px] absolute"
+                ></p>
               </button>
               <!--Region Menu Mobile-->
               <ul
-                class="regionMenu hide flex flex-col gap-2 shadow-xl bg-mediumGray absolute pt-[3.375rem] top-[0.60rem] right-[43px] rounded-lg p-[5px] overflow-hidden animate-slideInAlt"
+                class="regionMenu hide flex flex-col gap-2 shadow-xl bg-mediumGray absolute pt-[3.375rem] top-[0.60rem] right-[5%] mr-[-0.3rem] rounded-lg p-[5px] overflow-hidden animate-slideInAlt"
               ></ul>
             </div>
             <!--Dropdown Item Mobile 00-->

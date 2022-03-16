@@ -2,8 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-.hide {
-  display: none !important;
+@layer components {
+  .hide {
+    @apply hidden !important;
+  }
 }
 
 body {

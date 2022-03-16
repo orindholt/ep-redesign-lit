@@ -7,7 +7,7 @@
     <script src="assets/polyfill-support-9bc7af0b.js"></script>
     
     
-    <link rel="stylesheet" href="assets/output-779f7e28.css">
+    <link rel="stylesheet" href="assets/output-bcdd1ae3.css">
     <link rel="stylesheet" href="https://use.typekit.net/uin3khw.css">
   </head>
   <body class="pt-16 sm:pt-[4.563rem] bg-lightBlue">
@@ -115,8 +115,9 @@
           </button>
           <!--Region Btn Dekstop-->
           <div class="relative">
-            <button class="regionBtn min-w-[2.5rem] hidden sm:block rounded-md overflow-hidden shadow-sm">
-              <img class="w-10" alt="Region Selector" src="assets/german-a28c1fb6.svg">
+            <button class="regionBtn min-w-[2.5rem] hidden sm:block rounded-md overflow-hidden shadow-sm relative">
+              <img class="w-10 max-h-[2.5rem]" alt="Region Selector" src="assets/german-a28c1fb6.svg">
+              <p class="state text-white text-[8px] font-bold bottom-[1px] left-[1px] absolute"></p>
               <!--Region Menu Desktop-->
             </button>
             <ul class="hidden sm:flex z-[-1] regionMenu hide flex-col gap-2 shadow-xl bg-mediumGray absolute pt-[54px] top-[-6px] right-[-5px] rounded-lg p-[5px] overflow-hidden animate-slideInAlt"></ul>
@@ -128,18 +129,19 @@
         <div class="w-full relative opacity-0 animate-fadeIn">
           <!--Dropdown List Mobile-->
           <ul class="menuList font-bold">
-            <div class="flex justify-between py-4 pl-[20%] pr-12 gap-5">
+            <div class="flex justify-between py-4 pl-[20%] pr-[5%] gap-5">
               <!--Region Btn Mobile-->
               <li class="flex flex-col items-start gap-2">
                 <a href="#" class="flex items-center gap-3 text-[19px] mt-4 mb-2 sm:my-0 text-black font-sofia">
                   Hvordan virker det?
                 </a>
               </li>
-              <button class="regionBtn min-w-[2.5rem] h-10 z-10 rounded-md overflow-hidden">
-                <img alt="Region Selector" src="assets/german-a28c1fb6.svg" class="w-10">
+              <button class="regionBtn min-w-[2.5rem] h-10 z-10 rounded-md overflow-hidden relative">
+                <img alt="Region Selector" src="assets/german-a28c1fb6.svg" class="w-10 max-h-[2.5rem]">
+                <p class="state text-white text-[8px] font-bold bottom-[1px] left-[1px] absolute"></p>
               </button>
               <!--Region Menu Mobile-->
-              <ul class="regionMenu hide flex flex-col gap-2 shadow-xl bg-mediumGray absolute pt-[3.375rem] top-[0.60rem] right-[43px] rounded-lg p-[5px] overflow-hidden animate-slideInAlt"></ul>
+              <ul class="regionMenu hide flex flex-col gap-2 shadow-xl bg-mediumGray absolute pt-[3.375rem] top-[0.60rem] right-[5%] mr-[-0.3rem] rounded-lg p-[5px] overflow-hidden animate-slideInAlt"></ul>
             </div>
             <!--Dropdown Item Mobile 00-->
             <hr class="opacity-15" style="border-color: #7c838f">
@@ -305,7 +307,7 @@
       </footer>
     </footer>
     <log-in class="hide" id="login"></log-in>
-    <script src="assets/script-64c4da8b.js"></script>
+    <script src="assets/script-b6988ea0.js"></script>
   
 
 

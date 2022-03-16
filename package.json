@@ -9,6 +9,7 @@
   "scripts": {
     "build": "npm run docs:clean && rollup -c",
     "serve": "wds --watch",
+    "docs:clean": "rimraf docs",
     "tailwind": "npx tailwindcss -c ./tailwind.config.cjs -i ./dev/styles.css -o ./dev/output.css --watch"
   },
   "keywords": [

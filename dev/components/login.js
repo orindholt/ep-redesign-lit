@@ -10,10 +10,10 @@ const {tw} = create({
 });
 
 const checked = css`
-  & {
+  &:checked {
     border-color: #ffa626;
   }
-  &::before {
+  &:checked::before {
     content: url('./images/check.svg');
   }
 `;
@@ -32,10 +32,12 @@ export class Login extends LitElement {
   render() {
     return html`
       <div
-        class="${tw`fixed w-[100vw] py-5 sm:pb-5 pb-20 h-full sm:w-[28.5rem] sm:h-[43.125rem] sm:right-[50%] sm:mr-[-14.25rem] sm:top-[10vh] sm:rounded bg-lightBlue top-16 right-0 px-7 z-[5] bg-gradient-to-tr from-[#eaeff7] to-[#d8e2f2] animate-fadeInAlt font-sofia`}"
+        class="${tw`fixed w-[100vw] py-5 sm:pb-5 h-full sm:w-[28.5rem] sm:h-[43.125rem] sm:right-[50%] sm:mr-[-14.25rem] sm:top-[10vh] sm:rounded bg-lightBlue top-0 sm:pt-5 pt-20 right-0 px-7 z-[5] bg-gradient-to-tr from-[#eaeff7] to-[#d8e2f2] animate-fadeInAlt font-sofia`}"
       >
         <div class="${tw`flex flex-col text-center h-full gap-4`}">
-          <div class="${tw`bg-white w-full min-h-[8rem] rounded-md`}"></div>
+          <div
+            class="${tw`bg-white w-full sm:min-h-[7rem] min-h-[5rem] rounded-md`}"
+          ></div>
           <section>
             <h2 class="${tw`text-[2.188rem] text-[#3988DE] font-bold`}">
               ${this.log ? 'Log ind' : 'Tilmeld dig'}
@@ -47,7 +49,7 @@ export class Login extends LitElement {
             </p>
             <hr class="${tw`my-3 border-[#C9D4E6]`}" />
             <p class="${tw`text-blue`}">Login med sociale medier</p>
-            <div class="${tw`flex justify-center gap-3 mb-4 mt-2`}">
+            <div class="${tw`flex justify-center gap-3 my-2`}">
               <a
                 href="#"
                 class="${tw`w-12 h-12 bg-lightGray flex rounded-lg p-3 justify-center`}"
@@ -67,13 +69,13 @@ export class Login extends LitElement {
           </section>
           <form
             action="#"
-            class="${tw`text-center flex flex-col justify-between h-full`}"
+            class="${tw`text-center flex flex-col h-full gap-1`}"
             (submit)="(false)"
           >
             ${!this.log
               ? html`<div class="${tw`flex gap-3 items-center px-5 text-left`}">
                     <input
-                      class="${tw`appearance-none min-w-[1rem] min-h-[1rem] border-2 border-[#C9D4E6] rounded-[4px] relative checked:${checked} before:bg-orange before:w-full before:h-full before:absolute before:grid before:place-content-center before:pb-1`}"
+                      class="${tw`appearance-none min-w-[1rem] min-h-[1rem] border-2 border-[#C9D4E6] rounded-[4px] relative ${checked} before:bg-orange before:w-full before:h-full before:absolute before:grid before:place-content-center before:pb-1`}"
                       type="checkbox"
                       name="terms"
                       id="terms"
@@ -87,7 +89,9 @@ export class Login extends LitElement {
                       turpis.
                     </label>
                   </div>
-                  <div class="${tw`flex gap-3 items-center px-5 text-left`}">
+                  <div
+                    class="${tw`flex gap-3 items-center px-5 pb-4 text-left`}"
+                  >
                     <input
                       class="${tw`appearance-none min-w-[1rem] min-h-[1rem] border-2 border-[#C9D4E6] rounded-[4px] relative checked:${checked} before:bg-orange before:w-full before:h-full before:absolute before:grid before:place-content-center before:pb-1`}"
                       type="checkbox"
@@ -125,14 +129,14 @@ export class Login extends LitElement {
             <input
               type="submit"
               value=${this.log ? 'Login' : 'Fortsæt'}
-              class="${tw`mx-auto rounded-md cursor-pointer shadow-md w-24 h-10 flex justify-center items-center text-lg font-medium text-white ${css`
+              class="${tw`mx-auto rounded-md cursor-pointer shadow-md w-24 h-10 flex justify-center items-center text-lg font-medium text-white mt-2 ${css`
                 & {
                   background: transparent
                     linear-gradient(206deg, #ff930f 0%, #ffd45b 100%);
                 }
               `}`}"
             />
-            <div class="${tw`leading-4`}">
+            <div class="${tw`leading-4 mt-auto`}">
               <p class="${tw`text-[13px]`}">
                 ${!this.log
                   ? 'Har du allerede en bruger?'
