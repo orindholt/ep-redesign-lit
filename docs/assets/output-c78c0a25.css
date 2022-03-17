@@ -576,6 +576,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   right: 0.25rem;
 }
 
+.bottom-\[-1rem\] {
+  bottom: -1rem;
+}
+
 .z-20 {
   z-index: 20;
 }
@@ -710,6 +714,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .mb-10 {
   margin-bottom: 2.5rem;
+}
+
+.mt-3 {
+  margin-top: 0.75rem;
 }
 
 .inline-block {
@@ -870,6 +878,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .w-\[15\.625rem\] {
   width: 15.625rem;
+}
+
+.w-1\/4 {
+  width: 25%;
+}
+
+.w-1\/2 {
+  width: 50%;
 }
 
 .min-w-\[2\.5rem\] {
@@ -1148,6 +1164,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .border-\[\#959CA750\] {
   border-color: #959CA750;
+}
+
+.border-red {
+  --tw-border-opacity: 1;
+  border-color: rgb(248 40 88 / var(--tw-border-opacity));
 }
 
 .bg-lightBlue {
@@ -1554,6 +1575,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: rgb(255 166 38 / var(--tw-text-opacity));
 }
 
+.text-red {
+  --tw-text-opacity: 1;
+  color: rgb(248 40 88 / var(--tw-text-opacity));
+}
+
 .underline {
   -webkit-text-decoration-line: underline;
           text-decoration-line: underline;
@@ -1772,6 +1798,10 @@ input[type='submit'] {
 
   .sm\:top-\[-6\.265rem\] {
     top: -6.265rem;
+  }
+
+  .sm\:top-\[4\.5rem\] {
+    top: 4.5rem;
   }
 
   .sm\:my-0 {
