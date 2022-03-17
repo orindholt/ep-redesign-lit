@@ -37,7 +37,8 @@ button {
 
 button:focus,
 a:focus {
-  outline: 1px solid #eaeff7;
+  border: none;
+  outline: 2px solid #eaeff750;
 }
 
 button,
