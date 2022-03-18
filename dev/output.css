@@ -596,6 +596,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   left: calc(50% - (12px / 2));
 }
 
+.bottom-\[-1rem\] {
+  bottom: -1rem;
+}
+
 .z-20 {
   z-index: 20;
 }
