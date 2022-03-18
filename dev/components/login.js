@@ -1,7 +1,7 @@
 import {LitElement, html} from 'lit';
 import {create, cssomSheet} from 'twind';
 import {theme} from '../twind.config';
-import {css} from 'twind/css';
+import {css, animation} from 'twind/css';
 
 const sheet = cssomSheet({target: new CSSStyleSheet()});
 const {tw} = create({
@@ -11,12 +11,21 @@ const {tw} = create({
 
 const checked = css`
   &:checked {
-    border-color: #ffa626;
+    border-color: #ffa626 !important;
   }
   &:checked::before {
     content: url('./images/check.svg');
   }
 `;
+
+const fadeIn = animation('.2s ease-in-out forwards', {
+  '0%': {
+    opacity: 0,
+  },
+  '100%': {
+    opacity: 1,
+  },
+});
 
 export class Login extends LitElement {
   static styles = [sheet.target];
@@ -32,6 +41,7 @@ export class Login extends LitElement {
     /* Submit Function */
     this._handleSubmit = (e) => {
       const errorText = this.shadowRoot.querySelector('#error');
+      const errorIcon = this.shadowRoot.querySelector('#error-icon');
       const inputFields = this.shadowRoot.querySelectorAll('input');
       const emailRegEx = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
       const passRegEx = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
@@ -44,7 +54,29 @@ export class Login extends LitElement {
           (input.name == 'password' && !passRegEx.test(input.value)) ||
           (input.name == 'tos' && !input.checked)
         ) {
-          input.style.outline = '1px solid #f82858';
+          if (input.name != 'tos') {
+            input.style.color = '#F40E4C';
+            input.addEventListener(
+              'input',
+              (e) => {
+                if (e.target.style.color) e.target.style.color = '';
+                if (!e.target.style) e.target.removeAtrribute('style');
+              },
+              [true]
+            );
+          } else {
+            input.style.borderColor = '#f82858';
+            input.onchange = (e) => {
+              if (e.target.style.borderColor) e.target.style.borderColor = '';
+              if (!e.target.style) e.target.removeAtrribute('style');
+              if (errorIcon.style.display == 'block')
+                errorIcon.style.display = '';
+            };
+          }
+          if (errorIcon.style.display != 'block')
+            errorIcon.style.display = 'block';
+          if (errorText.style.display != 'block')
+            errorText.style.display = 'block';
           if (!i)
             errorText.textContent =
               input.name == 'tos'
@@ -56,13 +88,9 @@ export class Login extends LitElement {
                 : `Please enter a vaild ${input.name}`;
           i++;
           error = true;
-        } else if (input.value || input.checked) {
-          input.style.outline = '';
-          if (!input.style.length) input.removeAttribute('style');
         }
       });
       e.preventDefault();
-      console.log(window.location);
       if (error) return false;
       /* TEMP SOLUTION FOR REDIRECT DEMO */
       window.location.replace(
@@ -104,7 +132,19 @@ export class Login extends LitElement {
             action="#"
             class="${tw`flex flex-col h-full gap-1 items-center`}"
           >
-            <p class="${tw`text-blue`}">Login med sociale medier</p>
+            <div class="${tw`leading-4`}">
+              <p class="${tw`text-[13px]`}">
+                ${!this.log
+                  ? 'Har du allerede en bruger?'
+                  : 'Har du ikke en bruger?'}
+              </p>
+              <a
+                href="#"
+                class="${tw`text-[#3585DF] text-[13px] font-bold`}"
+                @click=${() => (this.log = !this.log)}
+                >${!this.log ? 'Log ind her' : 'Tilmeld dig her'}
+              </a>
+            </div>
             <div class="${tw`flex justify-center gap-3 my-2`}">
               <button
                 type="submit"
@@ -133,12 +173,21 @@ export class Login extends LitElement {
             </div>
             ${!this.log
               ? html`<div class="${tw`flex gap-3 items-center w-full px-5`}">
-                    <input
-                      class="${tw`appearance-none min-w-[1rem] min-h-[1rem] border-2 border-[#C9D4E6] rounded-[4px] relative ${checked} before:bg-orange before:w-full before:h-full before:absolute before:grid before:place-content-center before:pb-1`}"
-                      type="checkbox"
-                      name="tos"
-                      id="tos"
-                    />
+                    <div class="${tw`relative w-4 h-4`}">
+                      <input
+                        class="${tw`appearance-none min-w-[1rem] min-h-[1rem] border-2 border-[#C9D4E6] rounded-[4px] relative ${checked} before:bg-orange before:w-full before:h-full before:absolute before:grid before:place-content-center before:pb-1`}"
+                        type="checkbox"
+                        name="tos"
+                        id="tos"
+                      />
+                      <img
+                        id="error-icon"
+                        class="${tw`absolute top-[-1.2rem] w-3 left-[calc(50%-(12px/2))] hidden ${fadeIn}`}"
+                        src="./images/error.svg"
+                        alt="Error"
+                      />
+                    </div>
+
                     <label
                       for="tos"
                       class="${tw`text-[8px] text-blue text-left`}"
@@ -152,7 +201,7 @@ export class Login extends LitElement {
                   </div>
                   <div class="${tw`flex gap-3 items-center w-full px-5 pb-4`}">
                     <input
-                      class="${tw`appearance-none min-w-[1rem] min-h-[1rem] border-2 border-[#C9D4E6] rounded-[4px] relative checked:${checked} before:bg-orange before:w-full before:h-full before:absolute before:grid before:place-content-center before:pb-1`}"
+                      class="${tw`appearance-none min-w-[1rem] min-h-[1rem] border-2 border-[#C9D4E6] rounded-[4px] relative ${checked} before:bg-orange before:w-full before:h-full before:absolute before:grid before:place-content-center before:pb-1`}"
                       type="checkbox"
                       name="newsletter"
                       id="newsletter"
@@ -169,12 +218,21 @@ export class Login extends LitElement {
             <div
               class="${tw`flex flex-col items-center gap-2 relative w-full`}"
             >
+              <p
+                id="error"
+                class="${tw`text-red text-[8px] absolute top-[-1rem] hidden ${fadeIn}`}"
+              ></p>
               <input
                 type="text"
                 placeholder="Brugernavn..."
                 id="username"
                 name="username"
-                class="${tw`pb-1 px-3 h-10 w-full rounded-lg bg-lightGray placeholder-[#D1D4D9]`}"
+                class="${tw`pb-1 px-3 h-10 w-full rounded-lg bg-lightGray ${css`
+                  &::placeholder {
+                    color: inherit;
+                    opacity: 0.4;
+                  }
+                `}`}"
               />
               ${!this.log
                 ? html`<input
@@ -182,7 +240,12 @@ export class Login extends LitElement {
                     id="email"
                     name="email"
                     placeholder="Email..."
-                    class="${tw`pb-1 px-3 h-10 w-full rounded-lg bg-lightGray placeholder-[#D1D4D9]`}"
+                    class="${tw`pb-1 px-3 h-10 w-full rounded-lg bg-lightGray ${css`
+                      &::placeholder {
+                        color: inherit;
+                        opacity: 0.4;
+                      }
+                    `}`}"
                   />`
                 : ``}
               <input
@@ -190,12 +253,13 @@ export class Login extends LitElement {
                 placeholder="Kodeord..."
                 id="password"
                 name="password"
-                class="${tw`pb-1 px-3 h-10 w-full rounded-lg bg-lightGray placeholder-[#D1D4D9]`}"
+                class="${tw`pb-1 px-3 h-10 w-full rounded-lg bg-lightGray ${css`
+                  &::placeholder {
+                    color: inherit;
+                    opacity: 0.4;
+                  }
+                `}`}"
               />
-              <p
-                id="error"
-                class="${tw`text-red text-[8px] absolute bottom-[-1rem]`}"
-              ></p>
             </div>
             <input
               type="submit"
@@ -207,19 +271,6 @@ export class Login extends LitElement {
                 }
               `}`}"
             />
-            <div class="${tw`leading-4 mt-auto`}">
-              <p class="${tw`text-[13px]`}">
-                ${!this.log
-                  ? 'Har du allerede en bruger?'
-                  : 'Har du ikke en bruger?'}
-              </p>
-              <a
-                href="#"
-                class="${tw`text-[#3585DF] text-[13px] font-bold`}"
-                @click=${() => (this.log = !this.log)}
-                >${!this.log ? 'Log ind her' : 'Tilmeld dig her'}
-              </a>
-            </div>
           </form>
         </div>
       </div>

@@ -536,6 +536,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   right: -0.25rem;
 }
 
+.top-\[-1rem\] {
+  top: -1rem;
+}
+
 .right-12 {
   right: 3rem;
 }
@@ -576,8 +580,20 @@ Ensure the default browser behavior of the `hidden` attribute.
   right: 0.25rem;
 }
 
-.bottom-\[-1rem\] {
-  bottom: -1rem;
+.top-\[-2rem\] {
+  top: -2rem;
+}
+
+.top-\[-1\.5rem\] {
+  top: -1.5rem;
+}
+
+.top-\[-1\.2rem\] {
+  top: -1.2rem;
+}
+
+.left-\[calc\(50\%-\(12px\/2\)\)\] {
+  left: calc(50% - (12px / 2));
 }
 
 .z-20 {
@@ -603,11 +619,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .my-auto {
   margin-top: auto;
   margin-bottom: auto;
-}
-
-.my-3 {
-  margin-top: 0.75rem;
-  margin-bottom: 0.75rem;
 }
 
 .my-2 {
@@ -680,8 +691,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-top: auto;
 }
 
-.mt-2 {
-  margin-top: 0.5rem;
+.mt-3 {
+  margin-top: 0.75rem;
 }
 
 .mb-1 {
@@ -716,8 +727,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-bottom: 2.5rem;
 }
 
-.mt-3 {
-  margin-top: 0.75rem;
+.block {
+  display: block;
 }
 
 .inline-block {
@@ -778,6 +789,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .h-\[2px\] {
   height: 2px;
+}
+
+.h-4 {
+  height: 1rem;
 }
 
 .max-h-\[2\.5rem\] {
@@ -852,6 +867,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 3rem;
 }
 
+.w-1\/2 {
+  width: 50%;
+}
+
 .w-2\/3 {
   width: 66.666667%;
 }
@@ -880,12 +899,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 15.625rem;
 }
 
-.w-1\/4 {
-  width: 25%;
+.w-2 {
+  width: 0.5rem;
 }
 
-.w-1\/2 {
-  width: 50%;
+.w-3 {
+  width: 0.75rem;
+}
+
+.w-4 {
+  width: 1rem;
 }
 
 .min-w-\[2\.5rem\] {
@@ -1560,6 +1583,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: rgb(53 133 223 / var(--tw-text-opacity));
 }
 
+.text-red {
+  --tw-text-opacity: 1;
+  color: rgb(248 40 88 / var(--tw-text-opacity));
+}
+
 .text-blue-800 {
   --tw-text-opacity: 1;
   color: rgb(30 64 175 / var(--tw-text-opacity));
@@ -1573,11 +1601,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-orange {
   --tw-text-opacity: 1;
   color: rgb(255 166 38 / var(--tw-text-opacity));
-}
-
-.text-red {
-  --tw-text-opacity: 1;
-  color: rgb(248 40 88 / var(--tw-text-opacity));
 }
 
 .underline {
@@ -1598,6 +1621,18 @@ Ensure the default browser behavior of the `hidden` attribute.
 .placeholder-\[\#D1D4D9\]::placeholder {
   --tw-placeholder-opacity: 1;
   color: rgb(209 212 217 / var(--tw-placeholder-opacity));
+}
+
+.placeholder-inherit::-moz-placeholder {
+  color: inherit;
+}
+
+.placeholder-inherit:-ms-input-placeholder {
+  color: inherit;
+}
+
+.placeholder-inherit::placeholder {
+  color: inherit;
 }
 
 .opacity-0 {
@@ -1734,9 +1769,41 @@ input[type='submit'] {
   cursor: pointer;
 }
 
+.placeholder\:text-red::-moz-placeholder {
+  --tw-text-opacity: 1;
+  color: rgb(248 40 88 / var(--tw-text-opacity));
+}
+
+.placeholder\:text-red:-ms-input-placeholder {
+  --tw-text-opacity: 1;
+  color: rgb(248 40 88 / var(--tw-text-opacity));
+}
+
+.placeholder\:text-red::placeholder {
+  --tw-text-opacity: 1;
+  color: rgb(248 40 88 / var(--tw-text-opacity));
+}
+
+.placeholder\:text-inherit::-moz-placeholder {
+  color: inherit;
+}
+
+.placeholder\:text-inherit:-ms-input-placeholder {
+  color: inherit;
+}
+
+.placeholder\:text-inherit::placeholder {
+  color: inherit;
+}
+
 .before\:absolute::before {
   content: var(--tw-content);
   position: absolute;
+}
+
+.before\:top-0::before {
+  content: var(--tw-content);
+  top: 0px;
 }
 
 .before\:grid::before {
@@ -1770,6 +1837,11 @@ input[type='submit'] {
   padding-bottom: 0.25rem;
 }
 
+.before\:content-\[\'\'\]::before {
+  --tw-content: '';
+  content: var(--tw-content);
+}
+
 .hover\:text-\[\#3E8CDC\]:hover {
   --tw-text-opacity: 1;
   color: rgb(62 140 220 / var(--tw-text-opacity));
@@ -1780,8 +1852,8 @@ input[type='submit'] {
     position: absolute;
   }
 
-  .sm\:top-\[73px\] {
-    top: 73px;
+  .sm\:top-\[4\.5rem\] {
+    top: 4.5rem;
   }
 
   .sm\:right-\[50\%\] {
@@ -1798,10 +1870,6 @@ input[type='submit'] {
 
   .sm\:top-\[-6\.265rem\] {
     top: -6.265rem;
-  }
-
-  .sm\:top-\[4\.5rem\] {
-    top: 4.5rem;
   }
 
   .sm\:my-0 {
