@@ -27,73 +27,91 @@ const fadeIn = animation('.2s ease-in-out forwards', {
   },
 });
 
+const resetErrorStyle = (target, error) => {
+  if (target.name && target.name != 'tos')
+    if (target.style.color) target.style.color = '';
+  if (target.style.borderColor) target.style.borderColor = '';
+  if (target.style.display == 'block') target.style.display = '';
+  if (!target.style) target.removeAtrribute('style');
+  if (error.style.display == 'block') error.style.display = '';
+  if (!error.style) target.removeAtrribute('style');
+};
+
+const validation = (inputElements, errorIcon, errorText) => {
+  const emailRegEx = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  const passRegEx = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+  let i = 0;
+  let error = false;
+  inputElements.forEach((input) => {
+    if (
+      !input.value ||
+      (input.name == 'email' && !emailRegEx.test(input.value)) ||
+      (input.name == 'password' && !passRegEx.test(input.value)) ||
+      (input.name == 'tos' && !input.checked)
+    ) {
+      if (input.name != 'tos') {
+        input.style.color = '#F40E4C';
+        input.addEventListener(
+          'input',
+          (e) => {
+            if (e.target.style.color) e.target.style.color = '';
+            if (!e.target.style) e.target.removeAtrribute('style');
+          },
+          [true]
+        );
+      } else {
+        input.style.borderColor = '#f82858';
+        input.onchange = (e) => {
+          if (e.target.style.borderColor) e.target.style.borderColor = '';
+          if (!e.target.style) e.target.removeAtrribute('style');
+          if (errorIcon.style.display == 'block') errorIcon.style.display = '';
+        };
+        if (errorIcon.style.display != 'block')
+          errorIcon.style.display = 'block';
+      }
+      if (errorText.style.display != 'block') errorText.style.display = 'block';
+      if (!i)
+        errorText.textContent =
+          input.name == 'tos'
+            ? 'Please agree to the terms of service'
+            : input.name == 'password' && input.value.length < 8
+            ? 'Password needs to include atleast 8 characters.'
+            : input.name == 'password' && !/\d/.test(input.value)
+            ? 'Password needs to include atleast one number'
+            : `Please enter a vaild ${input.name}`;
+      i++;
+      error = true;
+    }
+  });
+  return error;
+};
+
 export class Login extends LitElement {
   static styles = [sheet.target];
 
   static properties = {
     log: {type: Boolean},
+    passReq: {type: Boolean},
+    attemptSubmit: {type: Boolean},
     _handleSubmit: {type: Function},
   };
 
   constructor() {
     super();
-    this.log = false;
+    this.log = true;
+    this.passReq = false;
     /* Submit Function */
     this._handleSubmit = (e) => {
       const errorText = this.shadowRoot.querySelector('#error');
       const errorIcon = this.shadowRoot.querySelector('#error-icon');
       const inputFields = this.shadowRoot.querySelectorAll('input');
-      const emailRegEx = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-      const passRegEx = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-      let i = 0;
-      let error = false;
-      inputFields.forEach((input) => {
-        if (
-          !input.value ||
-          (input.name == 'email' && !emailRegEx.test(input.value)) ||
-          (input.name == 'password' && !passRegEx.test(input.value)) ||
-          (input.name == 'tos' && !input.checked)
-        ) {
-          if (input.name != 'tos') {
-            input.style.color = '#F40E4C';
-            input.addEventListener(
-              'input',
-              (e) => {
-                if (e.target.style.color) e.target.style.color = '';
-                if (!e.target.style) e.target.removeAtrribute('style');
-              },
-              [true]
-            );
-          } else {
-            input.style.borderColor = '#f82858';
-            input.onchange = (e) => {
-              if (e.target.style.borderColor) e.target.style.borderColor = '';
-              if (!e.target.style) e.target.removeAtrribute('style');
-              if (errorIcon.style.display == 'block')
-                errorIcon.style.display = '';
-            };
-            if (errorIcon.style.display != 'block')
-              errorIcon.style.display = 'block';
-          }
-          if (errorText.style.display != 'block')
-            errorText.style.display = 'block';
-          if (!i)
-            errorText.textContent =
-              input.name == 'tos'
-                ? 'Please agree to the terms of service'
-                : input.name == 'password' && input.value.length < 8
-                ? 'Password needs to include atleast 8 characters.'
-                : input.name == 'password' && !/\d/.test(input.value)
-                ? 'Password needs to include atleast one number'
-                : `Please enter a vaild ${input.name}`;
-          i++;
-          error = true;
-        }
-      });
+      const validate = () => validation(inputFields, errorIcon, errorText);
+      this.attemptSubmit = true;
+      validate();
+      if (!validate()) return false;
       e.preventDefault();
-      if (error) return false;
       /* TEMP SOLUTION FOR REDIRECT DEMO */
-      window.location.replace(
+      /* window.location.replace(
         `${window.location.href.replace(
           window.location.search,
           '?logged=true'
@@ -101,7 +119,7 @@ export class Login extends LitElement {
       );
       setTimeout(() => {
         window.location.reload();
-      }, 100);
+      }, 100); */
     };
   }
 
@@ -110,7 +128,7 @@ export class Login extends LitElement {
       <div
         class="${tw`fixed w-[100vw] overflow-y-scroll py-5 sm:pb-5 h-full sm:w-[28.5rem] sm:h-[43.125rem] sm:right-[50%] sm:mr-[-14.25rem] sm:top-[10vh] sm:rounded bg-lightBlue top-0 sm:pt-5 pt-20 right-0 px-7 z-[5] bg-gradient-to-tr from-[#eaeff7] to-[#d8e2f2] animate-fadeInAlt font-sofia`}"
       >
-        <div class="${tw`flex flex-col text-center h-full gap-4`}">
+        <div class="${tw`flex flex-col text-center h-full gap-3`}">
           <div
             class="${tw`bg-white w-full sm:min-h-[7rem] min-h-[5rem] rounded-md`}"
           ></div>
@@ -141,11 +159,17 @@ export class Login extends LitElement {
               <a
                 href="#"
                 class="${tw`text-[#3585DF] text-[13px] font-bold`}"
-                @click=${() => (this.log = !this.log)}
+                @click=${() => {
+                  if (this.passReq) this.passReq = false;
+                  this.log = !this.log;
+                  const inputFields = this.shadowRoot.querySelectorAll('input');
+                  const errorText = this.shadowRoot.querySelector('#error');
+                  inputFields.forEach((elm) => resetErrorStyle(elm, errorText));
+                }}
                 >${!this.log ? 'Log ind her' : 'Tilmeld dig her'}
               </a>
             </div>
-            <div class="${tw`flex justify-center gap-3 my-2`}">
+            <div class="${tw`flex justify-center gap-3 my-4`}">
               <button
                 type="submit"
                 href="#"
@@ -215,6 +239,11 @@ export class Login extends LitElement {
                     </label>
                   </div>`
               : ``}
+            ${this.passReq
+              ? html`<p class="${tw`mb-3`}">
+                  Vi sender dig en recovery email.
+                </p>`
+              : ``}
             <div
               class="${tw`flex flex-col items-center gap-2 relative w-full`}"
             >
@@ -222,37 +251,27 @@ export class Login extends LitElement {
                 id="error"
                 class="${tw`text-red text-[8px] absolute top-[-1rem] hidden ${fadeIn}`}"
               ></p>
-              <input
-                type="text"
-                placeholder="Brugernavn..."
-                id="username"
-                name="username"
-                class="${tw`pb-1 px-3 h-10 w-full rounded-lg bg-lightGray ${css`
-                  &::placeholder {
-                    color: inherit;
-                    opacity: 0.4;
-                  }
-                `}`}"
-              />
-              ${!this.log
-                ? html`<input
-                    type="text"
-                    id="email"
-                    name="email"
-                    placeholder="Email..."
-                    class="${tw`pb-1 px-3 h-10 w-full rounded-lg bg-lightGray ${css`
-                      &::placeholder {
-                        color: inherit;
-                        opacity: 0.4;
-                      }
-                    `}`}"
-                  />`
+              ${!this.log && !this.passReq
+                ? html`
+                    <input
+                      type="text"
+                      placeholder="Brugernavn..."
+                      id="username"
+                      name="username"
+                      class="${tw`pb-1 px-3 h-10 w-full rounded-lg bg-lightGray ${css`
+                        &::placeholder {
+                          color: inherit;
+                          opacity: 0.4;
+                        }
+                      `}`}"
+                    />
+                  `
                 : ``}
               <input
-                type="password"
-                placeholder="Kodeord..."
-                id="password"
-                name="password"
+                type="text"
+                id="email"
+                name="email"
+                placeholder="Email..."
                 class="${tw`pb-1 px-3 h-10 w-full rounded-lg bg-lightGray ${css`
                   &::placeholder {
                     color: inherit;
@@ -260,10 +279,30 @@ export class Login extends LitElement {
                   }
                 `}`}"
               />
+              ${!this.passReq
+                ? html`
+                    <input
+                      type="password"
+                      placeholder="Kodeord..."
+                      id="password"
+                      name="password"
+                      class="${tw`pb-1 px-3 h-10 w-full rounded-lg bg-lightGray ${css`
+                        &::placeholder {
+                          color: inherit;
+                          opacity: 0.4;
+                        }
+                      `}`}"
+                    />
+                  `
+                : ``}
             </div>
             <input
               type="submit"
-              value=${this.log ? 'Login' : 'Fortsæt'}
+              value=${this.log && !this.passReq
+                ? 'Login'
+                : this.log && this.passReq
+                ? 'Indsend'
+                : 'Fortsæt'}
               class="${tw`mt-4 rounded-md cursor-pointer shadow-md w-24 h-10 flex justify-center items-center text-lg font-medium text-white ${css`
                 & {
                   background: transparent
@@ -272,6 +311,20 @@ export class Login extends LitElement {
               `}`}"
             />
           </form>
+          ${this.log
+            ? html`<button
+                @click=${() => {
+                  this.passReq = !this.passReq;
+                  const inputFields = this.shadowRoot.querySelectorAll('input');
+                  const errorText = this.shadowRoot.querySelector('#error');
+                  inputFields.forEach((elm) => resetErrorStyle(elm, errorText));
+                }}
+              >
+                ${!this.passReq
+                  ? 'Har du glemt dit adgangskode?'
+                  : 'Kan du huske din adgangskode?'}
+              </button>`
+            : ``}
         </div>
       </div>
     `;
