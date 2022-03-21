@@ -74,9 +74,9 @@ export class Login extends LitElement {
             };
             if (errorIcon.style.display != 'block')
               errorIcon.style.display = 'block';
-            if (errorText.style.display != 'block')
-              errorText.style.display = 'block';
           }
+          if (errorText.style.display != 'block')
+            errorText.style.display = 'block';
           if (!i)
             errorText.textContent =
               input.name == 'tos'
