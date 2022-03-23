@@ -1,7 +1,7 @@
 import {LitElement, html} from 'lit';
 import {create, cssomSheet} from 'twind';
 import {theme} from '../twind.config';
-import {css, animation} from 'twind/css';
+import {css} from 'twind/css';
 
 const sheet = cssomSheet({target: new CSSStyleSheet()});
 const {tw} = create({
@@ -18,14 +18,19 @@ const checked = css`
   }
 `;
 
-const fadeIn = animation('.2s ease-in-out forwards', {
-  '0%': {
-    opacity: 0,
-  },
-  '100%': {
-    opacity: 1,
-  },
-});
+const flickerFix = css`
+  &::before {
+    content: '';
+    background: #eaeff7;
+    position: absolute;
+    width: 100%;
+    height: 110vh;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
+  }
+`;
 
 const resetErrorStyle = (target, error) => {
   if (target.name && target.name != 'tos')
@@ -126,12 +131,16 @@ export class Login extends LitElement {
   render() {
     return html`
       <div
-        class="${tw`fixed w-[100vw] overflow-y-scroll py-5 sm:pb-5 h-full sm:w-[28.5rem] sm:h-[43.125rem] sm:right-[50%] sm:mr-[-14.25rem] sm:top-[10vh] sm:rounded bg-lightBlue top-0 sm:pt-5 pt-20 right-0 px-7 z-[5] bg-gradient-to-tr from-[#eaeff7] to-[#d8e2f2] animate-fadeInAlt font-sofia`}"
+        class="${tw`${flickerFix} fixed w-[100vw] h-full overflow-y-scroll sm:overflow-auto py-5 sm:pb-5 sm:w-[28.5rem] sm:max-h-[43.125rem] sm:right-[50%] sm:mr-[-14.25rem] sm:top-[10vh] sm:rounded bg-lightBlue top-0 sm:pt-5 pt-20 right-0 px-7 z-[5] bg-gradient-to-tr from-[#eaeff7] to-[#d8e2f2] animate-fadeInAlt font-sofia`}"
       >
-        <div class="${tw`flex flex-col text-center h-full gap-3`}">
-          <div
-            class="${tw`bg-white w-full sm:min-h-[7rem] min-h-[5rem] rounded-md`}"
-          ></div>
+        <div class="${tw`flex flex-col text-center h-full gap-2 sm:gap-3`}">
+          ${this.log || (!this.log && screen.width <= 640)
+            ? html`
+                <div
+                  class="${tw`bg-white w-full sm:min-h-[7rem] min-h-[5rem] rounded-md h-sm:hidden`}"
+                ></div>
+              `
+            : ``}
           <section>
             <h2 class="${tw`text-[2.188rem] text-[#3988DE] font-bold`}">
               ${this.log ? 'Log ind' : 'Tilmeld dig'}
@@ -169,7 +178,13 @@ export class Login extends LitElement {
                 >${!this.log ? 'Log ind her' : 'Tilmeld dig her'}
               </a>
             </div>
-            <div class="${tw`flex justify-center gap-3 my-4`}">
+            <div
+              class="${tw`flex justify-center gap-3 my-4 ${css`
+                & {
+                  margin-bottom: ${this.log ? '18' : 'initial'}px;
+                }
+              `}`}"
+            >
               <button
                 type="submit"
                 href="#"
@@ -206,7 +221,7 @@ export class Login extends LitElement {
                       />
                       <img
                         id="error-icon"
-                        class="${tw`absolute top-[-1.2rem] w-3 left-[calc(50%-(12px/2))] hidden ${fadeIn}`}"
+                        class="${tw`absolute top-[-1.2rem] w-3 left-[calc(50%-(12px/2))] hidden animate-fadeInAlt opacity-0`}"
                         src="./images/error.svg"
                         alt="Error"
                       />
@@ -223,7 +238,7 @@ export class Login extends LitElement {
                       turpis.
                     </label>
                   </div>
-                  <div class="${tw`flex gap-3 items-center w-full px-5 pb-4`}">
+                  <div class="${tw`flex gap-3 items-center w-full px-5 pb-5`}">
                     <input
                       class="${tw`appearance-none min-w-[1rem] min-h-[1rem] border-2 border-[#C9D4E6] rounded-[4px] relative ${checked} before:bg-orange before:w-full before:h-full before:absolute before:grid before:place-content-center before:pb-1`}"
                       type="checkbox"
@@ -249,7 +264,7 @@ export class Login extends LitElement {
             >
               <p
                 id="error"
-                class="${tw`text-red text-[8px] absolute top-[-1rem] hidden ${fadeIn}`}"
+                class="${tw`text-red text-xs absolute top-[-1.3rem] hidden animate-fadeInAlt opacity-0`}"
               ></p>
               ${!this.log && !this.passReq
                 ? html`
@@ -303,7 +318,7 @@ export class Login extends LitElement {
                 : this.log && this.passReq
                 ? 'Indsend'
                 : 'Fortsæt'}
-              class="${tw`mt-4 rounded-md cursor-pointer shadow-md w-24 h-10 flex justify-center items-center text-lg font-medium text-white ${css`
+              class="${tw`mt-4 rounded-md cursor-pointer shadow-md w-24 h-10 flex justify-center items-center text-lg font-medium text-white hover:scale-110 transition-transform active:scale-100 ${css`
                 & {
                   background: transparent
                     linear-gradient(206deg, #ff930f 0%, #ffd45b 100%);
@@ -321,7 +336,7 @@ export class Login extends LitElement {
                 }}
               >
                 ${!this.passReq
-                  ? 'Har du glemt dit adgangskode?'
+                  ? 'Har du glemt din adgangskode?'
                   : 'Kan du huske din adgangskode?'}
               </button>`
             : ``}

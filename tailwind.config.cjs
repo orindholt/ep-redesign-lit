@@ -4,6 +4,7 @@ module.exports = {
     extend: {
       screens: {
         sm: '650px',
+        'h-sm': {raw: '(max-height: 580px)'},
       },
       opacity: {
         15: 0.15,

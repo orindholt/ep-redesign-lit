@@ -51,24 +51,23 @@ let openIcon = 'burger-menu.svg';
 let closeIcon = 'burger-exit.svg';
 
 /* Gets url params */
-const params = new Proxy(new URLSearchParams(window.location.search), {
+/* const params = new Proxy(new URLSearchParams(window.location.search), {
   get: (searchParams, prop) => searchParams.get(prop),
-});
-
-console.log(`Logged in: ${params.logged ? true : false}`);
+}); */
 
 /* Toggles Body Scroll */
 const toggleScroll = (bool) => {
+  const body = document.querySelector('body');
   if (
     bool != undefined &&
     typeof bool == 'boolean' &&
     window.screen.width < 640
   ) {
-    const body = document.querySelector('body');
     if (!bool && !menu && !showLogin) {
       body.style.overflow = 'auto';
     } else if (bool) body.style.overflow = 'hidden';
-  }
+  } else if (window.screen.width > 640 && body.style.overflow == 'hidden')
+    body.style.overflow = 'auto';
 };
 
 /* Menu Toggle Event */

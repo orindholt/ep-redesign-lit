@@ -2,6 +2,7 @@ export const theme = {
   extend: {
     screens: {
       sm: '650px',
+      'h-sm': {raw: '(max-height: 700px)'},
     },
     opacity: {
       15: 0.15,
