@@ -18,7 +18,7 @@ const checked = css`
   }
 `;
 
-const flickerFix = css`
+/* const flickerFix = css`
   &::before {
     content: '';
     background: #eaeff7;
@@ -30,7 +30,7 @@ const flickerFix = css`
     right: 0;
     z-index: -1;
   }
-`;
+`; */
 
 const resetErrorStyle = (target, error) => {
   if (target.name && target.name != 'tos')
@@ -110,28 +110,30 @@ export class Login extends LitElement {
       const errorText = this.shadowRoot.querySelector('#error');
       const errorIcon = this.shadowRoot.querySelector('#error-icon');
       const inputFields = this.shadowRoot.querySelectorAll('input');
+      const submitElement = e.submitter;
+      if (
+        submitElement.classList.contains('social-btn') &&
+        !validation(
+          this.shadowRoot.querySelectorAll('#tos'),
+          errorIcon,
+          errorText
+        )
+      ) {
+        return true;
+      }
       const validate = () => validation(inputFields, errorIcon, errorText);
       this.attemptSubmit = true;
-      validate();
-      if (!validate()) return false;
+      if (!submitElement.classList.contains('social-btn')) {
+        if (!validate()) return false;
+      }
       e.preventDefault();
-      /* TEMP SOLUTION FOR REDIRECT DEMO */
-      /* window.location.replace(
-        `${window.location.href.replace(
-          window.location.search,
-          '?logged=true'
-        )}`
-      );
-      setTimeout(() => {
-        window.location.reload();
-      }, 100); */
     };
   }
 
   render() {
     return html`
       <div
-        class="${tw`${flickerFix} fixed w-[100vw] h-full overflow-y-scroll sm:overflow-auto py-5 sm:pb-5 sm:w-[28.5rem] sm:max-h-[43.125rem] sm:right-[50%] sm:mr-[-14.25rem] sm:top-[10vh] sm:rounded bg-lightBlue top-0 sm:pt-5 pt-20 right-0 px-7 z-[5] bg-gradient-to-tr from-[#eaeff7] to-[#d8e2f2] animate-fadeInAlt font-sofia`}"
+        class="${tw`fixed w-[100vw] h-[100vh] overflow-y-scroll sm:overflow-auto py-5 sm:pb-5 sm:w-[28.5rem] sm:max-h-[43.125rem] sm:right-[50%] sm:mr-[-14.25rem] sm:top-[10vh] sm:rounded bg-lightBlue top-0 sm:pt-5 pt-20 right-0 px-7 z-[5] bg-gradient-to-tr from-[#eaeff7] to-[#d8e2f2] animate-fadeInAlt font-sofia`}"
       >
         <div class="${tw`flex flex-col text-center h-full gap-2 sm:gap-3`}">
           ${this.log || (!this.log && screen.width <= 640)
