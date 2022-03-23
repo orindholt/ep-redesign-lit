@@ -42,7 +42,7 @@ const resetErrorStyle = (target, error) => {
   if (!error.style) target.removeAtrribute('style');
 };
 
-const validation = (inputElements, errorIcon, errorText) => {
+const validation = (inputElements, errorIcon, errorText, event) => {
   const emailRegEx = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   const passRegEx = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
   let i = 0;
@@ -98,6 +98,8 @@ export class Login extends LitElement {
     log: {type: Boolean},
     passReq: {type: Boolean},
     attemptSubmit: {type: Boolean},
+    loading: {type: Boolean},
+    done: {type: Boolean},
     _handleSubmit: {type: Function},
   };
 
@@ -105,12 +107,15 @@ export class Login extends LitElement {
     super();
     this.log = true;
     this.passReq = false;
+    this.loading = false;
+    this.done = false;
     /* Submit Function */
     this._handleSubmit = (e) => {
       const errorText = this.shadowRoot.querySelector('#error');
       const errorIcon = this.shadowRoot.querySelector('#error-icon');
       const inputFields = this.shadowRoot.querySelectorAll('input');
       const submitElement = e.submitter;
+      if (!this.done) e.preventDefault();
       if (
         submitElement.classList.contains('social-btn') &&
         !validation(
@@ -121,12 +126,16 @@ export class Login extends LitElement {
       ) {
         return true;
       }
-      const validate = () => validation(inputFields, errorIcon, errorText);
+      const validate = () => validation(inputFields, errorIcon, errorText, e);
       this.attemptSubmit = true;
-      if (!submitElement.classList.contains('social-btn')) {
-        if (!validate()) return false;
+      if (!submitElement.classList.contains('social-btn')) validate();
+      if (!validate()) {
+        this.loading = true;
+        setTimeout(() => {
+          this.done = true;
+          this.shadowRoot.querySelector('#login-form').submit();
+        }, 2000);
       }
-      e.preventDefault();
     };
   }
 
@@ -313,20 +322,28 @@ export class Login extends LitElement {
                   `
                 : ``}
             </div>
-            <input
+            <button
               type="submit"
-              value=${this.log && !this.passReq
-                ? 'Login'
-                : this.log && this.passReq
-                ? 'Indsend'
-                : 'Fortsæt'}
+              id="submit-button"
               class="${tw`mt-4 rounded-md cursor-pointer shadow-md w-24 h-10 flex justify-center items-center text-lg font-medium text-white hover:scale-110 transition-transform active:scale-100 ${css`
                 & {
                   background: transparent
                     linear-gradient(206deg, #ff930f 0%, #ffd45b 100%);
                 }
               `}`}"
-            />
+            >
+              ${!this.loading && this.log && !this.passReq
+                ? 'Login'
+                : this.log && this.passReq
+                ? 'Indsend'
+                : !this.log && !this.loading
+                ? 'Fortsæt'
+                : html`<img
+                    class="${tw`animate-rotate w-2/6`}"
+                    src="./images/arrows_circle.svg"
+                    alt="Loading icon"
+                  />`}
+            </button>
           </form>
           ${this.log
             ? html`<button

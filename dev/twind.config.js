@@ -34,6 +34,7 @@ export const theme = {
       slideInAlt: 'slideInAlt .75s ease-in-out forwards',
       fadeIn: 'fadeIn .5s .5s ease-in-out forwards',
       fadeInAlt: 'fadeIn .5s ease-in-out forwards',
+      rotate: 'rotate 1s linear infinite',
     },
     keyframes: {
       slideIn: {
@@ -60,6 +61,14 @@ export const theme = {
         },
         '100%': {
           opacity: 1,
+        },
+      },
+      rotate: {
+        '0%': {
+          transform: 'rotate(0deg)',
+        },
+        '100%': {
+          transform: 'rotate(360deg)',
         },
       },
     },
