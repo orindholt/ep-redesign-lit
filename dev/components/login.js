@@ -166,7 +166,7 @@ export class Login extends LitElement {
           <form
             @submit="${(e) => this._handleSubmit(e)}"
             id="login-form"
-            method="POST"
+            method="GET"
             action="#"
             class="${tw`flex flex-col h-full gap-1 items-center`}"
           >
