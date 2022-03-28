@@ -565,7 +565,7 @@ export class NavBar extends LitElement {
                 <img
                   src="./images/money.png"
                   alt="Jackpot"
-                  class="${tw`sm:absolute sm:top-[-6.265rem] sm:px-[2vw]`}"
+                  class="${tw`sm:absolute sm:-top-[6.265rem] sm:px-[2vw]`}"
                 />
                 <h2 class="${tw`text-[2.188rem] text-[#3988DE] font-bold`}">
                   Tilmeld dig

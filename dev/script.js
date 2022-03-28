@@ -51,23 +51,24 @@ let openIcon = 'burger-menu.svg';
 let closeIcon = 'burger-exit.svg';
 
 /* Gets url params */
-/* const params = new Proxy(new URLSearchParams(window.location.search), {
+const params = new Proxy(new URLSearchParams(window.location.search), {
   get: (searchParams, prop) => searchParams.get(prop),
-}); */
+});
+
+console.log(`Logged in: ${params.logged ? true : false}`);
 
 /* Toggles Body Scroll */
 const toggleScroll = (bool) => {
-  const body = document.querySelector('body');
   if (
     bool != undefined &&
     typeof bool == 'boolean' &&
     window.screen.width < 640
   ) {
+    const body = document.querySelector('body');
     if (!bool && !menu && !showLogin) {
       body.style.overflow = 'auto';
     } else if (bool) body.style.overflow = 'hidden';
-  } else if (window.screen.width > 640 && body.style.overflow == 'hidden')
-    body.style.overflow = 'auto';
+  }
 };
 
 /* Menu Toggle Event */
@@ -96,6 +97,17 @@ const toggleRegionSelector = () => {
 
 /* Adds an eventlistener to all Region Buttons - Dekstop & Mobile */
 regionBtn.forEach((btn) => btn.addEventListener('click', toggleRegionSelector));
+
+/* Activates clicked dropdown */
+const activate = (element) => {
+  let icon = element.querySelector('.triangle');
+  let dropdown = element.nextElementSibling;
+  element.style.color = '#2B7EE1';
+  icon.style.transform = 'rotate(180deg)';
+  element.setAttribute('data-active', 'true');
+  if (dropdown.classList.contains('dropdown'))
+    dropdown.classList.remove('hide');
+};
 
 /* Sets the region icon to what you clicked */
 /* Expects imgSrc of clicked icon and state? */
@@ -130,31 +142,32 @@ const regionClickHandler = (e, state = '') => {
   regions.forEach(({imgSrc, title, active}) => {
     if (!active)
       regionEl.forEach((element) => {
-        element.innerHTML +=
-          title.toLowerCase() != 'usa'
-            ? `
-        <li>
-          <button class="flex gap-2 w-10 region rounded-md overflow-hidden shadow-md" onclick="regionClickHandler(event)">
-            <img src="${imgSrc}" alt="${title}" />
-          </button>
-        </li>
-      `
-            : `
-        <li>
-        <select 
-          class="flex px-[2px] justify-start items-end gap-2 w-10 h-10 region rounded-md shadow-md appearance-none bg-black text-white text-xs font-bold cursor-pointer" 
-          style="background-image: url(${imgSrc})"
-          onchange="regionClickHandler('${imgSrc}', event.target.value)"
-        >
-            <option value="" disabled hidden selected>+</option>
-            ${states
-              .map((state) => {
-                return `<option value="${state}">${state}</option>`;
-              })
-              .join('')}
-          </select>
-        </li>
-      `;
+        let liElement = document.createElement('li');
+        if (title.toLowerCase() != 'usa') {
+          let buttonElement = document.createElement('button');
+          buttonElement.className +=
+            'flex gap-2 w-10 region rounded-md shadow-md';
+          buttonElement.innerHTML += `<img src="${imgSrc}" alt="${title}" />`;
+          liElement.append(buttonElement);
+          buttonElement.onclick = (e) => regionClickHandler(e);
+        } else {
+          let selectElement = document.createElement('select');
+          selectElement.style.backgroundImage =
+            "url('./images/flags/usaSelect.svg')";
+          selectElement.style.appearance = 'none';
+          selectElement.className +=
+            'flex gap-2 w-10 region rounded-md shadow-md px-[2px] grid place-content-center h-10 bg-black text-white text-xs font-bold cursor-pointer';
+          selectElement.innerHTML += `<option value="" disabled hidden selected></option>
+				${states
+          .map((state) => {
+            return `<option value="${state}">${state}</option>`;
+          })
+          .join('')}`;
+          liElement.append(selectElement);
+          selectElement.onchange = (e) =>
+            regionClickHandler('./images/flags/usa.svg', e.target.value);
+        }
+        element.append(liElement);
       });
   });
 };
@@ -165,27 +178,9 @@ setRegionIcon(`./images/flags/${crtFlag}`);
 const menuListEl = document.querySelectorAll('.menuList');
 const dropdownBtns = document.querySelectorAll('.dropdownBtn');
 
-/* Deactivates clicked dropdown */
-const deactivate = (element) => {
-  let icon = element.querySelector('.triangle');
-  let dropdown = element.nextElementSibling;
-  element.style.color = 'black';
-  /* element.style.fill = 'black'; */
-  icon.style.transform = 'rotate(0)';
-  element.setAttribute('data-active', 'false');
-  if (dropdown.classList.contains('dropdown')) dropdown.classList.add('hide');
-};
-
-/* Activates clicked dropdown */
-const activate = (element) => {
-  let icon = element.querySelector('.triangle');
-  let dropdown = element.nextElementSibling;
-  element.style.color = '#2B7EE1';
-  icon.style.transform = 'rotate(180deg)';
-  element.setAttribute('data-active', 'true');
-  if (dropdown.classList.contains('dropdown'))
-    dropdown.classList.remove('hide');
-};
+dropdownBtns.forEach(
+  (btn) => (btn.onclick = (e) => toggleDropdown(e.currentTarget))
+);
 
 /* Dropdown Click Handler */
 /* Expects this and boolean */
@@ -200,6 +195,17 @@ const toggleDropdown = (el, bool = true) => {
       activate(el);
     } else deactivate(el);
   } else if (!bool) dropdownBtns.forEach((btn) => deactivate(btn));
+};
+
+/* Deactivates clicked dropdown */
+const deactivate = (element) => {
+  let icon = element.querySelector('.triangle');
+  let dropdown = element.nextElementSibling;
+  element.style.color = 'black';
+  /* element.style.fill = 'black'; */
+  icon.style.transform = 'rotate(0)';
+  element.setAttribute('data-active', 'false');
+  if (dropdown.classList.contains('dropdown')) dropdown.classList.add('hide');
 };
 
 /* Toggle Login Menu Event */
