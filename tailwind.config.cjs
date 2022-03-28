@@ -1,10 +1,36 @@
+const defaultTheme = require('tailwindcss/defaultTheme');
+
 module.exports = {
   content: ['./dev/**/*.{html,js}'],
   theme: {
+    content: {
+      none: "''",
+    },
+    screens: {
+      xs: '430px',
+      sm: '650px',
+      semi: '950px',
+      'max-md': {raw: '(max-width: 768px)'},
+      'h-sm': {raw: '(max-height: 800px)'},
+      'h-xs': {raw: '(min-height: 720px)'},
+      ...defaultTheme.screens,
+    },
     extend: {
-      screens: {
-        sm: '650px',
-        'h-sm': {raw: '(max-height: 580px)'},
+      borderWidth: {
+        3: '3px',
+      },
+      flex: {
+        2: '2 2 0%',
+        3: '3 3 0%',
+        4: '4 4 0%',
+      },
+      lineHeight: {
+        2: 0.3,
+        1: 0.2,
+      },
+      spacing: {
+        18: '4.5rem',
+        26: '6.5rem',
       },
       opacity: {
         15: 0.15,
@@ -15,6 +41,7 @@ module.exports = {
       },
       colors: {
         black: '#1a2433',
+        blue: '#2C7FE0',
         lightBlue: '#eaeff7',
         red: '#f82858',
         purple: '#fae4fe',

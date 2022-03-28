@@ -14,43 +14,37 @@
   </head>
   <body>
     <div id="wrapper" class="pt-16 sm:pt-[4.563rem] bg-lightBlue">
-      <!--Navigation (functionality depends on "script.js")-->
       <nav
         class="flex justify-between px-[5%] h-16 bg-lightBlue items-center shadow-md z-20 fixed w-full top-0 sm:h-[4.563rem] gap-2"
       >
-        <a href="#" class="sm:hidden lg:block"
+        <a href="/"
           ><img
             src="./images/header.svg"
             alt="header-logo"
-            class="w-32 sm:w-full"
+            class="w-32 sm:full"
           />
         </a>
-        <div
-          class="flex items-center sm:justify-between sm:w-full lg:justify-start lg:w-[initial]"
-        >
+        <div class="flex items-center sm:justify-between">
           <!--Menu Dekstop-->
-          <ul class="hidden sm:flex menuList font-bold gap-[3vw] mr-[4vw]">
+          <ul
+            class="hidden md:flex md:items-center menuList font-bold gap-[3vw] mr-[4vw]"
+          >
             <!--Dropdown Item Desktop 00-->
-            <li
-              class="pl-[20%] sm:pl-0 sm:pb-0 pb-4 flex flex-col items-start gap-2"
-            >
+            <li class="flex flex-col items-start gap-2">
               <a
                 href="#"
-                class="flex items-center gap-3 lg:text-[19px] text-base mt-4 mb-2 sm:my-0 text-black font-sofia"
+                class="flex items-center gap-3 lg:text-[19px] text-base text-black font-sofia"
               >
                 Hvordan virker det?
               </a>
             </li>
             <!--Dropdown Item Desktop End 00-->
             <!--Dropdown Item Desktop 01-->
-            <li
-              class="pl-[20%] sm:pl-0 sm:pb-0 pb-4 flex flex-col items-start gap-2"
-            >
+            <li class="flex flex-col items-start gap-2">
               <button
                 href="#"
-                onclick="toggleDropdown(this)"
                 data-active="false"
-                class="dropdownBtn flex items-center gap-3 lg:text-[19px] text-base mt-4 mb-2 sm:my-0 text-black font-sofia"
+                class="dropdownBtn flex items-center gap-3 lg:text-[19px] text-base text-black font-sofia"
               >
                 Casinos
                 <svg
@@ -74,19 +68,19 @@
                 >
                   <a href="#" class="font-sofia">Tilbud</a>
                 </li>
-                <hr style="border-color: #dee1e6" />
+                <hr class="border-[#dee1e6]" />
                 <li
                   class="font-normal text-[#959CA7] lg:text-[17px] text-base sm:p-4"
                 >
                   <a href="#" class="font-sofia">Casino anmeldelser</a>
                 </li>
-                <hr style="border-color: #dee1e6" />
+                <hr class="border-[#dee1e6]" />
                 <li
                   class="font-normal text-[#959CA7] lg:text-[17px] text-base sm:p-4"
                 >
                   <a href="#" class="font-sofia">Hotte Online Casinoer</a>
                 </li>
-                <hr style="border-color: #dee1e6" />
+                <hr class="border-[#dee1e6]" />
                 <li
                   class="font-normal text-[#959CA7] lg:text-[17px] text-base sm:p-4"
                 >
@@ -96,14 +90,11 @@
             </li>
             <!--Dropdown Item Desktop End 01-->
             <!--Dropdown Item Desktop 02-->
-            <li
-              class="pl-[20%] sm:pl-0 sm:pb-0 pb-4 flex flex-col items-start gap-2"
-            >
+            <li class="flex flex-col items-start gap-2">
               <button
                 href="#"
-                onclick="toggleDropdown(this)"
                 data-active="false"
-                class="dropdownBtn flex items-center gap-3 lg:text-[19px] text-base mt-4 mb-2 sm:my-0 text-black font-sofia"
+                class="dropdownBtn flex items-center gap-3 lg:text-[19px] text-base text-black font-sofia"
               >
                 Spil
                 <svg
@@ -127,13 +118,13 @@
                 >
                   <a href="#" class="font-sofia">Gratis konkurrencer</a>
                 </li>
-                <hr style="border-color: #dee1e6" />
+                <hr class="border-[#dee1e6]" />
                 <li
                   class="font-normal text-[#959CA7] lg:text-[17px] text-base sm:p-4"
                 >
                   <a href="#" class="font-sofia">Vindere</a>
                 </li>
-                <hr style="border-color: #dee1e6" />
+                <hr class="border-[#dee1e6]" />
                 <li
                   class="font-normal text-[#959CA7] lg:text-[17px] text-base sm:p-4"
                 >
@@ -143,14 +134,11 @@
             </li>
             <!--Dropdown Item Desktop End 02-->
             <!--Dropdown Item Desktop 03-->
-            <li
-              class="pl-[20%] sm:pl-0 sm:pb-0 pb-4 flex flex-col items-start gap-2"
-            >
+            <li class="flex flex-col items-start gap-2">
               <button
                 href="#"
-                onclick="toggleDropdown(this)"
                 data-active="false"
-                class="dropdownBtn flex items-center gap-3 lg:text-[19px] text-base mt-4 mb-2 sm:my-0 text-black font-sofia"
+                class="dropdownBtn flex items-center gap-3 lg:text-[19px] text-base text-black font-sofia"
               >
                 Shop
                 <svg
@@ -174,13 +162,13 @@
                 >
                   <a href="#" class="font-sofia">Category 1</a>
                 </li>
-                <hr style="border-color: #dee1e6" />
+                <hr class="border-[#dee1e6]" />
                 <li
                   class="font-normal text-[#959CA7] lg:text-[17px] text-base sm:p-4"
                 >
                   <a href="#" class="font-sofia">Category 2</a>
                 </li>
-                <hr style="border-color: #dee1e6" />
+                <hr class="border-[#dee1e6]" />
                 <li
                   class="font-normal text-[#959CA7] lg:text-[17px] text-base sm:p-4"
                 >
@@ -198,34 +186,15 @@
             <button class="mr-4">
               <img src="./images/search.svg" alt="search icon" />
             </button>
-            <button class="sm:hidden" id="menuBtn">
+            <button class="md:hidden" id="menuBtn">
               <img alt="menu icon" class="w-8" src="./images/burger-menu.svg" />
             </button>
-            <!--Region Btn Dekstop-->
-            <div class="relative">
-              <button
-                class="regionBtn min-w-[2.5rem] hidden sm:block rounded-md overflow-hidden shadow-sm relative"
-              >
-                <img
-                  class="w-10 max-h-[2.5rem]"
-                  alt="Region Selector"
-                  src="./images/flags/german.svg"
-                />
-                <p
-                  class="state text-white text-[8px] font-bold bottom-[1px] left-[1px] absolute"
-                ></p>
-                <!--Region Menu Desktop-->
-              </button>
-              <ul
-                class="hidden sm:flex z-[-1] regionMenu hide flex-col gap-2 shadow-xl bg-mediumGray absolute pt-[54px] top-[-6px] right-[-5px] rounded-lg p-[5px] overflow-hidden animate-slideInAlt"
-              ></ul>
-            </div>
           </div>
         </div>
         <!--Menu Mobile-->
         <nav
           id="menu"
-          class="sm:hidden fixed top-16 right-0 bottom-0 left-0 bg-lightBlue z-10 shadow-md animate-slideIn hide overflow-y-scroll"
+          class="md:hidden fixed top-16 right-0 bottom-0 left-0 bg-lightBlue z-10 shadow-md animate-slideIn hide overflow-y-scroll"
         >
           <div class="w-full relative opacity-0 animate-fadeIn">
             <!--Dropdown List Mobile-->
@@ -237,7 +206,7 @@
                 <li class="flex flex-col items-start gap-2">
                   <a
                     href="#"
-                    class="flex items-center gap-3 text-[19px] mt-4 mb-2 sm:my-0 text-black font-sofia"
+                    class="flex items-center gap-3 text-[19px] mt-4 mb-2 text-black font-sofia"
                   >
                     Hvordan virker det?
                   </a>
@@ -256,23 +225,20 @@
                     ></p>
                   </button>
                   <ul
-                    class="regionMenu hide flex flex-col gap-2 shadow-xl bg-mediumGray absolute pt-[3.375rem] top-[-0.4rem] z-[-1] right-[-0.3rem] rounded-lg p-[5px] overflow-hidden animate-slideInAlt"
+                    class="regionMenu hide flex flex-col gap-2 shadow-xl bg-mediumGray absolute pt-[3.375rem] -top-[0.4rem] z-[-1] right-[-0.3rem] rounded-lg p-[5px] overflow-hidden animate-slideInAlt"
                   ></ul>
                 </div>
                 <!--Region Menu Mobile-->
               </div>
               <!--Dropdown Item Mobile 00-->
-              <hr class="opacity-15" style="border-color: #7c838f" />
+              <hr class="border-[#dee1e6]" />
               <!--Dropdown Item Mobile End 00-->
               <!--Dropdown Item Mobile 01-->
-              <li
-                class="pl-[20%] sm:pl-0 sm:pb-0 pb-4 flex flex-col items-start gap-2"
-              >
+              <li class="pl-[20%] pb-4 flex flex-col items-start gap-2">
                 <a
                   href="#"
-                  onclick="toggleDropdown(this)"
                   data-active="false"
-                  class="dropdownBtn flex items-center gap-3 text-[19px] mt-4 mb-2 sm:my-0 text-black font-sofia"
+                  class="dropdownBtn flex items-center gap-3 text-[19px] mt-4 mb-2 text-black font-sofia"
                 >
                   Casinos
                   <svg
@@ -288,37 +254,30 @@
                   </svg>
                 </a>
                 <ul
-                  class="dropdown flex flex-col gap-3 sm:gap-0 overflow-hidden animate-slideInAlt dropdown hide sm:absolute sm:top-[4.5rem] sm:bg-lightBlue sm:rounded-b-md sm:shadow-sm sm:max-w-[170px]"
+                  class="dropdown flex flex-col gap-3 overflow-hidden animate-slideInAlt dropdown hide"
                 >
-                  <li class="font-normal text-[#959CA7] text-[17px] sm:p-4">
+                  <li class="font-normal text-[#959CA7] text-[17px]">
                     <a href="#" class="font-sofia">Tilbud</a>
                   </li>
-                  <li class="font-normal text-[#959CA7] text-[17px] sm:p-4">
+                  <li class="font-normal text-[#959CA7] text-[17px]">
                     <a href="#" class="font-sofia">Casino anmeldelser</a>
                   </li>
-                  <li class="font-normal text-[#959CA7] text-[17px] sm:p-4">
+                  <li class="font-normal text-[#959CA7] text-[17px]">
                     <a href="#" class="font-sofia">Hotte Online Casinoer</a>
                   </li>
-                  <li class="font-normal text-[#959CA7] text-[17px] sm:p-4">
+                  <li class="font-normal text-[#959CA7] text-[17px]">
                     <a href="#" class="font-sofia">Nye Online Casinoer</a>
                   </li>
-                  <hr
-                    class="hidden sm:block opacity-15"
-                    style="border-color: #7c838f"
-                  />
                 </ul>
               </li>
-              <hr class="sm:hidden" style="border-color: #dee1e6" />
+              <hr class="border-[#dee1e6]" />
               <!--Dropdown Item Mobile End 01-->
               <!--Dropdown Item Mobile 02-->
-              <li
-                class="pl-[20%] sm:pl-0 sm:pb-0 pb-4 flex flex-col items-start gap-2"
-              >
+              <li class="pl-[20%] pb-4 flex flex-col items-start gap-2">
                 <a
                   href="#"
-                  onclick="toggleDropdown(this)"
                   data-active="false"
-                  class="dropdownBtn flex items-center gap-3 text-[19px] mt-4 mb-2 sm:my-0 text-black font-sofia"
+                  class="dropdownBtn flex items-center gap-3 text-[19px] mt-4 mb-2 text-black font-sofia"
                 >
                   Spil
                   <svg
@@ -345,23 +304,16 @@
                   <li class="font-normal text-[#959CA7] text-[17px] sm:p-4">
                     <a href="#" class="font-sofia">Spilanmeldelser</a>
                   </li>
-                  <hr
-                    class="hidden sm:block opacity-15"
-                    style="border-color: #7c838f"
-                  />
                 </ul>
               </li>
-              <hr class="sm:hidden" style="border-color: #dee1e6" />
+              <hr class="border-[#dee1e6]" />
               <!--Dropdown Item Mobile End 02-->
               <!--Dropdown Item Mobile 03-->
-              <li
-                class="pl-[20%] sm:pl-0 sm:pb-0 pb-4 flex flex-col items-start gap-2"
-              >
+              <li class="pl-[20%] pb-4 flex flex-col items-start gap-2">
                 <a
                   href="#"
-                  onclick="toggleDropdown(this)"
                   data-active="false"
-                  class="dropdownBtn flex items-center gap-1 text-[19px] mt-4 text-black font-sofia"
+                  class="dropdownBtn flex items-center gap-1 text-[19px] mt-4 mb-2 text-black font-sofia"
                 >
                   Shop
                   <svg
@@ -418,34 +370,27 @@
                   </svg>
                 </a>
                 <ul
-                  class="dropdown flex flex-col gap-3 sm:gap-0 overflow-hidden animate-slideInAlt dropdown hide sm:absolute sm:top-[4.5rem] sm:bg-lightBlue sm:rounded-b-md sm:shadow-sm sm:max-w-[170px]"
+                  class="dropdown flex flex-col gap-3 overflow-hidden animate-slideInAlt dropdown hide"
                 >
-                  <li class="font-normal text-[#959CA7] text-[17px] sm:p-4">
+                  <li class="font-normal text-[#959CA7] text-[17px]">
                     <a href="#" class="font-sofia">Category 1</a>
                   </li>
-                  <li class="font-normal text-[#959CA7] text-[17px] sm:p-4">
+                  <li class="font-normal text-[#959CA7] text-[17px]">
                     <a href="#" class="font-sofia">Category 2</a>
                   </li>
-                  <li class="font-normal text-[#959CA7] text-[17px] sm:p-4">
+                  <li class="font-normal text-[#959CA7] text-[17px]">
                     <a href="#" class="font-sofia">Category 3</a>
                   </li>
-                  <hr
-                    class="hidden sm:block opacity-15"
-                    style="border-color: #7c838f"
-                  />
                 </ul>
               </li>
-              <hr class="sm:hidden" style="border-color: #dee1e6" />
+              <hr class="border-[#dee1e6]" />
               <!--Dropdown Item Mobile End 03-->
               <!--Dropdown Item Mobile 04-->
-              <li
-                class="pl-[20%] sm:pl-0 sm:pb-0 pb-4 flex flex-col items-start gap-2"
-              >
+              <li class="pl-[20%] pb-4 flex flex-col items-start gap-2">
                 <a
                   href="#"
-                  onclick="toggleDropdown(this)"
                   data-active="false"
-                  class="dropdownBtn flex items-center gap-3 text-[19px] mt-4 mb-2 sm:my-0 text-black font-sofia"
+                  class="dropdownBtn flex items-center gap-3 text-[19px] mt-4 mb-2 text-black font-sofia"
                 >
                   About us
                   <svg
@@ -461,40 +406,33 @@
                   </svg>
                 </a>
                 <ul
-                  class="dropdown flex flex-col gap-3 sm:gap-0 overflow-hidden animate-slideInAlt dropdown hide sm:absolute sm:top-[4.5rem] sm:bg-lightBlue sm:rounded-b-md sm:shadow-sm sm:max-w-[170px]"
+                  class="dropdown flex flex-col gap-3 overflow-hidden animate-slideInAlt dropdown hide"
                 >
-                  <li class="font-normal text-[#959CA7] text-[17px] sm:p-4">
+                  <li class="font-normal text-[#959CA7] text-[17px]">
                     <a href="#" class="font-sofia">Seals of aproval</a>
                   </li>
-                  <li class="font-normal text-[#959CA7] text-[17px] sm:p-4">
+                  <li class="font-normal text-[#959CA7] text-[17px]">
                     <a href="#" class="font-sofia">Terms and conditions</a>
                   </li>
-                  <li class="font-normal text-[#959CA7] text-[17px] sm:p-4">
+                  <li class="font-normal text-[#959CA7] text-[17px]">
                     <a href="#" class="font-sofia">Competition Terms</a>
                   </li>
-                  <li class="font-normal text-[#959CA7] text-[17px] sm:p-4">
+                  <li class="font-normal text-[#959CA7] text-[17px]">
                     <a href="#" class="font-sofia">Privacy Policy</a>
                   </li>
-                  <li class="font-normal text-[#959CA7] text-[17px] sm:p-4">
+                  <li class="font-normal text-[#959CA7] text-[17px]">
                     <a href="#" class="font-sofia">Cookie Policy</a>
                   </li>
-                  <hr
-                    class="hidden sm:block opacity-15"
-                    style="border-color: #7c838f"
-                  />
                 </ul>
               </li>
-              <hr class="sm:hidden" style="border-color: #dee1e6" />
+              <hr class="border-[#dee1e6]" />
               <!--Dropdown Item Mobile End 04-->
               <!--Dropdown Item Mobile 05-->
-              <li
-                class="pl-[20%] sm:pl-0 sm:pb-0 pb-4 flex flex-col items-start gap-2"
-              >
+              <li class="pl-[20%] pb-4 flex flex-col items-start gap-2">
                 <a
                   href="#"
-                  onclick="toggleDropdown(this)"
                   data-active="false"
-                  class="dropdownBtn flex items-center gap-3 text-[19px] mt-4 mb-2 sm:my-0 text-black font-sofia"
+                  class="dropdownBtn flex items-center gap-3 text-[19px] mt-4 mb-2 text-black font-sofia"
                 >
                   Learn more
                   <svg
@@ -510,40 +448,33 @@
                   </svg>
                 </a>
                 <ul
-                  class="dropdown flex flex-col gap-3 sm:gap-0 overflow-hidden animate-slideInAlt dropdown hide sm:absolute sm:top-[4.5rem] sm:bg-lightBlue sm:rounded-b-md sm:shadow-sm sm:max-w-[170px]"
+                  class="dropdown flex flex-col gap-3 overflow-hidden animate-slideInAlt dropdown hide"
                 >
-                  <li class="font-normal text-[#959CA7] text-[17px] sm:p-4">
+                  <li class="font-normal text-[#959CA7] text-[17px]">
                     <a href="#" class="font-sofia">What is EkstaPont</a>
                   </li>
-                  <li class="font-normal text-[#959CA7] text-[17px] sm:p-4">
+                  <li class="font-normal text-[#959CA7] text-[17px]">
                     <a href="#" class="font-sofia">Start using EkstraPoint</a>
                   </li>
-                  <li class="font-normal text-[#959CA7] text-[17px] sm:p-4">
+                  <li class="font-normal text-[#959CA7] text-[17px]">
                     <a href="#" class="font-sofia">Why EkstraPoint</a>
                   </li>
-                  <li class="font-normal text-[#959CA7] text-[17px] sm:p-4">
+                  <li class="font-normal text-[#959CA7] text-[17px]">
                     <a href="#" class="font-sofia">How to become top player</a>
                   </li>
-                  <li class="font-normal text-[#959CA7] text-[17px] sm:p-4">
+                  <li class="font-normal text-[#959CA7] text-[17px]">
                     <a href="#" class="font-sofia">EkstraPoint User Tiers</a>
                   </li>
-                  <hr
-                    class="hidden sm:block opacity-15"
-                    style="border-color: #7c838f"
-                  />
                 </ul>
               </li>
-              <hr class="sm:hidden" style="border-color: #dee1e6" />
+              <hr class="border-[#dee1e6]" />
               <!--Dropdown Item Mobile End 05-->
               <!--Dropdown Item Mobile 06-->
-              <li
-                class="pl-[20%] sm:pl-0 sm:pb-0 pb-4 flex flex-col items-start gap-2"
-              >
+              <li class="pl-[20%] pb-4 flex flex-col items-start gap-2">
                 <a
                   href="#"
-                  onclick="toggleDropdown(this)"
                   data-active="false"
-                  class="dropdownBtn flex items-center gap-3 text-[19px] mt-4 mb-2 sm:my-0 text-black font-sofia"
+                  class="dropdownBtn flex items-center gap-3 text-[19px] mt-4 mb-2 text-black font-sofia"
                 >
                   New on EP
                   <svg
@@ -559,37 +490,30 @@
                   </svg>
                 </a>
                 <ul
-                  class="dropdown flex flex-col gap-3 sm:gap-0 overflow-hidden animate-slideInAlt dropdown hide sm:absolute sm:top-[4.5rem] sm:bg-lightBlue sm:rounded-b-md sm:shadow-sm sm:max-w-[170px]"
+                  class="dropdown flex flex-col gap-3 overflow-hidden animate-slideInAlt dropdown hide"
                 >
-                  <li class="font-normal text-[#959CA7] text-[17px] sm:p-4">
+                  <li class="font-normal text-[#959CA7] text-[17px]">
                     <a href="#" class="font-sofia">New games</a>
                   </li>
-                  <li class="font-normal text-[#959CA7] text-[17px] sm:p-4">
+                  <li class="font-normal text-[#959CA7] text-[17px]">
                     <a href="#" class="font-sofia">New NetEnt games</a>
                   </li>
-                  <li class="font-normal text-[#959CA7] text-[17px] sm:p-4">
+                  <li class="font-normal text-[#959CA7] text-[17px]">
                     <a href="#" class="font-sofia">Best NetEnt games</a>
                   </li>
-                  <li class="font-normal text-[#959CA7] text-[17px] sm:p-4">
+                  <li class="font-normal text-[#959CA7] text-[17px]">
                     <a href="#" class="font-sofia">Best casino slots</a>
                   </li>
-                  <hr
-                    class="hidden sm:block opacity-15"
-                    style="border-color: #7c838f"
-                  />
                 </ul>
               </li>
-              <hr class="sm:hidden" style="border-color: #dee1e6" />
+              <hr class="border-[#dee1e6]" />
               <!--Dropdown Item Mobile End 06-->
               <!--Dropdown Item Mobile 06-->
-              <li
-                class="pl-[20%] sm:pl-0 sm:pb-0 pb-4 flex flex-col items-start gap-2"
-              >
+              <li class="pl-[20%] pb-4 flex flex-col items-start gap-2">
                 <a
                   href="#"
-                  onclick="toggleDropdown(this)"
                   data-active="false"
-                  class="dropdownBtn flex items-center gap-3 text-[19px] mt-4 mb-2 sm:my-0 text-black font-sofia"
+                  class="dropdownBtn flex items-center gap-3 text-[19px] mt-4 mb-2 text-black font-sofia"
                 >
                   Contact us
                   <svg
@@ -605,27 +529,23 @@
                   </svg>
                 </a>
                 <ul
-                  class="dropdown flex flex-col gap-3 sm:gap-0 overflow-hidden animate-slideInAlt dropdown hide sm:absolute sm:top-[4.5rem] sm:bg-lightBlue sm:rounded-b-md sm:shadow-sm sm:max-w-[170px]"
+                  class="dropdown flex flex-col gap-3 overflow-hidden animate-slideInAlt dropdown hide"
                 >
-                  <li class="font-normal text-[#959CA7] text-[17px] sm:p-4">
+                  <li class="font-normal text-[#959CA7] text-[17px]">
                     <a href="#" class="font-sofia">Support</a>
                   </li>
-                  <li class="font-normal text-[#959CA7] text-[17px] sm:p-4">
+                  <li class="font-normal text-[#959CA7] text-[17px]">
                     <a href="#" class="font-sofia">Meet the team</a>
                   </li>
-                  <li class="font-normal text-[#959CA7] text-[17px] sm:p-4">
+                  <li class="font-normal text-[#959CA7] text-[17px]">
                     <a href="#" class="font-sofia">Our brands</a>
                   </li>
-                  <li class="font-normal text-[#959CA7] text-[17px] sm:p-4">
+                  <li class="font-normal text-[#959CA7] text-[17px]">
                     <a href="#" class="font-sofia">FAQ</a>
                   </li>
-                  <hr
-                    class="hidden sm:block opacity-15"
-                    style="border-color: #7c838f"
-                  />
                 </ul>
               </li>
-              <hr class="sm:hidden" style="border-color: #dee1e6" />
+              <hr class="border-[#dee1e6]" />
               <!--Dropdown Item Mobile End 06-->
             </ul>
           </div>
@@ -634,7 +554,7 @@
       <my-app></my-app>
       <!--Footer-->
       <footer class="bg-lightBlue shadow-t-md font-sofia">
-        <div class="py-10 px-4 hidden sm:flex justify-center gap-[12vw]">
+        <div class="py-10 px-4 hidden md:flex justify-center gap-[12vw]">
           <section>
             <h3 class="text-[19px] font-bold">About us</h3>
             <ul class="opacity-50">
@@ -676,7 +596,7 @@
         </div>
         <div class="bg-black py-10 px-[9%] flex flex-col items-center">
           <img src="./images/logo-big.svg" alt="Logo" class="mb-4 w-40" />
-          <p class="text-[#7C838F] text-xs text-center hidden sm:block">
+          <p class="text-[#7C838F] text-xs text-center hidden md:block">
             18+ | Spil ansvarligt | StopSpillet: 70 22 28 25 | ROFUS.nu Husk at
             pengespil kan være vanedannende, så spil ansvarligt. Hos EkstraPoint
             gør vi derfor en indsats for at opretholde og følge retningslinjer
@@ -691,7 +611,7 @@
             >
           </p>
           <div
-            class="flex-wrap justify-center items-center gap-y-2 mt-6 hidden sm:flex"
+            class="flex-wrap justify-center items-center gap-y-2 mt-6 hidden md:flex"
           >
             <div>
               <img
