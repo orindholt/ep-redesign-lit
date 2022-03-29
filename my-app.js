@@ -38,30 +38,36 @@ export class MyApp extends LitElement {
     return html`
       <div class="${tw`font-sofia`}">
         <!-- <nav-bar></nav-bar> -->
-        <section class="${tw`px-[5%]`}">
-          <app-rewards></app-rewards>
-          <win-display></win-display>
+        <section class="${tw`px-[5%] md:px-[10%] md:pt-[1%]`}">
+          <div class="${tw`md:grid md:grid-cols-2 my-2 gap-2 flex flex-col`}">
+            <app-rewards class="${tw`order-2`}"></app-rewards>
+            <win-display></win-display>
+          </div>
           <game-big></game-big>
-          <h3 class="${tw`text-[39px] font-bold mt-7 mb-5 leading-[2.75rem]`}">
-            Sign up.
-            <span
-              class="${tw`${css`
-                & {
-                  background-image: linear-gradient(
-                    to bottom right,
-                    #ff9515 0%,
-                    #ff502e 50%,
-                    #ff4e2f 100%
-                  );
-                  background-clip: text;
-                  -webkit-background-clip: text;
-                  -webkit-text-fill-color: transparent;
-                }
-              `}`}"
-              >Play free.</span
-            ><br />Biggest reward Site in the world
-          </h3>
-          <signup-bonus></signup-bonus>
+          <div class="${tw`lg:grid lg:grid-cols-2 mt-7 lg:mt-4 lg:gap-x-16`}">
+            <h3
+              class="${tw`text-[39px] font-bold lg:mb-0 mb-5 leading-[2.75rem]`}"
+            >
+              Sign up.
+              <span
+                class="${tw`${css`
+                  & {
+                    background-image: linear-gradient(
+                      to bottom right,
+                      #ff9515 0%,
+                      #ff502e 50%,
+                      #ff4e2f 100%
+                    );
+                    background-clip: text;
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                  }
+                `}`}"
+                >Play free.</span
+              ><br />Biggest reward Site in the world
+            </h3>
+            <signup-bonus></signup-bonus>
+          </div>
           <point-offers></point-offers>
         </section>
         <game-slider>

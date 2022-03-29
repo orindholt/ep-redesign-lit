@@ -18,7 +18,7 @@ export class WelcomeOffer extends LitElement {
   render() {
     return html`
       <div
-        class="${tw`rounded-xl p-[2px] ${css`
+        class="${tw`rounded-xl p-[2px] xl:w-56 ${css`
           & {
             background: linear-gradient(
               to top right,
@@ -32,22 +32,35 @@ export class WelcomeOffer extends LitElement {
           src="images/welcome-offers/${this.offer.img}"
           alt="${this.offer.alt}"
         />
-        <div class="${tw`p-2`}">
+        <div class="${tw`p-2 lg:grid lg:gap-y-2`}">
           <h4
             class="${tw`text-[${
               this.offer.golden ? '#000' : '#FFBC3F'
-            }] font-bold text-3xl`}"
+            }] font-bold text-3xl ${css`
+              & {
+                grid-area: 1/1/2/2;
+              }
+            `}`}"
           >
             €${this.offer.claim}
           </h4>
-          <p class="${tw`text-white text-[10px] mb-1`}">
+          <p
+            class="${tw`text-white text-[10px] mb-1 lg:text-center lg:${css`
+              & {
+                grid-area: 2/1/3/3;
+              }
+            `}`}"
+          >
             100% up to €${this.offer.claim} + ${this.offer.claim} Free Spins
           </p>
           <a
             href="#"
-            class="${tw`rounded-md shadow-md mt-auto pb-1 w-full h-10 flex justify-center items-center text-lg font-medium text-white ${css`
+            class="${tw`md:hover:scale-105 md:transition-transform rounded-md shadow-md mt-auto pb-1 w-full h-10 flex justify-center items-center text-lg font-medium text-white ${css`
               & {
                 background: linear-gradient(206deg, #ff930f 0%, #ffd45b 100%);
+                @media screen and (min-width: 768px) {
+                  grid-area: 1/2/2/3;
+                }
               }
             `}`}"
           >

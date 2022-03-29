@@ -15,7 +15,7 @@ export class PointOffers extends LitElement {
 
   render() {
     return html`
-      <div class="${tw`flex gap-2 text-white my-4 justify-between`}">
+      <div class="${tw`gap-x-2 text-white my-4 grid grid-cols-3`}">
         <point-bonus
           .icon=${'slot-machine.svg'}
           .caption=${'Premium Casinos'}

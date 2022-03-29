@@ -36,7 +36,7 @@ export class ShopItem extends LitElement {
           />
         </div>
         <div
-          class="${tw`py-2 px-3 flex h-full w-full gap-[2%] justify-between items-center flex-[2]`}"
+          class="${tw`py-2 px-3 flex h-full w-full gap-[2%] justify-between items-center flex-3 lg:flex-2`}"
         >
           <div>
             <p
