@@ -7,27 +7,27 @@
     <script src="assets/polyfill-support-9bc7af0b.js"></script>
     
     
-    <link rel="stylesheet" href="assets/output-71700ba2.css">
+    <link rel="stylesheet" href="assets/output-21c25a74.css">
     <link rel="stylesheet" href="https://use.typekit.net/uin3khw.css">
   </head>
   <body>
     <div id="wrapper" class="pt-16 sm:pt-[4.563rem] bg-lightBlue">
       <nav class="flex justify-between px-[5%] h-16 bg-lightBlue items-center shadow-md z-20 fixed w-full top-0 sm:h-[4.563rem] gap-2">
-        <a href="/"><img src="assets/header-dbc6c636.svg" alt="header-logo" class="w-32 sm:full">
+        <a href="/" class="md:hover:scale-105 md:inline-block md:transition-transform"><img src="assets/header-dbc6c636.svg" alt="header-logo" class="w-32 sm:full">
         </a>
         <div class="flex items-center sm:justify-between">
           <!--Menu Dekstop-->
           <ul class="hidden md:flex md:items-center menuList font-bold gap-[3vw] mr-[4vw]">
             <!--Dropdown Item Desktop 00-->
             <li class="flex flex-col items-start gap-2">
-              <a href="#" class="flex items-center gap-3 lg:text-[19px] text-base text-black font-sofia">
+              <a href="#" class="flex items-center gap-3 lg:text-lg text-base text-black font-sofia">
                 Hvordan virker det?
               </a>
             </li>
             <!--Dropdown Item Desktop End 00-->
             <!--Dropdown Item Desktop 01-->
             <li class="flex flex-col items-start gap-2">
-              <button href="#" data-active="false" class="dropdownBtn flex items-center gap-3 lg:text-[19px] text-base text-black font-sofia">
+              <button href="#" data-active="false" class="dropdownBtn flex items-center gap-3 lg:text-lg text-base text-black font-sofia">
                 Casinos
                 <svg viewBox="0 0 7 6" xmlns="http://www.w3.org/2000/svg" class="mt-1 inline-block w-1.5 triangle">
                   <path d="M2.636,1.481a1,1,0,0,1,1.728,0L6.123,4.5A1,1,0,0,1,5.259,6H1.741A1,1,0,0,1,.877,4.5Z" fill="currentColor" data-name="Polygon 4"></path>
@@ -55,7 +55,7 @@
             <!--Dropdown Item Desktop End 01-->
             <!--Dropdown Item Desktop 02-->
             <li class="flex flex-col items-start gap-2">
-              <button href="#" data-active="false" class="dropdownBtn flex items-center gap-3 lg:text-[19px] text-base text-black font-sofia">
+              <button href="#" data-active="false" class="dropdownBtn flex items-center gap-3 lg:text-lg text-base text-black font-sofia">
                 Spil
                 <svg viewBox="0 0 7 6" xmlns="http://www.w3.org/2000/svg" class="mt-1 inline-block w-1.5 triangle">
                   <path d="M2.636,1.481a1,1,0,0,1,1.728,0L6.123,4.5A1,1,0,0,1,5.259,6H1.741A1,1,0,0,1,.877,4.5Z" fill="currentColor" data-name="Polygon 4"></path>
@@ -79,7 +79,7 @@
             <!--Dropdown Item Desktop End 02-->
             <!--Dropdown Item Desktop 03-->
             <li class="flex flex-col items-start gap-2">
-              <button href="#" data-active="false" class="dropdownBtn flex items-center gap-3 lg:text-[19px] text-base text-black font-sofia">
+              <button href="#" data-active="false" class="dropdownBtn flex items-center gap-3 lg:text-lg text-base text-black font-sofia">
                 Shop
                 <svg viewBox="0 0 7 6" xmlns="http://www.w3.org/2000/svg" class="mt-1 inline-block w-1.5 triangle">
                   <path d="M2.636,1.481a1,1,0,0,1,1.728,0L6.123,4.5A1,1,0,0,1,5.259,6H1.741A1,1,0,0,1,.877,4.5Z" fill="currentColor" data-name="Polygon 4"></path>
@@ -101,18 +101,42 @@
               </ul>
             </li>
             <!--Dropdown Item Desktop End 03-->
+            <!--Search Desktop-->
+            <li class="lg:block hidden">
+              <form action="/" method="GET" class="flex border-b pb-1 border-[#C2C8D1]">
+                <input type="text" id="search" name="search" class="bg-transparent placeholder:text-[#C2C8D1]" placeholder="Search here...">
+                <button type="submit" class="pr-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20.63" height="20.63" viewBox="0 0 20.63 20.63">
+                    <g data-name="Group 664" fill="none" stroke="#c2c8d1" stroke-width="1.5">
+                      <g data-name="Ellipse 4" transform="rotate(-45 11.155 4.62)">
+                        <circle cx="6.534" cy="6.534" r="6.534" stroke="none"></circle>
+                        <circle cx="6.534" cy="6.534" r="5.784"></circle>
+                      </g>
+                      <path data-name="Line 15" stroke-linecap="round" d="M6.534 12.685v8.456" transform="rotate(-45 11.155 4.62)"></path>
+                    </g>
+                  </svg>
+                </button>
+              </form>
+            </li>
           </ul>
           <!--Menu Desktop End-->
           <div class="flex">
             <button class="p-2 w-10 h-10 rounded bg-black mr-4" id="loginBtn">
               <img src="assets/login-bec40511.svg" alt="Login Icon">
             </button>
-            <button class="mr-4">
+            <button class="mr-4 lg:hidden">
               <img src="assets/search-2dc88d79.svg" alt="search icon">
             </button>
             <button class="md:hidden" id="menuBtn">
               <img alt="menu icon" class="w-8" src="assets/burger-menu-0d7e90c7.svg">
             </button>
+            <div class="relative z-10">
+              <button class="regionBtn min-w-[2.5rem] h-10 rounded-md relative md:block hidden">
+                <img alt="Region Selector" src="assets/german-a28c1fb6.svg" class="w-10 max-h-[2.5rem]">
+                <p class="state text-white text-[8px] font-bold bottom-[1px] left-[1px] absolute"></p>
+              </button>
+              <ul class="regionMenu hide flex flex-col gap-2 shadow-xl bg-mediumGray absolute pt-[3.375rem] -top-[0.4rem] z-[-1] right-[-0.3rem] rounded-lg p-[5px] overflow-hidden animate-slideInAlt"></ul>
+            </div>
           </div>
         </div>
         <!--Menu Mobile-->
