@@ -73,9 +73,10 @@ export class WinDisplay extends LitElement {
       });
     }, `${this.timerSec}000`);
   }
+
   render() {
     return html`
-      <article class="${tw`w-full h-12 rounded-md overflow-hidden mb-3`}">
+      <article class="${tw`w-full h-12 rounded-md overflow-hidden`}">
         <div
           class="${tw`w-full h-full relative ${css({
             'transform-style': 'preserve-3d',
@@ -96,13 +97,17 @@ export class WinDisplay extends LitElement {
               alt="${this.username}"
               class="${tw`w-auto mr-auto`}"
             />
-            <h2 class="${tw`font-bold text-base`}">${this.username}</h2>
-            <p class="${tw`mr-auto flex gap-2`}">
+            <h3 class="${tw`font-bold text-base md:text-lg lg:text-xl`}">
+              ${this.username}
+            </h3>
+            <p class="${tw`mr-auto flex gap-2 md:text-lg lg:text-xl`}">
               Just won
               <span class="${tw`text-orange font-bold`}"
                 >${this.winAmount} EP
               </span>
-              <a href="#" class="${tw`underline`}">here!</a>
+              <a href="#" class="${tw`underline md:text-lg lg:text-xl`}"
+                >here!</a
+              >
             </p>
           </div>
           <div
@@ -119,10 +124,12 @@ export class WinDisplay extends LitElement {
               alt="${this.username}"
               class="${tw`w-auto mr-auto`}"
             />
-            <h2 class="${tw`font-bold text-base`}">${this.username}</h2>
-            <p class="${tw`mr-auto flex gap-2`}">
+            <h3 class="${tw`font-bold text-base md:text-lg lg:text-xl`}">
+              ${this.username}
+            </h3>
+            <p class="${tw`mr-auto flex gap-2 md:text-lg lg:text-xl`}">
               Just won
-              <span class="${tw`text-orange font-bold`}"
+              <span class="${tw`text-orange font-bold md:text-lg lg:text-xl`}"
                 >${this.winAmount} EP
               </span>
               <a href="#" class="${tw`underline`}">here!</a>

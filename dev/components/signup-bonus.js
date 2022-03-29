@@ -24,24 +24,28 @@ export class SignupBonus extends LitElement {
         class="${tw`${css`
           & {
             background-image: linear-gradient(to right, #0060e9, #80bad0);
+            @media screen and (min-width: 1024px) {
+              background-image: linear-gradient(to top right, #fee3ff, #a7ebe8);
+            }
           }
-        `} px-5 py-4 text-white rounded-lg gap-1 flex flex-col mb-3`}"
+        `} lg:text-black shadow-md px-5 py-4 text-white rounded-lg gap-1 flex flex-col mb-3 md:h-full md:justify-center`}"
       >
-        <p class="${tw`font-medium text-[15px]`}">
+        <p class="${tw`font-medium text-[15px] md:text-lg`}">
           Register to collect your welcome bonus!
         </p>
         <div class="${tw`flex justify-between`}">
-          <h4 class="${tw`text-4xl font-bold`}">20.000 EP</h4>
+          <h4 class="${tw`text-4xl font-bold md:text-5xl`}">20.000 EP</h4>
           <a
             href="#"
-            class="${tw`rounded-md shadow-md mt-auto pb-1 w-24 h-10 flex justify-center items-center text-lg font-medium text-white ${css`
+            class="${tw`md:hover:scale-105 md:transition-transform rounded-md shadow-md mt-auto pb-1 w-24 lg:w-32 xl:w-36 h-10 lg:h-11 xl:h-12 flex justify-center items-center text-lg lg:text-xl xl:text-2xl font-medium text-white ${css`
               & {
                 background: transparent
                   linear-gradient(206deg, #ff930f 0%, #ffd45b 100%);
               }
             `}`}"
           >
-            Join
+            <span class="${tw`md:hidden`}">Join</span>
+            <span class="${tw`md:block hidden`}">Join today</span>
           </a>
         </div>
       </div>

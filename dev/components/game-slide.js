@@ -26,12 +26,12 @@ export class GameSlide extends LitElement {
               #FF5858 50%,
               #FF0080 100%
             );`} 
-          rounded-xl text-white w-[18.125rem] h-[18.125rem] flex flex-col`}"
+          rounded-xl overflow-hidden text-white w-72 md:w-52 h-[18.125rem] flex flex-col`}"
       >
-        <div class="${tw`grid`}">
+        <div class="${tw`grid md:h-full`}">
           <img
             src="./images/${this.game.img}"
-            class="${tw`${css`
+            class="${tw`md:h-full md:object-cover ${css`
               & {
                 grid-area: 1/1/1/1;
               }
@@ -48,13 +48,19 @@ export class GameSlide extends LitElement {
               .time}
           </p>
         </div>
-        <div class="${tw`flex items-center justify-between px-3 my-auto`}">
-          <h3 class="${tw`text-xl font-bold`}">€${String(this.game.cost)}</h3>
-          <div class="${tw`h-9 w-[1px] bg-white`}"></div>
-          <p class="${tw`text-base`}">${String(this.game.cost)}.000 EP</p>
+        <div class="${tw`flex px-3 my-auto md:my-2 items-center`}">
+          <div
+            class="${tw`flex items-center w-full gap-4 md:flex-col md:items-start md:justify-center md:gap-0`}"
+          >
+            <h3 class="${tw`text-xl font-bold`}">€${String(this.game.cost)}</h3>
+            <div class="${tw`h-9 w-[1px] bg-white md:hidden`}"></div>
+            <p class="${tw`text-base md:text-xl`}">
+              ${String(this.game.cost)}.000 EP
+            </p>
+          </div>
           <a
             href="#"
-            class="${tw`rounded-md shadow-md mt-auto pb-1 w-[6.25rem] h-10 flex justify-center items-center text-lg font-medium text-white ${css`
+            class="${tw`md:hover:scale-105 md:transition-transform rounded-md shadow-md pb-1 min-w-[6.25rem] md:min-w-0 md:px-4 h-10 md:h-11 flex justify-center items-center text-lg font-medium text-white ${css`
               & {
                 background: transparent
                   linear-gradient(206deg, #ff930f 0%, #ffd45b 100%);

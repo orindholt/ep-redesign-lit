@@ -12,7 +12,7 @@ const {tw} = create({
 const liveDot = css({
   content: '""',
   '@apply':
-    'absolute w-1 h-1 flex justify-center items-center bg-red rounded-full top-0 right-[-0.25rem]',
+    'absolute w-1 h-1 md:w-2 md:h-2 flex justify-center items-center bg-red rounded-full top-0 -right-[0.25rem] md:-right-[0.5rem]',
 });
 
 export class GameBig extends LitElement {
@@ -44,29 +44,30 @@ export class GameBig extends LitElement {
       <div
         class="${tw`${css`
           & {
-            background-image: linear-gradient(to right, #0060e9, #80bad0);
+            background-image: linear-gradient(to top left, #0060e9, #80bad0);
           }
-        `} p-2 rounded-xl grid shadow-md`}"
+        `} p-2 rounded-xl grid shadow-md md:flex md:flex-row-reverse md:relative h-[35vh]`}"
       >
-        <img
-          src="./images/game.png"
-          alt="Current Biggest Game"
-          class="${tw`w-full ${css`
+        <div
+          class="${tw`w-full md:bg-cover bg-top bg-auto bg-no-repeat shadow-md rounded-md ${css`
             & {
+              background-image: url('./images/game-desktop.svg');
               grid-area: 1/1/1/1;
             }
           `}`}"
-        />
+        ></div>
         <div
-          class="${tw`text-white flex flex-col justify-end px-4 py-5 ${css`
+          class="${tw`text-white flex flex-col justify-end px-4 py-5 md:bg-transparent bg-[#00000020] md:w-1/2 ${css`
             & {
               grid-area: 1/1/1/1;
             }
           `}`}"
         >
-          <div class="${tw`flex mb-auto justify-end items-center gap-1`}">
+          <div
+            class="${tw`flex mb-auto justify-end items-center gap-1 md:absolute md:top-5 md:right-10 md:text-lg`}"
+          >
             <svg
-              class="${tw`mt-1`}"
+              class="${tw`mt-1 md:w-3 md:h-3`}"
               xmlns="http://www.w3.org/2000/svg"
               width="8.217"
               height="9.136"
@@ -88,23 +89,71 @@ export class GameBig extends LitElement {
             <p class="${tw`after::${liveDot} relative font-light`}">Live</p>
           </div>
           <div class="${tw`flex justify-between items-end pb-2`}">
-            <p class="${tw`text-base font-medium leading-4`}">
+            <p
+              class="${tw`text-base md:text-lg lg:text-xl md:leading-5 lg:leading-6 font-medium leading-4 md:${css`
+                & {
+                  text-shadow: none;
+                }
+              `} ${css`
+                & {
+                  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+                }
+              `}`}"
+            >
               ${this.monthNames[new Date().getMonth()]}'s biggest<br />tournament
             </p>
-            <p class="${tw`text-lg tracking-widest`}">01:29:51</p>
+            <p
+              class="${tw`text-lg tracking-widest md:hidden md:${css`
+                & {
+                  text-shadow: none;
+                }
+              `} ${css`
+                & {
+                  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+                }
+              `}`}"
+            >
+              01:29:51
+            </p>
           </div>
-          <div class="${tw`flex justify-between`}">
-            <h2 class="${tw`text-4xl font-bold`}">Win €5.000</h2>
+          <div class="${tw`flex justify-between md:flex-col gap-2`}">
+            <h2
+              class="${tw`text-4xl font-bold xl:text-5xl md:${css`
+                & {
+                  text-shadow: none;
+                }
+              `} ${css`
+                & {
+                  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+                }
+              `}`}"
+            >
+              Win €5.000
+            </h2>
+            <p
+              class="${tw`text-xl tracking-wide font-normal hidden md:block md:${css`
+                & {
+                  text-shadow: none;
+                }
+              `} ${css`
+                & {
+                  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+                }
+              `}`}"
+            >
+              3 days 01:29:51
+            </p>
             <a
               href="#"
-              class="${tw`rounded-md shadow-md mt-auto pb-1 w-24 h-10 flex justify-center items-center text-lg font-medium text-white ${css`
+              class="${tw`rounded-md shadow-md mt-auto pb-1 w-24 md:w-48 h-10 flex justify-center items-center text-lg font-medium text-white md:hover:scale-105 md:transition-transform ${css`
                 & {
                   background: transparent
                     linear-gradient(206deg, #ff930f 0%, #ffd45b 100%);
                 }
               `}`}"
             >
-              Join
+              <span class="md:hidden">Join</span>
+              <span class="md:block hidden">Join the tournament</span>
             </a>
           </div>
         </div>
