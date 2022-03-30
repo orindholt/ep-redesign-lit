@@ -222,7 +222,7 @@ export class Login extends LitElement {
 
                     <label
                       for="tos"
-                      class="${tw`text-[8px] text-black text-left`}"
+                      class="${tw`text-xs text-black text-left`}"
                     >
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                       Vivamus bibendum a nisl id auctor. Maecenas tristique,
@@ -240,7 +240,7 @@ export class Login extends LitElement {
                     />
                     <label
                       for="newsletter"
-                      class="${tw`text-[8px] text-black text-left`}"
+                      class="${tw`text-xs text-black text-left`}"
                     >
                       Jeg vil gerne have de bedste nye og eksklusive casino
                       tilbud Færdigør tilmelding
