@@ -21,14 +21,7 @@ export class SignupBonus extends LitElement {
   render() {
     return html`
       <div
-        class="${tw`${css`
-          & {
-            background-image: linear-gradient(to right, #0060e9, #80bad0);
-            @media screen and (min-width: 1024px) {
-              background-image: linear-gradient(to top right, #fee3ff, #a7ebe8);
-            }
-          }
-        `} lg:text-black shadow-md px-5 py-4 text-white rounded-lg gap-1 flex flex-col mb-3 md:h-full md:justify-center`}"
+        class="${tw`lg:text-black bg-gradient-to-r from-[#0060e9] to-[#80bad0] lg:from-[#fee3ff] lg:to-[#a7ebe8] shadow-md px-5 py-4 text-white rounded-lg gap-1 flex flex-col mb-3 md:h-full md:justify-center`}"
       >
         <p class="${tw`font-medium text-[15px] md:text-lg`}">
           Register to collect your welcome bonus!

@@ -118,7 +118,7 @@ export class GameBig extends LitElement {
           </div>
           <div class="${tw`flex justify-between md:flex-col gap-2`}">
             <h2
-              class="${tw`text-4xl font-bold xl:text-5xl md:${css`
+              class="${tw`text-4xl md:text-3xl lg:text-4xl font-bold xl:text-5xl md:${css`
                 & {
                   text-shadow: none;
                 }

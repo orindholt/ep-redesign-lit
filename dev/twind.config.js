@@ -1,6 +1,7 @@
 export const theme = {
   extend: {
     screens: {
+      xs: '430px',
       sm: '650px',
       'h-sm': {raw: '(max-height: 700px)'},
     },
@@ -13,7 +14,7 @@ export const theme = {
     },
     colors: {
       black: '#1a2433',
-      blue: '#546583',
+      darkBlue: '#546583',
       lightBlue: '#eaeff7',
       red: '#f82858',
       purple: '#fae4fe',
