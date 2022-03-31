@@ -23,10 +23,10 @@ export class PointBonus extends LitElement {
     return html`
       <a
         href="#"
-        class="${tw`flex flex-col items-center text-center bg-black rounded-lg h-[115px] py-3 px-2 md:py-2 md:px-3 md:flex-row md:h-auto md:gap-2`}"
+        class="${tw`flex flex-col items-center justify-between text-center bg-black rounded-lg min-h-full py-2 md:py-3 px-2`}"
       >
         <div
-          class="${tw`w-8 min-h-[2.5rem] mb-1 md:mb-0 md:flex md:items-center md:w-10 md:min-h-0`}"
+          class="${tw`w-8 h-8 flex items-center md:w-10 md:h-10 mb-2 md:mb-0`}"
         >
           <img
             src="./images/${this.icon}"
@@ -34,9 +34,9 @@ export class PointBonus extends LitElement {
             class="${tw`md:w-full`}"
           />
         </div>
-        <div class="${tw`h-full flex flex-col justify-between md:items-start`}">
+        <div class="${tw`flex flex-col`}">
           <p
-            class="${tw`text-[0.813rem] font-medium leading-3 text-lightBlue md:text-base`}"
+            class="${tw`text-[0.813rem] font-medium leading-3 text-lightBlue md:text-lg`}"
           >
             ${this.caption}:
           </p>
