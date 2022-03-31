@@ -29,7 +29,7 @@ export class Shop extends LitElement {
   render() {
     return html`
       <section
-        class="${tw`md:grid flex flex-col gap-6 md:gap-12 md:py-10 px-[5%] md:px-[10%] py-6 bg-white overflow-hidden md:${css`
+        class="${tw`md:grid flex flex-col gap-6 md:gap-12 md:py-10 px-[5%] md:px-[10%] py-6 lg:py-12 bg-white overflow-hidden md:${css`
           & {
             grid-template-columns: auto 100%;
           }

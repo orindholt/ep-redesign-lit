@@ -30,7 +30,7 @@ export class GameSlider extends LitElement {
   render() {
     return html`
       <div
-        class="${tw`flex flex-col pl-[5%] md:px-[10%] pt-5 pb-8 bg-white overflow-hidden`}"
+        class="${tw`flex flex-col pl-[5%] md:px-[10%] py-6 lg:py-12 bg-white overflow-hidden`}"
       >
         <section
           class="${tw`md:grid md:${css`

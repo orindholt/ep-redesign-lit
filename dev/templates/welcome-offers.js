@@ -16,7 +16,7 @@ export class WelcomeOffers extends LitElement {
   render() {
     return html`
       <section
-        class="${tw`px-[5%] md:px-[10%] py-6 md:flex md:flex-row-reverse md:justify-between md:gap-6`}"
+        class="${tw`px-[5%] md:px-[10%] py-6 lg:py-10 md:flex md:flex-row-reverse md:justify-between md:gap-6`}"
       >
         <div
           class="${tw`md:max-w-xs md:flex md:flex-col md:gap-6 md:justify-center`}"
