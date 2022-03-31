@@ -64,7 +64,7 @@ export class GameBig extends LitElement {
           `}`}"
         >
           <div
-            class="${tw`flex mb-auto justify-end items-center gap-1 md:absolute md:top-5 md:right-10 md:text-lg`}"
+            class="${tw`flex mb-auto justify-end items-center gap-1 md:absolute md:top-5 md:left-6 md:text-lg`}"
           >
             <svg
               class="${tw`mt-1 md:w-3 md:h-3`}"

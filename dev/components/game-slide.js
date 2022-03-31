@@ -19,19 +19,13 @@ export class GameSlide extends LitElement {
   render() {
     return html`
       <div
-        class="${tw`${css`
-          & {
-            background-image: linear-gradient(
-              to bottom left,
-              #FF5858 50%,
-              #FF0080 100%
-            );`} 
-          rounded-xl overflow-hidden text-white w-72 md:w-52 h-[18.125rem] flex flex-col`}"
+        class="${tw`
+          bg-gradient-to-bl from-[#FF5858] to-[#FF0080] rounded-xl overflow-hidden text-white w-72 md:w-52 h-[18.125rem] flex flex-col`}"
       >
-        <div class="${tw`grid md:h-full`}">
+        <div class="${tw`grid md:h-full overflow-hidden h-56`}">
           <img
             src="./images/${this.game.img}"
-            class="${tw`md:h-full md:object-cover ${css`
+            class="${tw`md:h-full md:object-cover w-full object-cover ${css`
               & {
                 grid-area: 1/1/1/1;
               }

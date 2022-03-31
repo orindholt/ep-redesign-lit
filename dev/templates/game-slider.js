@@ -24,6 +24,7 @@ export class GameSlider extends LitElement {
       direction: 'ltr',
       focus: 'left',
       pagination: false,
+      autoWidth: true,
     }).mount();
   }
 
@@ -69,7 +70,7 @@ export class GameSlider extends LitElement {
                 <li class="splide__slide">
                   <game-slide
                     .game=${{
-                      img: 'samurai-game.png',
+                      img: 'game-slide.svg',
                       alt: 'Samurai Game',
                       days: 2,
                       time: '01:29:51',
@@ -80,7 +81,7 @@ export class GameSlider extends LitElement {
                 <li class="splide__slide">
                   <game-slide
                     .game=${{
-                      img: 'bankjob-game.png',
+                      img: 'game-slide.svg',
                       alt: 'Bank Job Game',
                       days: 1,
                       time: '15:04:21',
@@ -91,7 +92,7 @@ export class GameSlider extends LitElement {
                 <li class="splide__slide">
                   <game-slide
                     .game=${{
-                      img: 'bankjob-game.png',
+                      img: 'game-slide.svg',
                       alt: 'Bank Job Game',
                       days: 1,
                       time: '15:04:21',
@@ -102,7 +103,7 @@ export class GameSlider extends LitElement {
                 <li class="splide__slide">
                   <game-slide
                     .game=${{
-                      img: 'bankjob-game.png',
+                      img: 'game-slide.svg',
                       alt: 'Bank Job Game',
                       days: 1,
                       time: '15:04:21',
@@ -113,7 +114,7 @@ export class GameSlider extends LitElement {
                 <li class="splide__slide">
                   <game-slide
                     .game=${{
-                      img: 'bankjob-game.png',
+                      img: 'game-slide.svg',
                       alt: 'Bank Job Game',
                       days: 1,
                       time: '15:04:21',
