@@ -3,7 +3,7 @@ let detector = false;
 let regionSelector = false;
 let detectorInteracted = false;
 let showLogin = false;
-let crtState = '+';
+let crtState = '';
 let crtFlag = 'denmark.svg';
 const local = 'Kastrup, Danmark';
 const regions = [
@@ -209,17 +209,19 @@ const deactivate = (element) => {
 };
 
 /* Toggle Login Menu Event */
-document.querySelector('#loginBtn').addEventListener('click', () => {
-  const loginElement = document.querySelector('#login');
-  if (loginElement && !loginElement.classList.contains('hide')) {
-    showLogin = false;
-    toggleScroll(false);
-    loginElement.classList.add('hide');
-  } else {
-    showLogin = true;
-    toggleScroll(true);
-    loginElement.classList.remove('hide');
-  }
+document.querySelectorAll('#loginBtn, #loginExit > img').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    const loginElement = document.querySelector('#login');
+    if (loginElement && !loginElement.classList.contains('hide')) {
+      showLogin = false;
+      toggleScroll(false);
+      loginElement.classList.add('hide');
+    } else {
+      showLogin = true;
+      toggleScroll(true);
+      loginElement.classList.remove('hide');
+    }
+  });
 });
 
 /* Hide menus if you click outside nav */

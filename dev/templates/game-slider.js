@@ -22,15 +22,23 @@ export class GameSlider extends LitElement {
       arrows: false,
       gap: 15,
       direction: 'ltr',
-      focus: 'center',
+      focus: 'left',
       pagination: false,
     }).mount();
   }
 
   render() {
     return html`
-      <div class="${tw`flex flex-col pl-[5%] md:px-[10%] pt-5 pb-8 bg-white`}">
-        <section class="${tw`md:grid md:grid-cols-2`}">
+      <div
+        class="${tw`flex flex-col pl-[5%] md:px-[10%] pt-5 pb-8 bg-white overflow-hidden`}"
+      >
+        <section
+          class="${tw`md:grid md:${css`
+            & {
+              grid-template-columns: auto 100%;
+            }
+          `}`}"
+        >
           <div
             class="${tw`pb-5 pr-8 flex flex-col gap-5 md:pt-1 justify-center max-w-sm`}"
           >

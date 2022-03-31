@@ -18,7 +18,7 @@ export class WelcomeOffer extends LitElement {
   render() {
     return html`
       <div
-        class="${tw`rounded-xl p-[2px] xl:w-56 ${css`
+        class="${tw`rounded-xl p-0.5 xl:w-56 ${css`
           & {
             background: linear-gradient(
               to top right,
@@ -28,7 +28,7 @@ export class WelcomeOffer extends LitElement {
         `}`}"
       >
         <img
-          class="${tw`w-full`}"
+          class="${tw`w-full rounded-[10px]`}"
           src="images/welcome-offers/${this.offer.img}"
           alt="${this.offer.alt}"
         />
@@ -45,7 +45,7 @@ export class WelcomeOffer extends LitElement {
             €${this.offer.claim}
           </h4>
           <p
-            class="${tw`text-white text-[10px] mb-1 lg:text-center lg:${css`
+            class="${tw`text-white text-xs mb-1 lg:text-center lg:${css`
               & {
                 grid-area: 2/1/3/3;
               }

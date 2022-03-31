@@ -3,6 +3,7 @@ import {create, cssomSheet} from 'twind';
 import {theme} from '../twind.config';
 import {css} from 'twind/css';
 import {ShopItem} from '../components/shop-item';
+import {Splide} from '@splidejs/splide';
 
 const sheet = cssomSheet({target: new CSSStyleSheet()});
 const {tw} = create({
@@ -12,14 +13,27 @@ const {tw} = create({
 
 export class Shop extends LitElement {
   static styles = [sheet.target];
-  static properties = {};
-  constructor() {
-    super();
+
+  firstUpdated() {
+    const slider = this.shadowRoot.querySelector('#shopSlider');
+    new Splide(slider, {
+      type: 'slide',
+      arrows: false,
+      gap: 15,
+      direction: 'ltr',
+      focus: 'left',
+      pagination: false,
+    }).mount();
   }
+
   render() {
     return html`
       <section
-        class="${tw`flex flex-col md:flex-row md:justify-between md:gap-6 px-[5%] md:px-[10%] py-6 bg-white`}"
+        class="${tw`md:grid flex flex-col gap-6 md:gap-12 md:py-10 px-[5%] md:px-[10%] py-6 bg-white overflow-hidden md:${css`
+          & {
+            grid-template-columns: auto 100%;
+          }
+        `}`}"
       >
         <div
           class="${tw`md:max-w-xs md:flex md:flex-col md:gap-6 md:justify-center`}"
@@ -54,50 +68,72 @@ export class Shop extends LitElement {
             Go to EkstraPoints shop
           </a>
         </div>
-        <ul
-          class="${tw`flex flex-col gap-3 my-5 lg:grid lg:grid-cols-2 lg:max-w-2xl`}"
-        >
-          <shop-item
-            .item="${{
-              img: 'winnermagic.png',
-              title: "Winner's Magic",
-              cost: '30.000',
-              bonus: 5,
-            }}"
-          ></shop-item>
-          <shop-item
-            .item="${{
-              img: 'millionpot.png',
-              title: 'Millionpot',
-              cost: '30.000',
-              bonus: 5,
-            }}"
-          ></shop-item>
-          <shop-item
-            .item="${{
-              img: 'luckythrillz.png',
-              title: 'Lucky Thrillz',
-              cost: '30.000',
-              bonus: 5,
-            }}"
-          ></shop-item>
-          <shop-item
-            .item="${{
-              img: 'jackiejackpot.png',
-              title: 'Jackie Jackpot',
-              cost: '30.000',
-              bonus: 5,
-            }}"
-          ></shop-item>
-          <shop-item
-            .item="${{
-              img: 'tradacasino.png',
-              title: 'Trada Casino',
-              cost: '30.000',
-              bonus: 5,
-            }}"
-          ></shop-item>
-        </ul>
+        <div class="splide ${tw`relative flex items-center`}" id="shopSlider">
+          <div class="splide__track ${tw`overflow-hidden relative z-0`}">
+            <ul class="splide__list ${tw`flex`}">
+              <li class="splide__slide">
+                <shop-item
+                  .item="${{
+                    img: 'shop-1.svg',
+                    title: "Winner's Magic",
+                    cost: '30.000',
+                    bonus: 5,
+                  }}"
+                ></shop-item>
+              </li>
+              <li class="splide__slide">
+                <shop-item
+                  .item="${{
+                    img: 'shop-2.svg',
+                    title: 'Millionpot',
+                    cost: '30.000',
+                    bonus: 5,
+                  }}"
+                ></shop-item>
+              </li>
+              <li class="splide__slide">
+                <shop-item
+                  .item="${{
+                    img: 'shop-3.svg',
+                    title: 'Lucky Thrillz',
+                    cost: '30.000',
+                    bonus: 5,
+                  }}"
+                ></shop-item>
+              </li>
+              <li class="splide__slide">
+                <shop-item
+                  .item="${{
+                    img: 'shop-4.svg',
+                    title: 'Jackie Jackpot',
+                    cost: '30.000',
+                    bonus: 5,
+                  }}"
+                ></shop-item>
+              </li>
+              <li class="splide__slide">
+                <shop-item
+                  .item="${{
+                    img: 'shop-5.svg',
+                    title: 'Trada Casino',
+                    cost: '30.000',
+                    bonus: 5,
+                  }}"
+                ></shop-item>
+              </li>
+              <li class="splide__slide">
+                <shop-item
+                  .item="${{
+                    img: 'shop-6.svg',
+                    title: 'Trada Casino',
+                    cost: '30.000',
+                    bonus: 5,
+                  }}"
+                ></shop-item>
+              </li>
+            </ul>
+          </div>
+        </div>
         <a
           href="#"
           class="${tw`md:hover:scale-105 md:transition-transform rounded-md shadow-md md:hidden my-6 mx-auto pb-1 w-[15.625rem] h-10 flex justify-center items-center text-lg font-medium text-white ${css`

@@ -17,41 +17,46 @@ export class ShopItem extends LitElement {
 
   render() {
     return html`
-      <li
+      <div
         class="${tw`${css`
           & {
             background-image: linear-gradient(to top right, #0060e9, #80bad0);
           }
-        `} rounded-xl flex overflow-hidden`}"
+        `} rounded-xl flex flex-col overflow-hidden w-48 h-64`}"
       >
-        <div class="${tw`overflow-hidden`}">
+        <div class="${tw`grid`}">
           <img
             src="./images/shop/${this.item.img}"
             alt="${this.item.title}"
             class="${tw`w-full h-full flex-1 ${css`
               & {
+                grid-area: 1/1/1/1;
                 object-fit: cover;
               }
             `}`}"
           />
+          <p
+            class="${tw`text-white text-base font-medium text-center self-end mb-2 ${css`
+              & {
+                filter: drop-shadow(0 0 0.75rem black);
+                grid-area: 1/1/1/1;
+              }
+            `}`}"
+          >
+            ${String(this.item.bonus)}€ Bonus Package for ${this.item.title}
+          </p>
         </div>
         <div
           class="${tw`py-2 px-3 flex h-full w-full gap-[2%] justify-between items-center flex-3 lg:flex-2`}"
         >
           <div>
-            <p
-              class="${tw`text-white text-[0.813rem] font-normal`}"
-              [ngStyle]="background ? { color: 'black' } : {}"
-            >
-              ${String(this.item.bonus)}€ Bonus Package for ${this.item.title}
-            </p>
-            <h3 class="${tw`text-orange text-[1rem] font-bold`}">
+            <h3 class="${tw`text-white text-[1rem] font-bold`}">
               ${String(this.item.cost)} EP
             </h3>
           </div>
           <a
             href="#"
-            class="${tw`rounded-md shadow-md pb-1 min-w-[70px] h-14 flex justify-center items-center text-lg font-medium text-white ${css`
+            class="${tw`md:hover:scale-105 md:transition-transform rounded-md shadow-md pb-1 min-w-[70px] h-14 flex justify-center items-center text-lg font-medium text-white ${css`
               & {
                 background: linear-gradient(
                   to bottom left,
@@ -64,7 +69,7 @@ export class ShopItem extends LitElement {
             Buy
           </a>
         </div>
-      </li>
+      </div>
     `;
   }
 }

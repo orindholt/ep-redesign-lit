@@ -51,10 +51,10 @@ export class WelcomeOffers extends LitElement {
             See all offers
           </a>
         </div>
-        <div class="${tw`grid grid-cols-2 md:grid-cols-3 gap-3`}">
+        <div class="${tw`grid grid-cols-2 lg:grid-cols-3 gap-3`}">
           <welcome-offer
             .offer=${{
-              img: 'tonybet.png',
+              img: 'offer.svg',
               alt: 'Tonybet',
               claim: 120,
               golden: false,
@@ -62,7 +62,7 @@ export class WelcomeOffers extends LitElement {
           ></welcome-offer>
           <welcome-offer
             .offer=${{
-              img: 'luckydreams.png',
+              img: 'offer.svg',
               alt: 'Lucky Dreams',
               claim: 120,
               golden: true,
@@ -70,7 +70,7 @@ export class WelcomeOffers extends LitElement {
           ></welcome-offer>
           <welcome-offer
             .offer=${{
-              img: 'kingbilly.png',
+              img: 'offer.svg',
               alt: 'King Billy',
               claim: 120,
               golden: false,
@@ -78,7 +78,7 @@ export class WelcomeOffers extends LitElement {
           ></welcome-offer>
           <welcome-offer
             .offer=${{
-              img: 'cashimashi.png',
+              img: 'offer.svg',
               alt: 'Cashimashi',
               claim: 120,
               golden: false,
@@ -86,7 +86,7 @@ export class WelcomeOffers extends LitElement {
           ></welcome-offer>
           <welcome-offer
             .offer=${{
-              img: 'casiplay.png',
+              img: 'offer.svg',
               alt: 'Casiplay',
               claim: 120,
               golden: false,
@@ -94,7 +94,7 @@ export class WelcomeOffers extends LitElement {
           ></welcome-offer>
           <welcome-offer
             .offer=${{
-              img: 'casinotown.png',
+              img: 'offer.svg',
               alt: 'Casinotown',
               claim: 120,
               golden: false,
