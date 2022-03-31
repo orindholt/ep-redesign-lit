@@ -156,7 +156,7 @@ export class Login extends LitElement {
           >
             <slot></slot>
             <section>
-              <h2 class="${tw`text-[3.2rem] text-left font-bold mb-2`}">
+              <h2 class="${tw`text-[3.2rem] text-left font-bold leading-snug`}">
                 ${this.log ? 'Sign in' : 'Sign up'}
               </h2>
               <p
@@ -264,7 +264,7 @@ export class Login extends LitElement {
                     >
                       <div class="${tw`relative w-4 h-4`}">
                         <input
-                          class="${tw`appearance-none min-w-[1rem] min-h-[1rem] border-2 border-darkBlue rounded-[4px] relative ${checked} before:bg-orange before:w-full before:h-full before:absolute before:grid before:place-content-center before:pb-1`}"
+                          class="${tw`cursor-pointer appearance-none min-w-[1rem] min-h-[1rem] border-2 border-darkBlue rounded-[4px] relative ${checked} before:bg-orange before:w-full before:h-full before:absolute before:grid before:place-content-center before:pb-1`}"
                           type="checkbox"
                           name="tos"
                           id="tos"
@@ -291,7 +291,7 @@ export class Login extends LitElement {
               <button
                 type="submit"
                 id="submit-button"
-                class="${tw`mt-4 rounded-md cursor-pointer shadow-md px-4 pb-1 h-12 w-full flex justify-center items-center text-lg font-medium text-white md:hover:scale-110 transition-transform active:scale-100 bg-gradient-to-bl from-orange to-yellow`}"
+                class="${tw`mt-4 rounded-md cursor-pointer shadow-md px-4 pb-1 h-12 w-full flex justify-center items-center text-lg font-medium text-white md:hover:scale-105 transition-transform active:scale-100 bg-gradient-to-bl from-orange to-yellow`}"
               >
                 ${this.magicLink && !this.passReq && !this.loading
                   ? html`<img

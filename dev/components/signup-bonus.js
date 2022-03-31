@@ -27,7 +27,7 @@ export class SignupBonus extends LitElement {
           Register to collect your welcome bonus!
         </p>
         <div class="${tw`flex justify-between`}">
-          <h4 class="${tw`text-4xl font-bold md:text-5xl`}">20.000 EP</h4>
+          <h4 class="${tw`text-4xl font-bold xl:text-5xl`}">20.000 EP</h4>
           <a
             href="#"
             class="${tw`md:hover:scale-105 md:transition-transform rounded-md shadow-md mt-auto pb-1 w-24 lg:w-32 xl:w-36 h-10 lg:h-11 xl:h-12 flex justify-center items-center text-lg lg:text-xl xl:text-2xl font-medium text-white ${css`

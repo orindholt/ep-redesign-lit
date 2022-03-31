@@ -97,10 +97,10 @@ export class WinDisplay extends LitElement {
               alt="${this.username}"
               class="${tw`w-auto mr-auto`}"
             />
-            <h3 class="${tw`font-bold text-base lg:text-lg xl:text-xl`}">
+            <h3 class="${tw`font-bold text-base md:text-lg lg:text-xl`}">
               ${this.username}
             </h3>
-            <p class="${tw`mr-auto flex gap-2 lg:text-lg xl:text-xl`}">
+            <p class="${tw`mr-auto flex gap-2 md:text-lg lg:text-xl`}">
               Just won
               <span class="${tw`text-orange font-bold`}"
                 >${this.winAmount} EP
