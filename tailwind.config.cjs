@@ -41,14 +41,15 @@ module.exports = {
       },
       colors: {
         black: '#1a2433',
-        blue: '#2C7FE0',
+        darkBlue: '#546583',
         lightBlue: '#eaeff7',
         red: '#f82858',
         purple: '#fae4fe',
         cyan: '#a8ebe9',
+        blue: '#3585DF',
         white: '#f9f9f9',
         orange: '#FFA626',
-        yellow: '#FFBC3F',
+        yellow: '#ffd45b',
         lightGray: '#f1f5fa',
         gray: '#eeeeee',
         mediumGray: '#D5D7DB',
@@ -62,6 +63,7 @@ module.exports = {
         slideInAlt: 'slideInAlt .75s ease-in-out forwards',
         fadeIn: 'fadeIn .5s .5s ease-in-out forwards',
         fadeInAlt: 'fadeIn .5s ease-in-out forwards',
+        rotate: 'rotate 1s linear infinite',
       },
       keyframes: {
         slideIn: {
@@ -88,6 +90,14 @@ module.exports = {
           },
           '100%': {
             opacity: 1,
+          },
+        },
+        rotate: {
+          '0%': {
+            transform: 'rotate(0deg)',
+          },
+          '100%': {
+            transform: 'rotate(360deg)',
           },
         },
       },

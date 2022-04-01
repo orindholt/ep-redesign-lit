@@ -17,20 +17,6 @@ const {tw} = create({
   theme: theme,
 });
 
-/* setup({
-  preflight: {
-    '@import': `url('https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.12/dist/css/splide.min.css')`,
-  },
-}); */
-
-/* const globalStyles = css({
-  ':global': {
-    button: {
-      background: '#000',
-    },
-  },
-}); */
-
 export class MyApp extends LitElement {
   static styles = [sheet.target];
 
