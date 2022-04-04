@@ -1,22 +1,12 @@
-import {LitElement, html} from 'lit';
-import {create, cssomSheet} from 'twind';
-import {theme} from '../twind.config';
-import {css} from 'twind/css';
-
-const sheet = cssomSheet({target: new CSSStyleSheet()});
-const {tw} = create({
-  sheet,
-  theme: theme,
-});
+import {LitElement, html, css} from 'lit';
 
 export class Template extends LitElement {
-  static styles = [sheet.target];
   static properties = {};
   constructor() {
     super();
   }
   render() {
-    return html``;
+    return html` <link rel="stylesheet" href="/dev/output.css" />`;
   }
 }
 

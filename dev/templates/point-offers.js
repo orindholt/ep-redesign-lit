@@ -1,21 +1,12 @@
-import {LitElement, html} from 'lit';
-import {create, cssomSheet} from 'twind';
-import {theme} from '../twind.config';
-import {css} from 'twind/css';
+import {LitElement, html, css} from 'lit';
+
 import {PointBonus} from '../components/point-bonus';
 
-const sheet = cssomSheet({target: new CSSStyleSheet()});
-const {tw} = create({
-  sheet,
-  theme: theme,
-});
-
 export class PointOffers extends LitElement {
-  static styles = [sheet.target];
-
   render() {
     return html`
-      <div class="${tw`gap-x-2 text-white my-4 grid grid-cols-3`}">
+      <link rel="stylesheet" href="/dev/output.css" />
+      <div class="gap-x-2 text-white my-4 grid grid-cols-3">
         <point-bonus
           .icon=${'slot-machine.svg'}
           .caption=${'Premium Casinos'}

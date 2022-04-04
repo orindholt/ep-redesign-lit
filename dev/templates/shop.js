@@ -1,18 +1,18 @@
-import {LitElement, html} from 'lit';
-import {create, cssomSheet} from 'twind';
-import {theme} from '../twind.config';
-import {css} from 'twind/css';
+import {LitElement, html, css} from 'lit';
+
 import {ShopItem} from '../components/shop-item';
 import {Splide} from '@splidejs/splide';
 
-const sheet = cssomSheet({target: new CSSStyleSheet()});
-const {tw} = create({
-  sheet,
-  theme: theme,
-});
-
 export class Shop extends LitElement {
-  static styles = [sheet.target];
+  static styles = [
+    css`
+      @media screen and (min-width: 768px) {
+        .grid-auto-100 {
+          grid-template-columns: auto 100%;
+        }
+      }
+    `,
+  ];
 
   firstUpdated() {
     const slider = this.shadowRoot.querySelector('#shopSlider');
@@ -28,49 +28,33 @@ export class Shop extends LitElement {
 
   render() {
     return html`
+      <link rel="stylesheet" href="/dev/output.css" />
       <section
-        class="${tw`md:grid flex flex-col gap-6 md:gap-12 md:py-10 px-[5%] md:px-[10%] py-6 lg:py-12 bg-white overflow-hidden md:${css`
-          & {
-            grid-template-columns: auto 100%;
-          }
-        `}`}"
+        class="md:grid flex flex-col gap-6 md:gap-12 md:py-10 px-[5%] md:px-[10%] py-6 lg:py-12 bg-white overflow-hidden grid-auto-100"
       >
-        <div
-          class="${tw`md:max-w-xs md:flex md:flex-col md:gap-6 md:justify-center`}"
-        >
+        <div class="md:max-w-xs md:flex md:flex-col md:gap-6 md:justify-center">
           <h2
-            class="${tw`font-bold text-4xl ${css`
-              & {
-                background: linear-gradient(to top right, #0b119b, #172dd6);
-                background-clip: text;
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-              }
-            `}`}"
+            class="font-bold text-4xl bg-gradient-to-tr from-[#0b119b] to-[#172dd6] text-gradient"
           >
             Shop with<br />
             EkstraPoints
           </h2>
           <p
-            class="${tw`text-darkGray text-lg hidden md:block font-medium leading-5`}"
+            class="text-darkGray text-lg hidden md:block font-medium leading-5"
           >
             Join our free spin competitions, spin and win real money + earn
             EkstraPoints - Come back every day to get new free spins!
           </p>
           <a
             href="#"
-            class="${tw`md:hover:scale-105 md:transition-transform rounded-md shadow-md my-6 md:my-0 mx-auto md:mx-0 pb-1 w-[15.625rem] h-10 hidden md:flex justify-center items-center text-lg font-medium text-white ${css`
-              & {
-                background: linear-gradient(206deg, #ff930f 0%, #ffd45b 100%);
-              }
-            `}`}"
+            class="md:hover:scale-105 md:transition-transform rounded-md shadow-md my-6 md:my-0 mx-auto md:mx-0 pb-1 w-[15.625rem] h-10 hidden md:flex justify-center items-center text-lg font-medium text-white bg-gradient-to-bl from-orange to-yellow"
           >
             Go to EkstraPoints shop
           </a>
         </div>
-        <div class="splide ${tw`relative flex items-center`}" id="shopSlider">
-          <div class="splide__track ${tw`overflow-hidden relative z-0`}">
-            <ul class="splide__list ${tw`flex`}">
+        <div class="splide relative flex items-center" id="shopSlider">
+          <div class="splide__track overflow-hidden relative z-0">
+            <ul class="splide__list flex">
               <li class="splide__slide">
                 <shop-item
                   .item="${{
@@ -136,11 +120,7 @@ export class Shop extends LitElement {
         </div>
         <a
           href="#"
-          class="${tw`md:hover:scale-105 md:transition-transform rounded-md shadow-md md:hidden my-6 mx-auto pb-1 w-[15.625rem] h-10 flex justify-center items-center text-lg font-medium text-white ${css`
-            & {
-              background: linear-gradient(206deg, #ff930f 0%, #ffd45b 100%);
-            }
-          `}`}"
+          class="md:hover:scale-105 md:transition-transform rounded-md shadow-md md:hidden my-6 mx-auto pb-1 w-[15.625rem] h-10 flex justify-center items-center text-lg font-medium text-white bg-gradient-to-bl from-orange to-yellow"
         >
           Go to EkstraPoints shop
         </a>

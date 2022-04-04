@@ -1,17 +1,6 @@
 import {LitElement, html} from 'lit';
-import {create, cssomSheet} from 'twind';
-import {theme} from '../twind.config';
-import {css} from 'twind/css';
-
-const sheet = cssomSheet({target: new CSSStyleSheet()});
-const {tw} = create({
-  sheet,
-  theme: theme,
-});
 
 export class WinDisplay extends LitElement {
-  static styles = [sheet.target];
-
   static properties = {
     wins: {type: Array},
     index: {type: Number},
@@ -76,63 +65,49 @@ export class WinDisplay extends LitElement {
 
   render() {
     return html`
-      <article class="${tw`w-full h-12 rounded-md overflow-hidden`}">
+      <link rel="stylesheet" href="/dev/output.css" />
+      <article class="w-full h-12 rounded-md overflow-hidden">
         <div
-          class="${tw`w-full h-full relative ${css({
-            'transform-style': 'preserve-3d',
-            transition: '2s',
-          })}`}"
+          class="w-full h-full relative transition-transform duration-[2s]"
+          style="transform-style: preserve-3d"
           id="card"
         >
           <div
-            class="${tw`flex justify-center gap-[2%] items-center text-white p-2 pr-[5%] absolute w-full h-full bg-black ${css(
-              {
-                '-webkit-backface-visibility': ' hidden',
-                'backface-visibility': 'hidden',
-              }
-            )}`}"
+            class="flex justify-center gap-[2%] items-center text-white p-2 pr-[5%] absolute w-full h-full bg-black"
+            style="-webkit-backface-visibility: hidden; backface-visibility: hidden"
           >
             <img
               src="./images/${this.imgSrc}"
               alt="${this.username}"
-              class="${tw`w-auto mr-auto`}"
+              class="w-auto mr-auto"
             />
-            <h3 class="${tw`font-bold text-base md:text-lg lg:text-xl`}">
+            <h3 class="font-bold text-base md:text-lg lg:text-xl">
               ${this.username}
             </h3>
-            <p class="${tw`mr-auto flex gap-2 md:text-lg lg:text-xl`}">
+            <p class="mr-auto flex gap-2 md:text-lg lg:text-xl">
               Just won
-              <span class="${tw`text-orange font-bold`}"
-                >${this.winAmount} EP
-              </span>
-              <a href="#" class="${tw`underline lg:text-lg xl:text-xl`}"
-                >here!</a
-              >
+              <span class="text-orange font-bold">${this.winAmount} EP </span>
+              <a href="#" class="underline lg:text-lg xl:text-xl">here!</a>
             </p>
           </div>
           <div
-            class="${tw`absolute w-full h-full flex justify-center gap-[2%] items-center bg-black text-white p-2 pr-[5%] ${css(
-              {
-                '-webkit-backface-visibility': ' hidden',
-                'backface-visibility': 'hidden',
-                transform: 'rotateX(180deg)',
-              }
-            )}`}"
+            class="absolute w-full h-full flex justify-center gap-[2%] items-center bg-black text-white p-2 pr-[5%]"
+            style="-webkit-backface-visibility: hidden; backface-visibility: hidden; transform: rotateX(180deg);"
           >
             <img
               src="./images/${this.imgSrc}"
               alt="${this.username}"
-              class="${tw`w-auto mr-auto`}"
+              class="w-auto mr-auto"
             />
-            <h3 class="${tw`font-bold text-base md:text-lg lg:text-xl`}">
+            <h3 class="font-bold text-base md:text-lg lg:text-xl">
               ${this.username}
             </h3>
-            <p class="${tw`mr-auto flex gap-2 md:text-lg lg:text-xl`}">
+            <p class="mr-auto flex gap-2 md:text-lg lg:text-xl">
               Just won
-              <span class="${tw`text-orange font-bold md:text-lg lg:text-xl`}"
+              <span class="text-orange font-bold md:text-lg lg:text-xl"
                 >${this.winAmount} EP
               </span>
-              <a href="#" class="${tw`underline`}">here!</a>
+              <a href="#" class="underline">here!</a>
             </p>
           </div>
         </div>

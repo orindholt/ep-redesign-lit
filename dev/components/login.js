@@ -1,5 +1,4 @@
-import {LitElement, html, css, unsafeCSS} from 'lit';
-import {theme} from '../twind.config';
+import {LitElement, html, css} from 'lit';
 
 const resetErrorStyle = (target, error) => {
   if (target.name && target.name != 'tos')
@@ -13,8 +12,8 @@ const resetErrorStyle = (target, error) => {
 
 const setErrorStyle = (input, errorIcon, errorText, i) => {
   if (input.name != 'tos') {
-    input.style.color = theme.extend.colors.red;
-    input.style.borderColor = theme.extend.colors.red;
+    input.style.color = '#f82858';
+    input.style.borderColor = '#f82858';
     input.oninput = (e) => {
       if (e.target.style.color) e.target.style.color = '';
       if (e.target.style.borderColor) e.target.style.borderColor = '';
@@ -69,7 +68,7 @@ export class Login extends LitElement {
   static styles = [
     css`
       .tos-checkbox:checked {
-        border-color: ${unsafeCSS(theme.extend.colors.orange)} !important;
+        border-color: #ffa626 !important;
       }
       .tos-checkbox:checked::before {
         width: 100%;
@@ -78,8 +77,8 @@ export class Login extends LitElement {
         display: grid;
         place-content: center;
         padding-bottom: 4px;
-        background-color: ${unsafeCSS(theme.extend.colors.orange)};
-        border-color: ${unsafeCSS(theme.extend.colors.orange)};
+        background-color: #ffa626;
+        border-color: #ffa626;
         content: url('./images/check.svg');
       }
       .lighten-backdrop::before {
@@ -90,6 +89,14 @@ export class Login extends LitElement {
         position: absolute;
         top: 0;
         left: 0;
+      }
+      @-moz-document url-prefix() {
+        .lighten-backdrop {
+          background: #eaeff7;
+        }
+        .lighten-backdrop::before {
+          display: none;
+        }
       }
     `,
   ];

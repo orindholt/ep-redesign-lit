@@ -1,18 +1,19 @@
-import {LitElement, html} from 'lit';
-import {create, cssomSheet} from 'twind';
-import {theme} from '../twind.config';
-import {css} from 'twind/css';
+import {LitElement, html, css} from 'lit';
+
 import {GameSlide} from '../components/game-slide';
 import {Splide} from '@splidejs/splide';
 
-const sheet = cssomSheet({target: new CSSStyleSheet()});
-const {tw} = create({
-  sheet,
-  theme: theme,
-});
-
 export class GameSlider extends LitElement {
-  static styles = [sheet.target];
+  static styles = [
+    css`
+      @media screen and (min-width: 768px) {
+        .grid-auto-100 {
+          grid-template-columns: auto 100%;
+        }
+      }
+    `,
+  ];
+
   static properties = {};
 
   firstUpdated() {
@@ -30,43 +31,33 @@ export class GameSlider extends LitElement {
 
   render() {
     return html`
+      <link rel="stylesheet" href="/dev/output.css" />
       <div
-        class="${tw`flex flex-col pl-[5%] md:px-[10%] py-6 lg:py-12 bg-white overflow-hidden`}"
+        class="flex flex-col pl-[5%] md:px-[10%] py-6 lg:py-12 bg-white overflow-hidden"
       >
-        <section
-          class="${tw`md:grid md:${css`
-            & {
-              grid-template-columns: auto 100%;
-            }
-          `}`}"
-        >
+        <section class="md:grid grid-auto-100">
           <div
-            class="${tw`pb-5 pr-8 flex flex-col gap-5 md:pt-1 justify-center max-w-sm`}"
+            class="pb-5 pr-8 flex flex-col gap-5 md:pt-1 justify-center max-w-sm"
           >
             <slot></slot>
             <p
-              class="${tw`text-darkGray text-lg hidden md:block font-medium leading-5`}"
+              class="text-darkGray text-lg hidden md:block font-medium leading-5"
             >
               Join our free spin competitions, spin and win real money + earn
               EkstraPoints - Come back every day to get new free spins!
             </p>
-            <div class="${tw`mx-auto md:mx-0 pt-3 pb-3 pr-8 hidden md:block`}">
+            <div class="mx-auto md:mx-0 pt-3 pb-3 pr-8 hidden md:block">
               <a
                 href="#"
-                class="${tw`md:hover:scale-105 md:transition-transform rounded-md shadow-md pb-1 w-[15.625rem] h-10 flex justify-center items-center text-lg font-medium text-white ${css`
-                  & {
-                    background: transparent
-                      linear-gradient(206deg, #ff930f 0%, #ffd45b 100%);
-                  }
-                `}`}"
+                class="md:hover:scale-105 md:transition-transform rounded-md shadow-md pb-1 w-[15.625rem] h-10 flex justify-center items-center text-lg font-medium text-white bg-gradient-to-bl from-orange to-yellow"
               >
                 Go to all our tournaments
               </a>
             </div>
           </div>
-          <div class="splide ${tw`relative`}" id="slider">
-            <div class="splide__track ${tw`overflow-hidden relative z-0`}">
-              <ul class="splide__list ${tw`flex`}">
+          <div class="splide relative" id="slider">
+            <div class="splide__track overflow-hidden relative z-0">
+              <ul class="splide__list flex">
                 <li class="splide__slide">
                   <game-slide
                     .game=${{
@@ -126,15 +117,10 @@ export class GameSlider extends LitElement {
             </div>
           </div>
         </section>
-        <div class="${tw`mx-auto pt-6 pb-3 pr-8 md:hidden`}">
+        <div class="mx-auto pt-6 pb-3 pr-8 md:hidden">
           <a
             href="#"
-            class="${tw`md:hover:scale-105 md:transition-transform rounded-md shadow-md mt-auto pb-1 w-[15.625rem] h-10 flex justify-center items-center text-lg font-medium text-white ${css`
-              & {
-                background: transparent
-                  linear-gradient(206deg, #ff930f 0%, #ffd45b 100%);
-              }
-            `}`}"
+            class="md:hover:scale-105 md:transition-transform rounded-md shadow-md mt-auto pb-1 w-[15.625rem] h-10 flex justify-center items-center text-lg font-medium text-white bg-gradient-to-bl from-orange to-yellow"
           >
             Go to all our tournaments
           </a>

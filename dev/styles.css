@@ -6,13 +6,33 @@
   .hide {
     @apply hidden !important;
   }
+  .live-dot::after {
+    @apply absolute w-1 h-1 md:w-2 md:h-2 flex justify-center items-center bg-red rounded-full top-0 -right-[0.25rem] md:-right-[0.5rem] content-none;
+  }
+  .grid-area-self {
+    grid-area: 1/1/1/1;
+  }
+}
+
+@layer utilities {
+  .text-shadow-none {
+    text-shadow: none;
+  }
+  .text-shadow {
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+  }
+  .text-gradient {
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 }
 
 body {
   font-size: 0.875rem;
 }
 
-*::shadow {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;

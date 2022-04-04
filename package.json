@@ -23,8 +23,7 @@
   "license": "BSD-3-Clause",
   "dependencies": {
     "@splidejs/splide": "^3.6.12",
-    "lit": "^2.1.0",
-    "twind": "^0.16.16"
+    "lit": "^2.1.0"
   },
   "devDependencies": {
     "@11ty/eleventy": "^0.12.1",
