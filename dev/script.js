@@ -212,14 +212,14 @@ const deactivate = (element) => {
 document.querySelectorAll('#loginBtn, #loginExit > img').forEach((btn) => {
   btn.addEventListener('click', () => {
     const loginElement = document.querySelector('#login');
-    if (loginElement && !loginElement.classList.contains('hide')) {
+    if (loginElement && loginElement.style.display != 'none') {
       showLogin = false;
       toggleScroll(false);
-      loginElement.classList.add('hide');
+      loginElement.style.display = 'none';
     } else {
       showLogin = true;
       toggleScroll(true);
-      loginElement.classList.remove('hide');
+      loginElement.style.display = 'block';
     }
   });
 });

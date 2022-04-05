@@ -67,6 +67,811 @@ const validation = (inputElements, errorIcon, errorText, test = false) => {
 export class Login extends LitElement {
   static styles = [
     css`
+      *,
+      ::before,
+      ::after {
+        box-sizing: border-box;
+        border-width: 0;
+        border-style: solid;
+        border-color: currentColor;
+      }
+      ::before,
+      ::after {
+        --tw-content: '';
+      }
+      html {
+        line-height: 1.5;
+        -webkit-text-size-adjust: 100%;
+        -moz-tab-size: 4;
+        -o-tab-size: 4;
+        tab-size: 4;
+        font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
+          'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+          'Noto Color Emoji';
+      }
+      body {
+        margin: 0;
+        line-height: inherit;
+      }
+      hr {
+        height: 0;
+        color: inherit;
+        border-top-width: 1px;
+      }
+      abbr:where([title]) {
+        -webkit-text-decoration: underline dotted;
+        text-decoration: underline dotted;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-size: inherit;
+        font-weight: inherit;
+      }
+      a {
+        color: inherit;
+        text-decoration: inherit;
+      }
+      b,
+      strong {
+        font-weight: bolder;
+      }
+      code,
+      kbd,
+      samp,
+      pre {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+          'Liberation Mono', 'Courier New', monospace;
+        font-size: 1em;
+      }
+      small {
+        font-size: 80%;
+      }
+      sub,
+      sup {
+        font-size: 75%;
+        line-height: 0;
+        position: relative;
+        vertical-align: baseline;
+      }
+      sub {
+        bottom: -0.25em;
+      }
+      sup {
+        top: -0.5em;
+      }
+      table {
+        text-indent: 0;
+        border-color: inherit;
+        border-collapse: collapse;
+      }
+      button,
+      input,
+      optgroup,
+      select,
+      textarea {
+        font-family: inherit;
+        font-size: 100%;
+        line-height: inherit;
+        color: inherit;
+        margin: 0;
+        padding: 0;
+      }
+      button,
+      select {
+        text-transform: none;
+      }
+      button,
+      [type='button'],
+      [type='reset'],
+      [type='submit'] {
+        -webkit-appearance: button;
+        background-color: transparent;
+        background-image: none;
+      }
+      :-moz-focusring {
+        outline: auto;
+      }
+      :-moz-ui-invalid {
+        box-shadow: none;
+      }
+      progress {
+        vertical-align: baseline;
+      }
+      ::-webkit-inner-spin-button,
+      ::-webkit-outer-spin-button {
+        height: auto;
+      }
+      [type='search'] {
+        -webkit-appearance: textfield;
+        outline-offset: -2px;
+      }
+      ::-webkit-search-decoration {
+        -webkit-appearance: none;
+      }
+      ::-webkit-file-upload-button {
+        -webkit-appearance: button;
+        font: inherit;
+      }
+      summary {
+        display: list-item;
+      }
+      blockquote,
+      dl,
+      dd,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      hr,
+      figure,
+      p,
+      pre {
+        margin: 0;
+      }
+      fieldset {
+        margin: 0;
+        padding: 0;
+      }
+      legend {
+        padding: 0;
+      }
+      ol,
+      ul,
+      menu {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      textarea {
+        resize: vertical;
+      }
+      input::-moz-placeholder,
+      textarea::-moz-placeholder {
+        opacity: 1;
+        color: #9ca3af;
+      }
+      input:-ms-input-placeholder,
+      textarea:-ms-input-placeholder {
+        opacity: 1;
+        color: #9ca3af;
+      }
+      input::placeholder,
+      textarea::placeholder {
+        opacity: 1;
+        color: #9ca3af;
+      }
+      button,
+      [role='button'] {
+        cursor: pointer;
+      }
+      :disabled {
+        cursor: default;
+      }
+      img,
+      svg,
+      video,
+      canvas,
+      audio,
+      iframe,
+      embed,
+      object {
+        display: block;
+        vertical-align: middle;
+      }
+      img,
+      video {
+        max-width: 100%;
+        height: auto;
+      }
+      [hidden] {
+        display: none;
+      }
+      *,
+      ::before,
+      ::after {
+        --tw-translate-x: 0;
+        --tw-translate-y: 0;
+        --tw-rotate: 0;
+        --tw-skew-x: 0;
+        --tw-skew-y: 0;
+        --tw-scale-x: 1;
+        --tw-scale-y: 1;
+        --tw-pan-x: ;
+        --tw-pan-y: ;
+        --tw-pinch-zoom: ;
+        --tw-scroll-snap-strictness: proximity;
+        --tw-ordinal: ;
+        --tw-slashed-zero: ;
+        --tw-numeric-figure: ;
+        --tw-numeric-spacing: ;
+        --tw-numeric-fraction: ;
+        --tw-ring-inset: ;
+        --tw-ring-offset-width: 0px;
+        --tw-ring-offset-color: #fff;
+        --tw-ring-color: rgb(59 130 246 / 0.5);
+        --tw-ring-offset-shadow: 0 0 #0000;
+        --tw-ring-shadow: 0 0 #0000;
+        --tw-shadow: 0 0 #0000;
+        --tw-shadow-colored: 0 0 #0000;
+        --tw-blur: ;
+        --tw-brightness: ;
+        --tw-contrast: ;
+        --tw-grayscale: ;
+        --tw-hue-rotate: ;
+        --tw-invert: ;
+        --tw-saturate: ;
+        --tw-sepia: ;
+        --tw-drop-shadow: ;
+        --tw-backdrop-blur: ;
+        --tw-backdrop-brightness: ;
+        --tw-backdrop-contrast: ;
+        --tw-backdrop-grayscale: ;
+        --tw-backdrop-hue-rotate: ;
+        --tw-backdrop-invert: ;
+        --tw-backdrop-opacity: ;
+        --tw-backdrop-saturate: ;
+        --tw-backdrop-sepia: ;
+      }
+      .static {
+        position: static;
+      }
+      .fixed {
+        position: fixed;
+      }
+      .absolute {
+        position: absolute;
+      }
+      .relative {
+        position: relative;
+      }
+      .top-0 {
+        top: 0px;
+      }
+      .left-0 {
+        left: 0px;
+      }
+      .right-0 {
+        right: 0px;
+      }
+      .bottom-0 {
+        bottom: 0px;
+      }
+      .-top-5 {
+        top: -1.25rem;
+      }
+      .z-30 {
+        z-index: 30;
+      }
+      .mx-auto {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .my-2 {
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+      }
+      .my-3 {
+        margin-top: 0.75rem;
+        margin-bottom: 0.75rem;
+      }
+      .mt-4 {
+        margin-top: 1rem;
+      }
+      .block {
+        display: block;
+      }
+      .flex {
+        display: flex;
+      }
+      .table {
+        display: table;
+      }
+      .hidden {
+        display: none;
+      }
+      .h-screen {
+        height: 100vh;
+      }
+      .h-full {
+        height: 100%;
+      }
+      .h-6 {
+        height: 1.5rem;
+      }
+      .h-12 {
+        height: 3rem;
+      }
+      .h-4 {
+        height: 1rem;
+      }
+      .h-1_2 {
+        height: 50%;
+      }
+      .h-4_5 {
+        height: 80%;
+      }
+      .max-h-login {
+        max-height: 43.125rem;
+      }
+      .min-h-4 {
+        min-height: 1rem;
+      }
+      .w-screen {
+        width: 100vw;
+      }
+      .w-full {
+        width: 100%;
+      }
+      .w-6 {
+        width: 1.5rem;
+      }
+      .w-4 {
+        width: 1rem;
+      }
+      .w-3 {
+        width: 0.75rem;
+      }
+      .min-w-4 {
+        min-width: 1rem;
+      }
+      .max-w-md {
+        max-width: 28rem;
+      }
+      .border-collapse {
+        border-collapse: collapse;
+      }
+      .-translate-x-3 {
+        --tw-translate-x: -0.75rem;
+        transform: translate(var(--tw-translate-x), var(--tw-translate-y))
+          rotate(var(--tw-rotate)) skewX(var(--tw-skew-x))
+          skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x))
+          scaleY(var(--tw-scale-y));
+      }
+      .transform {
+        transform: translate(var(--tw-translate-x), var(--tw-translate-y))
+          rotate(var(--tw-rotate)) skewX(var(--tw-skew-x))
+          skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x))
+          scaleY(var(--tw-scale-y));
+      }
+      @-webkit-keyframes fadeIn {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+      .animate-fadeInAlt {
+        -webkit-animation: fadeIn 0.5s ease-in-out forwards;
+        animation: fadeIn 0.5s ease-in-out forwards;
+      }
+      @-webkit-keyframes rotate {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      @keyframes rotate {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      .animate-rotate {
+        -webkit-animation: rotate 1s linear infinite;
+        animation: rotate 1s linear infinite;
+      }
+      .cursor-pointer {
+        cursor: pointer;
+      }
+      .resize {
+        resize: both;
+      }
+      .appearance-none {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+      }
+      .flex-col {
+        flex-direction: column;
+      }
+      .items-center {
+        align-items: center;
+      }
+      .justify-center {
+        justify-content: center;
+      }
+      .gap-2 {
+        gap: 0.5rem;
+      }
+      .gap-1 {
+        gap: 0.25rem;
+      }
+      .gap-3 {
+        gap: 0.75rem;
+      }
+      .self-start {
+        align-self: flex-start;
+      }
+      .overflow-y-scroll {
+        overflow-y: scroll;
+      }
+      .rounded-xl {
+        border-radius: 0.75rem;
+      }
+      .rounded-lg {
+        border-radius: 0.5rem;
+      }
+      .rounded-md {
+        border-radius: 0.375rem;
+      }
+      .border-2 {
+        border-width: 2px;
+      }
+      .border {
+        border-width: 1px;
+      }
+      .border-transparent {
+        border-color: transparent;
+      }
+      .border-darkBlue {
+        --tw-border-opacity: 1;
+        border-color: rgb(84 101 131 / var(--tw-border-opacity));
+      }
+      .bg-black-40 {
+        background-color: #00000040;
+      }
+      .bg-white-80 {
+        background-color: #ffffff80;
+      }
+      .bg-lightBlue {
+        --tw-bg-opacity: 1;
+        background-color: rgb(234 239 247 / var(--tw-bg-opacity));
+      }
+      .bg-lightGray {
+        --tw-bg-opacity: 1;
+        background-color: rgb(241 245 250 / var(--tw-bg-opacity));
+      }
+      .bg-gradient-to-bl {
+        background-image: linear-gradient(
+          to bottom left,
+          var(--tw-gradient-stops)
+        );
+      }
+      .from-orange {
+        --tw-gradient-from: #ffa626;
+        --tw-gradient-stops: var(--tw-gradient-from),
+          var(--tw-gradient-to, rgb(255 166 38 / 0));
+      }
+      .to-yellow {
+        --tw-gradient-to: #ffd45b;
+      }
+      .p-4 {
+        padding: 1rem;
+      }
+      .p-3 {
+        padding: 0.75rem;
+      }
+      .p-1 {
+        padding: 0.25rem;
+      }
+      .py-6 {
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+      }
+      .py-5 {
+        padding-top: 1.25rem;
+        padding-bottom: 1.25rem;
+      }
+      .px-7 {
+        padding-left: 1.75rem;
+        padding-right: 1.75rem;
+      }
+      .px-3 {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+      }
+      .px-5 {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+      }
+      .px-4 {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+      .pt-5 {
+        padding-top: 1.25rem;
+      }
+      .pr-5 {
+        padding-right: 1.25rem;
+      }
+      .pb-1 {
+        padding-bottom: 0.25rem;
+      }
+      .text-left {
+        text-align: left;
+      }
+      .text-center {
+        text-align: center;
+      }
+      .font-sofia {
+        font-family: sofia-pro, sans-serif;
+      }
+      .text-5xl {
+        font-size: 3rem;
+        line-height: 1;
+      }
+      .text-medium {
+        font-size: 17px;
+      }
+      .text-xs {
+        font-size: 0.75rem;
+        line-height: 1rem;
+      }
+      .text-lg {
+        font-size: 1.125rem;
+        line-height: 1.75rem;
+      }
+      .text-sm {
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+      }
+      .text-base {
+        font-size: 1rem;
+        line-height: 1.5rem;
+      }
+      .font-bold {
+        font-weight: 700;
+      }
+      .font-semibold {
+        font-weight: 600;
+      }
+      .font-medium {
+        font-weight: 500;
+      }
+      .leading-snug {
+        line-height: 1.375;
+      }
+      .leading-4 {
+        line-height: 1rem;
+      }
+      .text-black {
+        --tw-text-opacity: 1;
+        color: rgb(26 36 51 / var(--tw-text-opacity));
+      }
+      .text-darkGray {
+        --tw-text-opacity: 1;
+        color: rgb(153 153 153 / var(--tw-text-opacity));
+      }
+      .text-red {
+        --tw-text-opacity: 1;
+        color: rgb(248 40 88 / var(--tw-text-opacity));
+      }
+      .text-darkBlue {
+        --tw-text-opacity: 1;
+        color: rgb(84 101 131 / var(--tw-text-opacity));
+      }
+      .text-blue {
+        --tw-text-opacity: 1;
+        color: rgb(53 133 223 / var(--tw-text-opacity));
+      }
+      .text-white {
+        --tw-text-opacity: 1;
+        color: rgb(249 249 249 / var(--tw-text-opacity));
+      }
+      .underline {
+        -webkit-text-decoration-line: underline;
+        text-decoration-line: underline;
+      }
+      .opacity-0 {
+        opacity: 0;
+      }
+      .shadow-md {
+        --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
+          0 2px 4px -2px rgb(0 0 0 / 0.1);
+        --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color),
+          0 2px 4px -2px var(--tw-shadow-color);
+        box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+          var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+      }
+      .outline {
+        outline-style: solid;
+      }
+      .blur {
+        --tw-blur: blur(8px);
+        filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast)
+          var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert)
+          var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+      }
+      .filter {
+        filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast)
+          var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert)
+          var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+      }
+      .backdrop-blur-3xl {
+        --tw-backdrop-blur: blur(64px);
+        -webkit-backdrop-filter: var(--tw-backdrop-blur)
+          var(--tw-backdrop-brightness) var(--tw-backdrop-contrast)
+          var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate)
+          var(--tw-backdrop-invert) var(--tw-backdrop-opacity)
+          var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+        backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness)
+          var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale)
+          var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert)
+          var(--tw-backdrop-opacity) var(--tw-backdrop-saturate)
+          var(--tw-backdrop-sepia);
+      }
+      .backdrop-filter {
+        -webkit-backdrop-filter: var(--tw-backdrop-blur)
+          var(--tw-backdrop-brightness) var(--tw-backdrop-contrast)
+          var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate)
+          var(--tw-backdrop-invert) var(--tw-backdrop-opacity)
+          var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+        backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness)
+          var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale)
+          var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert)
+          var(--tw-backdrop-opacity) var(--tw-backdrop-saturate)
+          var(--tw-backdrop-sepia);
+      }
+      .transition-colors {
+        transition-property: color, background-color, border-color, fill, stroke,
+          -webkit-text-decoration-color;
+        transition-property: color, background-color, border-color,
+          text-decoration-color, fill, stroke;
+        transition-property: color, background-color, border-color,
+          text-decoration-color, fill, stroke, -webkit-text-decoration-color;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transition-duration: 150ms;
+      }
+      .transition-transform {
+        transition-property: transform;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transition-duration: 150ms;
+      }
+      .ease-in-out {
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      body {
+        font-size: 0.875rem;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
+      a {
+        text-decoration: none;
+      }
+      button {
+        background: none;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        font-weight: inherit;
+      }
+      button:focus,
+      a:focus {
+        border: none;
+        outline: 2px solid #eaeff750;
+      }
+      button,
+      a {
+        color: inherit;
+      }
+      select,
+      button,
+      textarea {
+        font-family: inherit;
+      }
+      input,
+      button,
+      textarea {
+        border: none;
+      }
+      textarea:focus {
+        outline: none;
+      }
+      ul,
+      li {
+        list-style: none;
+      }
+      input:focus {
+        outline: none;
+      }
+      input[type='submit'] {
+        cursor: pointer;
+      }
+      .placeholder\\:text-inherit::-moz-placeholder {
+        color: inherit;
+      }
+      .placeholder\\:text-inherit:-ms-input-placeholder {
+        color: inherit;
+      }
+      .placeholder\\:text-inherit::placeholder {
+        color: inherit;
+      }
+      .before\\:absolute::before {
+        content: var(--tw-content);
+        position: absolute;
+      }
+      .before\\:h-full::before {
+        content: var(--tw-content);
+        height: 100%;
+      }
+      .before\\:w-full::before {
+        content: var(--tw-content);
+        width: 100%;
+      }
+      .before\\:overflow-hidden::before {
+        content: var(--tw-content);
+        overflow: hidden;
+      }
+      .before\\:rounded::before {
+        content: var(--tw-content);
+        border-radius: 0.25rem;
+      }
+      .before\\:border-2::before {
+        content: var(--tw-content);
+        border-width: 2px;
+      }
+      .before\\:border-inherit::before {
+        content: var(--tw-content);
+        border-color: inherit;
+      }
+      .active\\:scale-100:active {
+        --tw-scale-x: 1;
+        --tw-scale-y: 1;
+        transform: translate(var(--tw-translate-x), var(--tw-translate-y))
+          rotate(var(--tw-rotate)) skewX(var(--tw-skew-x))
+          skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x))
+          scaleY(var(--tw-scale-y));
+      }
+      @media (min-width: 640px) {
+        .sm\\:gap-3 {
+          gap: 0.75rem;
+        }
+        .sm\\:overflow-auto {
+          overflow: auto;
+        }
+      }
+      @media (min-width: 768px) {
+        .md\\:hover\\:scale-105:hover {
+          --tw-scale-x: 1.05;
+          --tw-scale-y: 1.05;
+          transform: translate(var(--tw-translate-x), var(--tw-translate-y))
+            rotate(var(--tw-rotate)) skewX(var(--tw-skew-x))
+            skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x))
+            scaleY(var(--tw-scale-y));
+        }
+      }
+    `,
+    css`
       .tos-checkbox:checked {
         border-color: #ffa626 !important;
       }
@@ -118,6 +923,7 @@ export class Login extends LitElement {
     this.loading = false;
     this.done = false;
     this.magicLink = true;
+
     /* Submit Function */
     this._handleSubmit = (e) => {
       const errorText = this.shadowRoot.querySelector('#error');
@@ -148,20 +954,19 @@ export class Login extends LitElement {
 
   render() {
     return html`
-      <link rel="stylesheet" href="/dev/output.css" />
       <div
-        class="w-[100vw] h-[100vh] bg-[#00000040] fixed top-0 left-0 right-0 bottom-0 z-30 flex justify-center items-center p-4 py-6"
+        class="w-screen h-screen bg-black-40 fixed top-0 left-0 right-0 bottom-0 z-30 flex justify-center items-center p-4 py-6"
       >
         <div
-          class="overflow-y-scroll sm:overflow-auto py-5 max-w-[28.5rem] max-h-[43.125rem] w-full h-full rounded-xl text-black pt-5 px-7 z-[5] font-sofia animate-fadeInAlt lighten-backdrop backdrop-filter backdrop-blur-3xl"
+          class="overflow-y-scroll sm:overflow-auto py-5 max-w-md max-h-login w-full h-full rounded-xl text-black pt-5 px-7 font-sofia animate-fadeInAlt lighten-backdrop backdrop-filter backdrop-blur-3xl"
         >
           <div class="flex flex-col text-center h-full gap-2 sm:gap-3 relative">
             <slot></slot>
             <section>
-              <h2 class="text-[3.2rem] text-left font-bold leading-snug">
+              <h2 class="text-5xl text-left font-bold leading-snug">
                 ${this.log ? 'Sign in' : 'Sign up'}
               </h2>
-              <p class="font-semibold text-left text-[17px]">
+              <p class="font-semibold text-left text-medium">
                 ${!this.log
                   ? 'Earn 1000 ekstrapoints by signing up'
                   : 'Sign in for your daily bonus!'}
@@ -174,10 +979,10 @@ export class Login extends LitElement {
               action="/"
               class="flex flex-col h-full gap-1 items-center"
             >
-              <div class="flex flex-col gap-3 mt-4 w-full">
+              <div class="flex flex-col gap-2 mt-4 w-full">
                 <button
                   type="submit"
-                  class="social-btn w-full flex rounded-lg p-[0.9rem] justify-center items-center bg-[#ffffff80]"
+                  class="social-btn w-full flex rounded-lg p-3 justify-center items-center bg-white-80"
                 >
                   <div
                     class="w-6 h-6 bg-lightBlue p-1 rounded-md flex justify-center items-center"
@@ -191,7 +996,7 @@ export class Login extends LitElement {
                 </button>
                 <button
                   type="submit"
-                  class="social-btn w-full flex rounded-lg p-3 justify-center items-center bg-[#ffffff80]"
+                  class="social-btn w-full flex rounded-lg p-3 justify-center items-center bg-white-80"
                 >
                   <div
                     class="w-6 h-6 bg-lightBlue p-1 rounded-md flex justify-center items-center"
@@ -205,7 +1010,7 @@ export class Login extends LitElement {
                 </button>
                 <button
                   type="submit"
-                  class="social-btn w-full flex rounded-lg p-3 justify-center items-center bg-[#ffffff80]"
+                  class="social-btn w-full flex rounded-lg p-3 justify-center items-center bg-white-80"
                 >
                   <div
                     class="w-6 h-6 bg-lightBlue p-1 rounded-md flex justify-center items-center"
@@ -215,11 +1020,11 @@ export class Login extends LitElement {
                   <p class="mx-auto pr-5 pb-1">Continue with Apple</p>
                 </button>
               </div>
-              <p class="text-darkGray my-2 font-medium">Or</p>
+              <p class="text-black my-3 font-medium">Or</p>
               <div class="flex flex-col items-center gap-2 relative w-full">
                 <p
                   id="error"
-                  class="text-red text-xs absolute top-[-1.3rem] hidden animate-fadeInAlt opacity-0 self-start"
+                  class="text-red text-xs absolute -top-5 hidden animate-fadeInAlt opacity-0 self-start"
                 ></p>
                 <input
                   type="text"
@@ -246,14 +1051,15 @@ export class Login extends LitElement {
                       >
                         <div class="relative w-4 h-4">
                           <input
-                            class="tos-checkbox cursor-pointer appearance-none min-w-[1rem] min-h-[1rem] border-darkBlue before:rounded-[4px] relative before:border-2 before:absolute before:w-full before:h-full before:overflow-hidden before:border-inherit"
+                            class="tos-checkbox cursor-pointer appearance-none min-w-4 min-h-4 border-darkBlue before:rounded relative before:border-2 before:absolute before:w-full before:h-full before:overflow-hidden before:border-inherit"
                             type="checkbox"
                             name="tos"
                             id="tos"
                           />
                           <img
                             id="error-icon"
-                            class="absolute -top-[1.2rem] w-3 left-[calc(50%-(12px/2))] hidden animate-fadeInAlt opacity-0"
+                            class="absolute -top-5 w-3 hidden animate-fadeInAlt opacity-0"
+                            style="left: calc(50%-(12px/2))"
                             src="./images/error.svg"
                             alt="Error"
                           />
@@ -278,7 +1084,7 @@ export class Login extends LitElement {
               >
                 ${this.magicLink && !this.passReq && !this.loading
                   ? html`<img
-                      class="-translate-x-3 h-1/2"
+                      class="-translate-x-3 h-1_2"
                       src="./images/wand.svg"
                     />`
                   : ``}
@@ -292,11 +1098,17 @@ export class Login extends LitElement {
                         ? 'Send link to email'
                         : 'Continue'
                     }`
-                  : html`<img
-                      class="animate-rotate h-4/5"
-                      src="./images/arrows_circle.svg"
-                      alt="Loading icon"
-                    />`}
+                  : html`<svg
+                      class="animate-rotate h-4_5"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 500 500"
+                      fill="#fff"
+                      xml:space="preserve"
+                    >
+                      <path
+                        d="M428.41 311.99c-26.1 68.57-74.77 111.6-147.25 123.88-68.41 11.59-126.51-10.57-173.51-61.6-2.7-2.93-5.12-6.13-7.56-9.27-2.37-3.04-4.6-6.18-7.27-9.79-1.82 6.82-3.41 13.18-5.22 19.47-1.62 5.65-5.54 9.15-11.21 10.38-5.54 1.2-10.45-.43-14.19-4.7-1.59-1.81-2.58-4.14-3.85-6.23v-6.74c3.24-12.13 6.5-24.26 9.72-36.39 1.54-5.78 2.96-11.58 4.53-17.35 2.37-8.69 9.96-13.33 18.67-11.13 18.23 4.61 36.43 9.34 54.6 14.15 8.52 2.26 13.21 10.22 11.12 18.41-2.01 7.92-9.84 12.47-18.35 10.6-3.04-.66-6.04-1.52-9.05-2.29-3-.77-5.99-1.55-9.99-2.58 1.18 1.77 1.82 2.85 2.57 3.84 25.2 33.24 58.29 54.19 99.28 61.51 78.19 13.95 151.28-28.66 178.53-103.32 2.79-7.62 8.38-11.86 15.22-11.5 6.92.35 12.76 5.02 13.96 11.9.48 2.8.26 6.1-.75 8.75zm12.83-179.69c-4.57 18.24-9.25 36.46-14.14 54.61-2.17 8.05-9.94 12.41-18.18 10.35-18.37-4.6-36.69-9.37-54.98-14.24-8.32-2.22-12.95-10.24-10.91-18.22 2.02-7.96 9.81-12.63 18.26-10.74 5.34 1.2 10.62 2.71 15.93 4.05.79.2 1.62.27 3.03.49-7.53-10.9-15.91-20.24-25.53-28.43-33.89-28.89-73.28-42.99-117.51-38.6-66.45 6.6-112.25 42.01-136.86 104.31-3.4 8.62-8.66 13.03-16.01 12.46-10.16-.78-16.4-10.42-12.99-20.32 5.17-15.04 12.08-29.26 20.99-42.43 31.23-46.16 74.36-74.91 129.46-82.35 75.7-10.21 136.88 16.69 182.8 77.9.6.79 1.16 1.62 1.77 2.41.13.17.39.25.89.56 1.71-6.46 3.23-12.86 5.13-19.15 2.54-8.39 11.27-12.67 19.36-9.74 6.93 2.51 11.28 9.91 9.49 17.08z"
+                      />
+                    </svg>`}
               </button>
               ${!this.passReq
                 ? html`

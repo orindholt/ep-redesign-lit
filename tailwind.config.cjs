@@ -1,7 +1,7 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
-  content: ['./dev/**/*.{html,js}', './my-app.js'],
+  content: ['./dev/index.html'],
   theme: {
     content: {
       none: "''",
@@ -19,6 +19,9 @@ module.exports = {
       borderWidth: {
         3: '3px',
       },
+      borderRadius: {
+        10: '10px',
+      },
       flex: {
         2: '2 2 0%',
         3: '3 3 0%',
@@ -28,9 +31,36 @@ module.exports = {
         2: 0.3,
         1: 0.2,
       },
+      transitionDuration: {
+        0: '0ms',
+        2000: '2000ms',
+      },
       spacing: {
+        3.5: '0.875rem',
         18: '4.5rem',
         26: '6.5rem',
+        62: '15.625rem',
+        '1_2': '50%',
+        '1_4': '25%',
+        '4_5': '80%',
+        '5_100': '5%',
+        '2_100': '2%',
+        '10_100': '10%',
+        '15_100': '15%',
+        '0_1': '1px',
+        '0_2': '2px',
+      },
+      fontSize: {
+        xxs: '0.5rem',
+        medium: '17px',
+      },
+      height: {
+        'screen-1/2': '50vh',
+        'screen-35': '35vh',
+      },
+      width: {
+        'screen-1/2': '50vw',
+        'screen-35': '35vw',
       },
       opacity: {
         15: 0.15,
@@ -39,21 +69,63 @@ module.exports = {
         inherit: 'inherit',
         sofia: ['sofia-pro', 'sans-serif'],
       },
+      minWidth: {
+        ...defaultTheme.spacing,
+        25: '6.25rem',
+        17: '4.375rem',
+      },
+      minHeight: {
+        ...defaultTheme.spacing,
+        25: '6.25rem',
+        17: '4.375rem',
+      },
+      maxHeight: {
+        ...defaultTheme.spacing,
+        login: '43.125rem',
+      },
       colors: {
         black: '#1a2433',
         darkBlue: '#546583',
         lightBlue: '#eaeff7',
         red: '#f82858',
+        sunset: '#FF5858',
+        purpleBright: '#FF0080',
         purple: '#fae4fe',
         cyan: '#a8ebe9',
         blue: '#3585DF',
+        blueBright: '#0060e9',
+        blueDark: '#0b119b',
+        teal: '#80bad0',
         white: '#f9f9f9',
         orange: '#FFA626',
         yellow: '#ffd45b',
+        green: '#259c63',
+        greenBright: '#0fd792',
         lightGray: '#f1f5fa',
         gray: '#eeeeee',
         mediumGray: '#D5D7DB',
         darkGray: '#999999',
+        'white-10': '#ffffff10',
+        'white-20': '#ffffff20',
+        'white-30': '#ffffff30',
+        'white-40': '#ffffff40',
+        'white-50': '#ffffff50',
+        'white-60': '#ffffff60',
+        'white-70': '#ffffff70',
+        'white-80': '#ffffff80',
+        'white-90': '#ffffff90',
+        'black-10': '#00000010',
+        'black-20': '#00000020',
+        'black-30': '#00000030',
+        'black-40': '#00000040',
+        'black-50': '#00000050',
+        'black-60': '#00000060',
+        'black-70': '#00000070',
+        'black-80': '#00000080',
+        'black-90': '#00000090',
+      },
+      backgroundImage: {
+        'game-big': "url('/dev/images/game-desktop.svg')",
       },
       boxShadow: {
         't-md': '-1px -1px 11px 1px rgb(0 0 0 / 22%)',

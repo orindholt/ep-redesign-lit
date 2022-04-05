@@ -7,7 +7,7 @@
     @apply hidden !important;
   }
   .live-dot::after {
-    @apply absolute w-1 h-1 md:w-2 md:h-2 flex justify-center items-center bg-red rounded-full top-0 -right-[0.25rem] md:-right-[0.5rem] content-none;
+    @apply absolute w-1 h-1 md:w-2 md:h-2 flex justify-center items-center bg-red rounded-full top-1 -right-[0.25rem] md:top-0 md:-right-[0.5rem] content-none;
   }
   .grid-area-self {
     grid-area: 1/1/1/1;
