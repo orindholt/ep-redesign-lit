@@ -1,7 +1,7 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
-  content: ['./dev/index.html'],
+  content: ['./dev/components/game-big.js'],
   theme: {
     content: {
       none: "''",
@@ -123,9 +123,6 @@ module.exports = {
         'black-70': '#00000070',
         'black-80': '#00000080',
         'black-90': '#00000090',
-      },
-      backgroundImage: {
-        'game-big': "url('/dev/images/game-desktop.svg')",
       },
       boxShadow: {
         't-md': '-1px -1px 11px 1px rgb(0 0 0 / 22%)',

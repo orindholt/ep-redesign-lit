@@ -257,7 +257,7 @@ export class GameBig extends LitElement {
       }
       .live-dot::after {
         position: absolute;
-        top: 0px;
+        top: 0.25rem;
         right: -0.25rem;
         display: flex;
         height: 0.25rem;
@@ -271,6 +271,9 @@ export class GameBig extends LitElement {
         content: var(--tw-content);
       }
       @media (min-width: 768px) {
+        .live-dot::after {
+          top: 0px;
+        }
         .live-dot::after {
           right: -0.5rem;
         }
@@ -366,6 +369,9 @@ export class GameBig extends LitElement {
       }
       .h-10 {
         height: 2.5rem;
+      }
+      .max-h-80 {
+        max-height: 20rem;
       }
       .min-h-4 {
         min-height: 1rem;
@@ -485,6 +491,9 @@ export class GameBig extends LitElement {
       .self-start {
         align-self: flex-start;
       }
+      .overflow-hidden {
+        overflow: hidden;
+      }
       .overflow-y-scroll {
         overflow-y: scroll;
       }
@@ -536,9 +545,6 @@ export class GameBig extends LitElement {
           var(--tw-gradient-stops)
         );
       }
-      .bg-game-big {
-        background-image: url('/dev/images/game-desktop.svg');
-      }
       .bg-gradient-to-tr {
         background-image: linear-gradient(
           to top right,
@@ -577,6 +583,10 @@ export class GameBig extends LitElement {
       }
       .bg-no-repeat {
         background-repeat: no-repeat;
+      }
+      .object-cover {
+        -o-object-fit: cover;
+        object-fit: cover;
       }
       .p-4 {
         padding: 1rem;
@@ -861,9 +871,6 @@ export class GameBig extends LitElement {
         .md\\:hidden {
           display: none;
         }
-        .md\\:h-auto {
-          height: auto;
-        }
         .md\\:h-3 {
           height: 0.75rem;
         }
@@ -882,14 +889,17 @@ export class GameBig extends LitElement {
         .md\\:flex-col {
           flex-direction: column;
         }
+        .md\\:items-center {
+          align-items: center;
+        }
         .md\\:justify-start {
           justify-content: flex-start;
         }
         .md\\:bg-transparent {
           background-color: transparent;
         }
-        .md\\:bg-cover {
-          background-size: cover;
+        .md\\:pb-2 {
+          padding-bottom: 0.5rem;
         }
         .md\\:text-lg {
           font-size: 1.125rem;
@@ -920,6 +930,9 @@ export class GameBig extends LitElement {
         }
       }
       @media (min-width: 1024px) {
+        .lg\\:mt-auto {
+          margin-top: auto;
+        }
         .lg\\:text-xl {
           font-size: 1.25rem;
           line-height: 1.75rem;
@@ -933,6 +946,10 @@ export class GameBig extends LitElement {
         }
       }
       @media (min-width: 1280px) {
+        .xl\\:text-xl {
+          font-size: 1.25rem;
+          line-height: 1.75rem;
+        }
         .xl\\:text-5xl {
           font-size: 3rem;
           line-height: 1;
@@ -964,18 +981,22 @@ export class GameBig extends LitElement {
   }
   render() {
     return html`
-      <!-- <link rel="stylesheet" href="./components/game-big.css" /> -->
       <div
-        class="p-2 rounded-xl grid shadow-md md:flex md:flex-row-reverse md:relative h-screen-35 md:h-auto bg-gradient-to-tl from-blueBright to-teal"
+        class="p-2 rounded-xl grid shadow-md md:flex md:flex-row-reverse md:items-center md:relative bg-gradient-to-tl from-blueBright to-teal"
       >
+        <div class="w-full shadow-md rounded-md grid-area-self overflow-hidden">
+          <img
+            src="./images/game-desktop.svg"
+            alt="Game Featured"
+            class="h-full w-full object-cover max-h-80"
+          />
+        </div>
+
         <div
-          class="w-full md:bg-cover bg-top bg-auto bg-no-repeat shadow-md rounded-md bg-game-big grid-area-self"
-        ></div>
-        <div
-          class="text-white flex flex-col justify-end px-4 py-5 md:w-1_2 md:bg-transparent bg-black-20 grid-area-self"
+          class="text-white flex flex-col justify-end px-4 py-5 md:w-1_2 md:bg-transparent bg-black-20 grid-area-self h-full"
         >
           <div
-            class="flex mb-auto justify-end items-center gap-1 md:justify-start md:top-5 md:left-6 md:text-lg"
+            class="flex mb-auto justify-end items-center gap-1 md:justify-start md:top-5 md:left-6 md:text-lg xl:text-xl md:pb-2"
           >
             <svg
               class="mt-1 md:w-3 md:h-3"
@@ -1024,7 +1045,7 @@ export class GameBig extends LitElement {
             </p>
             <a
               href="#"
-              class="rounded-md shadow-md mt-auto pb-1 w-24 md:w-48 h-10 flex justify-center items-center text-lg font-medium text-white md:hover:scale-105 md:transition-transform bg-gradient-to-tr from-yellow to-orange"
+              class="rounded-md shadow-md mt-auto pb-1 w-24 md:w-48 h-10 flex justify-center items-center text-lg font-medium text-white md:hover:scale-105 md:transition-transform bg-gradient-to-tr from-yellow to-orange lg:mt-auto"
             >
               <span class="md:hidden">Join</span>
               <span class="md:block hidden">Join the tournament</span>
