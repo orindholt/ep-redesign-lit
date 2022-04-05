@@ -1,5 +1,5 @@
 import html from '@web/rollup-plugin-html';
-import image from '@rollup/plugin-image';
+import {copy} from '@web/rollup-plugin-copy';
 import resolve from '@rollup/plugin-node-resolve';
 import {terser} from 'rollup-plugin-terser';
 import minifyHTML from 'rollup-plugin-minify-html-literals';
@@ -18,12 +18,10 @@ export default {
       warnings: true,
     }),
     summary(),
-    // Optional: copy any static assets to build directory
-    //copy({
-    //patterns: 'images/**/*.{svg,png,jpg,gif,webp}',
-    //rootDir: './dev',
-    //}),
-    image(),
+    copy({
+      patterns: 'images/**/*.{svg,png,jpg,gif,webp}',
+      rootDir: './dev',
+    }),
   ],
   output: {
     dir: 'docs',
