@@ -325,6 +325,10 @@ export class GameBig extends LitElement {
         margin-top: 0.5rem;
         margin-bottom: 0.5rem;
       }
+      .my-auto {
+        margin-top: auto;
+        margin-bottom: auto;
+      }
       .mt-4 {
         margin-top: 1rem;
       }
@@ -889,9 +893,6 @@ export class GameBig extends LitElement {
         .md\\:flex-col {
           flex-direction: column;
         }
-        .md\\:items-center {
-          align-items: center;
-        }
         .md\\:justify-start {
           justify-content: flex-start;
         }
@@ -982,7 +983,7 @@ export class GameBig extends LitElement {
   render() {
     return html`
       <div
-        class="p-2 rounded-xl grid shadow-md md:flex md:flex-row-reverse md:items-center md:relative bg-gradient-to-tl from-blueBright to-teal"
+        class="p-2 rounded-xl grid shadow-md md:flex md:flex-row-reverse md:relative bg-gradient-to-tl from-blueBright to-teal"
       >
         <div class="w-full shadow-md rounded-md grid-area-self overflow-hidden">
           <img
@@ -993,7 +994,7 @@ export class GameBig extends LitElement {
         </div>
 
         <div
-          class="text-white flex flex-col justify-end px-4 py-5 md:w-1_2 md:bg-transparent bg-black-20 grid-area-self h-full"
+          class="text-white flex flex-col justify-end px-4 py-5 md:w-1_2 md:bg-transparent my-auto bg-black-20 grid-area-self h-full"
         >
           <div
             class="flex mb-auto justify-end items-center gap-1 md:justify-start md:top-5 md:left-6 md:text-lg xl:text-xl md:pb-2"

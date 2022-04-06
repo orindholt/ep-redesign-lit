@@ -358,8 +358,21 @@ export class WinDisplay extends LitElement {
         transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
         transition-duration: 150ms;
       }
-      .duration-2000 {
-        transition-duration: 2000ms;
+      .duration-1000 {
+        transition-duration: 1000ms;
+      }
+      .ease-linear {
+        transition-timing-function: linear;
+      }
+      .backface-hidden {
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+      }
+      .rotateX-180 {
+        transform: rotateX(180deg);
+      }
+      .preserve-3d {
+        transform-style: preserve-3d;
       }
       body {
         font-size: 0.875rem;
@@ -418,24 +431,14 @@ export class WinDisplay extends LitElement {
       input[type='submit'] {
         cursor: pointer;
       }
-      @media (min-width: 768px) {
-        .md:\\text-lg {
-          font-size: 1.125rem;
-          line-height: 1.75rem;
-        }
-      }
       @media (min-width: 1024px) {
-        .lg:\\text-xl {
+        .lg\\:text-xl {
           font-size: 1.25rem;
-          line-height: 1.75rem;
-        }
-        .lg:\\text-lg {
-          font-size: 1.125rem;
           line-height: 1.75rem;
         }
       }
       @media (min-width: 1280px) {
-        .xl:\\text-xl {
+        .xl\\:text-xl {
           font-size: 1.25rem;
           line-height: 1.75rem;
         }
@@ -450,6 +453,7 @@ export class WinDisplay extends LitElement {
     username: {type: String},
     winAmount: {type: Number},
     timerSec: {type: Number},
+    rotateSpeed: {type: Number},
   };
 
   constructor() {
@@ -477,7 +481,9 @@ export class WinDisplay extends LitElement {
       },
     ];
     this.timerSec = 6;
-    this.index = 0;
+    /* Determines how often the display rotates in s */
+    this.rotateSpeed = 750;
+    /* Determines how fast the display rotates in ms */
     this.username = this.wins[0].username;
     this.winAmount = this.wins[0].winAmount;
     this.imgSrc = this.wins[0].imgSrc;
@@ -489,19 +495,30 @@ export class WinDisplay extends LitElement {
         this.index++;
       } else this.index = 0;
       if (card.style.transform != 'rotateX(180deg)') {
-        card.style.transform = 'rotateX(180deg)';
+        card.style.transform = 'rotateX(90deg)';
+        setTimeout(() => {
+          card.style.transform = 'rotateX(180deg)';
+          this.wins.forEach((winExample) => {
+            if (this.wins.indexOf(winExample) === this.index) {
+              this.imgSrc = winExample.imgSrc;
+              this.username = winExample.username;
+              this.winAmount = winExample.winAmount;
+            }
+          });
+        }, this.rotateSpeed);
       } else {
-        card.style.transform = 'rotateX(0)';
+        card.style.transform = 'rotateX(90deg)';
+        setTimeout(() => {
+          card.style.transform = 'rotateX(0deg)';
+          this.wins.forEach((winExample) => {
+            if (this.wins.indexOf(winExample) === this.index) {
+              this.imgSrc = winExample.imgSrc;
+              this.username = winExample.username;
+              this.winAmount = winExample.winAmount;
+            }
+          });
+        }, this.rotateSpeed);
       }
-      this.wins.forEach((win) => {
-        if (this.wins.indexOf(win) === this.index) {
-          setTimeout(() => {
-            this.imgSrc = win.imgSrc;
-            this.username = win.username;
-            this.winAmount = win.winAmount;
-          }, 500);
-        }
-      });
     }, `${this.timerSec}000`);
   }
 
@@ -509,43 +526,37 @@ export class WinDisplay extends LitElement {
     return html`
       <article class="w-full h-12 rounded-md overflow-hidden">
         <div
-          class="w-full h-full relative transition-transform duration-2000"
-          style="transform-style: preserve-3d"
+          class="w-full h-full relative transition-transform duration-1000 ease-linear preserve-3d"
+          style="transition-duration: ${this.rotateSpeed}ms"
           id="card"
         >
           <div
-            class="flex justify-center gap-2_100 items-center text-white p-2 pr-5_100 absolute w-full h-full bg-black"
-            style="-webkit-backface-visibility: hidden; backface-visibility: hidden"
+            class="flex justify-center gap-2_100 items-center text-white p-2 pr-5_100 absolute w-full h-full bg-black backface-hidden"
           >
             <img
               src="./images/${this.imgSrc}"
               alt="${this.username}"
               class="w-auto mr-auto"
             />
-            <h3 class="font-bold text-base md:text-lg lg:text-xl">
-              ${this.username}
-            </h3>
-            <p class="mr-auto flex gap-2 md:text-lg lg:text-xl">
+            <h3 class="font-bold text-base lg:text-xl">${this.username}</h3>
+            <p class="mr-auto flex gap-2 lg:text-xl">
               Just won
               <span class="text-orange font-bold">${this.winAmount} EP </span>
-              <a href="#" class="underline lg:text-lg xl:text-xl">here!</a>
+              <a href="#" class="underline xl:text-xl">here!</a>
             </p>
           </div>
           <div
-            class="absolute w-full h-full flex justify-center gap-2_100 items-center bg-black text-white p-2 pr-5_100"
-            style="-webkit-backface-visibility: hidden; backface-visibility: hidden; transform: rotateX(180deg);"
+            class="absolute w-full h-full flex justify-center gap-2_100 items-center bg-black text-white p-2 pr-5_100 backface-hidden rotateX-180"
           >
             <img
               src="./images/${this.imgSrc}"
               alt="${this.username}"
               class="w-auto mr-auto"
             />
-            <h3 class="font-bold text-base md:text-lg lg:text-xl">
-              ${this.username}
-            </h3>
-            <p class="mr-auto flex gap-2 md:text-lg lg:text-xl">
+            <h3 class="font-bold text-base lg:text-xl">${this.username}</h3>
+            <p class="mr-auto flex gap-2 lg:text-xl">
               Just won
-              <span class="text-orange font-bold md:text-lg lg:text-xl"
+              <span class="text-orange font-bold lg:text-xl"
                 >${this.winAmount} EP
               </span>
               <a href="#" class="underline">here!</a>

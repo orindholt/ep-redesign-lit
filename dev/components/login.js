@@ -907,13 +907,14 @@ export class Login extends LitElement {
   ];
 
   static properties = {
+    showLogin: {type: Boolean},
     magicLink: {type: Boolean},
     log: {type: Boolean},
     passReq: {type: Boolean},
     attemptSubmit: {type: Boolean},
     loading: {type: Boolean},
     done: {type: Boolean},
-    _handleSubmit: {type: Function},
+    _toggleLogin: {type: Function},
   };
 
   constructor() {
@@ -923,253 +924,296 @@ export class Login extends LitElement {
     this.loading = false;
     this.done = false;
     this.magicLink = true;
+    this.showLogin = false;
+  }
 
-    /* Submit Function */
-    this._handleSubmit = (e) => {
-      const errorText = this.shadowRoot.querySelector('#error');
-      const errorIcon = this.shadowRoot.querySelector('#error-icon');
-      const inputFields = this.shadowRoot.querySelectorAll('input');
-      const submitElement = e.submitter;
-      if (!this.done) e.preventDefault();
-      const validate = () => validation(inputFields, errorIcon, errorText);
-      this.attemptSubmit = true;
-      if (!submitElement.classList.contains('social-btn')) {
-        validate();
-      } else if (
-        !validation(
-          this.shadowRoot.querySelectorAll('#tos'),
-          errorIcon,
-          errorText
-        )
-      ) {
-        this.loading = true;
-        console.log(this.loading);
-        setTimeout(() => {
-          this.done = true;
-          this.shadowRoot.querySelector('#login-form').submit();
-        }, 2000);
+  toggleLogin() {
+    if (this.showLogin) {
+      this.showLogin = false;
+      this.toggleScroll(false);
+    } else {
+      this.showLogin = true;
+      this.toggleScroll(true);
+    }
+  }
+
+  _handleSubmit = (e) => {
+    const errorText = this.shadowRoot.querySelector('#error');
+    const errorIcon = this.shadowRoot.querySelector('#error-icon');
+    const inputFields = this.shadowRoot.querySelectorAll('input');
+    const submitElement = e.submitter;
+    if (!this.done) e.preventDefault();
+    const validate = () => validation(inputFields, errorIcon, errorText);
+    this.attemptSubmit = true;
+    if (!submitElement.classList.contains('social-btn')) {
+      validate();
+    } else if (
+      !validation(
+        this.shadowRoot.querySelectorAll('#tos'),
+        errorIcon,
+        errorText
+      )
+    ) {
+      this.loading = true;
+      console.log(this.loading);
+      setTimeout(() => {
+        this.done = true;
+        this.shadowRoot.querySelector('#login-form').submit();
+      }, 2000);
+    }
+  };
+
+  toggleLogin() {
+    if (this.showLogin) {
+      this.showLogin = false;
+      this.toggleScroll(false);
+    } else {
+      this.showLogin = true;
+      this.toggleScroll(true);
+    }
+  }
+  toggleScroll(bool) {
+    const body = document.querySelector('body');
+    if (
+      bool != undefined &&
+      typeof bool == 'boolean' &&
+      window.screen.width < 640
+    ) {
+      if (!bool && !this.menu && !this.showLogin) {
+        body.style.overflow = '';
+        if (!body.style.length) body.removeAttribute('style');
+      } else if (bool) {
+        body.style.overflow = 'hidden';
       }
-    };
+    } else if (
+      bool != undefined &&
+      typeof bool == 'boolean' &&
+      window.screen.width >= 640 &&
+      body.style.overflow == 'hidden'
+    ) {
+      body.style.overflow = '';
+      if (!body.style.length) body.removeAttribute('style');
+    }
   }
 
   render() {
     return html`
-      <div
-        class="w-screen h-screen bg-black-40 fixed top-0 left-0 right-0 bottom-0 z-30 flex justify-center items-center p-4 py-6"
-      >
+      <slot @click=${this.toggleLogin}></slot>
+      <div ?hidden="${!this.showLogin}">
         <div
-          class="overflow-y-scroll sm:overflow-auto py-5 max-w-md max-h-login w-full h-full rounded-xl text-black pt-5 px-7 font-sofia animate-fadeInAlt lighten-backdrop backdrop-filter backdrop-blur-3xl"
+          class="w-screen h-screen bg-black-40 fixed top-0 left-0 right-0 bottom-0 z-30 flex justify-center items-center p-4 py-6"
         >
-          <div class="flex flex-col text-center h-full gap-2 sm:gap-3 relative">
-            <slot></slot>
-            <section>
-              <h2 class="text-5xl text-left font-bold leading-snug">
-                ${this.log ? 'Sign in' : 'Sign up'}
-              </h2>
-              <p class="font-semibold text-left text-medium">
-                ${!this.log
-                  ? 'Earn 1000 ekstrapoints by signing up'
-                  : 'Sign in for your daily bonus!'}
-              </p>
-            </section>
-            <form
-              @submit="${(e) => this._handleSubmit(e)}"
-              id="login-form"
-              method="POST"
-              action="/"
-              class="flex flex-col h-full gap-1 items-center"
+          <div
+            class="overflow-y-scroll sm:overflow-auto py-5 max-w-md max-h-login w-full h-full rounded-xl text-black pt-5 px-7 font-sofia animate-fadeInAlt lighten-backdrop backdrop-filter backdrop-blur-3xl"
+          >
+            <div
+              class="flex flex-col text-center h-full gap-2 sm:gap-3 relative"
             >
-              <div class="flex flex-col gap-2 mt-4 w-full">
-                <button
-                  type="submit"
-                  class="social-btn w-full flex rounded-lg p-3 justify-center items-center bg-white-80"
-                >
-                  <div
-                    class="w-6 h-6 bg-lightBlue p-1 rounded-md flex justify-center items-center"
-                  >
-                    <img
-                      src="./images/social-icons/facebook.svg"
-                      class="h-full"
-                    />
-                  </div>
-                  <p class="mx-auto pr-5 pb-1">Continue with Facebook</p>
-                </button>
-                <button
-                  type="submit"
-                  class="social-btn w-full flex rounded-lg p-3 justify-center items-center bg-white-80"
-                >
-                  <div
-                    class="w-6 h-6 bg-lightBlue p-1 rounded-md flex justify-center items-center"
-                  >
-                    <img
-                      src="./images/social-icons/google.svg"
-                      class="h-full"
-                    />
-                  </div>
-                  <p class="mx-auto pr-5 pb-1">Continue with Google</p>
-                </button>
-                <button
-                  type="submit"
-                  class="social-btn w-full flex rounded-lg p-3 justify-center items-center bg-white-80"
-                >
-                  <div
-                    class="w-6 h-6 bg-lightBlue p-1 rounded-md flex justify-center items-center"
-                  >
-                    <img src="./images/social-icons/apple.svg" class="h-full" />
-                  </div>
-                  <p class="mx-auto pr-5 pb-1">Continue with Apple</p>
-                </button>
-              </div>
-              <p class="text-black my-3 font-medium">Or</p>
-              <div class="flex flex-col items-center gap-2 relative w-full">
-                <p
-                  id="error"
-                  class="text-red text-xs absolute -top-5 hidden animate-fadeInAlt opacity-0 self-start"
-                ></p>
-                <input
-                  type="text"
-                  id="email"
-                  name="email"
-                  placeholder="Email..."
-                  class="pb-1 px-3 h-12 w-full rounded-lg bg-lightGray border-2 border-transparent transition-colors placeholder:text-inherit"
+              <button @click=${this.toggleLogin}>
+                <img
+                  class="absolute w-4 h-4 right-0 top-0"
+                  src="./images/burger-exit.svg"
+                  alt="Exit Button"
                 />
-                ${!this.passReq && !this.magicLink
-                  ? html`
-                      <input
-                        type="password"
-                        placeholder="Password..."
-                        id="password"
-                        name="password"
-                        class="pb-1 px-3 h-12 w-full rounded-lg bg-lightGray border-2 border-transparent transition-colors placeholder:text-inherit"
+              </button>
+              <section>
+                <h2 class="text-5xl text-left font-bold leading-snug">
+                  ${this.log ? 'Sign in' : 'Sign up'}
+                </h2>
+                <p class="font-semibold text-left text-medium">
+                  ${!this.log
+                    ? 'Earn 1000 ekstrapoints by signing up'
+                    : 'Sign in for your daily bonus!'}
+                </p>
+              </section>
+              <form
+                @submit="${(e) => this._handleSubmit(e)}"
+                id="login-form"
+                method="POST"
+                action="/"
+                class="flex flex-col h-full gap-1 items-center"
+              >
+                <div class="flex flex-col gap-2 mt-4 w-full">
+                  <button
+                    type="submit"
+                    class="social-btn w-full flex rounded-lg p-3 justify-center items-center bg-white-80"
+                  >
+                    <div
+                      class="w-6 h-6 bg-lightBlue p-1 rounded-md flex justify-center items-center"
+                    >
+                      <img
+                        src="./images/social-icons/facebook.svg"
+                        class="h-full"
                       />
-                    `
-                  : ``}
-                ${!this.log
-                  ? html`
-                      <div
-                        class="flex gap-3 items-center justify-center w-full px-5"
-                      >
-                        <div class="relative w-4 h-4">
-                          <input
-                            class="tos-checkbox cursor-pointer appearance-none min-w-4 min-h-4 border-darkBlue before:rounded relative before:border-2 before:absolute before:w-full before:h-full before:overflow-hidden before:border-inherit"
-                            type="checkbox"
-                            name="tos"
-                            id="tos"
-                          />
-                          <img
-                            id="error-icon"
-                            class="absolute -top-5 w-3 hidden animate-fadeInAlt opacity-0"
-                            style="left: calc(50%-(12px/2))"
-                            src="./images/error.svg"
-                            alt="Error"
-                          />
-                        </div>
-                        <label
-                          for="tos"
-                          class="text-xs text-darkBlue text-left"
+                    </div>
+                    <p class="mx-auto pr-5 pb-1">Continue with Facebook</p>
+                  </button>
+                  <button
+                    type="submit"
+                    class="social-btn w-full flex rounded-lg p-3 justify-center items-center bg-white-80"
+                  >
+                    <div
+                      class="w-6 h-6 bg-lightBlue p-1 rounded-md flex justify-center items-center"
+                    >
+                      <img
+                        src="./images/social-icons/google.svg"
+                        class="h-full"
+                      />
+                    </div>
+                    <p class="mx-auto pr-5 pb-1">Continue with Google</p>
+                  </button>
+                  <button
+                    type="submit"
+                    class="social-btn w-full flex rounded-lg p-3 justify-center items-center bg-white-80"
+                  >
+                    <div
+                      class="w-6 h-6 bg-lightBlue p-1 rounded-md flex justify-center items-center"
+                    >
+                      <img
+                        src="./images/social-icons/apple.svg"
+                        class="h-full"
+                      />
+                    </div>
+                    <p class="mx-auto pr-5 pb-1">Continue with Apple</p>
+                  </button>
+                </div>
+                <p class="text-black my-3 font-medium">Or</p>
+                <div class="flex flex-col items-center gap-2 relative w-full">
+                  <p
+                    id="error"
+                    class="text-red text-xs absolute -top-5 hidden animate-fadeInAlt opacity-0 self-start"
+                  ></p>
+                  <input
+                    type="text"
+                    id="email"
+                    name="email"
+                    placeholder="Email..."
+                    class="pb-1 px-3 h-12 w-full rounded-lg bg-lightGray border-2 border-transparent transition-colors placeholder:text-inherit"
+                  />
+                  ${!this.passReq && !this.magicLink
+                    ? html`
+                        <input
+                          type="password"
+                          placeholder="Password..."
+                          id="password"
+                          name="password"
+                          class="pb-1 px-3 h-12 w-full rounded-lg bg-lightGray border-2 border-transparent transition-colors placeholder:text-inherit"
+                        />
+                      `
+                    : ``}
+                  ${!this.log
+                    ? html`
+                        <div
+                          class="flex gap-3 items-center justify-center w-full px-5"
                         >
-                          By selecting to login via Social I agree to the<br />
-                          <a href="#" class="text-blue font-bold"
-                            >Terms & Conditions and Privacy Policy</a
+                          <div class="relative w-4 h-4">
+                            <input
+                              class="tos-checkbox cursor-pointer appearance-none min-w-4 min-h-4 border-darkBlue before:rounded relative before:border-2 before:absolute before:w-full before:h-full before:overflow-hidden before:border-inherit"
+                              type="checkbox"
+                              name="tos"
+                              id="tos"
+                            />
+                            <img
+                              id="error-icon"
+                              class="absolute -top-5 w-3 hidden animate-fadeInAlt opacity-0"
+                              style="left: calc(50%-(12px/2))"
+                              src="./images/error.svg"
+                              alt="Error"
+                            />
+                          </div>
+                          <label
+                            for="tos"
+                            class="text-xs text-darkBlue text-left"
                           >
-                        </label>
-                      </div>
+                            By selecting to login via Social I agree to the<br />
+                            <a href="#" class="text-blue font-bold"
+                              >Terms & Conditions and Privacy Policy</a
+                            >
+                          </label>
+                        </div>
+                      `
+                    : ``}
+                </div>
+                <button
+                  type="submit"
+                  id="submit-button"
+                  class="mt-4 rounded-md cursor-pointer shadow-md px-4 pb-1 h-12 w-full flex justify-center items-center text-lg font-medium text-white md:hover:scale-105 transition-transform active:scale-100 bg-gradient-to-bl from-orange to-yellow"
+                >
+                  ${this.magicLink && !this.passReq && !this.loading
+                    ? html`<img
+                        class="-translate-x-3 h-1_2"
+                        src="./images/wand.svg"
+                      />`
+                    : ``}
+                  ${!this.loading
+                    ? `${
+                        this.log && !this.passReq && !this.magicLink
+                          ? 'Sign in'
+                          : this.log && this.passReq
+                          ? 'Send Recovery Mail'
+                          : this.magicLink
+                          ? 'Send link to email'
+                          : 'Continue'
+                      }`
+                    : html`<svg
+                        class="animate-rotate h-4_5"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 500 500"
+                        fill="#fff"
+                        xml:space="preserve"
+                      >
+                        <path
+                          d="M428.41 311.99c-26.1 68.57-74.77 111.6-147.25 123.88-68.41 11.59-126.51-10.57-173.51-61.6-2.7-2.93-5.12-6.13-7.56-9.27-2.37-3.04-4.6-6.18-7.27-9.79-1.82 6.82-3.41 13.18-5.22 19.47-1.62 5.65-5.54 9.15-11.21 10.38-5.54 1.2-10.45-.43-14.19-4.7-1.59-1.81-2.58-4.14-3.85-6.23v-6.74c3.24-12.13 6.5-24.26 9.72-36.39 1.54-5.78 2.96-11.58 4.53-17.35 2.37-8.69 9.96-13.33 18.67-11.13 18.23 4.61 36.43 9.34 54.6 14.15 8.52 2.26 13.21 10.22 11.12 18.41-2.01 7.92-9.84 12.47-18.35 10.6-3.04-.66-6.04-1.52-9.05-2.29-3-.77-5.99-1.55-9.99-2.58 1.18 1.77 1.82 2.85 2.57 3.84 25.2 33.24 58.29 54.19 99.28 61.51 78.19 13.95 151.28-28.66 178.53-103.32 2.79-7.62 8.38-11.86 15.22-11.5 6.92.35 12.76 5.02 13.96 11.9.48 2.8.26 6.1-.75 8.75zm12.83-179.69c-4.57 18.24-9.25 36.46-14.14 54.61-2.17 8.05-9.94 12.41-18.18 10.35-18.37-4.6-36.69-9.37-54.98-14.24-8.32-2.22-12.95-10.24-10.91-18.22 2.02-7.96 9.81-12.63 18.26-10.74 5.34 1.2 10.62 2.71 15.93 4.05.79.2 1.62.27 3.03.49-7.53-10.9-15.91-20.24-25.53-28.43-33.89-28.89-73.28-42.99-117.51-38.6-66.45 6.6-112.25 42.01-136.86 104.31-3.4 8.62-8.66 13.03-16.01 12.46-10.16-.78-16.4-10.42-12.99-20.32 5.17-15.04 12.08-29.26 20.99-42.43 31.23-46.16 74.36-74.91 129.46-82.35 75.7-10.21 136.88 16.69 182.8 77.9.6.79 1.16 1.62 1.77 2.41.13.17.39.25.89.56 1.71-6.46 3.23-12.86 5.13-19.15 2.54-8.39 11.27-12.67 19.36-9.74 6.93 2.51 11.28 9.91 9.49 17.08z"
+                        />
+                      </svg>`}
+                </button>
+                ${!this.passReq
+                  ? html`
+                      <button
+                        class="flex gap-1 items-center text-sm"
+                        @click=${() => {
+                          this.magicLink = !this.magicLink;
+                          console.log(this.magicLink);
+                        }}
+                        type="button"
+                      >
+                        ${!this.magicLink
+                          ? html`<img src="./images/wand-black.svg" />`
+                          : ``}
+                        ${!this.magicLink && this.log
+                          ? html`Sign in
+                              <span class="font-semibold underline"
+                                >without a password</span
+                              >`
+                          : !this.magicLink && !this.log
+                          ? html`Sign up
+                              <span class="font-semibold underline"
+                                >without a password</span
+                              >`
+                          : this.magicLink && this.log
+                          ? html`Sign in
+                              <span class="font-semibold underline"
+                                >with your password</span
+                              >`
+                          : html`Sign up
+                              <span class="font-semibold underline"
+                                >with your password</span
+                              >`}
+                      </button>
                     `
                   : ``}
-              </div>
-              <button
-                type="submit"
-                id="submit-button"
-                class="mt-4 rounded-md cursor-pointer shadow-md px-4 pb-1 h-12 w-full flex justify-center items-center text-lg font-medium text-white md:hover:scale-105 transition-transform active:scale-100 bg-gradient-to-bl from-orange to-yellow"
-              >
-                ${this.magicLink && !this.passReq && !this.loading
-                  ? html`<img
-                      class="-translate-x-3 h-1_2"
-                      src="./images/wand.svg"
-                    />`
-                  : ``}
-                ${!this.loading
-                  ? `${
-                      this.log && !this.passReq && !this.magicLink
-                        ? 'Sign in'
-                        : this.log && this.passReq
-                        ? 'Send Recovery Mail'
-                        : this.magicLink
-                        ? 'Send link to email'
-                        : 'Continue'
-                    }`
-                  : html`<svg
-                      class="animate-rotate h-4_5"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 500 500"
-                      fill="#fff"
-                      xml:space="preserve"
-                    >
-                      <path
-                        d="M428.41 311.99c-26.1 68.57-74.77 111.6-147.25 123.88-68.41 11.59-126.51-10.57-173.51-61.6-2.7-2.93-5.12-6.13-7.56-9.27-2.37-3.04-4.6-6.18-7.27-9.79-1.82 6.82-3.41 13.18-5.22 19.47-1.62 5.65-5.54 9.15-11.21 10.38-5.54 1.2-10.45-.43-14.19-4.7-1.59-1.81-2.58-4.14-3.85-6.23v-6.74c3.24-12.13 6.5-24.26 9.72-36.39 1.54-5.78 2.96-11.58 4.53-17.35 2.37-8.69 9.96-13.33 18.67-11.13 18.23 4.61 36.43 9.34 54.6 14.15 8.52 2.26 13.21 10.22 11.12 18.41-2.01 7.92-9.84 12.47-18.35 10.6-3.04-.66-6.04-1.52-9.05-2.29-3-.77-5.99-1.55-9.99-2.58 1.18 1.77 1.82 2.85 2.57 3.84 25.2 33.24 58.29 54.19 99.28 61.51 78.19 13.95 151.28-28.66 178.53-103.32 2.79-7.62 8.38-11.86 15.22-11.5 6.92.35 12.76 5.02 13.96 11.9.48 2.8.26 6.1-.75 8.75zm12.83-179.69c-4.57 18.24-9.25 36.46-14.14 54.61-2.17 8.05-9.94 12.41-18.18 10.35-18.37-4.6-36.69-9.37-54.98-14.24-8.32-2.22-12.95-10.24-10.91-18.22 2.02-7.96 9.81-12.63 18.26-10.74 5.34 1.2 10.62 2.71 15.93 4.05.79.2 1.62.27 3.03.49-7.53-10.9-15.91-20.24-25.53-28.43-33.89-28.89-73.28-42.99-117.51-38.6-66.45 6.6-112.25 42.01-136.86 104.31-3.4 8.62-8.66 13.03-16.01 12.46-10.16-.78-16.4-10.42-12.99-20.32 5.17-15.04 12.08-29.26 20.99-42.43 31.23-46.16 74.36-74.91 129.46-82.35 75.7-10.21 136.88 16.69 182.8 77.9.6.79 1.16 1.62 1.77 2.41.13.17.39.25.89.56 1.71-6.46 3.23-12.86 5.13-19.15 2.54-8.39 11.27-12.67 19.36-9.74 6.93 2.51 11.28 9.91 9.49 17.08z"
-                      />
-                    </svg>`}
-              </button>
-              ${!this.passReq
-                ? html`
-                    <button
-                      class="flex gap-1 items-center text-sm"
-                      @click=${() => {
-                        this.magicLink = !this.magicLink;
-                        console.log(this.magicLink);
-                      }}
-                      type="button"
-                    >
-                      ${!this.magicLink
-                        ? html`<img src="./images/wand-black.svg" />`
-                        : ``}
-                      ${!this.magicLink && this.log
-                        ? html`Sign in
-                            <span class="font-semibold underline"
-                              >without a password</span
-                            >`
-                        : !this.magicLink && !this.log
-                        ? html`Sign up
-                            <span class="font-semibold underline"
-                              >without a password</span
-                            >`
-                        : this.magicLink && this.log
-                        ? html`Sign in
-                            <span class="font-semibold underline"
-                              >with your password</span
-                            >`
-                        : html`Sign up
-                            <span class="font-semibold underline"
-                              >with your password</span
-                            >`}
-                    </button>
-                  `
-                : ``}
-            </form>
-            <div class="leading-4 flex gap-1 mx-auto">
-              <p class="text-base">
-                ${!this.log ? 'Already member?' : 'Not a member?'}
-              </p>
-              <button
-                type="button"
-                class="text-base font-bold underline"
-                @click=${() => {
-                  if (this.passReq) this.passReq = false;
-                  if (this.magicLink) this.magicLink = true;
-                  this.log = !this.log;
-                  const inputFields = this.shadowRoot.querySelectorAll('input');
-                  const errorText = this.shadowRoot.querySelector('#error');
-                  inputFields.forEach((elm) => resetErrorStyle(elm, errorText));
-                }}
-              >
-                ${!this.log ? 'Sign in here' : 'Sign up here'}
-              </button>
-            </div>
-            ${this.log
-              ? html`<button
-                  class="text-lg font-semibold"
+              </form>
+              <div class="leading-4 flex gap-1 mx-auto">
+                <p class="text-base">
+                  ${!this.log ? 'Already member?' : 'Not a member?'}
+                </p>
+                <button
+                  type="button"
+                  class="text-base font-bold underline"
                   @click=${() => {
-                    this.passReq = !this.passReq;
+                    if (this.passReq) this.passReq = false;
+                    if (this.magicLink) this.magicLink = true;
+                    this.log = !this.log;
                     const inputFields =
                       this.shadowRoot.querySelectorAll('input');
                     const errorText = this.shadowRoot.querySelector('#error');
@@ -1178,11 +1222,28 @@ export class Login extends LitElement {
                     );
                   }}
                 >
-                  ${!this.passReq
-                    ? 'Forgot your password?'
-                    : 'Remember your password?'}
-                </button>`
-              : ``}
+                  ${!this.log ? 'Sign in here' : 'Sign up here'}
+                </button>
+              </div>
+              ${this.log
+                ? html`<button
+                    class="text-lg font-semibold"
+                    @click=${() => {
+                      this.passReq = !this.passReq;
+                      const inputFields =
+                        this.shadowRoot.querySelectorAll('input');
+                      const errorText = this.shadowRoot.querySelector('#error');
+                      inputFields.forEach((elm) =>
+                        resetErrorStyle(elm, errorText)
+                      );
+                    }}
+                  >
+                    ${!this.passReq
+                      ? 'Forgot your password?'
+                      : 'Remember your password?'}
+                  </button>`
+                : ``}
+            </div>
           </div>
         </div>
       </div>
