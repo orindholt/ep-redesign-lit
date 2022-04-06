@@ -9,13 +9,21 @@
     <script src="../node_modules/lit/polyfill-support.js"></script>
     <script type="module" src="../my-app.js"></script>
     <script type="module" src="./components/login.js"></script>
+    <script type="module" src="./components/rewards.js"></script>
+    <script type="module" src="./components/win-display.js"></script>
+    <script type="module" src="./components/game-big.js"></script>
+    <script type="module" src="./components/signup-bonus.js"></script>
+    <script type="module" src="./templates/point-offers.js"></script>
+    <script type="module" src="./templates/game-slider.js"></script>
+    <script type="module" src="./templates/welcome-offers.js"></script>
+    <script type="module" src="./templates/shop.js"></script>
     <link rel="stylesheet" href="./index.css" />
     <link rel="stylesheet" href="https://use.typekit.net/uin3khw.css" />
   </head>
   <body>
-    <div id="wrapper" class="pt-16 sm:pt-[4.563rem] bg-lightBlue">
+    <div id="wrapper" class="pt-16 sm:pt-18 bg-lightBlue">
       <nav
-        class="flex justify-between px-5_100 h-16 bg-lightBlue items-center shadow-md z-20 fixed w-full top-0 sm:h-[4.563rem] gap-2"
+        class="flex justify-between px-5_100 h-16 bg-lightBlue items-center shadow-md z-20 fixed w-full top-0 sm:h-18 gap-2"
       >
         <a
           href="/"
@@ -194,28 +202,28 @@
               </button>
               <!--Dropdown List 01-->
               <ul
-                class="dropdown flex flex-col gap-3 sm:gap-0 overflow-hidden animate-slideInAlt hide sm:absolute sm:top-[4.5rem] sm:bg-lightBlue sm:rounded-b-md sm:shadow-sm sm:max-w-[170px]"
+                class="dropdown flex flex-col gap-3 sm:gap-0 overflow-hidden animate-slideInAlt hide sm:absolute sm:top-18 sm:bg-lightBlue sm:rounded-b-md sm:shadow-sm sm:max-w-44"
               >
                 <li
-                  class="font-normal text-[#959CA7] lg:text-medium text-base sm:p-4"
+                  class="font-normal text-darkGray lg:text-medium text-base sm:p-4"
                 >
                   <a href="#" class="font-sofia">Tilbud</a>
                 </li>
-                <hr class="border-[#dee1e6]" />
+                <hr class="border-mediumGray opacity-75" />
                 <li
-                  class="font-normal text-[#959CA7] lg:text-medium text-base sm:p-4"
+                  class="font-normal text-darkGray lg:text-medium text-base sm:p-4"
                 >
                   <a href="#" class="font-sofia">Casino anmeldelser</a>
                 </li>
-                <hr class="border-[#dee1e6]" />
+                <hr class="border-mediumGray opacity-75" />
                 <li
-                  class="font-normal text-[#959CA7] lg:text-medium text-base sm:p-4"
+                  class="font-normal text-darkGray lg:text-medium text-base sm:p-4"
                 >
                   <a href="#" class="font-sofia">Hotte Online Casinoer</a>
                 </li>
-                <hr class="border-[#dee1e6]" />
+                <hr class="border-mediumGray opacity-75" />
                 <li
-                  class="font-normal text-[#959CA7] lg:text-medium text-base sm:p-4"
+                  class="font-normal text-darkGray lg:text-medium text-base sm:p-4"
                 >
                   <a href="#" class="font-sofia">Nye Online Casinoer</a>
                 </li>
@@ -244,22 +252,22 @@
               </button>
               <!--Dropdown List 02-->
               <ul
-                class="dropdown flex flex-col gap-3 sm:gap-0 overflow-hidden animate-slideInAlt hide sm:absolute sm:top-[4.5rem] sm:bg-lightBlue sm:rounded-b-md sm:shadow-sm sm:max-w-[170px]"
+                class="dropdown flex flex-col gap-3 sm:gap-0 overflow-hidden animate-slideInAlt hide sm:absolute sm:top-18 sm:bg-lightBlue sm:rounded-b-md sm:shadow-sm sm:max-w-44"
               >
                 <li
-                  class="font-normal text-[#959CA7] lg:text-medium text-base sm:p-4"
+                  class="font-normal text-darkGray lg:text-medium text-base sm:p-4"
                 >
                   <a href="#" class="font-sofia">Gratis konkurrencer</a>
                 </li>
-                <hr class="border-[#dee1e6]" />
+                <hr class="border-mediumGray opacity-75" />
                 <li
-                  class="font-normal text-[#959CA7] lg:text-medium text-base sm:p-4"
+                  class="font-normal text-darkGray lg:text-medium text-base sm:p-4"
                 >
                   <a href="#" class="font-sofia">Vindere</a>
                 </li>
-                <hr class="border-[#dee1e6]" />
+                <hr class="border-mediumGray opacity-75" />
                 <li
-                  class="font-normal text-[#959CA7] lg:text-medium text-base sm:p-4"
+                  class="font-normal text-darkGray lg:text-medium text-base sm:p-4"
                 >
                   <a href="#" class="font-sofia">Spilanmeldelser</a>
                 </li>
@@ -288,22 +296,22 @@
               </button>
               <!--Dropdown List 03-->
               <ul
-                class="dropdown flex flex-col gap-3 sm:gap-0 overflow-hidden animate-slideInAlt hide sm:absolute sm:top-[4.5rem] sm:bg-lightBlue sm:rounded-b-md sm:shadow-sm sm:max-w-[170px]"
+                class="dropdown flex flex-col gap-3 sm:gap-0 overflow-hidden animate-slideInAlt hide sm:absolute sm:top-18 sm:bg-lightBlue sm:rounded-b-md sm:shadow-sm sm:max-w-44"
               >
                 <li
-                  class="font-normal text-[#959CA7] lg:text-medium text-base sm:p-4"
+                  class="font-normal text-darkGray lg:text-medium text-base sm:p-4"
                 >
                   <a href="#" class="font-sofia">Category 1</a>
                 </li>
-                <hr class="border-[#dee1e6]" />
+                <hr class="border-mediumGray opacity-75" />
                 <li
-                  class="font-normal text-[#959CA7] lg:text-medium text-base sm:p-4"
+                  class="font-normal text-darkGray lg:text-medium text-base sm:p-4"
                 >
                   <a href="#" class="font-sofia">Category 2</a>
                 </li>
-                <hr class="border-[#dee1e6]" />
+                <hr class="border-mediumGray opacity-75" />
                 <li
-                  class="font-normal text-[#959CA7] lg:text-medium text-base sm:p-4"
+                  class="font-normal text-darkGray lg:text-medium text-base sm:p-4"
                 >
                   <a href="#" class="font-sofia">Category 3</a>
                 </li>
@@ -315,13 +323,13 @@
               <form
                 action="/"
                 method="GET"
-                class="flex border-b pb-1 border-[#C2C8D1]"
+                class="flex border-b pb-1 border-mediumGray"
               >
                 <input
                   type="text"
                   id="search"
                   name="search"
-                  class="bg-transparent placeholder:text-[#C2C8D1]"
+                  class="bg-transparent placeholder:text-mediumGray"
                   placeholder="Search here..."
                 />
                 <button type="submit" class="pr-2">
@@ -358,45 +366,47 @@
           </ul>
           <!--Menu Desktop End-->
           <div class="flex">
-            <button class="p-2 w-10 h-10 rounded bg-black mr-4" id="loginBtn">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="22.897"
-                height="22.888"
-                viewBox="0 0 22.897 22.888"
-              >
-                <defs>
-                  <linearGradient
-                    id="a"
-                    x1="1.359"
-                    y1="-.127"
-                    x2="-.407"
-                    y2="1.054"
-                    gradientUnits="objectBoundingBox"
-                  >
-                    <stop offset="0" stop-color="#dce6f6" />
-                    <stop offset="1" stop-color="#f3e4fc" />
-                  </linearGradient>
-                  <clipPath id="b">
+            <log-in>
+              <button class="p-2 w-10 h-10 rounded bg-black mr-4" id="loginBtn">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="22.897"
+                  height="22.888"
+                  viewBox="0 0 22.897 22.888"
+                >
+                  <defs>
+                    <linearGradient
+                      id="a"
+                      x1="1.359"
+                      y1="-.127"
+                      x2="-.407"
+                      y2="1.054"
+                      gradientUnits="objectBoundingBox"
+                    >
+                      <stop offset="0" stop-color="#dce6f6" />
+                      <stop offset="1" stop-color="#f3e4fc" />
+                    </linearGradient>
+                    <clipPath id="b">
+                      <path
+                        data-name="Rectangle 42"
+                        fill="url(#a)"
+                        d="M0 0h22.897v22.888H0z"
+                      />
+                    </clipPath>
+                  </defs>
+                  <g data-name="Group 224" clip-path="url(#b)" fill="url(#a)">
                     <path
-                      data-name="Rectangle 42"
-                      fill="url(#a)"
-                      d="M0 0h22.897v22.888H0z"
+                      data-name="Path 63"
+                      d="M13.36 18.6v-.315c0-4.754.012-9.508-.01-14.261a2.034 2.034 0 0 1 1.5-2.088 13.764 13.764 0 0 0 1.378-.486 1 1 0 0 0-.131-.014h-5.79A1.18 1.18 0 0 0 9.07 2.671v1.364a.723.723 0 0 1-.493.7.675.675 0 0 1-.777-.242.905.905 0 0 1-.157-.451 21.4 21.4 0 0 1 0-1.52A2.6 2.6 0 0 1 10.217.006q5.4-.013 10.8 0a1.927 1.927 0 0 1 1.88 1.849v17.054a1.93 1.93 0 0 1-1.445 2.031q-2.76.926-5.525 1.84a1.909 1.909 0 0 1-2.532-1.434 2.94 2.94 0 0 1-.033-.511v-.8h-3.061a2.617 2.617 0 0 1-2.666-2.656q-.006-.671 0-1.341a.72.72 0 0 1 .717-.774.731.731 0 0 1 .713.762c.008.447 0 .894 0 1.341a1.182 1.182 0 0 0 1.244 1.233h3.051m1.432-6.2c0 2.809.011 5.617-.01 8.425a.559.559 0 0 0 .792.571c1.8-.619 3.61-1.211 5.417-1.814.38-.126.473-.253.473-.651V2.061c0-.533-.27-.727-.779-.557l-5.4 1.8c-.434.145-.5.233-.5.694v8.4"
                     />
-                  </clipPath>
-                </defs>
-                <g data-name="Group 224" clip-path="url(#b)" fill="url(#a)">
-                  <path
-                    data-name="Path 63"
-                    d="M13.36 18.6v-.315c0-4.754.012-9.508-.01-14.261a2.034 2.034 0 0 1 1.5-2.088 13.764 13.764 0 0 0 1.378-.486 1 1 0 0 0-.131-.014h-5.79A1.18 1.18 0 0 0 9.07 2.671v1.364a.723.723 0 0 1-.493.7.675.675 0 0 1-.777-.242.905.905 0 0 1-.157-.451 21.4 21.4 0 0 1 0-1.52A2.6 2.6 0 0 1 10.217.006q5.4-.013 10.8 0a1.927 1.927 0 0 1 1.88 1.849v17.054a1.93 1.93 0 0 1-1.445 2.031q-2.76.926-5.525 1.84a1.909 1.909 0 0 1-2.532-1.434 2.94 2.94 0 0 1-.033-.511v-.8h-3.061a2.617 2.617 0 0 1-2.666-2.656q-.006-.671 0-1.341a.72.72 0 0 1 .717-.774.731.731 0 0 1 .713.762c.008.447 0 .894 0 1.341a1.182 1.182 0 0 0 1.244 1.233h3.051m1.432-6.2c0 2.809.011 5.617-.01 8.425a.559.559 0 0 0 .792.571c1.8-.619 3.61-1.211 5.417-1.814.38-.126.473-.253.473-.651V2.061c0-.533-.27-.727-.779-.557l-5.4 1.8c-.434.145-.5.233-.5.694v8.4"
-                  />
-                  <path
-                    data-name="Path 64"
-                    d="M8.021 9.25c-.165-.16-.332-.316-.494-.479q-.887-.882-1.771-1.769a.72.72 0 1 1 1.016-1.009q1.75 1.744 3.5 3.491a.708.708 0 0 1 0 1.069q-1.747 1.745-3.5 3.489a.72.72 0 0 1-1.07.053.729.729 0 0 1 .064-1.07q1.049-1.053 2.1-2.1c.051-.051.1-.105.177-.19h-.282q-3.488-.003-6.976-.003A.719.719 0 0 1 .05 9.76a.709.709 0 0 1 .679-.458h7.264l.028-.051"
-                  />
-                </g>
-              </svg>
-            </button>
+                    <path
+                      data-name="Path 64"
+                      d="M8.021 9.25c-.165-.16-.332-.316-.494-.479q-.887-.882-1.771-1.769a.72.72 0 1 1 1.016-1.009q1.75 1.744 3.5 3.491a.708.708 0 0 1 0 1.069q-1.747 1.745-3.5 3.489a.72.72 0 0 1-1.07.053.729.729 0 0 1 .064-1.07q1.049-1.053 2.1-2.1c.051-.051.1-.105.177-.19h-.282q-3.488-.003-6.976-.003A.719.719 0 0 1 .05 9.76a.709.709 0 0 1 .679-.458h7.264l.028-.051"
+                    />
+                  </g>
+                </svg>
+              </button>
+            </log-in>
             <button class="mr-4 lg:hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -434,7 +444,7 @@
               </svg>
             </button>
             <button class="md:hidden" id="menuBtn">
-              <img alt="menu icon" class="w-8" src="./images/burger-menu.svg" />
+              <img alt="menu icon" src="./images/burger-menu.svg" />
             </button>
             <div class="relative z-10">
               <button
@@ -443,14 +453,14 @@
                 <img
                   alt="Region Selector"
                   src="./images/flags/german.svg"
-                  class="w-10 max-h-[2.5rem]"
+                  class="w-10 max-h-10"
                 />
                 <p
-                  class="state text-white text-[8px] font-bold bottom-[1px] left-[1px] absolute"
+                  class="state text-white text-xxs font-bold bottom-0_1 left-0_1 absolute"
                 ></p>
               </button>
               <ul
-                class="regionMenu hide md:flex flex-col hidden gap-2 shadow-xl bg-mediumGray absolute pt-[3.375rem] -top-[0.4rem] z-[-1] right-[-0.3rem] rounded-lg p-[5px] overflow-hidden animate-slideInAlt"
+                class="regionMenu hide md:flex flex-col hidden gap-2 shadow-xl bg-mediumGray absolute pt-14 -top-0_6 -z-1 -right-0_5 rounded-lg p-0_5 overflow-hidden animate-slideInAlt"
               ></ul>
             </div>
           </div>
@@ -464,13 +474,13 @@
             <!--Dropdown List Mobile-->
             <ul class="menuList font-bold">
               <div
-                class="flex justify-between items-center py-4 pl-[20%] pr-5_100 gap-5"
+                class="flex justify-between items-center py-4 pl-20_100 pr-5_100 gap-5"
               >
                 <!--Region Btn Mobile-->
                 <li class="flex flex-col items-start gap-2">
                   <a
                     href="#"
-                    class="flex items-center gap-3 text-[19px] mt-4 mb-2 text-black font-sofia"
+                    class="flex items-center gap-3 text-lg mt-4 mb-2 text-black font-sofia"
                   >
                     Hvordan virker det?
                   </a>
@@ -480,27 +490,27 @@
                     <img
                       alt="Region Selector"
                       src="./images/flags/german.svg"
-                      class="w-10 max-h-[2.5rem]"
+                      class="w-10 max-h-10"
                     />
                     <p
-                      class="state text-white text-[8px] font-bold bottom-[1px] left-[1px] absolute"
+                      class="state text-white text-xxs font-bold bottom-0_1 left-0_1 absolute"
                     ></p>
                   </button>
                   <ul
-                    class="regionMenu hide flex flex-col gap-2 shadow-xl bg-mediumGray absolute pt-[3.375rem] -top-[0.4rem] z-[-1] right-[-0.3rem] rounded-lg p-[5px] overflow-hidden animate-slideInAlt"
+                    class="regionMenu hide flex flex-col gap-2 shadow-xl bg-mediumGray absolute pt-14 -top-0_6 -z-1 -right-0_5 rounded-lg p-0_5 overflow-hidden animate-slideInAlt"
                   ></ul>
                 </div>
                 <!--Region Menu Mobile-->
               </div>
               <!--Dropdown Item Mobile 00-->
-              <hr class="border-[#dee1e6]" />
+              <hr class="border-mediumGray opacity-75" />
               <!--Dropdown Item Mobile End 00-->
               <!--Dropdown Item Mobile 01-->
-              <li class="pl-[20%] pb-4 flex flex-col items-start gap-2">
+              <li class="pl-20_100 pb-4 flex flex-col items-start gap-2">
                 <a
                   href="#"
                   data-active="false"
-                  class="dropdownBtn flex items-center gap-3 text-[19px] mt-4 mb-2 text-black font-sofia"
+                  class="dropdownBtn flex items-center gap-3 text-lg mt-4 mb-2 text-black font-sofia"
                 >
                   Casinos
                   <svg
@@ -518,28 +528,28 @@
                 <ul
                   class="dropdown flex flex-col gap-3 overflow-hidden animate-slideInAlt hide"
                 >
-                  <li class="font-normal text-[#959CA7] text-medium">
+                  <li class="font-normal text-darkGray text-medium">
                     <a href="#" class="font-sofia">Tilbud</a>
                   </li>
-                  <li class="font-normal text-[#959CA7] text-medium">
+                  <li class="font-normal text-darkGray text-medium">
                     <a href="#" class="font-sofia">Casino anmeldelser</a>
                   </li>
-                  <li class="font-normal text-[#959CA7] text-medium">
+                  <li class="font-normal text-darkGray text-medium">
                     <a href="#" class="font-sofia">Hotte Online Casinoer</a>
                   </li>
-                  <li class="font-normal text-[#959CA7] text-medium">
+                  <li class="font-normal text-darkGray text-medium">
                     <a href="#" class="font-sofia">Nye Online Casinoer</a>
                   </li>
                 </ul>
               </li>
-              <hr class="border-[#dee1e6]" />
+              <hr class="border-mediumGray opacity-75" />
               <!--Dropdown Item Mobile End 01-->
               <!--Dropdown Item Mobile 02-->
-              <li class="pl-[20%] pb-4 flex flex-col items-start gap-2">
+              <li class="pl-20_100 pb-4 flex flex-col items-start gap-2">
                 <a
                   href="#"
                   data-active="false"
-                  class="dropdownBtn flex items-center gap-3 text-[19px] mt-4 mb-2 text-black font-sofia"
+                  class="dropdownBtn flex items-center gap-3 text-lg mt-4 mb-2 text-black font-sofia"
                 >
                   Spil
                   <svg
@@ -557,29 +567,29 @@
                 <ul
                   class="dropdown flex flex-col gap-3 overflow-hidden animate-slideInAlt hide"
                 >
-                  <li class="font-normal text-[#959CA7] text-medium">
+                  <li class="font-normal text-darkGray text-medium">
                     <a href="#" class="font-sofia">Tilbud</a>
                   </li>
-                  <li class="font-normal text-[#959CA7] text-medium">
+                  <li class="font-normal text-darkGray text-medium">
                     <a href="#" class="font-sofia">Vindere</a>
                   </li>
-                  <li class="font-normal text-[#959CA7] text-medium">
+                  <li class="font-normal text-darkGray text-medium">
                     <a href="#" class="font-sofia">Spilanmeldelser</a>
                   </li>
                 </ul>
               </li>
-              <hr class="border-[#dee1e6]" />
+              <hr class="border-mediumGray opacity-75" />
               <!--Dropdown Item Mobile End 02-->
               <!--Dropdown Item Mobile 03-->
-              <li class="pl-[20%] pb-4 flex flex-col items-start gap-2">
+              <li class="pl-20_100 pb-4 flex flex-col items-start gap-2">
                 <a
                   href="#"
                   data-active="false"
-                  class="dropdownBtn flex items-center gap-1 text-[19px] mt-4 mb-2 text-black font-sofia"
+                  class="dropdownBtn flex items-center gap-1 text-lg mt-4 mb-2 text-black font-sofia"
                 >
                   Shop
                   <svg
-                    class="w-[6%]"
+                    class="w-5_100"
                     viewBox="0 0 21.497 21.656"
                     xmlns="http://www.w3.org/2000/svg"
                   >
@@ -634,25 +644,25 @@
                 <ul
                   class="dropdown flex flex-col gap-3 overflow-hidden animate-slideInAlt hide"
                 >
-                  <li class="font-normal text-[#959CA7] text-medium">
+                  <li class="font-normal text-darkGray text-medium">
                     <a href="#" class="font-sofia">Category 1</a>
                   </li>
-                  <li class="font-normal text-[#959CA7] text-medium">
+                  <li class="font-normal text-darkGray text-medium">
                     <a href="#" class="font-sofia">Category 2</a>
                   </li>
-                  <li class="font-normal text-[#959CA7] text-medium">
+                  <li class="font-normal text-darkGray text-medium">
                     <a href="#" class="font-sofia">Category 3</a>
                   </li>
                 </ul>
               </li>
-              <hr class="border-[#dee1e6]" />
+              <hr class="border-mediumGray opacity-75" />
               <!--Dropdown Item Mobile End 03-->
               <!--Dropdown Item Mobile 04-->
-              <li class="pl-[20%] pb-4 flex flex-col items-start gap-2">
+              <li class="pl-20_100 pb-4 flex flex-col items-start gap-2">
                 <a
                   href="#"
                   data-active="false"
-                  class="dropdownBtn flex items-center gap-3 text-[19px] mt-4 mb-2 text-black font-sofia"
+                  class="dropdownBtn flex items-center gap-3 text-lg mt-4 mb-2 text-black font-sofia"
                 >
                   About us
                   <svg
@@ -670,31 +680,31 @@
                 <ul
                   class="dropdown flex flex-col gap-3 overflow-hidden animate-slideInAlt hide"
                 >
-                  <li class="font-normal text-[#959CA7] text-medium">
+                  <li class="font-normal text-darkGray text-medium">
                     <a href="#" class="font-sofia">Seals of aproval</a>
                   </li>
-                  <li class="font-normal text-[#959CA7] text-medium">
+                  <li class="font-normal text-darkGray text-medium">
                     <a href="#" class="font-sofia">Terms and conditions</a>
                   </li>
-                  <li class="font-normal text-[#959CA7] text-medium">
+                  <li class="font-normal text-darkGray text-medium">
                     <a href="#" class="font-sofia">Competition Terms</a>
                   </li>
-                  <li class="font-normal text-[#959CA7] text-medium">
+                  <li class="font-normal text-darkGray text-medium">
                     <a href="#" class="font-sofia">Privacy Policy</a>
                   </li>
-                  <li class="font-normal text-[#959CA7] text-medium">
+                  <li class="font-normal text-darkGray text-medium">
                     <a href="#" class="font-sofia">Cookie Policy</a>
                   </li>
                 </ul>
               </li>
-              <hr class="border-[#dee1e6]" />
+              <hr class="border-mediumGray opacity-75" />
               <!--Dropdown Item Mobile End 04-->
               <!--Dropdown Item Mobile 05-->
-              <li class="pl-[20%] pb-4 flex flex-col items-start gap-2">
+              <li class="pl-20_100 pb-4 flex flex-col items-start gap-2">
                 <a
                   href="#"
                   data-active="false"
-                  class="dropdownBtn flex items-center gap-3 text-[19px] mt-4 mb-2 text-black font-sofia"
+                  class="dropdownBtn flex items-center gap-3 text-lg mt-4 mb-2 text-black font-sofia"
                 >
                   Learn more
                   <svg
@@ -712,31 +722,31 @@
                 <ul
                   class="dropdown flex flex-col gap-3 overflow-hidden animate-slideInAlt hide"
                 >
-                  <li class="font-normal text-[#959CA7] text-medium">
+                  <li class="font-normal text-darkGray text-medium">
                     <a href="#" class="font-sofia">What is EkstaPont</a>
                   </li>
-                  <li class="font-normal text-[#959CA7] text-medium">
+                  <li class="font-normal text-darkGray text-medium">
                     <a href="#" class="font-sofia">Start using EkstraPoint</a>
                   </li>
-                  <li class="font-normal text-[#959CA7] text-medium">
+                  <li class="font-normal text-darkGray text-medium">
                     <a href="#" class="font-sofia">Why EkstraPoint</a>
                   </li>
-                  <li class="font-normal text-[#959CA7] text-medium">
+                  <li class="font-normal text-darkGray text-medium">
                     <a href="#" class="font-sofia">How to become top player</a>
                   </li>
-                  <li class="font-normal text-[#959CA7] text-medium">
+                  <li class="font-normal text-darkGray text-medium">
                     <a href="#" class="font-sofia">EkstraPoint User Tiers</a>
                   </li>
                 </ul>
               </li>
-              <hr class="border-[#dee1e6]" />
+              <hr class="border-mediumGray opacity-75" />
               <!--Dropdown Item Mobile End 05-->
               <!--Dropdown Item Mobile 06-->
-              <li class="pl-[20%] pb-4 flex flex-col items-start gap-2">
+              <li class="pl-20_100 pb-4 flex flex-col items-start gap-2">
                 <a
                   href="#"
                   data-active="false"
-                  class="dropdownBtn flex items-center gap-3 text-[19px] mt-4 mb-2 text-black font-sofia"
+                  class="dropdownBtn flex items-center gap-3 text-lg mt-4 mb-2 text-black font-sofia"
                 >
                   New on EP
                   <svg
@@ -754,28 +764,28 @@
                 <ul
                   class="dropdown flex flex-col gap-3 overflow-hidden animate-slideInAlt hide"
                 >
-                  <li class="font-normal text-[#959CA7] text-medium">
+                  <li class="font-normal text-darkGray text-medium">
                     <a href="#" class="font-sofia">New games</a>
                   </li>
-                  <li class="font-normal text-[#959CA7] text-medium">
+                  <li class="font-normal text-darkGray text-medium">
                     <a href="#" class="font-sofia">New NetEnt games</a>
                   </li>
-                  <li class="font-normal text-[#959CA7] text-medium">
+                  <li class="font-normal text-darkGray text-medium">
                     <a href="#" class="font-sofia">Best NetEnt games</a>
                   </li>
-                  <li class="font-normal text-[#959CA7] text-medium">
+                  <li class="font-normal text-darkGray text-medium">
                     <a href="#" class="font-sofia">Best casino slots</a>
                   </li>
                 </ul>
               </li>
-              <hr class="border-[#dee1e6]" />
+              <hr class="border-mediumGray opacity-75" />
               <!--Dropdown Item Mobile End 06-->
               <!--Dropdown Item Mobile 06-->
-              <li class="pl-[20%] pb-4 flex flex-col items-start gap-2">
+              <li class="pl-20_100 pb-4 flex flex-col items-start gap-2">
                 <a
                   href="#"
                   data-active="false"
-                  class="dropdownBtn flex items-center gap-3 text-[19px] mt-4 mb-2 text-black font-sofia"
+                  class="dropdownBtn flex items-center gap-3 text-lg mt-4 mb-2 text-black font-sofia"
                 >
                   Contact us
                   <svg
@@ -793,32 +803,62 @@
                 <ul
                   class="dropdown flex flex-col gap-3 overflow-hidden animate-slideInAlt hide"
                 >
-                  <li class="font-normal text-[#959CA7] text-medium">
+                  <li class="font-normal text-darkGray text-medium">
                     <a href="#" class="font-sofia">Support</a>
                   </li>
-                  <li class="font-normal text-[#959CA7] text-medium">
+                  <li class="font-normal text-darkGray text-medium">
                     <a href="#" class="font-sofia">Meet the team</a>
                   </li>
-                  <li class="font-normal text-[#959CA7] text-medium">
+                  <li class="font-normal text-darkGray text-medium">
                     <a href="#" class="font-sofia">Our brands</a>
                   </li>
-                  <li class="font-normal text-[#959CA7] text-medium">
+                  <li class="font-normal text-darkGray text-medium">
                     <a href="#" class="font-sofia">FAQ</a>
                   </li>
                 </ul>
               </li>
-              <hr class="border-[#dee1e6]" />
+              <hr class="border-mediumGray opacity-75" />
               <!--Dropdown Item Mobile End 06-->
             </ul>
           </div>
         </nav>
       </nav>
-      <my-app></my-app>
+      <!-- Page Content -->
+      <div class="font-sofia">
+        <!-- <nav-bar></nav-bar> -->
+        <section class="px-5_100 md:px-10_100 md:pt-1">
+          <div class="md:grid md:grid-cols-2 my-2 gap-2 flex flex-col">
+            <app-rewards class="order-2"></app-rewards>
+            <win-display></win-display>
+          </div>
+          <game-big></game-big>
+          <div class="lg:grid lg:grid-cols-2 my-7 md:mt-4 lg:gap-x-16">
+            <h3 class="text-4xl xl:text-5xl font-bold lg:mb-0 mb-5 leading-10">
+              Sign up.
+              <span
+                class="bg-gradient-to-bl from-yellow to-orange text-gradient"
+                >Play free.</span
+              ><br />Biggest reward Site in the world
+            </h3>
+            <signup-bonus></signup-bonus>
+          </div>
+          <point-offers></point-offers>
+        </section>
+        <game-slider>
+          <h2
+            class="bg-gradient-to-tr from-purpleBright to-sunset text-gradient font-bold text-4xl leading-8"
+          >
+            Current<br />Tournaments
+          </h2>
+        </game-slider>
+        <welcome-offers></welcome-offers>
+        <point-shop></point-shop>
+      </div>
       <!--Footer-->
       <footer class="bg-lightBlue shadow-t-md font-sofia">
         <div class="py-10 px-4 hidden md:flex justify-center gap-4">
           <section>
-            <h3 class="text-[19px] font-bold">About us</h3>
+            <h3 class="text-lg font-bold">About us</h3>
             <ul class="opacity-50">
               <li><a href="#">Seals of approval</a></li>
               <li><a href="#">Terms and conditions</a></li>
@@ -828,7 +868,7 @@
             </ul>
           </section>
           <section>
-            <h3 class="text-[19px] font-bold">Learn more</h3>
+            <h3 class="text-lg font-bold">Learn more</h3>
             <ul class="opacity-50">
               <li><a href="#">What is EkstaPont</a></li>
               <li><a href="#">Start using EkstraPoint</a></li>
@@ -838,7 +878,7 @@
             </ul>
           </section>
           <section>
-            <h3 class="text-[19px] font-bold">New on EP</h3>
+            <h3 class="text-lg font-bold">New on EP</h3>
             <ul class="opacity-50">
               <li><a href="#">New games</a></li>
               <li><a href="#">New NetEnt gamest</a></li>
@@ -847,7 +887,7 @@
             </ul>
           </section>
           <section>
-            <h3 class="text-[19px] font-bold">Contact us</h3>
+            <h3 class="text-lg font-bold">Contact us</h3>
             <ul class="opacity-50">
               <li><a href="#">Support</a></li>
               <li><a href="#">Meet the team</a></li>
@@ -856,7 +896,7 @@
             </ul>
           </section>
         </div>
-        <div class="bg-black py-10 px-[9%] flex flex-col items-center">
+        <div class="bg-black py-10 px-10_100 flex flex-col items-center">
           <svg
             class="mb-4 w-40"
             xmlns="http://www.w3.org/2000/svg"
@@ -929,7 +969,7 @@
             </g>
           </svg>
 
-          <p class="text-[#7C838F] text-xs text-center hidden md:block">
+          <p class="text-darkGray text-xs text-center hidden md:block">
             18+ | Spil ansvarligt | StopSpillet: 70 22 28 25 | ROFUS.nu Husk at
             pengespil kan være vanedannende, så spil ansvarligt. Hos EkstraPoint
             gør vi derfor en indsats for at opretholde og følge retningslinjer
@@ -948,43 +988,43 @@
           >
             <div>
               <img
-                class="max-w-[10.938rem] max-h-14 px-2"
+                class="max-w-44 max-h-14 px-2"
                 src="./images/footer/gambleaware.png"
               />
             </div>
             <div>
               <img
-                class="max-w-[10.938rem] max-h-14 px-2"
+                class="max-w-44 max-h-14 px-2"
                 src="./images/footer/mga.png"
               />
             </div>
             <div>
               <img
-                class="max-w-[10.938rem] max-h-14 px-2"
+                class="max-w-44 max-h-14 px-2"
                 src="./images/footer/agerestrict.png"
               />
             </div>
             <div>
               <img
-                class="max-w-[10.938rem] max-h-14 px-2"
+                class="max-w-44 max-h-14 px-2"
                 src="./images/footer/gpwa.gif"
               />
             </div>
             <div>
               <img
-                class="max-w-[10.938rem] max-h-14 px-2"
+                class="max-w-44 max-h-14 px-2"
                 src="./images/footer/egr.webp"
               />
             </div>
             <div>
               <img
-                class="max-w-[10.938rem] max-h-14 px-2"
+                class="max-w-44 max-h-14 px-2"
                 src="./images/footer/lottofy.webp"
               />
             </div>
             <div>
               <img
-                class="max-w-[10.938rem] max-h-14 px-2"
+                class="max-w-44 max-h-14 px-2"
                 src="./images/footer/smartsoft.webp"
               />
             </div>
@@ -992,15 +1032,6 @@
         </div>
       </footer>
     </div>
-    <log-in style="display: none" id="login">
-      <button id="loginExit">
-        <img
-          class="absolute w-4 h-4 right-0 top-0"
-          src="./images/burger-exit.svg"
-          alt="Exit Button"
-        />
-      </button>
-    </log-in>
     <script src="script.js"></script>
   </body>
 </html>

@@ -209,7 +209,7 @@ const deactivate = (element) => {
 };
 
 /* Toggle Login Menu Event */
-document.querySelectorAll('#loginBtn, #loginExit > img').forEach((btn) => {
+/* document.querySelectorAll('#loginBtn, #loginExit > img').forEach((btn) => {
   btn.addEventListener('click', () => {
     const loginElement = document.querySelector('#login');
     if (loginElement && loginElement.style.display != 'none') {
@@ -222,7 +222,7 @@ document.querySelectorAll('#loginBtn, #loginExit > img').forEach((btn) => {
       loginElement.style.display = 'block';
     }
   });
-});
+}); */
 
 /* Hide menus if you click outside nav */
 document.addEventListener('click', (e) => {
